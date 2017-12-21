@@ -47,9 +47,7 @@
                         </h1>
                         <div class="description">
                             <p>
-                                This is a free responsive login form made with Bootstrap. 
-	                            	Download it on <a href="http://azmind.com"><strong>AZMIND</strong></a>, customize and use it as you like!
-                            
+                                Sistema de gestión y seguimiento del desarrollo de la Tesina Final de la carrera Licenciatura en Tecnología Educativa dictada en la <a href="http://www.frre.utn.edu.ar" target="_blank"><strong>Universidad Tecnológica Nacional - Facultad Regional Resistencia</strong></a>
                             </p>
                         </div>
                     </div>
@@ -58,8 +56,8 @@
                     <div class="col-sm-6 col-sm-offset-3 form-box">
                         <div class="form-top">
                             <div class="form-top-left">
-                                <h3>Ingreso al sitio</h3>
-                                <p>Enter your username and password to log on:</p>
+                                <h3>Acceso al sitio</h3>
+                                <p>Ingrese su usuario y contraseña:</p>
                             </div>
                             <div class="form-top-right">
                                 <i class="fa fa-lock"></i>
@@ -80,25 +78,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-6 col-sm-offset-3 social-login">
-                        <h3>...or login with:</h3>
-                        <div class="social-login-buttons">
-                            <a class="btn btn-link-2" href="#">
-                                <i class="fa fa-facebook"></i>Facebook
-	                        	</a>
-                            <a class="btn btn-link-2" href="#">
-                                <i class="fa fa-twitter"></i>Twitter
-	                        	</a>
-                            <a class="btn btn-link-2" href="#">
-                                <i class="fa fa-google-plus"></i>Google Plus
-	                        	</a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-
     </div>
 
 
