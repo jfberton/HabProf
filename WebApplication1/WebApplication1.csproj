@@ -43,11 +43,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Encriptador">
+      <HintPath>..\..\ConsultaInterBankSrv\Encriptador\bin\Debug\Encriptador.exe</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -66,9 +79,47 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Aplicativo\HabProfDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>HabProfDB.Context.cs</LastGenOutput>
+      <DependentUpon>HabProfDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Aplicativo\HabProfDB.edmx.sql" />
+    <Content Include="Aplicativo\HabProfDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>HabProfDB.cs</LastGenOutput>
+      <DependentUpon>HabProfDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Aplicativo\Menues\MenuDemo.ascx" />
+    <Content Include="Aplicativo\Prueba.aspx" />
+    <Content Include="Content\bootstrap-theme-Cerulean.min.css" />
+    <Content Include="Content\bootstrap-theme-Cosmo.min.css" />
+    <Content Include="Content\bootstrap-theme-Cyborg.min.css" />
+    <Content Include="Content\bootstrap-theme-Darkly.min.css" />
+    <Content Include="Content\bootstrap-theme-Flatly.min.css" />
+    <Content Include="Content\bootstrap-theme-Journal.min.css" />
+    <Content Include="Content\bootstrap-theme-Lumen.min.css" />
+    <Content Include="Content\bootstrap-theme-Paper.min.css" />
+    <Content Include="Content\bootstrap-theme-Readable.min.css" />
+    <Content Include="Content\bootstrap-theme-Sandstone.min.css" />
+    <Content Include="Content\bootstrap-theme-Simplex.min.css" />
+    <Content Include="Content\bootstrap-theme-Slate.min.css" />
+    <Content Include="Content\bootstrap-theme-Spacelab.min.css" />
+    <Content Include="Content\bootstrap-theme-Superhero.min.css" />
+    <Content Include="Content\bootstrap-theme-United.min.css" />
+    <Content Include="Content\bootstrap-theme-Yeti.min.css" />
+    <Content Include="Content\menuStyle.css" />
+    <Content Include="error.aspx" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Aplicativo\Site1.Master" />
+    <EntityDeploy Include="Aplicativo\HabProfDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HabProfDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Aplicativo\HabProfDB.edmx.diagram">
+      <DependentUpon>HabProfDB.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -542,6 +593,39 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aplicativo\ControlesDeUsuario\MessageBox.cs" />
+    <Compile Include="Aplicativo\HabProfDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HabProfDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\HabProfDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HabProfDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\HabProfDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HabProfDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\Menues\MenuDemo.ascx.cs">
+      <DependentUpon>MenuDemo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicativo\Menues\MenuDemo.ascx.designer.cs">
+      <DependentUpon>MenuDemo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\Persona.cs">
+      <DependentUpon>HabProfDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\Prueba.aspx.cs">
+      <DependentUpon>Prueba.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicativo\Prueba.aspx.designer.cs">
+      <DependentUpon>Prueba.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Aplicativo\Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -563,6 +647,13 @@
     <Compile Include="dispatcher.aspx.designer.cs">
       <DependentUpon>dispatcher.aspx</DependentUpon>
     </Compile>
+    <Compile Include="error.aspx.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="error.aspx.designer.cs">
+      <DependentUpon>error.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -570,6 +661,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

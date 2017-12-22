@@ -32,6 +32,16 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets-default-login/ico/apple-touch-icon-72-precomposed.png" />
     <link rel="apple-touch-icon-precomposed" href="assets-default-login/ico/apple-touch-icon-57-precomposed.png" />
 
+    <!-- Javascript -->
+    <script src="assets-default-login/js/jquery-1.11.1.min.js"></script>
+    <script src="assets-default-login/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets-default-login/js/jquery.backstretch.min.js"></script>
+    <script src="assets-default-login/js/scripts.js"></script>
+
+    <!--[if lt IE 10]>
+            <script src="assets/js/placeholder.js"></script>
+        <![endif]-->
+
 </head>
 <body>
     <!-- Top content -->
@@ -41,13 +51,15 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2 text">
-                        <h1><strong>Habilitación Profesional</strong> 
+                        <h1><strong>Habilitación Profesional</strong>
                             <br />
                             Sistema de administración de Tesis
                         </h1>
                         <div class="description">
                             <p>
-                                Sistema de gestión y seguimiento del desarrollo de la Tesina Final de la carrera Licenciatura en Tecnología Educativa dictada en la <a href="http://www.frre.utn.edu.ar" target="_blank"><strong>Universidad Tecnológica Nacional - Facultad Regional Resistencia</strong></a>
+                                <%--Gestión y seguimiento del desarrollo de la Tesina Final de la carrera --%><strong>Licenciatura en Tecnología Educativa</strong>
+                                <br />
+                                <a href="http://www.frre.utn.edu.ar" target="_blank"><strong>Universidad Tecnológica Nacional - Facultad Regional Resistencia</strong></a>
                             </p>
                         </div>
                     </div>
@@ -67,13 +79,13 @@
                             <form id="form1" runat="server" class="login-form">
                                 <div class="form-group">
                                     <label class="sr-only" for="form-username">Usuario</label>
-                                    <input type="text" name="form-username" placeholder="Usuario..." class="form-username form-control" id="form-username"/>
+                                    <input type="text" runat="server" name="form-username" placeholder="Usuario..." class="form-username form-control" id="form_username" />
                                 </div>
                                 <div class="form-group">
                                     <label class="sr-only" for="form-password">Contraseña</label>
-                                    <input type="password" name="form-password" placeholder="Contraseña..." class="form-password form-control" id="form-password"/>
+                                    <input type="password" runat="server" name="form-password" placeholder="Contraseña..." class="form-password form-control" id="form_password" />
                                 </div>
-                                <button type="submit" class="btn">Ingresar!</button>
+                                <button type="submit" runat="server" id="btn_ingresar" onserverclick="btn_ingresar_ServerClick" class="btn">Ingresar!</button>
                             </form>
                         </div>
                     </div>
