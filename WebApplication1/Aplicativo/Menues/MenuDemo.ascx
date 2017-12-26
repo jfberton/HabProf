@@ -1,9 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="MenuDemo.ascx.cs" Inherits="WebApplication1.Aplicativo.Menues.MenuDemo" %>
 
 <style>
-body {
-    padding-top: 50px;
-}
+    body {
+        padding-top: 50px;
+    }
 </style>
 
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -19,7 +19,13 @@ body {
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="https://github.com/fontenele/bootstrap-navbar-dropdowns" target="_blank">GitHub Project</a></li>
+                <li>
+                    <a href="../Aplicativo/usuario_preferencias.aspx">Bienvenido,
+                        <asp:Label Text="" ID="lbl_usuario" runat="server" /></a>
+                </li>
+                <li>
+                    <asp:LinkButton Text="Salir" ID="btn_salir" OnClick="btn_salir_Click" runat="server" />
+                </li>
             </ul>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
@@ -99,21 +105,7 @@ body {
                     </ul>
                 </li>
             </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</div>
-
-<div class="container">
-    <div class="navbar-template text-center">
-        <h1>Bootstrap Expanding Navbar with Dropdown on Hover</h1>
-        <p class="lead text-info">NavBar with too many childs.</p>
-        <a target="_blank" href="http://bootsnipp.com/snippets/featured/multi-level-dropdown-menu-bs3">Thanks to msurguy (Multi level dropdown menu BS3)</a>
-    </div>
-    <div class="text-left col-xs-4 col-xs-offset-4">
-        <code class="text-left"><br>/* To Dropdown navbar dropdown on hover */<br>
-        .navbar-nav > li:hover > .dropdown-menu {<br>
-           display: block;<br>
-        }
-        </code>
+        </div>
+        <!--/.nav-collapse -->
     </div>
 </div>

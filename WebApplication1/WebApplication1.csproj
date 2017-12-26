@@ -92,6 +92,7 @@
     </Content>
     <Content Include="Aplicativo\Menues\MenuDemo.ascx" />
     <Content Include="Aplicativo\Prueba.aspx" />
+    <Content Include="Aplicativo\usuario_preferencias.aspx" />
     <Content Include="Content\bootstrap-theme-Cerulean.min.css" />
     <Content Include="Content\bootstrap-theme-Cosmo.min.css" />
     <Content Include="Content\bootstrap-theme-Cyborg.min.css" />
@@ -639,6 +640,13 @@
     </Compile>
     <Compile Include="Aplicativo\Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\usuario_preferencias.aspx.cs">
+      <DependentUpon>usuario_preferencias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicativo\usuario_preferencias.aspx.designer.cs">
+      <DependentUpon>usuario_preferencias.aspx</DependentUpon>
     </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>

@@ -4,8 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
-
+    <title>Tesina</title>
+    <link rel="shortcut icon" href="assets-default-login/ico/UTN.ico" />
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <link href="../Content/menuStyle.css" rel="stylesheet" />
     <link rel="stylesheet" runat="server" id="bootstrapStyle" type="text/css" href="../Content/bootstrap-theme-Cosmo.min.css" />
 
@@ -29,10 +30,10 @@
             <asp:ContentPlaceHolder ID="CPH_Menues" runat="server">
             </asp:ContentPlaceHolder>
 
-           
-            <asp:ContentPlaceHolder ID="CPH_Body" runat="server">
-            </asp:ContentPlaceHolder>
-
+            <div class="container">
+                <asp:ContentPlaceHolder ID="CPH_Body" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
             <asp:ContentPlaceHolder ID="CPH_Scripts" runat="server">
             </asp:ContentPlaceHolder>
 

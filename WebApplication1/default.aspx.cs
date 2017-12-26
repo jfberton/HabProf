@@ -14,7 +14,10 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                form_username.Focus();
+            }
         }
 
         protected void btn_ingresar_ServerClick(object sender, EventArgs e)
