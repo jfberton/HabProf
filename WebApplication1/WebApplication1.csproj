@@ -601,7 +601,16 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aplicativo\Administrador.cs">
+      <DependentUpon>HabProfDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Aplicativo\ControlesDeUsuario\MessageBox.cs" />
+    <Compile Include="Aplicativo\Director.cs">
+      <DependentUpon>HabProfDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\Estado_tesis.cs">
+      <DependentUpon>HabProfDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Aplicativo\HabProfDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -616,6 +625,15 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HabProfDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\Historial_estado.cs">
+      <DependentUpon>HabProfDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\Juez.cs">
+      <DependentUpon>HabProfDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\Licenciatura.cs">
+      <DependentUpon>HabProfDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\Menues\MenuDemo.ascx.cs">
       <DependentUpon>MenuDemo.ascx</DependentUpon>
@@ -634,12 +652,21 @@
     <Compile Include="Aplicativo\Prueba.aspx.designer.cs">
       <DependentUpon>Prueba.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Aplicativo\Servidor_de_correo.cs">
+      <DependentUpon>HabProfDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Aplicativo\Site1.Master.cs">
       <DependentUpon>Site1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Aplicativo\Site1.Master.designer.cs">
       <DependentUpon>Site1.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\Tesis.cs">
+      <DependentUpon>HabProfDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\Tesista.cs">
+      <DependentUpon>HabProfDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\usuario_preferencias.aspx.cs">
       <DependentUpon>usuario_preferencias.aspx</DependentUpon>

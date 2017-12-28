@@ -12,18 +12,12 @@ namespace WebApplication1.Aplicativo
     using System;
     using System.Collections.Generic;
     
-    public partial class Persona
+    public partial class Servidor_de_correo
     {
-        public int persona_id { get; set; }
-        public string nomyap { get; set; }
-        public string dni { get; set; }
-        public string email { get; set; }
-        public string domicilio { get; set; }
-        public string telefono { get; set; }
-    
-        public virtual Tesista Tesista { get; set; }
-        public virtual Director Director { get; set; }
-        public virtual Juez Juez { get; set; }
-        public virtual Administrador Administrador { get; set; }
+        public int servidor_id { get; set; }
+        public string nombre { get; set; }
+        public string smtp_server { get; set; }
+        public short smtp_port { get; set; }
+        public bool enable_ssl { get; set; }
     }
 }

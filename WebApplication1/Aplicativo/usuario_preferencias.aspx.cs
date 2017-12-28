@@ -22,22 +22,22 @@ namespace WebApplication1.Aplicativo
             string estilo = ((Button)sender).Text;
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
-                Persona persona = Session["UsuarioLogueado"] as Persona;
-                persona.Estilo = estilo;
-                Persona persona_cxt = cxt.Personas.FirstOrDefault(pp => pp.PersonaId == persona.PersonaId);
+                Administrador admin = Session["UsuarioLogueado"] as Administrador;
+                admin.estilo = estilo;
+                Administrador admin_cxt = cxt.Administradores.FirstOrDefault(pp => pp.administrador_id == admin.administrador_id);
                 //actualizo el estilo 
-                persona_cxt.Estilo = estilo;
+                admin_cxt.estilo = estilo;
                 cxt.SaveChanges();
                 //actualizo el usuario de la session
-                Session["UsuarioLogueado"] = persona_cxt;
+                Session["UsuarioLogueado"] = admin_cxt;
                 ((Aplicativo.Site1)this.Master).RefrescarEstilo();
             }
         }
 
         protected void btn_cambiar_clave_Click(object sender, EventArgs e)
         {
-            Persona p = Session["UsuarioLogueado"] as Persona;
-            string clave_actual_db = Cripto.Desencriptar(p.Clave);
+            Administrador admin = Session["UsuarioLogueado"] as Administrador;
+            string clave_actual_db = Cripto.Desencriptar(admin.clave);
             string clave_actual_ingresada = tb_clave_actual.Text;
             string clave_nueva = tb_clave_nueva.Text;
             string clave_nueva_repite = tb_clave_nueva_repite.Text;
@@ -51,8 +51,8 @@ namespace WebApplication1.Aplicativo
             {
                 using (HabProfDBContainer cxt = new Aplicativo.HabProfDBContainer())
                 {
-                    Persona p_cxt = cxt.Personas.FirstOrDefault(pp => pp.PersonaId == p.PersonaId);
-                    p_cxt.Clave = Cripto.Encriptar(clave_nueva);
+                    Administrador admin_cxt = cxt.Administradores.FirstOrDefault(pp => pp.administrador_id == admin.administrador_id);
+                    admin_cxt.clave = Cripto.Encriptar(clave_nueva);
                     cxt.SaveChanges();
                 }
                 MessageBox.Show(this, "La clave se actualizó correctamente.-", MessageBox.Tipo_MessageBox.Success);

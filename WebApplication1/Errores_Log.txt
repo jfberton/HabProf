@@ -110,3 +110,45 @@ STACKTRACE:
 
 
 ******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636500613549110112
+
+DATE: 28/12/2017 12:35:54 p.m.
+
+AGENTE: admin
+
+MESSAGE: The ObjectContext instance has been disposed and can no longer be used for operations that require a connection.
+
+SOURCE: EntityFramework
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/Prueba.aspx
+
+TARGETSITE: System.Data.Common.DbConnection get_Connection()
+
+STACKTRACE:    en System.Data.Entity.Core.Objects.ObjectContext.get_Connection()
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.Execute(MergeOption mergeOption)
+   en System.Data.Entity.Core.Objects.DataClasses.EntityReference`1.Load(MergeOption mergeOption)
+   en System.Data.Entity.Core.Objects.DataClasses.RelatedEnd.DeferredLoad()
+   en System.Data.Entity.Core.Objects.Internal.LazyLoadBehavior.LoadProperty[TItem](TItem propertyValue, String relationshipName, String targetRoleName, Boolean mustBeNull, Object wrapperObject)
+   en System.Data.Entity.Core.Objects.Internal.LazyLoadBehavior.<>c__DisplayClass7`2.<GetInterceptorDelegate>b__2(TProxy proxy, TItem item)
+   en System.Data.Entity.DynamicProxies.Administrador_5525C0E9C3952D93564021C20C9A897EC0D9CE9ED1F0D63C1A0E740C6566DE01.get_Persona()
+   en WebApplication1.Aplicativo.Menues.MenuDemo.Page_Load(Object sender, EventArgs e) en D:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\Menues\MenuDemo.ascx.cs:línea 17
+   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   en System.Web.UI.Control.OnLoad(EventArgs e)
+   en System.Web.UI.Control.LoadRecursive()
+   en System.Web.UI.Control.LoadRecursive()
+   en System.Web.UI.Control.LoadRecursive()
+   en System.Web.UI.Control.LoadRecursive()
+   en System.Web.UI.Control.LoadRecursive()
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+
+******************************************************************

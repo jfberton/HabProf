@@ -12,18 +12,14 @@ namespace WebApplication1.Aplicativo
     using System;
     using System.Collections.Generic;
     
-    public partial class Persona
+    public partial class Historial_estado
     {
-        public int persona_id { get; set; }
-        public string nomyap { get; set; }
-        public string dni { get; set; }
-        public string email { get; set; }
-        public string domicilio { get; set; }
-        public string telefono { get; set; }
+        public int historial_id { get; set; }
+        public int tesis_id { get; set; }
+        public int estado_tesis_id { get; set; }
+        public string descripcion { get; set; }
     
-        public virtual Tesista Tesista { get; set; }
-        public virtual Director Director { get; set; }
-        public virtual Juez Juez { get; set; }
-        public virtual Administrador Administrador { get; set; }
+        public virtual Tesis Tesis { get; set; }
+        public virtual Estado_tesis Estado { get; set; }
     }
 }

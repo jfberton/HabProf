@@ -12,18 +12,10 @@ namespace WebApplication1.Aplicativo
     using System;
     using System.Collections.Generic;
     
-    public partial class Persona
+    public partial class Juez
     {
-        public int persona_id { get; set; }
-        public string nomyap { get; set; }
-        public string dni { get; set; }
-        public string email { get; set; }
-        public string domicilio { get; set; }
-        public string telefono { get; set; }
+        public int juez_id { get; set; }
     
-        public virtual Tesista Tesista { get; set; }
-        public virtual Director Director { get; set; }
-        public virtual Juez Juez { get; set; }
-        public virtual Administrador Administrador { get; set; }
+        public virtual Persona Persona { get; set; }
     }
 }
