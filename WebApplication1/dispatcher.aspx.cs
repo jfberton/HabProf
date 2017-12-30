@@ -20,7 +20,7 @@ namespace WebApplication1
         {
             Persona user = Session["UsuarioLogueado"] as Persona;
 
-            Response.Redirect("~/Aplicativo/Prueba.aspx");
+            Response.Redirect("~/Aplicativo/admin_home.aspx");
 
             //switch (user.perfil)
             //{

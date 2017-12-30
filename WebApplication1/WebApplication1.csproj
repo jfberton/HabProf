@@ -79,6 +79,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Aplicativo\admin_home.aspx" />
+    <Content Include="Aplicativo\admin_tesistas.aspx" />
     <Content Include="Aplicativo\HabProfDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>HabProfDB.Context.cs</LastGenOutput>
@@ -91,6 +93,7 @@
       <DependentUpon>HabProfDB.edmx</DependentUpon>
     </Content>
     <Content Include="Aplicativo\Menues\MenuDemo.ascx" />
+    <Content Include="Aplicativo\Menues\menu_admin.ascx" />
     <Content Include="Aplicativo\Prueba.aspx" />
     <Content Include="Aplicativo\usuario_preferencias.aspx" />
     <Content Include="Content\bootstrap-theme-Cerulean.min.css" />
@@ -114,10 +117,12 @@
     <Content Include="error.aspx" />
     <Content Include="images\background.jpg" />
     <Content Include="images\bg.gif" />
+    <Content Include="images\error403.png" />
     <Content Include="images\icon-link.png" />
     <Content Include="images\shadow.png" />
     <Content Include="images\turtle.png" />
     <Content Include="images\wall-power-connection.png" />
+    <Content Include="images\Warning.gif" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Aplicativo\Site1.Master" />
@@ -604,6 +609,20 @@
     <Compile Include="Aplicativo\Administrador.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Aplicativo\admin_home.aspx.cs">
+      <DependentUpon>admin_home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicativo\admin_home.aspx.designer.cs">
+      <DependentUpon>admin_home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\admin_tesistas.aspx.cs">
+      <DependentUpon>admin_tesistas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicativo\admin_tesistas.aspx.designer.cs">
+      <DependentUpon>admin_tesistas.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Aplicativo\ControlesDeUsuario\MessageBox.cs" />
     <Compile Include="Aplicativo\Director.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>
@@ -641,6 +660,13 @@
     </Compile>
     <Compile Include="Aplicativo\Menues\MenuDemo.ascx.designer.cs">
       <DependentUpon>MenuDemo.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\Menues\menu_admin.ascx.cs">
+      <DependentUpon>menu_admin.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicativo\Menues\menu_admin.ascx.designer.cs">
+      <DependentUpon>menu_admin.ascx</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\Persona.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>

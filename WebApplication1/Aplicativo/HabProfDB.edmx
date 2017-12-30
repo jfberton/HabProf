@@ -40,10 +40,6 @@
       <End Role="Director" EntitySet="Directores" />
       <End Role="Tesista" EntitySet="Tesistas" />
     </AssociationSet>
-    <AssociationSet Name="LicenciaturaAdministrador" Association="HabProfDB.Store.LicenciaturaAdministrador">
-      <End Role="Licenciatura" EntitySet="Licenciaturas" />
-      <End Role="Administrador" EntitySet="Administradores" />
-    </AssociationSet>
     <AssociationSet Name="Estado_tesisTesis" Association="HabProfDB.Store.Estado_tesisTesis">
       <End Role="Estado_tesis" EntitySet="Estados_tesis" />
       <End Role="Tesis" EntitySet="Tesinas" />
@@ -60,25 +56,30 @@
       <End Role="Servidor" EntitySet="Servidores" />
       <End Role="Licenciatura" EntitySet="Licenciaturas" />
     </AssociationSet>
+    <AssociationSet Name="LicenciaturaPersona" Association="HabProfDB.Store.LicenciaturaPersona">
+      <End Role="Licenciatura" EntitySet="Licenciaturas" />
+      <End Role="Persona" EntitySet="Personas" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Personas">
     <Key>
       <PropertyRef Name="persona_id" />
     </Key>
     <Property Name="persona_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nomyap" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="dni" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="email" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="domicilio" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="telefono" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="persona_nomyap" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="persona_dni" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="persona_email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="persona_domicilio" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="persona_telefono" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="licenciatura_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Tesistas">
     <Key>
       <PropertyRef Name="tesista_id" />
     </Key>
     <Property Name="tesista_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="legajo" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="sede" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="tesista_legajo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="tesista_sede" Type="nvarchar(max)" Nullable="false" />
     <Property Name="director_id" Type="int" Nullable="false" />
     <Property Name="Persona_persona_id" Type="int" Nullable="false" />
     <Property Name="Tesis_tesis_id" Type="int" Nullable="false" />
@@ -95,10 +96,9 @@
       <PropertyRef Name="administrador_id" />
     </Key>
     <Property Name="administrador_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="usuario" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="clave" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="estilo" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="licenciatura_id" Type="int" Nullable="false" />
+    <Property Name="administrador_usuario" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="administrador_clave" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="administrador_estilo" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Persona_persona_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Jueces">
@@ -114,22 +114,22 @@
     </Key>
     <Property Name="tesis_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="estado_tesis_id" Type="int" Nullable="false" />
-    <Property Name="tema" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="palabras_clave" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="borrador" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="plan_fch_presentacion" Type="datetime" Nullable="false" />
-    <Property Name="plan_duracion_anios" Type="smallint" Nullable="false" />
-    <Property Name="plan_aviso_meses" Type="smallint" Nullable="false" />
+    <Property Name="tesis_tema" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="tesis_palabras_clave" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="tesis_borrador" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="tesis_plan_fch_presentacion" Type="datetime" Nullable="false" />
+    <Property Name="tesis_plan_duracion_anios" Type="smallint" Nullable="false" />
+    <Property Name="tesis_plan_aviso_meses" Type="smallint" Nullable="false" />
   </EntityType>
   <EntityType Name="Licenciaturas">
     <Key>
       <PropertyRef Name="licenciatura_id" />
     </Key>
     <Property Name="licenciatura_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="email" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="clave" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="licenciatura_nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="licenciatura_descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="licenciatura_email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="licenciatura_clave" Type="nvarchar(max)" Nullable="false" />
     <Property Name="servidor_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Estados_tesis">
@@ -137,7 +137,8 @@
       <PropertyRef Name="estado_tesis_id" />
     </Key>
     <Property Name="estado_tesis_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="estado" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="estado_estado" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="estado_descripcion" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Historial_estados">
     <Key>
@@ -146,17 +147,17 @@
     <Property Name="historial_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="tesis_id" Type="int" Nullable="false" />
     <Property Name="estado_tesis_id" Type="int" Nullable="false" />
-    <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="historial_descripcion" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Servidores">
     <Key>
       <PropertyRef Name="servidor_id" />
     </Key>
     <Property Name="servidor_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="smtp_server" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="smtp_port" Type="smallint" Nullable="false" />
-    <Property Name="enable_ssl" Type="bit" Nullable="false" />
+    <Property Name="servidor_nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="servidor_smtp_host" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="servidor_smtp_port" Type="smallint" Nullable="false" />
+    <Property Name="servidor_enable_ssl" Type="bit" Nullable="false" />
   </EntityType>
   <Association Name="PersonaTesista">
     <End Role="Persona" Type="HabProfDB.Store.Personas" Multiplicity="1" />
@@ -230,18 +231,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="LicenciaturaAdministrador">
-    <End Role="Licenciatura" Type="HabProfDB.Store.Licenciaturas" Multiplicity="1" />
-    <End Role="Administrador" Type="HabProfDB.Store.Administradores" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Licenciatura">
-        <PropertyRef Name="licenciatura_id" />
-      </Principal>
-      <Dependent Role="Administrador">
-        <PropertyRef Name="licenciatura_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="Estado_tesisTesis">
     <End Role="Estado_tesis" Type="HabProfDB.Store.Estados_tesis" Multiplicity="1" />
     <End Role="Tesis" Type="HabProfDB.Store.Tesinas" Multiplicity="*" />
@@ -290,6 +279,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="LicenciaturaPersona">
+    <End Role="Licenciatura" Type="HabProfDB.Store.Licenciaturas" Multiplicity="1" />
+    <End Role="Persona" Type="HabProfDB.Store.Personas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Licenciatura">
+        <PropertyRef Name="licenciatura_id" />
+      </Principal>
+      <Dependent Role="Persona">
+        <PropertyRef Name="licenciatura_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -326,10 +327,6 @@
             <End Role="Tesista" EntitySet="Tesistas" />
           </AssociationSet>
           <EntitySet Name="Licenciaturas" EntityType="HabProfDB.Licenciatura" />
-          <AssociationSet Name="LicenciaturaAdministrador" Association="HabProfDB.LicenciaturaAdministrador">
-            <End Role="Licenciatura" EntitySet="Licenciaturas" />
-            <End Role="Administrador" EntitySet="Administradores" />
-          </AssociationSet>
           <EntitySet Name="Estados_tesis" EntityType="HabProfDB.Estado_tesis" />
           <AssociationSet Name="Estado_tesisTesis" Association="HabProfDB.Estado_tesisTesis">
             <End Role="Estado_tesis" EntitySet="Estados_tesis" />
@@ -349,29 +346,35 @@
             <End Role="Servidor" EntitySet="Servidores" />
             <End Role="Licenciatura" EntitySet="Licenciaturas" />
           </AssociationSet>
+          <AssociationSet Name="LicenciaturaPersona" Association="HabProfDB.LicenciaturaPersona">
+            <End Role="Licenciatura" EntitySet="Licenciaturas" />
+            <End Role="Persona" EntitySet="Personas" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Persona">
           <Key>
             <PropertyRef Name="persona_id" />
           </Key>
           <Property Name="persona_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nomyap" Type="String" Nullable="false" />
-          <Property Name="dni" Type="String" Nullable="false" />
-          <Property Name="email" Type="String" Nullable="false" />
-          <Property Name="domicilio" Type="String" Nullable="false" />
-          <Property Name="telefono" Type="String" Nullable="false" />
+          <Property Name="persona_nomyap" Type="String" Nullable="false" />
+          <Property Name="persona_dni" Type="String" Nullable="false" />
+          <Property Name="persona_email" Type="String" Nullable="false" />
+          <Property Name="persona_domicilio" Type="String" Nullable="false" />
+          <Property Name="persona_telefono" Type="String" Nullable="false" />
           <NavigationProperty Name="Tesista" Relationship="HabProfDB.PersonaTesista" FromRole="Persona" ToRole="Tesista" />
           <NavigationProperty Name="Director" Relationship="HabProfDB.PersonaDirector" FromRole="Persona" ToRole="Director" />
           <NavigationProperty Name="Juez" Relationship="HabProfDB.PersonaJuez" FromRole="Persona" ToRole="Juez" />
           <NavigationProperty Name="Administrador" Relationship="HabProfDB.PersonaAdministrador" FromRole="Persona" ToRole="Administrador" />
+          <NavigationProperty Name="Licenciatura" Relationship="HabProfDB.LicenciaturaPersona" FromRole="Persona" ToRole="Licenciatura" />
+          <Property Name="licenciatura_id" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Tesista">
           <Key>
             <PropertyRef Name="tesista_id" />
           </Key>
           <Property Name="tesista_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="legajo" Type="String" Nullable="false" />
-          <Property Name="sede" Type="String" Nullable="false" />
+          <Property Name="tesista_legajo" Type="String" Nullable="false" />
+          <Property Name="tesista_sede" Type="String" Nullable="false" />
           <NavigationProperty Name="Persona" Relationship="HabProfDB.PersonaTesista" FromRole="Tesista" ToRole="Persona" />
           <NavigationProperty Name="Tesis" Relationship="HabProfDB.TesistaTesis" FromRole="Tesista" ToRole="Tesis" />
           <NavigationProperty Name="Director" Relationship="HabProfDB.DirectorTesista" FromRole="Tesista" ToRole="Director" />
@@ -391,11 +394,9 @@
           </Key>
           <Property Name="administrador_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Persona" Relationship="HabProfDB.PersonaAdministrador" FromRole="Administrador" ToRole="Persona" />
-          <Property Name="usuario" Type="String" Nullable="false" />
-          <Property Name="clave" Type="String" Nullable="false" />
-          <Property Name="estilo" Type="String" Nullable="false" />
-          <NavigationProperty Name="Licenciatura" Relationship="HabProfDB.LicenciaturaAdministrador" FromRole="Administrador" ToRole="Licenciatura" />
-          <Property Name="licenciatura_id" Type="Int32" Nullable="false" />
+          <Property Name="administrador_usuario" Type="String" Nullable="false" />
+          <Property Name="administrador_clave" Type="String" Nullable="false" />
+          <Property Name="administrador_estilo" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Juez">
           <Key>
@@ -412,12 +413,12 @@
           <NavigationProperty Name="Tesista" Relationship="HabProfDB.TesistaTesis" FromRole="Tesis" ToRole="Tesista" />
           <NavigationProperty Name="Estado" Relationship="HabProfDB.Estado_tesisTesis" FromRole="Tesis" ToRole="Estado_tesis" />
           <Property Name="estado_tesis_id" Type="Int32" Nullable="false" />
-          <Property Name="tema" Type="String" Nullable="false" />
-          <Property Name="palabras_clave" Type="String" Nullable="false" />
-          <Property Name="borrador" Type="String" Nullable="false" />
-          <Property Name="plan_fch_presentacion" Type="DateTime" Nullable="false" />
-          <Property Name="plan_duracion_anios" Type="Int16" Nullable="false" />
-          <Property Name="plan_aviso_meses" Type="Int16" Nullable="false" />
+          <Property Name="tesis_tema" Type="String" Nullable="false" />
+          <Property Name="tesis_palabras_clave" Type="String" Nullable="false" />
+          <Property Name="tesis_borrador" Type="String" Nullable="false" />
+          <Property Name="tesis_plan_fch_presentacion" Type="DateTime" Nullable="false" />
+          <Property Name="tesis_plan_duracion_meses" Type="Int16" Nullable="false" />
+          <Property Name="tesis_plan_aviso_meses" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Historial_estados" Relationship="HabProfDB.TesisHistorial_estado" FromRole="Tesis" ToRole="Historial_estado" />
         </EntityType>
         <Association Name="PersonaTesista">
@@ -457,34 +458,23 @@
             <PropertyRef Name="licenciatura_id" />
           </Key>
           <Property Name="licenciatura_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" />
-          <Property Name="descripcion" Type="String" Nullable="false" />
-          <NavigationProperty Name="Administradores" Relationship="HabProfDB.LicenciaturaAdministrador" FromRole="Licenciatura" ToRole="Administrador" />
-          <Property Name="email" Type="String" Nullable="false" />
-          <Property Name="clave" Type="String" Nullable="false" />
+          <Property Name="licenciatura_nombre" Type="String" Nullable="false" />
+          <Property Name="licenciatura_descripcion" Type="String" Nullable="false" />
+          <Property Name="licenciatura_email" Type="String" Nullable="false" />
+          <Property Name="licenciatura_clave" Type="String" Nullable="false" />
           <NavigationProperty Name="Servidor" Relationship="HabProfDB.ServidorLicenciatura" FromRole="Licenciatura" ToRole="Servidor" />
           <Property Name="servidor_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Personas" Relationship="HabProfDB.LicenciaturaPersona" FromRole="Licenciatura" ToRole="Persona" />
         </EntityType>
-        <Association Name="LicenciaturaAdministrador">
-          <End Type="HabProfDB.Licenciatura" Role="Licenciatura" Multiplicity="1" />
-          <End Type="HabProfDB.Administrador" Role="Administrador" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Licenciatura">
-              <PropertyRef Name="licenciatura_id" />
-            </Principal>
-            <Dependent Role="Administrador">
-              <PropertyRef Name="licenciatura_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Estado_tesis">
           <Key>
             <PropertyRef Name="estado_tesis_id" />
           </Key>
           <Property Name="estado_tesis_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="estado" Type="String" Nullable="false" />
+          <Property Name="estado_estado" Type="String" Nullable="false" />
           <NavigationProperty Name="Tesinas" Relationship="HabProfDB.Estado_tesisTesis" FromRole="Estado_tesis" ToRole="Tesis" />
           <NavigationProperty Name="Historial_estado" Relationship="HabProfDB.Estado_tesisHistorial_estado" FromRole="Estado_tesis" ToRole="Historial_estado" />
+          <Property Name="estado_descripcion" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="Estado_tesisTesis">
           <End Type="HabProfDB.Estado_tesis" Role="Estado_tesis" Multiplicity="1" />
@@ -507,7 +497,7 @@
           <Property Name="tesis_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Estado" Relationship="HabProfDB.Estado_tesisHistorial_estado" FromRole="Historial_estado" ToRole="Estado_tesis" />
           <Property Name="estado_tesis_id" Type="Int32" Nullable="false" />
-          <Property Name="descripcion" Type="String" Nullable="false" />
+          <Property Name="historial_descripcion" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="TesisHistorial_estado">
           <End Type="HabProfDB.Tesis" Role="Tesis" Multiplicity="1" />
@@ -538,10 +528,10 @@
             <PropertyRef Name="servidor_id" />
           </Key>
           <Property Name="servidor_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" Nullable="false" />
-          <Property Name="smtp_server" Type="String" Nullable="false" />
-          <Property Name="smtp_port" Type="Int16" Nullable="false" />
-          <Property Name="enable_ssl" Type="Boolean" Nullable="false" />
+          <Property Name="servidor_nombre" Type="String" Nullable="false" />
+          <Property Name="servidor_smtp_host" Type="String" Nullable="false" />
+          <Property Name="servidor_smtp_port" Type="Int16" Nullable="false" />
+          <Property Name="servidor_enable_ssl" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="ServidorLicenciatura">
           <End Type="HabProfDB.Servidor_de_correo" Role="Servidor" Multiplicity="1" />
@@ -555,6 +545,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="LicenciaturaPersona">
+          <End Type="HabProfDB.Licenciatura" Role="Licenciatura" Multiplicity="1" />
+          <End Type="HabProfDB.Persona" Role="Persona" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Licenciatura">
+              <PropertyRef Name="licenciatura_id" />
+            </Principal>
+            <Dependent Role="Persona">
+              <PropertyRef Name="licenciatura_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -565,11 +567,12 @@
       <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Persona)">
         <MappingFragment StoreEntitySet="Personas">
           <ScalarProperty Name="persona_id" ColumnName="persona_id" />
-          <ScalarProperty Name="nomyap" ColumnName="nomyap" />
-          <ScalarProperty Name="dni" ColumnName="dni" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="domicilio" ColumnName="domicilio" />
-          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="persona_nomyap" ColumnName="persona_nomyap" />
+          <ScalarProperty Name="persona_dni" ColumnName="persona_dni" />
+          <ScalarProperty Name="persona_email" ColumnName="persona_email" />
+          <ScalarProperty Name="persona_domicilio" ColumnName="persona_domicilio" />
+          <ScalarProperty Name="persona_telefono" ColumnName="persona_telefono" />
+          <ScalarProperty Name="licenciatura_id" ColumnName="licenciatura_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -577,8 +580,8 @@
       <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Tesista)">
         <MappingFragment StoreEntitySet="Tesistas">
           <ScalarProperty Name="tesista_id" ColumnName="tesista_id" />
-          <ScalarProperty Name="legajo" ColumnName="legajo" />
-          <ScalarProperty Name="sede" ColumnName="sede" />
+          <ScalarProperty Name="tesista_legajo" ColumnName="tesista_legajo" />
+          <ScalarProperty Name="tesista_sede" ColumnName="tesista_sede" />
           <ScalarProperty Name="director_id" ColumnName="director_id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -594,10 +597,9 @@
       <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Administrador)">
         <MappingFragment StoreEntitySet="Administradores">
           <ScalarProperty Name="administrador_id" ColumnName="administrador_id" />
-          <ScalarProperty Name="usuario" ColumnName="usuario" />
-          <ScalarProperty Name="clave" ColumnName="clave" />
-          <ScalarProperty Name="estilo" ColumnName="estilo" />
-          <ScalarProperty Name="licenciatura_id" ColumnName="licenciatura_id" />
+          <ScalarProperty Name="administrador_usuario" ColumnName="administrador_usuario" />
+          <ScalarProperty Name="administrador_clave" ColumnName="administrador_clave" />
+          <ScalarProperty Name="administrador_estilo" ColumnName="administrador_estilo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -613,12 +615,12 @@
         <MappingFragment StoreEntitySet="Tesinas">
           <ScalarProperty Name="tesis_id" ColumnName="tesis_id" />
           <ScalarProperty Name="estado_tesis_id" ColumnName="estado_tesis_id" />
-          <ScalarProperty Name="tema" ColumnName="tema" />
-          <ScalarProperty Name="palabras_clave" ColumnName="palabras_clave" />
-          <ScalarProperty Name="borrador" ColumnName="borrador" />
-          <ScalarProperty Name="plan_fch_presentacion" ColumnName="plan_fch_presentacion" />
-          <ScalarProperty Name="plan_duracion_anios" ColumnName="plan_duracion_anios" />
-          <ScalarProperty Name="plan_aviso_meses" ColumnName="plan_aviso_meses" />
+          <ScalarProperty Name="tesis_tema" ColumnName="tesis_tema" />
+          <ScalarProperty Name="tesis_palabras_clave" ColumnName="tesis_palabras_clave" />
+          <ScalarProperty Name="tesis_borrador" ColumnName="tesis_borrador" />
+          <ScalarProperty Name="tesis_plan_fch_presentacion" ColumnName="tesis_plan_fch_presentacion" />
+          <ScalarProperty Name="tesis_plan_duracion_meses" ColumnName="tesis_plan_duracion_anios" />
+          <ScalarProperty Name="tesis_plan_aviso_meses" ColumnName="tesis_plan_aviso_meses" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -626,10 +628,10 @@
       <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Licenciatura)">
         <MappingFragment StoreEntitySet="Licenciaturas">
           <ScalarProperty Name="licenciatura_id" ColumnName="licenciatura_id" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="clave" ColumnName="clave" />
+          <ScalarProperty Name="licenciatura_nombre" ColumnName="licenciatura_nombre" />
+          <ScalarProperty Name="licenciatura_descripcion" ColumnName="licenciatura_descripcion" />
+          <ScalarProperty Name="licenciatura_email" ColumnName="licenciatura_email" />
+          <ScalarProperty Name="licenciatura_clave" ColumnName="licenciatura_clave" />
           <ScalarProperty Name="servidor_id" ColumnName="servidor_id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -638,7 +640,8 @@
       <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Estado_tesis)">
         <MappingFragment StoreEntitySet="Estados_tesis">
           <ScalarProperty Name="estado_tesis_id" ColumnName="estado_tesis_id" />
-          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="estado_estado" ColumnName="estado_estado" />
+          <ScalarProperty Name="estado_descripcion" ColumnName="estado_descripcion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -648,7 +651,7 @@
           <ScalarProperty Name="historial_id" ColumnName="historial_id" />
           <ScalarProperty Name="tesis_id" ColumnName="tesis_id" />
           <ScalarProperty Name="estado_tesis_id" ColumnName="estado_tesis_id" />
-          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="historial_descripcion" ColumnName="historial_descripcion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -656,10 +659,10 @@
       <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Servidor_de_correo)">
         <MappingFragment StoreEntitySet="Servidores">
           <ScalarProperty Name="servidor_id" ColumnName="servidor_id" />
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="smtp_server" ColumnName="smtp_server" />
-          <ScalarProperty Name="smtp_port" ColumnName="smtp_port" />
-          <ScalarProperty Name="enable_ssl" ColumnName="enable_ssl" />
+          <ScalarProperty Name="servidor_nombre" ColumnName="servidor_nombre" />
+          <ScalarProperty Name="servidor_smtp_host" ColumnName="servidor_smtp_host" />
+          <ScalarProperty Name="servidor_smtp_port" ColumnName="servidor_smtp_port" />
+          <ScalarProperty Name="servidor_enable_ssl" ColumnName="servidor_enable_ssl" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

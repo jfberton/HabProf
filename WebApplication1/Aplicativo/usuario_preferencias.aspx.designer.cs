@@ -13,13 +13,13 @@ namespace WebApplication1.Aplicativo {
     public partial class usuario_preferencias {
         
         /// <summary>
-        /// MenuDemo control.
+        /// menu_admin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::WebApplication1.Aplicativo.Menues.MenuDemo MenuDemo;
+        protected global::WebApplication1.Aplicativo.Menues.menu_admin menu_admin;
         
         /// <summary>
         /// changeStyleButton control.

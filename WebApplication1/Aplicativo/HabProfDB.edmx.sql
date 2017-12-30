@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/28/2017 12:07:52
--- Generated from EDMX file: D:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
+-- Date Created: 12/29/2017 17:33:38
+-- Generated from EDMX file: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -93,19 +93,20 @@ GO
 -- Creating table 'Personas'
 CREATE TABLE [dbo].[Personas] (
     [persona_id] int IDENTITY(1,1) NOT NULL,
-    [nomyap] nvarchar(max)  NOT NULL,
-    [dni] nvarchar(max)  NOT NULL,
-    [email] nvarchar(max)  NOT NULL,
-    [domicilio] nvarchar(max)  NOT NULL,
-    [telefono] nvarchar(max)  NOT NULL
+    [persona_nomyap] nvarchar(max)  NOT NULL,
+    [persona_dni] nvarchar(max)  NOT NULL,
+    [persona_email] nvarchar(max)  NOT NULL,
+    [persona_domicilio] nvarchar(max)  NOT NULL,
+    [persona_telefono] nvarchar(max)  NOT NULL,
+    [licenciatura_id] int  NOT NULL
 );
 GO
 
 -- Creating table 'Tesistas'
 CREATE TABLE [dbo].[Tesistas] (
     [tesista_id] int IDENTITY(1,1) NOT NULL,
-    [legajo] nvarchar(max)  NOT NULL,
-    [sede] nvarchar(max)  NOT NULL,
+    [tesista_legajo] nvarchar(max)  NOT NULL,
+    [tesista_sede] nvarchar(max)  NOT NULL,
     [director_id] int  NOT NULL,
     [Persona_persona_id] int  NOT NULL,
     [Tesis_tesis_id] int  NOT NULL
@@ -122,10 +123,9 @@ GO
 -- Creating table 'Administradores'
 CREATE TABLE [dbo].[Administradores] (
     [administrador_id] int IDENTITY(1,1) NOT NULL,
-    [usuario] nvarchar(max)  NOT NULL,
-    [clave] nvarchar(max)  NOT NULL,
-    [estilo] nvarchar(max)  NOT NULL,
-    [licenciatura_id] int  NOT NULL,
+    [administrador_usuario] nvarchar(max)  NOT NULL,
+    [administrador_clave] nvarchar(max)  NOT NULL,
+    [administrador_estilo] nvarchar(max)  NOT NULL,
     [Persona_persona_id] int  NOT NULL
 );
 GO
@@ -141,22 +141,22 @@ GO
 CREATE TABLE [dbo].[Tesinas] (
     [tesis_id] int IDENTITY(1,1) NOT NULL,
     [estado_tesis_id] int  NOT NULL,
-    [tema] nvarchar(max)  NOT NULL,
-    [palabras_clave] nvarchar(max)  NOT NULL,
-    [borrador] nvarchar(max)  NOT NULL,
-    [plan_fch_presentacion] datetime  NOT NULL,
-    [plan_duracion_anios] smallint  NOT NULL,
-    [plan_aviso_meses] smallint  NOT NULL
+    [tesis_tema] nvarchar(max)  NOT NULL,
+    [tesis_palabras_clave] nvarchar(max)  NOT NULL,
+    [tesis_borrador] nvarchar(max)  NOT NULL,
+    [tesis_plan_fch_presentacion] datetime  NOT NULL,
+    [tesis_plan_duracion_anios] smallint  NOT NULL,
+    [tesis_plan_aviso_meses] smallint  NOT NULL
 );
 GO
 
 -- Creating table 'Licenciaturas'
 CREATE TABLE [dbo].[Licenciaturas] (
     [licenciatura_id] int IDENTITY(1,1) NOT NULL,
-    [nombre] nvarchar(max)  NOT NULL,
-    [descripcion] nvarchar(max)  NOT NULL,
-    [email] nvarchar(max)  NOT NULL,
-    [clave] nvarchar(max)  NOT NULL,
+    [licenciatura_nombre] nvarchar(max)  NOT NULL,
+    [licenciatura_descripcion] nvarchar(max)  NOT NULL,
+    [licenciatura_email] nvarchar(max)  NOT NULL,
+    [licenciatura_clave] nvarchar(max)  NOT NULL,
     [servidor_id] int  NOT NULL
 );
 GO
@@ -164,7 +164,8 @@ GO
 -- Creating table 'Estados_tesis'
 CREATE TABLE [dbo].[Estados_tesis] (
     [estado_tesis_id] int IDENTITY(1,1) NOT NULL,
-    [estado] nvarchar(max)  NOT NULL
+    [estado_estado] nvarchar(max)  NOT NULL,
+    [estado_descripcion] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -173,17 +174,17 @@ CREATE TABLE [dbo].[Historial_estados] (
     [historial_id] int IDENTITY(1,1) NOT NULL,
     [tesis_id] int  NOT NULL,
     [estado_tesis_id] int  NOT NULL,
-    [descripcion] nvarchar(max)  NOT NULL
+    [historial_descripcion] nvarchar(max)  NOT NULL
 );
 GO
 
 -- Creating table 'Servidores'
 CREATE TABLE [dbo].[Servidores] (
     [servidor_id] int IDENTITY(1,1) NOT NULL,
-    [nombre] nvarchar(max)  NOT NULL,
-    [smtp_server] nvarchar(max)  NOT NULL,
-    [smtp_port] smallint  NOT NULL,
-    [enable_ssl] bit  NOT NULL
+    [servidor_nombre] nvarchar(max)  NOT NULL,
+    [servidor_smtp_host] nvarchar(max)  NOT NULL,
+    [servidor_smtp_port] smallint  NOT NULL,
+    [servidor_enable_ssl] bit  NOT NULL
 );
 GO
 
@@ -345,21 +346,6 @@ ON [dbo].[Tesistas]
     ([director_id]);
 GO
 
--- Creating foreign key on [licenciatura_id] in table 'Administradores'
-ALTER TABLE [dbo].[Administradores]
-ADD CONSTRAINT [FK_LicenciaturaAdministrador]
-    FOREIGN KEY ([licenciatura_id])
-    REFERENCES [dbo].[Licenciaturas]
-        ([licenciatura_id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_LicenciaturaAdministrador'
-CREATE INDEX [IX_FK_LicenciaturaAdministrador]
-ON [dbo].[Administradores]
-    ([licenciatura_id]);
-GO
-
 -- Creating foreign key on [estado_tesis_id] in table 'Tesinas'
 ALTER TABLE [dbo].[Tesinas]
 ADD CONSTRAINT [FK_Estado_tesisTesis]
@@ -418,6 +404,21 @@ GO
 CREATE INDEX [IX_FK_ServidorLicenciatura]
 ON [dbo].[Licenciaturas]
     ([servidor_id]);
+GO
+
+-- Creating foreign key on [licenciatura_id] in table 'Personas'
+ALTER TABLE [dbo].[Personas]
+ADD CONSTRAINT [FK_LicenciaturaPersona]
+    FOREIGN KEY ([licenciatura_id])
+    REFERENCES [dbo].[Licenciaturas]
+        ([licenciatura_id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_LicenciaturaPersona'
+CREATE INDEX [IX_FK_LicenciaturaPersona]
+ON [dbo].[Personas]
+    ([licenciatura_id]);
 GO
 
 -- --------------------------------------------------

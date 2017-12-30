@@ -8,8 +8,8 @@
     <link rel="shortcut icon" href="assets-default-login/ico/UTN.ico" />
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <link href="../Content/menuStyle.css" rel="stylesheet" />
+    
     <link rel="stylesheet" runat="server" id="bootstrapStyle" type="text/css" href="../Content/bootstrap-theme-Cosmo.min.css" />
-
 
     <link href="../Content/css/select2.min.css" rel="stylesheet" />
     <link href="../Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />

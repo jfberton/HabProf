@@ -1,11 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Aplicativo/Site1.Master" AutoEventWireup="true" CodeBehind="usuario_preferencias.aspx.cs" Inherits="WebApplication1.Aplicativo.usuario_preferencias" %>
 
-<%@ Register Src="~/Aplicativo/Menues/MenuDemo.ascx" TagPrefix="uc1" TagName="MenuDemo" %>
+<%@ Register Src="~/Aplicativo/Menues/menu_admin.ascx" TagPrefix="uc1" TagName="menu_admin" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH_Menues" runat="server">
-    <uc1:MenuDemo runat="server" ID="MenuDemo" />
+    <uc1:menu_admin runat="server" ID="menu_admin" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="CPH_Body" runat="server">
     <h1>Seleccione un tema</h1>

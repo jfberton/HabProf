@@ -18,14 +18,14 @@
         <AssociationConnector Association="HabProfDB.TesistaTesis" />
         <AssociationConnector Association="HabProfDB.DirectorTesista" />
         <EntityTypeShape EntityType="HabProfDB.Licenciatura" Width="1.875" PointX="8.5" PointY="7.375" />
-        <AssociationConnector Association="HabProfDB.LicenciaturaAdministrador" />
         <EntityTypeShape EntityType="HabProfDB.Estado_tesis" Width="2.625" PointX="2.375" PointY="11" />
         <AssociationConnector Association="HabProfDB.Estado_tesisTesis" />
         <EntityTypeShape EntityType="HabProfDB.Historial_estado" Width="2" PointX="5.875" PointY="7.25" />
         <AssociationConnector Association="HabProfDB.TesisHistorial_estado" />
         <AssociationConnector Association="HabProfDB.Estado_tesisHistorial_estado" />
-        <EntityTypeShape EntityType="HabProfDB.Servidor_de_correo" Width="2.375" PointX="12" PointY="8.125" />
+        <EntityTypeShape EntityType="HabProfDB.Servidor_de_correo" Width="2.375" PointX="11.125" PointY="7.5" />
         <AssociationConnector Association="HabProfDB.ServidorLicenciatura" />
+        <AssociationConnector Association="HabProfDB.LicenciaturaPersona" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

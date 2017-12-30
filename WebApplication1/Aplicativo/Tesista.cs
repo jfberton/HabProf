@@ -15,8 +15,8 @@ namespace WebApplication1.Aplicativo
     public partial class Tesista
     {
         public int tesista_id { get; set; }
-        public string legajo { get; set; }
-        public string sede { get; set; }
+        public string tesista_legajo { get; set; }
+        public string tesista_sede { get; set; }
         public int director_id { get; set; }
     
         public virtual Persona Persona { get; set; }

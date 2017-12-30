@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 
 namespace WebApplication1.Aplicativo.Menues
 {
-    public partial class MenuDemo : System.Web.UI.UserControl
+    public partial class menu_admin : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {

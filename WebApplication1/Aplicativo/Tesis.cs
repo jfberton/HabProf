@@ -22,12 +22,12 @@ namespace WebApplication1.Aplicativo
     
         public int tesis_id { get; set; }
         public int estado_tesis_id { get; set; }
-        public string tema { get; set; }
-        public string palabras_clave { get; set; }
-        public string borrador { get; set; }
-        public System.DateTime plan_fch_presentacion { get; set; }
-        public short plan_duracion_anios { get; set; }
-        public short plan_aviso_meses { get; set; }
+        public string tesis_tema { get; set; }
+        public string tesis_palabras_clave { get; set; }
+        public string tesis_borrador { get; set; }
+        public System.DateTime tesis_plan_fch_presentacion { get; set; }
+        public short tesis_plan_duracion_meses { get; set; }
+        public short tesis_plan_aviso_meses { get; set; }
     
         public virtual Tesista Tesista { get; set; }
         public virtual Estado_tesis Estado { get; set; }

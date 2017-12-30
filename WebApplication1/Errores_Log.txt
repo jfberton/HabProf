@@ -2,39 +2,13 @@
 
 ******************************************************************
 
-ERRORID: 636498681979129264
+ERRORID: 636501735253498619
 
-DATE: 26/12/2017 06:56:37 a.m.
+DATE: 29/12/2017 19:45:25
 
-AGENTE: Sin autenticar.
+AGENTE: admin
 
-MESSAGE: No se ha encontrado la ruta de acceso de la red
-
-SOURCE: 
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/default.aspx
-
-TARGETSITE: 
-
-STACKTRACE: 
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636498694547608057
-
-DATE: 26/12/2017 07:17:34 a.m.
-
-AGENTE: Berton
-
-MESSAGE: El archivo '/usuario_preferencias.aspx' no existe.
+MESSAGE: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesistas.aspx(118): error CS1061: 'aplicativo_admin_tesistas_aspx' does not contain a definition for 'btn_guardar_ServerClick' and no extension method 'btn_guardar_ServerClick' accepting a first argument of type 'aplicativo_admin_tesistas_aspx' could be found (are you missing a using directive or an assembly reference?)
 
 SOURCE: System.Web
 
@@ -42,11 +16,13 @@ INSTANCE:
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/usuario_preferencias.aspx
+URL: http://localhost:60142/Aplicativo/admin_tesistas.aspx
 
-TARGETSITE: Void CheckVirtualFileExists(System.Web.VirtualPath)
+TARGETSITE: System.CodeDom.Compiler.CompilerResults Compile()
 
-STACKTRACE:    en System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualPath)
+STACKTRACE:    en System.Web.Compilation.AssemblyBuilder.Compile()
+   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
    en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
    en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
    en System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
@@ -62,90 +38,60 @@ STACKTRACE:    en System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualP
 
 ******************************************************************
 
-ERRORID: 636498767554489669
+ERRORID: 636501763062449200
 
-DATE: 26/12/2017 09:19:15 a.m.
-
-AGENTE: Sin autenticar.
-
-MESSAGE: No se ha encontrado la ruta de acceso de la red
-
-SOURCE: 
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/default.aspx
-
-TARGETSITE: 
-
-STACKTRACE: 
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636498841852576863
-
-DATE: 26/12/2017 11:23:05 a.m.
-
-AGENTE: Sin autenticar.
-
-MESSAGE: No se ha encontrado la ruta de acceso de la red
-
-SOURCE: 
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/default.aspx
-
-TARGETSITE: 
-
-STACKTRACE: 
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636500613549110112
-
-DATE: 28/12/2017 12:35:54 p.m.
+DATE: 29/12/2017 20:31:46
 
 AGENTE: admin
 
-MESSAGE: The ObjectContext instance has been disposed and can no longer be used for operations that require a connection.
+MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
 
-SOURCE: EntityFramework
+SOURCE: WebApplication1
 
 INSTANCE: 
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/Aplicativo/Prueba.aspx
+URL: http://localhost:60142/Aplicativo/admin_tesistas.aspx
 
-TARGETSITE: System.Data.Common.DbConnection get_Connection()
+TARGETSITE: Void RefrescarEstilo()
 
-STACKTRACE:    en System.Data.Entity.Core.Objects.ObjectContext.get_Connection()
-   en System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   en System.Data.Entity.Core.Objects.ObjectQuery`1.Execute(MergeOption mergeOption)
-   en System.Data.Entity.Core.Objects.DataClasses.EntityReference`1.Load(MergeOption mergeOption)
-   en System.Data.Entity.Core.Objects.DataClasses.RelatedEnd.DeferredLoad()
-   en System.Data.Entity.Core.Objects.Internal.LazyLoadBehavior.LoadProperty[TItem](TItem propertyValue, String relationshipName, String targetRoleName, Boolean mustBeNull, Object wrapperObject)
-   en System.Data.Entity.Core.Objects.Internal.LazyLoadBehavior.<>c__DisplayClass7`2.<GetInterceptorDelegate>b__2(TProxy proxy, TItem item)
-   en System.Data.Entity.DynamicProxies.Administrador_5525C0E9C3952D93564021C20C9A897EC0D9CE9ED1F0D63C1A0E740C6566DE01.get_Persona()
-   en WebApplication1.Aplicativo.Menues.MenuDemo.Page_Load(Object sender, EventArgs e) en D:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\Menues\MenuDemo.ascx.cs:línea 17
+STACKTRACE:    en WebApplication1.Aplicativo.Site1.RefrescarEstilo() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\Site1.Master.cs:línea 27
+   en WebApplication1.Aplicativo.Site1.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\Site1.Master.cs:línea 17
    en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
    en System.Web.UI.Control.OnLoad(EventArgs e)
    en System.Web.UI.Control.LoadRecursive()
    en System.Web.UI.Control.LoadRecursive()
-   en System.Web.UI.Control.LoadRecursive()
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636501780861097224
+
+DATE: 29/12/2017 21:01:26
+
+AGENTE: admin
+
+MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
+
+SOURCE: WebApplication1
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/admin_tesistas.aspx
+
+TARGETSITE: Void RefrescarEstilo()
+
+STACKTRACE:    en WebApplication1.Aplicativo.Site1.RefrescarEstilo() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\Site1.Master.cs:línea 27
+   en WebApplication1.Aplicativo.Site1.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\Site1.Master.cs:línea 17
+   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   en System.Web.UI.Control.OnLoad(EventArgs e)
    en System.Web.UI.Control.LoadRecursive()
    en System.Web.UI.Control.LoadRecursive()
    en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)

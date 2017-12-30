@@ -15,12 +15,10 @@ namespace WebApplication1.Aplicativo
     public partial class Administrador
     {
         public int administrador_id { get; set; }
-        public string usuario { get; set; }
-        public string clave { get; set; }
-        public string estilo { get; set; }
-        public int licenciatura_id { get; set; }
+        public string administrador_usuario { get; set; }
+        public string administrador_clave { get; set; }
+        public string administrador_estilo { get; set; }
     
         public virtual Persona Persona { get; set; }
-        public virtual Licenciatura Licenciatura { get; set; }
     }
 }

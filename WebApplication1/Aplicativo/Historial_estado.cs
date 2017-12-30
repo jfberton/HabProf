@@ -17,7 +17,7 @@ namespace WebApplication1.Aplicativo
         public int historial_id { get; set; }
         public int tesis_id { get; set; }
         public int estado_tesis_id { get; set; }
-        public string descripcion { get; set; }
+        public string historial_descripcion { get; set; }
     
         public virtual Tesis Tesis { get; set; }
         public virtual Estado_tesis Estado { get; set; }

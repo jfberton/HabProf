@@ -15,9 +15,9 @@ namespace WebApplication1.Aplicativo
     public partial class Servidor_de_correo
     {
         public int servidor_id { get; set; }
-        public string nombre { get; set; }
-        public string smtp_server { get; set; }
-        public short smtp_port { get; set; }
-        public bool enable_ssl { get; set; }
+        public string servidor_nombre { get; set; }
+        public string servidor_smtp_host { get; set; }
+        public short servidor_smtp_port { get; set; }
+        public bool servidor_enable_ssl { get; set; }
     }
 }

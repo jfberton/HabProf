@@ -17,18 +17,18 @@ namespace WebApplication1.Aplicativo
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Licenciatura()
         {
-            this.Administradores = new HashSet<Administrador>();
+            this.Personas = new HashSet<Persona>();
         }
     
         public int licenciatura_id { get; set; }
-        public string nombre { get; set; }
-        public string descripcion { get; set; }
-        public string email { get; set; }
-        public string clave { get; set; }
+        public string licenciatura_nombre { get; set; }
+        public string licenciatura_descripcion { get; set; }
+        public string licenciatura_email { get; set; }
+        public string licenciatura_clave { get; set; }
         public int servidor_id { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Administrador> Administradores { get; set; }
         public virtual Servidor_de_correo Servidor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Persona> Personas { get; set; }
     }
 }

@@ -29,12 +29,12 @@ namespace WebApplication1
 
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
-                Administrador usr = cxt.Administradores.FirstOrDefault(pp => pp.usuario == usuario && pp.clave == clave);
+                Administrador usr = cxt.Administradores.FirstOrDefault(pp => pp.administrador_usuario == usuario && pp.administrador_clave == clave);
 
                 if (usr != null)
                 {
                     Session["UsuarioLogueado"] = usr;
-                    FormsAuthentication.RedirectFromLoginPage(usr.usuario, false);
+                    FormsAuthentication.RedirectFromLoginPage(usr.administrador_usuario, false);
                 }
                 else
                 {
@@ -50,20 +50,25 @@ namespace WebApplication1
             {
                 if (cxt.Personas.Count() == 0)
                 {
-                    Servidor_de_correo servidor = new Servidor_de_correo() { nombre = "Hotmail", smtp_server = "smtp.live.com", smtp_port = 25, enable_ssl = true };
-                    Servidor_de_correo servidor1 = new Servidor_de_correo() { nombre = "Outlook", smtp_server = "smtp.live.com", smtp_port = 25, enable_ssl = true };
-                    Servidor_de_correo servidor2 = new Servidor_de_correo() { nombre = "Live", smtp_server = "smtp.live.com", smtp_port = 25, enable_ssl = true };
-                    cxt.Servidores.Add(servidor);
+                    //https://www.aspsnippets.com/Articles/How-to-send-email-with-attachment-in-ASPNet.aspx
+                    Servidor_de_correo servidor0 = new Servidor_de_correo() { servidor_nombre = "Hotmail", servidor_smtp_host = "smtp.live.com", servidor_smtp_port = 25, servidor_enable_ssl = true };
+                    Servidor_de_correo servidor1 = new Servidor_de_correo() { servidor_nombre = "Outlook", servidor_smtp_host = "smtp.live.com", servidor_smtp_port = 25, servidor_enable_ssl = true };
+                    Servidor_de_correo servidor2 = new Servidor_de_correo() { servidor_nombre = "Live", servidor_smtp_host = "smtp.live.com", servidor_smtp_port = 25, servidor_enable_ssl = true };
+                    Servidor_de_correo servidor3 = new Servidor_de_correo() { servidor_nombre = "Gmail", servidor_smtp_host = "smtp.gmail.com", servidor_smtp_port = 587, servidor_enable_ssl = true };
+                    Servidor_de_correo servidor4 = new Servidor_de_correo() { servidor_nombre = "Yahoo!", servidor_smtp_host = "smtp.yahoo.com", servidor_smtp_port = 465, servidor_enable_ssl = true };
+                    cxt.Servidores.Add(servidor0);
                     cxt.Servidores.Add(servidor1);
                     cxt.Servidores.Add(servidor2);
+                    cxt.Servidores.Add(servidor3);
+                    cxt.Servidores.Add(servidor4);
 
-                    Licenciatura l = new Licenciatura() { nombre = "Licenciatura en Tecnología Educativa", descripcion = "Este Ciclo de Licenciatura se propone brindar una alternativa de formación de grado a aquellos profesores y/o técnicos superiores en áreas referidas en manejo de las tecnologías, interesados en Ia inserción de Ia tecnología educativa en los procesos de formación inicial y continua propios del sistema educativo. Asimismo, resulta una opción para cubrir los espacios de capacitación y actualización que se desarroIIan en las instituciones y organizaciones del sistema socio productivo, tanto de gestión pública como privada." , email="email.de.prueba", clave="clave.del.mail", Servidor= servidor};
+                    Licenciatura l = new Licenciatura() { licenciatura_nombre = "Licenciatura en Tecnología Educativa", licenciatura_descripcion = "Este Ciclo de Licenciatura se propone brindar una alternativa de formación de grado a aquellos profesores y/o técnicos superiores en áreas referidas en manejo de las tecnologías, interesados en Ia inserción de Ia tecnología educativa en los procesos de formación inicial y continua propios del sistema educativo. Asimismo, resulta una opción para cubrir los espacios de capacitación y actualización que se desarroIIan en las instituciones y organizaciones del sistema socio productivo, tanto de gestión pública como privada." , licenciatura_email="email.de.prueba", licenciatura_clave="clave.del.mail", Servidor= servidor0};
                     cxt.Licenciaturas.Add(l);
 
-                    Persona p = new Persona() { nomyap = "Administrador", dni = "00000000", email = "un.mail@un.servidor.com", domicilio = "un domicilio", telefono = "00000000" };
+                    Persona p = new Persona() { persona_nomyap = "Administrador", persona_dni = "00000000", persona_email = "un.mail@un.servidor.com", persona_domicilio = "un domicilio", persona_telefono = "00000000" };
                     cxt.Personas.Add(p);
 
-                    Administrador ad = new Administrador() { Persona = p, usuario = "admin", clave = Cripto.Encriptar("admin"), estilo = "Sandstone", Licenciatura = l };
+                    Administrador ad = new Administrador() { Persona = p, administrador_usuario = "admin", administrador_clave = Cripto.Encriptar("admin"), administrador_estilo = "Sandstone" };
                     cxt.Administradores.Add(ad);
 
                     cxt.SaveChanges();

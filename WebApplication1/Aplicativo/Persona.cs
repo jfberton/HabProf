@@ -15,15 +15,17 @@ namespace WebApplication1.Aplicativo
     public partial class Persona
     {
         public int persona_id { get; set; }
-        public string nomyap { get; set; }
-        public string dni { get; set; }
-        public string email { get; set; }
-        public string domicilio { get; set; }
-        public string telefono { get; set; }
+        public string persona_nomyap { get; set; }
+        public string persona_dni { get; set; }
+        public string persona_email { get; set; }
+        public string persona_domicilio { get; set; }
+        public string persona_telefono { get; set; }
+        public int licenciatura_id { get; set; }
     
         public virtual Tesista Tesista { get; set; }
         public virtual Director Director { get; set; }
         public virtual Juez Juez { get; set; }
         public virtual Administrador Administrador { get; set; }
+        public virtual Licenciatura Licenciatura { get; set; }
     }
 }
