@@ -2,11 +2,11 @@
 
 ******************************************************************
 
-ERRORID: 636505688582545044
+ERRORID: 636505759891658006
 
-DATE: 03/01/2018 09:34:18 a.m.
+DATE: 03/01/2018 11:33:09 a.m.
 
-AGENTE: dire
+AGENTE: admin
 
 MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
 
@@ -16,16 +16,105 @@ INSTANCE:
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/Aplicativo/director_home.aspx
+URL: http://localhost:60142/Aplicativo/admin_tesistas.aspx
 
-TARGETSITE: Void RefrescarEstilo()
+TARGETSITE: Void gv_tesistas_PreRender(System.Object, System.EventArgs)
 
-STACKTRACE:    en WebApplication1.Aplicativo.Site1.RefrescarEstilo() en d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\Site1.Master.cs:línea 27
-   en WebApplication1.Aplicativo.Site1.Page_Load(Object sender, EventArgs e) en d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\Site1.Master.cs:línea 17
+STACKTRACE:    en WebApplication1.Aplicativo.admin_tesistas.gv_tesistas_PreRender(Object sender, EventArgs e) en d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\admin_tesistas.aspx.cs:línea 49
+   en System.Web.UI.Control.OnPreRender(EventArgs e)
+   en System.Web.UI.WebControls.GridView.OnPreRender(EventArgs e)
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636505787374971854
+
+DATE: 03/01/2018 12:18:57 p.m.
+
+AGENTE: admin
+
+MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
+
+SOURCE: WebApplication1
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/admin_tesistas.aspx
+
+TARGETSITE: Void ObtenerTesistas()
+
+STACKTRACE:    en WebApplication1.Aplicativo.admin_tesistas.ObtenerTesistas() en d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\admin_tesistas.aspx.cs:línea 39
+   en WebApplication1.Aplicativo.admin_tesistas.Page_Load(Object sender, EventArgs e) en d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\admin_tesistas.aspx.cs:línea 22
    en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
    en System.Web.UI.Control.OnLoad(EventArgs e)
    en System.Web.UI.Control.LoadRecursive()
-   en System.Web.UI.Control.LoadRecursive()
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636505808865869620
+
+DATE: 03/01/2018 12:54:46 p.m.
+
+AGENTE: admin
+
+MESSAGE: DataBinding: 'System.Data.Entity.DynamicProxies.Tesista_7267A2DF40247FF0457A1D4102BDCFB00A1F15FF39D5CF169999822DABEBED92' no contiene una propiedad con el nombre 'tesista_id'.
+
+SOURCE: System.Web
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/admin_tesistas.aspx
+
+TARGETSITE: System.Object GetPropertyValue(System.Object, System.String)
+
+STACKTRACE:    en System.Web.UI.DataBinder.GetPropertyValue(Object container, String propName)
+   en System.Web.UI.DataBinder.Eval(Object container, String[] expressionParts)
+   en System.Web.UI.DataBinder.Eval(Object container, String expression)
+   en System.Web.UI.TemplateControl.Eval(String expression)
+   en ASP.aplicativo_admin_tesistas_aspx.__DataBind__control38(Object sender, EventArgs e) en d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\admin_tesistas.aspx:línea 157
+   en System.Web.UI.Control.OnDataBinding(EventArgs e)
+   en System.Web.UI.Control.DataBind(Boolean raiseOnDataBinding)
+   en System.Web.UI.Control.DataBind()
+   en System.Web.UI.Control.DataBindChildren()
+   en System.Web.UI.Control.DataBind(Boolean raiseOnDataBinding)
+   en System.Web.UI.Control.DataBind()
+   en System.Web.UI.Control.DataBindChildren()
+   en System.Web.UI.Control.DataBind(Boolean raiseOnDataBinding)
+   en System.Web.UI.Control.DataBind()
+   en System.Web.UI.WebControls.GridView.CreateRow(Int32 rowIndex, Int32 dataSourceIndex, DataControlRowType rowType, DataControlRowState rowState, Boolean dataBind, Object dataItem, DataControlField[] fields, TableRowCollection rows, PagedDataSource pagedDataSource)
+   en System.Web.UI.WebControls.GridView.CreateChildControls(IEnumerable dataSource, Boolean dataBinding)
+   en System.Web.UI.WebControls.CompositeDataBoundControl.PerformDataBinding(IEnumerable data)
+   en System.Web.UI.WebControls.GridView.PerformDataBinding(IEnumerable data)
+   en System.Web.UI.WebControls.DataBoundControl.OnDataSourceViewSelectCallback(IEnumerable data)
+   en System.Web.UI.DataSourceView.Select(DataSourceSelectArguments arguments, DataSourceViewSelectCallback callback)
+   en System.Web.UI.WebControls.DataBoundControl.PerformSelect()
+   en System.Web.UI.WebControls.BaseDataBoundControl.DataBind()
+   en System.Web.UI.WebControls.GridView.DataBind()
+   en WebApplication1.Aplicativo.admin_tesistas.ObtenerTesistas() en d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\admin_tesistas.aspx.cs:línea 34
+   en WebApplication1.Aplicativo.admin_tesistas.btn_guardar_ServerClick(Object sender, EventArgs e) en d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\admin_tesistas.aspx.cs:línea 96
+   en System.Web.UI.HtmlControls.HtmlButton.OnServerClick(EventArgs e)
+   en System.Web.UI.HtmlControls.HtmlButton.RaisePostBackEvent(String eventArgument)
+   en System.Web.UI.HtmlControls.HtmlButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   en System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   en System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
    en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
 
 

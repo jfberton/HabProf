@@ -22,31 +22,13 @@ namespace WebApplication1.Aplicativo {
         protected global::WebApplication1.Aplicativo.Menues.menu_admin menu_admin;
         
         /// <summary>
-        /// gv_tesistas control.
+        /// lbl_sin_tesistas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_tesistas;
-        
-        /// <summary>
-        /// id_item_por_eliminar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden id_item_por_eliminar;
-        
-        /// <summary>
-        /// btn_aceptar_eliminacion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_aceptar_eliminacion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_sin_tesistas;
         
         /// <summary>
         /// btn_agregar_tesista control.
@@ -74,6 +56,15 @@ namespace WebApplication1.Aplicativo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText tb_dni_tesista;
+        
+        /// <summary>
+        /// btn_buscar_dni control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_buscar_dni;
         
         /// <summary>
         /// RequiredFieldValidator1 control.
@@ -209,5 +200,32 @@ namespace WebApplication1.Aplicativo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton btn_guardar;
+        
+        /// <summary>
+        /// gv_tesistas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_tesistas;
+        
+        /// <summary>
+        /// id_item_por_eliminar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden id_item_por_eliminar;
+        
+        /// <summary>
+        /// btn_aceptar_eliminacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_aceptar_eliminacion;
     }
 }

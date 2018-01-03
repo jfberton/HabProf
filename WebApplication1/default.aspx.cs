@@ -39,7 +39,7 @@ namespace WebApplication1
                     Session["UsuarioLogueado"] = usr;
                     if (admin != null && dire != null)
                     {
-                        string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#ver_area').modal('show')});</script>";
+                        string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#ver_perfil').modal('show')});</script>";
                         ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
                     }
                     else

@@ -13,64 +13,19 @@
         <li>Personas</li>
         <li>Administrar tesistas</li>
     </ol>
+
     <h1>Tesistas <small>Listado de alumnos de la licenciatura</small></h1>
 
-    <asp:GridView ID="gv_tesistas" runat="server" OnPreRender="gv_tesistas_PreRender"
-        AutoGenerateColumns="False" GridLines="None" CssClass="display">
-        <Columns>
-            <asp:BoundField DataField="persona_nomyap" HeaderText="Nombre" ReadOnly="true" />
-            <asp:BoundField DataField="persona_dni" HeaderText="DNI" ReadOnly="true" />
-            <asp:BoundField DataField="persona_email" HeaderText="E-mail" ReadOnly="true" />
-            <asp:BoundField DataField="tesista_legajo" HeaderText="Legajo" ReadOnly="true" />
-            <asp:BoundField DataField="tesista_sede" HeaderText="Sede" ReadOnly="true" />
-
-            <asp:TemplateField>
-                <ItemTemplate>
-                    <button
-                        type="button" class="btn btn-sm btn-danger"
-                        data-toggle="modal"
-                        data-target="#advertencia_eliminacion"
-                        data-id='<%#Eval("tesista_id")%>'
-                        data-introduccion="el área"
-                        data-nombre='<%#Eval("persona_nombre")%>'>
-                        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>Eliminar
-                    </button>
-                    <button runat="server" class="btn btn-sm btn-default" id="btn_ver" causesvalidation="false" onserverclick="btn_ver_ServerClick" data-id='<%#Eval("tesista_id")%>'>
-                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Editar
-                    </button>
-                </ItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
-
-    <div class="modal fade" id="advertencia_eliminacion" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content panel-danger">
-                <div class="modal-header panel-heading">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title panel-title"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>ATENCIÓN!!</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <input type="hidden" runat="server" id="id_item_por_eliminar" />
-                            <p id="texto_a_mostrar"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <asp:Button Text="Aceptar" CssClass="btn btn-success" CausesValidation="false" ID="btn_aceptar_eliminacion" OnClick="btn_aceptar_eliminacion_Click" runat="server" />
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                </div>
+    <div class="row">
+        <div class="col-md-10">
+            <div class="alert alert-warning" role="alert" runat="server" id="lbl_sin_tesistas">
+                <strong>No existen tesistas!</strong> Pruebe agregar algunos para comenzar.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         </div>
-    </div>
-
-
-
-
-    <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-2">
             <button type="button" class="btn btn-default pull-right" id="btn_agregar_tesista" runat="server" data-toggle="modal" data-target="#agregar_tesista">
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Agregar nuevo
             </button>
@@ -88,15 +43,22 @@
                                         CssClass="validationsummary panel panel-danger" HeaderText="<div class='panel-heading'>&nbsp;Corrija los siguientes errores antes de continuar:</div>" />
                                 </div>
                             </div>
-
-
                             <div class="row">
                                 <div class="col-md-12">
                                     <table class="table-condensed" style="width: 100%">
                                         <tr>
                                             <td>DNI</td>
                                             <td style="width: auto">
-                                                <input type="text" id="tb_dni_tesista" class="form-control" runat="server" placeholder="DNI del tesista por agregar" /></td>
+                                                <table style="width: 100%">
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" id="tb_dni_tesista" class="form-control" runat="server" placeholder="DNI del tesista por agregar" /></td>
+                                                        <td>
+                                                            <button class="btn btn-default" id="btn_buscar_dni" runat="server" onserverclick="btn_buscar_dni_ServerClick"><span class="glyphicon glyphicon-search"></span></button>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_dni_tesista" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe ingresar el DNI del tesista" ValidationGroup="tesista">
@@ -116,12 +78,12 @@
                                             <td style="width: auto">
                                                 <input type="text" id="tb_email" class="form-control" runat="server" placeholder="E-mail del tesista por agregar" /></td>
                                             <td>
-                                                 <asp:RequiredFieldValidator ControlToValidate="tb_email" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_email" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="RequiredFieldValidator2" runat="server" ErrorMessage="Debe ingresar el e-mail del tesista" ValidationGroup="tesista">
                                                 </asp:RequiredFieldValidator>
                                                 <asp:RegularExpressionValidator ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="tb_email" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="regex_email" runat="server" ErrorMessage="Debe ingresar un e-mail valido"  ValidationGroup="tesista"/>
-                                                </td>
+                                                    ID="regex_email" runat="server" ErrorMessage="Debe ingresar un e-mail valido" ValidationGroup="tesista" />
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Domicilio</td>
@@ -177,10 +139,56 @@
     </div>
 
 
+    <asp:GridView ID="gv_tesistas" runat="server" OnPreRender="gv_tesistas_PreRender"
+        AutoGenerateColumns="False" GridLines="None" CssClass="display">
+        <Columns>
+            <asp:BoundField DataField="persona_nomyap" HeaderText="Nombre" ReadOnly="true" />
+            <asp:BoundField DataField="persona_dni" HeaderText="DNI" ReadOnly="true" />
+            <asp:BoundField DataField="persona_email" HeaderText="E-mail" ReadOnly="true" />
+            <asp:BoundField DataField="tesista_legajo" HeaderText="Legajo" ReadOnly="true" />
+            <asp:BoundField DataField="tesista_sede" HeaderText="Sede" ReadOnly="true" />
 
+            <asp:TemplateField>
+                <ItemTemplate>
+                    <button
+                        type="button" class="btn btn-sm btn-danger"
+                        data-toggle="modal"
+                        data-target="#advertencia_eliminacion"
+                        data-id='<%#Eval("persona_id")%>'
+                        data-introduccion="el área"
+                        data-nombre='<%#Eval("persona_nomyap")%>'>
+                        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>Eliminar
+                    </button>
+                    <button runat="server" class="btn btn-sm btn-default" id="btn_ver" causesvalidation="false" onserverclick="btn_ver_ServerClick" data-id='<%#Eval("persona_id")%>'>
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Editar
+                    </button>
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+    </asp:GridView>
 
-
-
+    <div class="modal fade" id="advertencia_eliminacion" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content panel-danger">
+                <div class="modal-header panel-heading">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title panel-title"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>ATENCIÓN!!</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="hidden" runat="server" id="id_item_por_eliminar" />
+                            <p id="texto_a_mostrar"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button Text="Aceptar" CssClass="btn btn-success" CausesValidation="false" ID="btn_aceptar_eliminacion" OnClick="btn_aceptar_eliminacion_Click" runat="server" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="CPH_Scripts" runat="server">

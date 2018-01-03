@@ -26,10 +26,11 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:ScriptManager runat="server" />
         <div>
             <asp:ContentPlaceHolder ID="CPH_Menues" runat="server">
             </asp:ContentPlaceHolder>
-
+            <br />
             <div class="container">
                 <asp:ContentPlaceHolder ID="CPH_Body" runat="server">
                 </asp:ContentPlaceHolder>

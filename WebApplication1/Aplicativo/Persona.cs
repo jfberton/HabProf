@@ -24,6 +24,7 @@ namespace WebApplication1.Aplicativo
         public string persona_usuario { get; set; }
         public string persona_clave { get; set; }
         public string persona_estilo { get; set; }
+        public Nullable<System.DateTime> persona_fecha_baja { get; set; }
     
         public virtual Licenciatura Licenciatura { get; set; }
     }

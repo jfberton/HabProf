@@ -75,6 +75,7 @@
     <Property Name="persona_usuario" Type="nvarchar(max)" Nullable="false" />
     <Property Name="persona_clave" Type="nvarchar(max)" Nullable="false" />
     <Property Name="persona_estilo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="persona_fecha_baja" Type="datetime" Nullable="true" />
   </EntityType>
   <EntityType Name="Tesinas">
     <Key>
@@ -353,6 +354,7 @@
           <Property Name="persona_usuario" Type="String" Nullable="false" />
           <Property Name="persona_clave" Type="String" Nullable="false" />
           <Property Name="persona_estilo" Type="String" Nullable="false" />
+          <Property Name="persona_fecha_baja" Type="DateTime" Nullable="true" />
         </EntityType>
         <EntityType Name="Tesista" BaseType="HabProfDB.Persona">
           <Property Name="tesista_legajo" Type="String" Nullable="false" />
@@ -535,6 +537,7 @@
           <ScalarProperty Name="persona_usuario" ColumnName="persona_usuario" />
           <ScalarProperty Name="persona_clave" ColumnName="persona_clave" />
           <ScalarProperty Name="persona_estilo" ColumnName="persona_estilo" />
+          <ScalarProperty Name="persona_fecha_baja" ColumnName="persona_fecha_baja" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Director)">
