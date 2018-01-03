@@ -28,10 +28,15 @@ namespace WebApplication1.Aplicativo
         public System.DateTime tesis_plan_fch_presentacion { get; set; }
         public short tesis_plan_duracion_meses { get; set; }
         public short tesis_plan_aviso_meses { get; set; }
+        public int director_persona_id { get; set; }
+        public int tesista_persona_id { get; set; }
+        public short tesis_calificacion { get; set; }
+        public System.DateTime tesis_fecha_cierre { get; set; }
     
-        public virtual Tesista Tesista { get; set; }
         public virtual Estado_tesis Estado { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Historial_estado> Historial_estados { get; set; }
+        public virtual Director Director { get; set; }
+        public virtual Tesista Tesista { get; set; }
     }
 }

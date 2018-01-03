@@ -26,10 +26,6 @@ namespace WebApplication1.Aplicativo
         }
     
         public virtual DbSet<Persona> Personas { get; set; }
-        public virtual DbSet<Tesista> Tesistas { get; set; }
-        public virtual DbSet<Director> Directores { get; set; }
-        public virtual DbSet<Administrador> Administradores { get; set; }
-        public virtual DbSet<Juez> Jueces { get; set; }
         public virtual DbSet<Tesis> Tesinas { get; set; }
         public virtual DbSet<Licenciatura> Licenciaturas { get; set; }
         public virtual DbSet<Estado_tesis> Estados_tesis { get; set; }

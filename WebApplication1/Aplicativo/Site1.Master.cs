@@ -20,28 +20,28 @@ namespace WebApplication1.Aplicativo
 
         public void RefrescarEstilo()
         {
-            Administrador persona = Session["UsuarioLogueado"] as Administrador;
+            Persona persona = Session["UsuarioLogueado"] as Persona;
             string estilo = "../Content/bootstrap-theme-";
 
             //por mas que la formula sea la misma para todos los casos me aseguro de que el estilo guardado exista y no sea cualquier texto
-            switch (persona.administrador_estilo)
+            switch (persona.persona_estilo)
             {
-                case "Cerulean": estilo = estilo + persona.administrador_estilo + ".min.css"; break;
-                case "Cosmo": estilo = estilo + persona.administrador_estilo + ".min.css"; break;
-                case "Cyborg": estilo = estilo + persona.administrador_estilo + ".min.css"; break;
-                case "Darkly": estilo = estilo + persona.administrador_estilo + ".min.css"; break;
-                case "Flatly": estilo = estilo + persona.administrador_estilo + ".min.css"; break;
-                case "Journal": estilo = estilo + persona.administrador_estilo + ".min.css"; break;
-                case "Lumen": estilo = estilo + persona.administrador_estilo + ".min.css"; break;
-                case "Paper": estilo = estilo + persona.administrador_estilo + ".min.css"; break;
-                case "Readable": estilo = estilo + persona.administrador_estilo + ".min.css"; break;
-                case "Sandstone": estilo = estilo + persona.administrador_estilo + ".min.css"; break;
-                case "Simplex": estilo = estilo + persona.administrador_estilo + ".min.css"; break;
-                case "Slate": estilo = estilo + persona.administrador_estilo + ".min.css"; break;
-                case "Spacelab": estilo = estilo + persona.administrador_estilo + ".min.css"; break;
-                case "Superhero": estilo = estilo + persona.administrador_estilo + ".min.css"; break;
-                case "United": estilo = estilo + persona.administrador_estilo + ".min.css"; break;
-                case "Yeti": estilo = estilo + persona.administrador_estilo + ".min.css"; break;
+                case "Cerulean": estilo = estilo + persona.persona_estilo + ".min.css"; break;
+                case "Cosmo": estilo = estilo + persona.persona_estilo + ".min.css"; break;
+                case "Cyborg": estilo = estilo + persona.persona_estilo + ".min.css"; break;
+                case "Darkly": estilo = estilo + persona.persona_estilo + ".min.css"; break;
+                case "Flatly": estilo = estilo + persona.persona_estilo + ".min.css"; break;
+                case "Journal": estilo = estilo + persona.persona_estilo + ".min.css"; break;
+                case "Lumen": estilo = estilo + persona.persona_estilo + ".min.css"; break;
+                case "Paper": estilo = estilo + persona.persona_estilo + ".min.css"; break;
+                case "Readable": estilo = estilo + persona.persona_estilo + ".min.css"; break;
+                case "Sandstone": estilo = estilo + persona.persona_estilo + ".min.css"; break;
+                case "Simplex": estilo = estilo + persona.persona_estilo + ".min.css"; break;
+                case "Slate": estilo = estilo + persona.persona_estilo + ".min.css"; break;
+                case "Spacelab": estilo = estilo + persona.persona_estilo + ".min.css"; break;
+                case "Superhero": estilo = estilo + persona.persona_estilo + ".min.css"; break;
+                case "United": estilo = estilo + persona.persona_estilo + ".min.css"; break;
+                case "Yeti": estilo = estilo + persona.persona_estilo + ".min.css"; break;
                 default: estilo = "../Content/bootstrap-theme-Sandstone.min.css"; break;
             }
 

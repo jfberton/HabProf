@@ -88,12 +88,12 @@
                                         CssClass="validationsummary panel panel-danger" HeaderText="<div class='panel-heading'>&nbsp;Corrija los siguientes errores antes de continuar:</div>" />
                                 </div>
                             </div>
-                          
+
 
                             <div class="row">
                                 <div class="col-md-12">
                                     <table class="table-condensed" style="width: 100%">
-                                         <tr>
+                                        <tr>
                                             <td>DNI</td>
                                             <td style="width: auto">
                                                 <input type="text" id="tb_dni_tesista" class="form-control" runat="server" placeholder="DNI del tesista por agregar" /></td>
@@ -103,12 +103,60 @@
                                                 </asp:RequiredFieldValidator></td>
                                         </tr>
                                         <tr>
-                                            <td>Nombre</td>
+                                            <td>Nombre y apellido</td>
                                             <td style="width: auto">
-                                                <input type="text" id="tb_nombre_tesista" class="form-control" runat="server" placeholder="Nombre del tesista por agregar" /></td>
+                                                <input type="text" id="tb_nombre_tesista" class="form-control" runat="server" placeholder="Nombre y apellido del tesista por agregar" /></td>
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_nombre_tesista" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="rv_nombre_tesista" runat="server" ErrorMessage="Debe ingresar el nombre del tesista" ValidationGroup="tesista">
+                                                </asp:RequiredFieldValidator></td>
+                                        </tr>
+                                        <tr>
+                                            <td>E-mail</td>
+                                            <td style="width: auto">
+                                                <input type="text" id="tb_email" class="form-control" runat="server" placeholder="E-mail del tesista por agregar" /></td>
+                                            <td>
+                                                 <asp:RequiredFieldValidator ControlToValidate="tb_email" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RequiredFieldValidator2" runat="server" ErrorMessage="Debe ingresar el e-mail del tesista" ValidationGroup="tesista">
+                                                </asp:RequiredFieldValidator>
+                                                <asp:RegularExpressionValidator ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="tb_email" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="regex_email" runat="server" ErrorMessage="Debe ingresar un e-mail valido"  ValidationGroup="tesista"/>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Domicilio</td>
+                                            <td style="width: auto">
+                                                <input type="text" id="tb_domicilio" class="form-control" runat="server" placeholder="Nombre del tesista por agregar" /></td>
+                                            <td>
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_domicilio" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RequiredFieldValidator3" runat="server" ErrorMessage="Debe ingresar el domicilio del tesista" ValidationGroup="tesista">
+                                                </asp:RequiredFieldValidator></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Teléfono</td>
+                                            <td style="width: auto">
+                                                <input type="text" id="tb_telefono" class="form-control" runat="server" placeholder="Nombre del tesista por agregar" /></td>
+                                            <td>
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_telefono" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RequiredFieldValidator4" runat="server" ErrorMessage="Debe ingresar el teléfono del tesista" ValidationGroup="tesista">
+                                                </asp:RequiredFieldValidator></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Legajo</td>
+                                            <td style="width: auto">
+                                                <input type="text" id="tb_legajo" class="form-control" runat="server" placeholder="Nombre del tesista por agregar" /></td>
+                                            <td>
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_legajo" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RequiredFieldValidator5" runat="server" ErrorMessage="Debe ingresar el legajo del tesista" ValidationGroup="tesista">
+                                                </asp:RequiredFieldValidator></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sede</td>
+                                            <td style="width: auto">
+                                                <input type="text" id="tb_sede" class="form-control" runat="server" placeholder="Nombre del tesista por agregar" /></td>
+                                            <td>
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_sede" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RequiredFieldValidator6" runat="server" ErrorMessage="Debe ingresar la sede del tesista" ValidationGroup="tesista">
                                                 </asp:RequiredFieldValidator></td>
                                         </tr>
                                     </table>

@@ -81,6 +81,7 @@
   <ItemGroup>
     <Content Include="Aplicativo\admin_home.aspx" />
     <Content Include="Aplicativo\admin_tesistas.aspx" />
+    <Content Include="Aplicativo\director_home.aspx" />
     <Content Include="Aplicativo\HabProfDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>HabProfDB.Context.cs</LastGenOutput>
@@ -626,6 +627,13 @@
     <Compile Include="Aplicativo\ControlesDeUsuario\MessageBox.cs" />
     <Compile Include="Aplicativo\Director.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\director_home.aspx.cs">
+      <DependentUpon>director_home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicativo\director_home.aspx.designer.cs">
+      <DependentUpon>director_home.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\Estado_tesis.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>

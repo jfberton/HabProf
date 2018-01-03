@@ -44,9 +44,10 @@
 
 </head>
 <body>
+
+
     <!-- Top content -->
     <div class="top-content">
-
         <div class="inner-bg">
             <div class="container">
                 <div class="row">
@@ -77,6 +78,7 @@
                         </div>
                         <div class="form-bottom">
                             <form id="form1" runat="server" class="login-form">
+                                <asp:ScriptManager runat="server" />
                                 <div class="form-group">
                                     <label class="sr-only" for="form-username">Usuario</label>
                                     <input type="text" runat="server" name="form-username" placeholder="Usuario..." class="form-username form-control" id="form_username" />
@@ -94,6 +96,38 @@
         </div>
     </div>
 
+
+
+    <div class="modal fade" id="ver_area" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Seleccione el perfil con el cual desea entrar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="rb_admin" runat="server" checked="true"/>
+                        <label class="form-check-label" for="exampleRadios1">
+                            Administrador
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="rb_dire" runat="server" />
+                        <label class="form-check-label" for="exampleRadios2">
+                            Second default radio
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Javascript -->
     <script src="assets-default-login/js/jquery-1.11.1.min.js"></script>

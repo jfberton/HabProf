@@ -21,11 +21,10 @@ namespace WebApplication1.Aplicativo
         public string persona_domicilio { get; set; }
         public string persona_telefono { get; set; }
         public int licenciatura_id { get; set; }
+        public string persona_usuario { get; set; }
+        public string persona_clave { get; set; }
+        public string persona_estilo { get; set; }
     
-        public virtual Tesista Tesista { get; set; }
-        public virtual Director Director { get; set; }
-        public virtual Juez Juez { get; set; }
-        public virtual Administrador Administrador { get; set; }
         public virtual Licenciatura Licenciatura { get; set; }
     }
 }

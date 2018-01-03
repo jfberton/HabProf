@@ -7,39 +7,15 @@
     <Schema Namespace="HabProfDB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="HabProfDBStoreContainer">
     <EntitySet Name="Personas" EntityType="HabProfDB.Store.Personas" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Tesistas" EntityType="HabProfDB.Store.Tesistas" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Directores" EntityType="HabProfDB.Store.Directores" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Administradores" EntityType="HabProfDB.Store.Administradores" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Jueces" EntityType="HabProfDB.Store.Jueces" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Tesinas" EntityType="HabProfDB.Store.Tesinas" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Licenciaturas" EntityType="HabProfDB.Store.Licenciaturas" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Estados_tesis" EntityType="HabProfDB.Store.Estados_tesis" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Historial_estados" EntityType="HabProfDB.Store.Historial_estados" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Servidores" EntityType="HabProfDB.Store.Servidores" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="PersonaTesista" Association="HabProfDB.Store.PersonaTesista">
-      <End Role="Persona" EntitySet="Personas" />
-      <End Role="Tesista" EntitySet="Tesistas" />
-    </AssociationSet>
-    <AssociationSet Name="PersonaDirector" Association="HabProfDB.Store.PersonaDirector">
-      <End Role="Persona" EntitySet="Personas" />
-      <End Role="Director" EntitySet="Directores" />
-    </AssociationSet>
-    <AssociationSet Name="PersonaJuez" Association="HabProfDB.Store.PersonaJuez">
-      <End Role="Persona" EntitySet="Personas" />
-      <End Role="Juez" EntitySet="Jueces" />
-    </AssociationSet>
-    <AssociationSet Name="PersonaAdministrador" Association="HabProfDB.Store.PersonaAdministrador">
-      <End Role="Persona" EntitySet="Personas" />
-      <End Role="Administrador" EntitySet="Administradores" />
-    </AssociationSet>
-    <AssociationSet Name="TesistaTesis" Association="HabProfDB.Store.TesistaTesis">
-      <End Role="Tesista" EntitySet="Tesistas" />
-      <End Role="Tesis" EntitySet="Tesinas" />
-    </AssociationSet>
-    <AssociationSet Name="DirectorTesista" Association="HabProfDB.Store.DirectorTesista">
-      <End Role="Director" EntitySet="Directores" />
-      <End Role="Tesista" EntitySet="Tesistas" />
-    </AssociationSet>
+    <EntitySet Name="Personas_Director" EntityType="HabProfDB.Store.Personas_Director" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Personas_Tesista" EntityType="HabProfDB.Store.Personas_Tesista" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Personas_Administrador" EntityType="HabProfDB.Store.Personas_Administrador" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Personas_Juez" EntityType="HabProfDB.Store.Personas_Juez" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="Estado_tesisTesis" Association="HabProfDB.Store.Estado_tesisTesis">
       <End Role="Estado_tesis" EntitySet="Estados_tesis" />
       <End Role="Tesis" EntitySet="Tesinas" />
@@ -60,6 +36,30 @@
       <End Role="Licenciatura" EntitySet="Licenciaturas" />
       <End Role="Persona" EntitySet="Personas" />
     </AssociationSet>
+    <AssociationSet Name="DirectorTesis" Association="HabProfDB.Store.DirectorTesis">
+      <End Role="Director" EntitySet="Personas_Director" />
+      <End Role="Tesis" EntitySet="Tesinas" />
+    </AssociationSet>
+    <AssociationSet Name="TesistaTesis" Association="HabProfDB.Store.TesistaTesis">
+      <End Role="Tesista" EntitySet="Personas_Tesista" />
+      <End Role="Tesis" EntitySet="Tesinas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Director_inherits_Persona" Association="HabProfDB.Store.FK_Director_inherits_Persona">
+      <End Role="Persona" EntitySet="Personas" />
+      <End Role="Director" EntitySet="Personas_Director" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tesista_inherits_Persona" Association="HabProfDB.Store.FK_Tesista_inherits_Persona">
+      <End Role="Persona" EntitySet="Personas" />
+      <End Role="Tesista" EntitySet="Personas_Tesista" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Administrador_inherits_Persona" Association="HabProfDB.Store.FK_Administrador_inherits_Persona">
+      <End Role="Persona" EntitySet="Personas" />
+      <End Role="Administrador" EntitySet="Personas_Administrador" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Juez_inherits_Persona" Association="HabProfDB.Store.FK_Juez_inherits_Persona">
+      <End Role="Persona" EntitySet="Personas" />
+      <End Role="Juez" EntitySet="Personas_Juez" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Personas">
     <Key>
@@ -72,41 +72,9 @@
     <Property Name="persona_domicilio" Type="nvarchar(max)" Nullable="false" />
     <Property Name="persona_telefono" Type="nvarchar(max)" Nullable="false" />
     <Property Name="licenciatura_id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Tesistas">
-    <Key>
-      <PropertyRef Name="tesista_id" />
-    </Key>
-    <Property Name="tesista_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="tesista_legajo" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="tesista_sede" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="director_id" Type="int" Nullable="false" />
-    <Property Name="Persona_persona_id" Type="int" Nullable="false" />
-    <Property Name="Tesis_tesis_id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Directores">
-    <Key>
-      <PropertyRef Name="director_id" />
-    </Key>
-    <Property Name="director_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Persona_persona_id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Administradores">
-    <Key>
-      <PropertyRef Name="administrador_id" />
-    </Key>
-    <Property Name="administrador_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="administrador_usuario" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="administrador_clave" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="administrador_estilo" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Persona_persona_id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Jueces">
-    <Key>
-      <PropertyRef Name="juez_id" />
-    </Key>
-    <Property Name="juez_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Persona_persona_id" Type="int" Nullable="false" />
+    <Property Name="persona_usuario" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="persona_clave" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="persona_estilo" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Tesinas">
     <Key>
@@ -118,8 +86,12 @@
     <Property Name="tesis_palabras_clave" Type="nvarchar(max)" Nullable="false" />
     <Property Name="tesis_borrador" Type="nvarchar(max)" Nullable="false" />
     <Property Name="tesis_plan_fch_presentacion" Type="datetime" Nullable="false" />
-    <Property Name="tesis_plan_duracion_anios" Type="smallint" Nullable="false" />
+    <Property Name="tesis_plan_duracion_meses" Type="smallint" Nullable="false" />
     <Property Name="tesis_plan_aviso_meses" Type="smallint" Nullable="false" />
+    <Property Name="director_persona_id" Type="int" Nullable="false" />
+    <Property Name="tesista_persona_id" Type="int" Nullable="false" />
+    <Property Name="tesis_calificacion" Type="smallint" Nullable="false" />
+    <Property Name="tesis_fecha_cierre" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Licenciaturas">
     <Key>
@@ -159,78 +131,33 @@
     <Property Name="servidor_smtp_port" Type="smallint" Nullable="false" />
     <Property Name="servidor_enable_ssl" Type="bit" Nullable="false" />
   </EntityType>
-  <Association Name="PersonaTesista">
-    <End Role="Persona" Type="HabProfDB.Store.Personas" Multiplicity="1" />
-    <End Role="Tesista" Type="HabProfDB.Store.Tesistas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Persona">
-        <PropertyRef Name="persona_id" />
-      </Principal>
-      <Dependent Role="Tesista">
-        <PropertyRef Name="Persona_persona_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="PersonaDirector">
-    <End Role="Persona" Type="HabProfDB.Store.Personas" Multiplicity="1" />
-    <End Role="Director" Type="HabProfDB.Store.Directores" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Persona">
-        <PropertyRef Name="persona_id" />
-      </Principal>
-      <Dependent Role="Director">
-        <PropertyRef Name="Persona_persona_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="PersonaJuez">
-    <End Role="Persona" Type="HabProfDB.Store.Personas" Multiplicity="1" />
-    <End Role="Juez" Type="HabProfDB.Store.Jueces" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Persona">
-        <PropertyRef Name="persona_id" />
-      </Principal>
-      <Dependent Role="Juez">
-        <PropertyRef Name="Persona_persona_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="PersonaAdministrador">
-    <End Role="Persona" Type="HabProfDB.Store.Personas" Multiplicity="1" />
-    <End Role="Administrador" Type="HabProfDB.Store.Administradores" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Persona">
-        <PropertyRef Name="persona_id" />
-      </Principal>
-      <Dependent Role="Administrador">
-        <PropertyRef Name="Persona_persona_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="TesistaTesis">
-    <End Role="Tesista" Type="HabProfDB.Store.Tesistas" Multiplicity="*" />
-    <End Role="Tesis" Type="HabProfDB.Store.Tesinas" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Tesis">
-        <PropertyRef Name="tesis_id" />
-      </Principal>
-      <Dependent Role="Tesista">
-        <PropertyRef Name="Tesis_tesis_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="DirectorTesista">
-    <End Role="Director" Type="HabProfDB.Store.Directores" Multiplicity="1" />
-    <End Role="Tesista" Type="HabProfDB.Store.Tesistas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Director">
-        <PropertyRef Name="director_id" />
-      </Principal>
-      <Dependent Role="Tesista">
-        <PropertyRef Name="director_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <EntityType Name="Personas_Director">
+    <Key>
+      <PropertyRef Name="persona_id" />
+    </Key>
+    <Property Name="persona_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Personas_Tesista">
+    <Key>
+      <PropertyRef Name="persona_id" />
+    </Key>
+    <Property Name="tesista_legajo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="tesista_sede" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="director_id" Type="int" Nullable="false" />
+    <Property Name="persona_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Personas_Administrador">
+    <Key>
+      <PropertyRef Name="persona_id" />
+    </Key>
+    <Property Name="persona_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Personas_Juez">
+    <Key>
+      <PropertyRef Name="persona_id" />
+    </Key>
+    <Property Name="persona_id" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="Estado_tesisTesis">
     <End Role="Estado_tesis" Type="HabProfDB.Store.Estados_tesis" Multiplicity="1" />
     <End Role="Tesis" Type="HabProfDB.Store.Tesinas" Multiplicity="*" />
@@ -291,41 +218,93 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="DirectorTesis">
+    <End Role="Director" Type="HabProfDB.Store.Personas_Director" Multiplicity="1" />
+    <End Role="Tesis" Type="HabProfDB.Store.Tesinas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Director">
+        <PropertyRef Name="persona_id" />
+      </Principal>
+      <Dependent Role="Tesis">
+        <PropertyRef Name="director_persona_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TesistaTesis">
+    <End Role="Tesista" Type="HabProfDB.Store.Personas_Tesista" Multiplicity="1" />
+    <End Role="Tesis" Type="HabProfDB.Store.Tesinas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tesista">
+        <PropertyRef Name="persona_id" />
+      </Principal>
+      <Dependent Role="Tesis">
+        <PropertyRef Name="tesista_persona_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Director_inherits_Persona">
+    <End Role="Persona" Type="HabProfDB.Store.Personas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Director" Type="HabProfDB.Store.Personas_Director" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="persona_id" />
+      </Principal>
+      <Dependent Role="Director">
+        <PropertyRef Name="persona_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tesista_inherits_Persona">
+    <End Role="Persona" Type="HabProfDB.Store.Personas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Tesista" Type="HabProfDB.Store.Personas_Tesista" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="persona_id" />
+      </Principal>
+      <Dependent Role="Tesista">
+        <PropertyRef Name="persona_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Administrador_inherits_Persona">
+    <End Role="Persona" Type="HabProfDB.Store.Personas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Administrador" Type="HabProfDB.Store.Personas_Administrador" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="persona_id" />
+      </Principal>
+      <Dependent Role="Administrador">
+        <PropertyRef Name="persona_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Juez_inherits_Persona">
+    <End Role="Persona" Type="HabProfDB.Store.Personas" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Juez" Type="HabProfDB.Store.Personas_Juez" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="persona_id" />
+      </Principal>
+      <Dependent Role="Juez">
+        <PropertyRef Name="persona_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="HabProfDB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
         <EntityContainer Name="HabProfDBContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Personas" EntityType="HabProfDB.Persona" />
-          <EntitySet Name="Tesistas" EntityType="HabProfDB.Tesista" />
-          <EntitySet Name="Directores" EntityType="HabProfDB.Director" />
-          <EntitySet Name="Administradores" EntityType="HabProfDB.Administrador" />
-          <EntitySet Name="Jueces" EntityType="HabProfDB.Juez" />
           <EntitySet Name="Tesinas" EntityType="HabProfDB.Tesis" />
-          <AssociationSet Name="PersonaTesista" Association="HabProfDB.PersonaTesista">
-            <End Role="Persona" EntitySet="Personas" />
-            <End Role="Tesista" EntitySet="Tesistas" />
-          </AssociationSet>
-          <AssociationSet Name="PersonaDirector" Association="HabProfDB.PersonaDirector">
-            <End Role="Persona" EntitySet="Personas" />
-            <End Role="Director" EntitySet="Directores" />
-          </AssociationSet>
-          <AssociationSet Name="PersonaJuez" Association="HabProfDB.PersonaJuez">
-            <End Role="Persona" EntitySet="Personas" />
-            <End Role="Juez" EntitySet="Jueces" />
-          </AssociationSet>
-          <AssociationSet Name="PersonaAdministrador" Association="HabProfDB.PersonaAdministrador">
-            <End Role="Persona" EntitySet="Personas" />
-            <End Role="Administrador" EntitySet="Administradores" />
-          </AssociationSet>
-          <AssociationSet Name="TesistaTesis" Association="HabProfDB.TesistaTesis">
-            <End Role="Tesista" EntitySet="Tesistas" />
-            <End Role="Tesis" EntitySet="Tesinas" />
-          </AssociationSet>
-          <AssociationSet Name="DirectorTesista" Association="HabProfDB.DirectorTesista">
-            <End Role="Director" EntitySet="Directores" />
-            <End Role="Tesista" EntitySet="Tesistas" />
-          </AssociationSet>
           <EntitySet Name="Licenciaturas" EntityType="HabProfDB.Licenciatura" />
           <EntitySet Name="Estados_tesis" EntityType="HabProfDB.Estado_tesis" />
           <AssociationSet Name="Estado_tesisTesis" Association="HabProfDB.Estado_tesisTesis">
@@ -350,6 +329,14 @@
             <End Role="Licenciatura" EntitySet="Licenciaturas" />
             <End Role="Persona" EntitySet="Personas" />
           </AssociationSet>
+          <AssociationSet Name="DirectorTesis" Association="HabProfDB.DirectorTesis">
+            <End Role="Director" EntitySet="Personas" />
+            <End Role="Tesis" EntitySet="Tesinas" />
+          </AssociationSet>
+          <AssociationSet Name="TesistaTesis" Association="HabProfDB.TesistaTesis">
+            <End Role="Tesista" EntitySet="Personas" />
+            <End Role="Tesis" EntitySet="Tesinas" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Persona">
           <Key>
@@ -361,98 +348,46 @@
           <Property Name="persona_email" Type="String" Nullable="false" />
           <Property Name="persona_domicilio" Type="String" Nullable="false" />
           <Property Name="persona_telefono" Type="String" Nullable="false" />
-          <NavigationProperty Name="Tesista" Relationship="HabProfDB.PersonaTesista" FromRole="Persona" ToRole="Tesista" />
-          <NavigationProperty Name="Director" Relationship="HabProfDB.PersonaDirector" FromRole="Persona" ToRole="Director" />
-          <NavigationProperty Name="Juez" Relationship="HabProfDB.PersonaJuez" FromRole="Persona" ToRole="Juez" />
-          <NavigationProperty Name="Administrador" Relationship="HabProfDB.PersonaAdministrador" FromRole="Persona" ToRole="Administrador" />
           <NavigationProperty Name="Licenciatura" Relationship="HabProfDB.LicenciaturaPersona" FromRole="Persona" ToRole="Licenciatura" />
           <Property Name="licenciatura_id" Type="Int32" Nullable="false" />
+          <Property Name="persona_usuario" Type="String" Nullable="false" />
+          <Property Name="persona_clave" Type="String" Nullable="false" />
+          <Property Name="persona_estilo" Type="String" Nullable="false" />
         </EntityType>
-        <EntityType Name="Tesista">
-          <Key>
-            <PropertyRef Name="tesista_id" />
-          </Key>
-          <Property Name="tesista_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        <EntityType Name="Tesista" BaseType="HabProfDB.Persona">
           <Property Name="tesista_legajo" Type="String" Nullable="false" />
           <Property Name="tesista_sede" Type="String" Nullable="false" />
-          <NavigationProperty Name="Persona" Relationship="HabProfDB.PersonaTesista" FromRole="Tesista" ToRole="Persona" />
-          <NavigationProperty Name="Tesis" Relationship="HabProfDB.TesistaTesis" FromRole="Tesista" ToRole="Tesis" />
-          <NavigationProperty Name="Director" Relationship="HabProfDB.DirectorTesista" FromRole="Tesista" ToRole="Director" />
           <Property Name="director_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tesinas" Relationship="HabProfDB.TesistaTesis" FromRole="Tesista" ToRole="Tesis" />
         </EntityType>
-        <EntityType Name="Director">
-          <Key>
-            <PropertyRef Name="director_id" />
-          </Key>
-          <Property Name="director_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Persona" Relationship="HabProfDB.PersonaDirector" FromRole="Director" ToRole="Persona" />
-          <NavigationProperty Name="Tesistas" Relationship="HabProfDB.DirectorTesista" FromRole="Director" ToRole="Tesista" />
+        <EntityType Name="Director" BaseType="HabProfDB.Persona">
+          <NavigationProperty Name="Tesinas" Relationship="HabProfDB.DirectorTesis" FromRole="Director" ToRole="Tesis" />
         </EntityType>
-        <EntityType Name="Administrador">
-          <Key>
-            <PropertyRef Name="administrador_id" />
-          </Key>
-          <Property Name="administrador_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Persona" Relationship="HabProfDB.PersonaAdministrador" FromRole="Administrador" ToRole="Persona" />
-          <Property Name="administrador_usuario" Type="String" Nullable="false" />
-          <Property Name="administrador_clave" Type="String" Nullable="false" />
-          <Property Name="administrador_estilo" Type="String" Nullable="false" />
+        <EntityType Name="Administrador" BaseType="HabProfDB.Persona">
         </EntityType>
-        <EntityType Name="Juez">
-          <Key>
-            <PropertyRef Name="juez_id" />
-          </Key>
-          <Property Name="juez_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Persona" Relationship="HabProfDB.PersonaJuez" FromRole="Juez" ToRole="Persona" />
+        <EntityType Name="Juez" BaseType="HabProfDB.Persona">
         </EntityType>
         <EntityType Name="Tesis">
           <Key>
             <PropertyRef Name="tesis_id" />
           </Key>
           <Property Name="tesis_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Tesista" Relationship="HabProfDB.TesistaTesis" FromRole="Tesis" ToRole="Tesista" />
           <NavigationProperty Name="Estado" Relationship="HabProfDB.Estado_tesisTesis" FromRole="Tesis" ToRole="Estado_tesis" />
           <Property Name="estado_tesis_id" Type="Int32" Nullable="false" />
           <Property Name="tesis_tema" Type="String" Nullable="false" />
-          <Property Name="tesis_palabras_clave" Type="String" Nullable="false" />
+          <Property Name="tesis_palabras_clave" Nullable="false" Type="String" />
           <Property Name="tesis_borrador" Type="String" Nullable="false" />
           <Property Name="tesis_plan_fch_presentacion" Type="DateTime" Nullable="false" />
           <Property Name="tesis_plan_duracion_meses" Type="Int16" Nullable="false" />
           <Property Name="tesis_plan_aviso_meses" Type="Int16" Nullable="false" />
           <NavigationProperty Name="Historial_estados" Relationship="HabProfDB.TesisHistorial_estado" FromRole="Tesis" ToRole="Historial_estado" />
+          <NavigationProperty Name="Director" Relationship="HabProfDB.DirectorTesis" FromRole="Tesis" ToRole="Director" />
+          <Property Name="director_persona_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tesista" Relationship="HabProfDB.TesistaTesis" FromRole="Tesis" ToRole="Tesista" />
+          <Property Name="tesista_persona_id" Type="Int32" Nullable="false" />
+          <Property Name="tesis_calificacion" Type="Int16" Nullable="false" />
+          <Property Name="tesis_fecha_cierre" Type="DateTime" Nullable="false" />
         </EntityType>
-        <Association Name="PersonaTesista">
-          <End Type="HabProfDB.Persona" Role="Persona" Multiplicity="1" />
-          <End Type="HabProfDB.Tesista" Role="Tesista" Multiplicity="0..1" />
-        </Association>
-        <Association Name="PersonaDirector">
-          <End Type="HabProfDB.Persona" Role="Persona" Multiplicity="1" />
-          <End Type="HabProfDB.Director" Role="Director" Multiplicity="0..1" />
-        </Association>
-        <Association Name="PersonaJuez">
-          <End Type="HabProfDB.Persona" Role="Persona" Multiplicity="1" />
-          <End Type="HabProfDB.Juez" Role="Juez" Multiplicity="0..1" />
-        </Association>
-        <Association Name="PersonaAdministrador">
-          <End Type="HabProfDB.Persona" Role="Persona" Multiplicity="1" />
-          <End Type="HabProfDB.Administrador" Role="Administrador" Multiplicity="0..1" />
-        </Association>
-        <Association Name="TesistaTesis">
-          <End Type="HabProfDB.Tesista" Role="Tesista" Multiplicity="1" />
-          <End Type="HabProfDB.Tesis" Role="Tesis" Multiplicity="1" />
-        </Association>
-        <Association Name="DirectorTesista">
-          <End Type="HabProfDB.Director" Role="Director" Multiplicity="1" />
-          <End Type="HabProfDB.Tesista" Role="Tesista" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Director">
-              <PropertyRef Name="director_id" />
-            </Principal>
-            <Dependent Role="Tesista">
-              <PropertyRef Name="director_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Licenciatura">
           <Key>
             <PropertyRef Name="licenciatura_id" />
@@ -557,6 +492,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="DirectorTesis">
+          <End Type="HabProfDB.Director" Role="Director" Multiplicity="1" />
+          <End Type="HabProfDB.Tesis" Role="Tesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Director">
+              <PropertyRef Name="persona_id" />
+            </Principal>
+            <Dependent Role="Tesis">
+              <PropertyRef Name="director_persona_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TesistaTesis">
+          <End Type="HabProfDB.Tesista" Role="Tesista" Multiplicity="1" />
+          <End Type="HabProfDB.Tesis" Role="Tesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tesista">
+              <PropertyRef Name="persona_id" />
+            </Principal>
+            <Dependent Role="Tesis">
+              <PropertyRef Name="tesista_persona_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -573,40 +532,32 @@
           <ScalarProperty Name="persona_domicilio" ColumnName="persona_domicilio" />
           <ScalarProperty Name="persona_telefono" ColumnName="persona_telefono" />
           <ScalarProperty Name="licenciatura_id" ColumnName="licenciatura_id" />
+          <ScalarProperty Name="persona_usuario" ColumnName="persona_usuario" />
+          <ScalarProperty Name="persona_clave" ColumnName="persona_clave" />
+          <ScalarProperty Name="persona_estilo" ColumnName="persona_estilo" />
         </MappingFragment>
       </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Tesistas">
+      <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Director)">
+        <MappingFragment StoreEntitySet="Personas_Director">
+          <ScalarProperty Name="persona_id" ColumnName="persona_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Tesista)">
-        <MappingFragment StoreEntitySet="Tesistas">
-          <ScalarProperty Name="tesista_id" ColumnName="tesista_id" />
+        <MappingFragment StoreEntitySet="Personas_Tesista">
+          <ScalarProperty Name="persona_id" ColumnName="persona_id" />
           <ScalarProperty Name="tesista_legajo" ColumnName="tesista_legajo" />
           <ScalarProperty Name="tesista_sede" ColumnName="tesista_sede" />
           <ScalarProperty Name="director_id" ColumnName="director_id" />
         </MappingFragment>
       </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Directores">
-      <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Director)">
-        <MappingFragment StoreEntitySet="Directores">
-          <ScalarProperty Name="director_id" ColumnName="director_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Administradores">
       <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Administrador)">
-        <MappingFragment StoreEntitySet="Administradores">
-          <ScalarProperty Name="administrador_id" ColumnName="administrador_id" />
-          <ScalarProperty Name="administrador_usuario" ColumnName="administrador_usuario" />
-          <ScalarProperty Name="administrador_clave" ColumnName="administrador_clave" />
-          <ScalarProperty Name="administrador_estilo" ColumnName="administrador_estilo" />
+        <MappingFragment StoreEntitySet="Personas_Administrador">
+          <ScalarProperty Name="persona_id" ColumnName="persona_id" />
         </MappingFragment>
       </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Jueces">
       <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Juez)">
-        <MappingFragment StoreEntitySet="Jueces">
-          <ScalarProperty Name="juez_id" ColumnName="juez_id" />
+        <MappingFragment StoreEntitySet="Personas_Juez">
+          <ScalarProperty Name="persona_id" ColumnName="persona_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -619,8 +570,12 @@
           <ScalarProperty Name="tesis_palabras_clave" ColumnName="tesis_palabras_clave" />
           <ScalarProperty Name="tesis_borrador" ColumnName="tesis_borrador" />
           <ScalarProperty Name="tesis_plan_fch_presentacion" ColumnName="tesis_plan_fch_presentacion" />
-          <ScalarProperty Name="tesis_plan_duracion_meses" ColumnName="tesis_plan_duracion_anios" />
+          <ScalarProperty Name="tesis_plan_duracion_meses" ColumnName="tesis_plan_duracion_meses" />
           <ScalarProperty Name="tesis_plan_aviso_meses" ColumnName="tesis_plan_aviso_meses" />
+          <ScalarProperty Name="director_persona_id" ColumnName="director_persona_id" />
+          <ScalarProperty Name="tesista_persona_id" ColumnName="tesista_persona_id" />
+          <ScalarProperty Name="tesis_calificacion" ColumnName="tesis_calificacion" />
+          <ScalarProperty Name="tesis_fecha_cierre" ColumnName="tesis_fecha_cierre" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -666,46 +621,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="PersonaTesista" TypeName="HabProfDB.PersonaTesista" StoreEntitySet="Tesistas">
-      <EndProperty Name="Persona">
-        <ScalarProperty Name="persona_id" ColumnName="Persona_persona_id" />
-      </EndProperty>
-      <EndProperty Name="Tesista">
-        <ScalarProperty Name="tesista_id" ColumnName="tesista_id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="PersonaDirector" TypeName="HabProfDB.PersonaDirector" StoreEntitySet="Directores">
-      <EndProperty Name="Persona">
-        <ScalarProperty Name="persona_id" ColumnName="Persona_persona_id" />
-      </EndProperty>
-      <EndProperty Name="Director">
-        <ScalarProperty Name="director_id" ColumnName="director_id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="PersonaJuez" TypeName="HabProfDB.PersonaJuez" StoreEntitySet="Jueces">
-      <EndProperty Name="Persona">
-        <ScalarProperty Name="persona_id" ColumnName="Persona_persona_id" />
-      </EndProperty>
-      <EndProperty Name="Juez">
-        <ScalarProperty Name="juez_id" ColumnName="juez_id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="PersonaAdministrador" TypeName="HabProfDB.PersonaAdministrador" StoreEntitySet="Administradores">
-      <EndProperty Name="Persona">
-        <ScalarProperty Name="persona_id" ColumnName="Persona_persona_id" />
-      </EndProperty>
-      <EndProperty Name="Administrador">
-        <ScalarProperty Name="administrador_id" ColumnName="administrador_id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="TesistaTesis" TypeName="HabProfDB.TesistaTesis" StoreEntitySet="Tesistas">
-      <EndProperty Name="Tesis">
-        <ScalarProperty Name="tesis_id" ColumnName="Tesis_tesis_id" />
-      </EndProperty>
-      <EndProperty Name="Tesista">
-        <ScalarProperty Name="tesista_id" ColumnName="tesista_id" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

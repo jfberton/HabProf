@@ -2,47 +2,11 @@
 
 ******************************************************************
 
-ERRORID: 636501735253498619
+ERRORID: 636505688582545044
 
-DATE: 29/12/2017 19:45:25
+DATE: 03/01/2018 09:34:18 a.m.
 
-AGENTE: admin
-
-MESSAGE: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesistas.aspx(118): error CS1061: 'aplicativo_admin_tesistas_aspx' does not contain a definition for 'btn_guardar_ServerClick' and no extension method 'btn_guardar_ServerClick' accepting a first argument of type 'aplicativo_admin_tesistas_aspx' could be found (are you missing a using directive or an assembly reference?)
-
-SOURCE: System.Web
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesistas.aspx
-
-TARGETSITE: System.CodeDom.Compiler.CompilerResults Compile()
-
-STACKTRACE:    en System.Web.Compilation.AssemblyBuilder.Compile()
-   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
-   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
-   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
-   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
-   en System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
-   en System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
-   en System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
-   en System.Web.UI.PageHandlerFactory.GetHandler(HttpContext context, String requestType, String virtualPath, String path)
-   en System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636501763062449200
-
-DATE: 29/12/2017 20:31:46
-
-AGENTE: admin
+AGENTE: dire
 
 MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
 
@@ -52,44 +16,12 @@ INSTANCE:
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/Aplicativo/admin_tesistas.aspx
+URL: http://localhost:60142/Aplicativo/director_home.aspx
 
 TARGETSITE: Void RefrescarEstilo()
 
-STACKTRACE:    en WebApplication1.Aplicativo.Site1.RefrescarEstilo() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\Site1.Master.cs:línea 27
-   en WebApplication1.Aplicativo.Site1.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\Site1.Master.cs:línea 17
-   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   en System.Web.UI.Control.OnLoad(EventArgs e)
-   en System.Web.UI.Control.LoadRecursive()
-   en System.Web.UI.Control.LoadRecursive()
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636501780861097224
-
-DATE: 29/12/2017 21:01:26
-
-AGENTE: admin
-
-MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
-
-SOURCE: WebApplication1
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesistas.aspx
-
-TARGETSITE: Void RefrescarEstilo()
-
-STACKTRACE:    en WebApplication1.Aplicativo.Site1.RefrescarEstilo() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\Site1.Master.cs:línea 27
-   en WebApplication1.Aplicativo.Site1.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\Site1.Master.cs:línea 17
+STACKTRACE:    en WebApplication1.Aplicativo.Site1.RefrescarEstilo() en d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\Site1.Master.cs:línea 27
+   en WebApplication1.Aplicativo.Site1.Page_Load(Object sender, EventArgs e) en d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\Site1.Master.cs:línea 17
    en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
    en System.Web.UI.Control.OnLoad(EventArgs e)
    en System.Web.UI.Control.LoadRecursive()

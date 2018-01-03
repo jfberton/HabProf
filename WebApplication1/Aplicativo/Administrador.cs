@@ -12,13 +12,7 @@ namespace WebApplication1.Aplicativo
     using System;
     using System.Collections.Generic;
     
-    public partial class Administrador
+    public partial class Administrador : Persona
     {
-        public int administrador_id { get; set; }
-        public string administrador_usuario { get; set; }
-        public string administrador_clave { get; set; }
-        public string administrador_estilo { get; set; }
-    
-        public virtual Persona Persona { get; set; }
     }
 }

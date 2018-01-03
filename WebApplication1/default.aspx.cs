@@ -24,17 +24,39 @@ namespace WebApplication1
         protected void btn_ingresar_ServerClick(object sender, EventArgs e)
         {
             RevisarCrearPrimerosDatos();
+
             string usuario = form_username.Value;
             string clave = Encriptador.Cripto.Encriptar(form_password.Value);
 
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
-                Administrador usr = cxt.Administradores.FirstOrDefault(pp => pp.administrador_usuario == usuario && pp.administrador_clave == clave);
+                Persona usr = cxt.Personas.FirstOrDefault(pp => pp.persona_usuario == usuario && pp.persona_clave == clave);
+                Administrador admin = cxt.Personas.OfType<Administrador>().FirstOrDefault(pp => pp.persona_usuario == usuario && pp.persona_clave == clave);
+                Director dire = cxt.Personas.OfType<Director>().FirstOrDefault(pp => pp.persona_usuario == usuario && pp.persona_clave == clave);
 
                 if (usr != null)
                 {
                     Session["UsuarioLogueado"] = usr;
-                    FormsAuthentication.RedirectFromLoginPage(usr.administrador_usuario, false);
+                    if (admin != null && dire != null)
+                    {
+                        string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#ver_area').modal('show')});</script>";
+                        ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
+                    }
+                    else
+                    {
+                        if (admin != null)
+                        {
+                            Session["Perfil"] = "Admin";
+                            FormsAuthentication.RedirectFromLoginPage(usr.persona_usuario, false);
+                        }
+
+                        if (dire != null)
+                        {
+                            Session["Perfil"] = "Dire";
+                            FormsAuthentication.RedirectFromLoginPage(usr.persona_usuario, false);
+                        }
+                    }
+
                 }
                 else
                 {
@@ -65,11 +87,31 @@ namespace WebApplication1
                     Licenciatura l = new Licenciatura() { licenciatura_nombre = "Licenciatura en Tecnología Educativa", licenciatura_descripcion = "Este Ciclo de Licenciatura se propone brindar una alternativa de formación de grado a aquellos profesores y/o técnicos superiores en áreas referidas en manejo de las tecnologías, interesados en Ia inserción de Ia tecnología educativa en los procesos de formación inicial y continua propios del sistema educativo. Asimismo, resulta una opción para cubrir los espacios de capacitación y actualización que se desarroIIan en las instituciones y organizaciones del sistema socio productivo, tanto de gestión pública como privada." , licenciatura_email="email.de.prueba", licenciatura_clave="clave.del.mail", Servidor= servidor0};
                     cxt.Licenciaturas.Add(l);
 
-                    Persona p = new Persona() { persona_nomyap = "Administrador", persona_dni = "00000000", persona_email = "un.mail@un.servidor.com", persona_domicilio = "un domicilio", persona_telefono = "00000000" };
-                    cxt.Personas.Add(p);
+                    Administrador admin = new Administrador() {
+                            Licenciatura = l,
+                            persona_nomyap = "Administrador",
+                            persona_dni = "00000000",
+                            persona_email = "un.mail@un.servidor.com",
+                            persona_domicilio = "un domicilio",
+                            persona_telefono = "00000000",
+                            persona_usuario = "admin",
+                            persona_clave = Cripto.Encriptar("admin"),
+                            persona_estilo= "Sandstone" };
+                    cxt.Personas.Add(admin);
 
-                    Administrador ad = new Administrador() { Persona = p, administrador_usuario = "admin", administrador_clave = Cripto.Encriptar("admin"), administrador_estilo = "Sandstone" };
-                    cxt.Administradores.Add(ad);
+                    Director dire = new Director()
+                    {
+                        Licenciatura = l,
+                        persona_nomyap = "director",
+                        persona_dni = "00000000",
+                        persona_email = "un.mail@un.servidor.com",
+                        persona_domicilio = "un domicilio",
+                        persona_telefono = "00000000",
+                        persona_usuario = "dire",
+                        persona_clave = Cripto.Encriptar("dire"),
+                        persona_estilo = "Sandstone"
+                    };
+                    cxt.Personas.Add(dire);
 
                     cxt.SaveChanges();
 
