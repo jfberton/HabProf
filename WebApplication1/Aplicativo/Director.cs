@@ -12,18 +12,16 @@ namespace WebApplication1.Aplicativo
     using System;
     using System.Collections.Generic;
     
-    public partial class Director
+    public partial class Director : Persona
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Director()
         {
-            this.Tesistas = new HashSet<Tesista>();
+            this.Tesinas = new HashSet<Tesis>();
         }
     
-        public int director_id { get; set; }
     
-        public virtual Persona Persona { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Tesista> Tesistas { get; set; }
+        public virtual ICollection<Tesis> Tesinas { get; set; }
     }
 }

@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/29/2017 17:33:38
--- Generated from EDMX file: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
+-- Date Created: 01/03/2018 11:26:32
+-- Generated from EDMX file: d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -17,27 +17,6 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_PersonaTesista]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Tesistas] DROP CONSTRAINT [FK_PersonaTesista];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PersonaDirector]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Directores] DROP CONSTRAINT [FK_PersonaDirector];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PersonaJuez]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Jueces] DROP CONSTRAINT [FK_PersonaJuez];
-GO
-IF OBJECT_ID(N'[dbo].[FK_PersonaAdministrador]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Administradores] DROP CONSTRAINT [FK_PersonaAdministrador];
-GO
-IF OBJECT_ID(N'[dbo].[FK_TesistaTesis]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Tesistas] DROP CONSTRAINT [FK_TesistaTesis];
-GO
-IF OBJECT_ID(N'[dbo].[FK_DirectorTesista]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Tesistas] DROP CONSTRAINT [FK_DirectorTesista];
-GO
-IF OBJECT_ID(N'[dbo].[FK_LicenciaturaAdministrador]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Administradores] DROP CONSTRAINT [FK_LicenciaturaAdministrador];
-GO
 IF OBJECT_ID(N'[dbo].[FK_Estado_tesisTesis]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Tesinas] DROP CONSTRAINT [FK_Estado_tesisTesis];
 GO
@@ -50,6 +29,27 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ServidorLicenciatura]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Licenciaturas] DROP CONSTRAINT [FK_ServidorLicenciatura];
 GO
+IF OBJECT_ID(N'[dbo].[FK_LicenciaturaPersona]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Personas] DROP CONSTRAINT [FK_LicenciaturaPersona];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DirectorTesis]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Tesinas] DROP CONSTRAINT [FK_DirectorTesis];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TesistaTesis]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Tesinas] DROP CONSTRAINT [FK_TesistaTesis];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Director_inherits_Persona]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Personas_Director] DROP CONSTRAINT [FK_Director_inherits_Persona];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Tesista_inherits_Persona]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Personas_Tesista] DROP CONSTRAINT [FK_Tesista_inherits_Persona];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Administrador_inherits_Persona]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Personas_Administrador] DROP CONSTRAINT [FK_Administrador_inherits_Persona];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Juez_inherits_Persona]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Personas_Juez] DROP CONSTRAINT [FK_Juez_inherits_Persona];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -57,18 +57,6 @@ GO
 
 IF OBJECT_ID(N'[dbo].[Personas]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Personas];
-GO
-IF OBJECT_ID(N'[dbo].[Tesistas]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Tesistas];
-GO
-IF OBJECT_ID(N'[dbo].[Directores]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Directores];
-GO
-IF OBJECT_ID(N'[dbo].[Administradores]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Administradores];
-GO
-IF OBJECT_ID(N'[dbo].[Jueces]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Jueces];
 GO
 IF OBJECT_ID(N'[dbo].[Tesinas]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Tesinas];
@@ -85,6 +73,18 @@ GO
 IF OBJECT_ID(N'[dbo].[Servidores]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Servidores];
 GO
+IF OBJECT_ID(N'[dbo].[Personas_Director]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Personas_Director];
+GO
+IF OBJECT_ID(N'[dbo].[Personas_Tesista]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Personas_Tesista];
+GO
+IF OBJECT_ID(N'[dbo].[Personas_Administrador]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Personas_Administrador];
+GO
+IF OBJECT_ID(N'[dbo].[Personas_Juez]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Personas_Juez];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -98,42 +98,11 @@ CREATE TABLE [dbo].[Personas] (
     [persona_email] nvarchar(max)  NOT NULL,
     [persona_domicilio] nvarchar(max)  NOT NULL,
     [persona_telefono] nvarchar(max)  NOT NULL,
-    [licenciatura_id] int  NOT NULL
-);
-GO
-
--- Creating table 'Tesistas'
-CREATE TABLE [dbo].[Tesistas] (
-    [tesista_id] int IDENTITY(1,1) NOT NULL,
-    [tesista_legajo] nvarchar(max)  NOT NULL,
-    [tesista_sede] nvarchar(max)  NOT NULL,
-    [director_id] int  NOT NULL,
-    [Persona_persona_id] int  NOT NULL,
-    [Tesis_tesis_id] int  NOT NULL
-);
-GO
-
--- Creating table 'Directores'
-CREATE TABLE [dbo].[Directores] (
-    [director_id] int IDENTITY(1,1) NOT NULL,
-    [Persona_persona_id] int  NOT NULL
-);
-GO
-
--- Creating table 'Administradores'
-CREATE TABLE [dbo].[Administradores] (
-    [administrador_id] int IDENTITY(1,1) NOT NULL,
-    [administrador_usuario] nvarchar(max)  NOT NULL,
-    [administrador_clave] nvarchar(max)  NOT NULL,
-    [administrador_estilo] nvarchar(max)  NOT NULL,
-    [Persona_persona_id] int  NOT NULL
-);
-GO
-
--- Creating table 'Jueces'
-CREATE TABLE [dbo].[Jueces] (
-    [juez_id] int IDENTITY(1,1) NOT NULL,
-    [Persona_persona_id] int  NOT NULL
+    [licenciatura_id] int  NOT NULL,
+    [persona_usuario] nvarchar(max)  NOT NULL,
+    [persona_clave] nvarchar(max)  NOT NULL,
+    [persona_estilo] nvarchar(max)  NOT NULL,
+    [persona_fecha_baja] datetime  NULL
 );
 GO
 
@@ -145,8 +114,12 @@ CREATE TABLE [dbo].[Tesinas] (
     [tesis_palabras_clave] nvarchar(max)  NOT NULL,
     [tesis_borrador] nvarchar(max)  NOT NULL,
     [tesis_plan_fch_presentacion] datetime  NOT NULL,
-    [tesis_plan_duracion_anios] smallint  NOT NULL,
-    [tesis_plan_aviso_meses] smallint  NOT NULL
+    [tesis_plan_duracion_meses] smallint  NOT NULL,
+    [tesis_plan_aviso_meses] smallint  NOT NULL,
+    [director_persona_id] int  NOT NULL,
+    [tesista_persona_id] int  NOT NULL,
+    [tesis_calificacion] smallint  NOT NULL,
+    [tesis_fecha_cierre] datetime  NOT NULL
 );
 GO
 
@@ -188,6 +161,33 @@ CREATE TABLE [dbo].[Servidores] (
 );
 GO
 
+-- Creating table 'Personas_Director'
+CREATE TABLE [dbo].[Personas_Director] (
+    [persona_id] int  NOT NULL
+);
+GO
+
+-- Creating table 'Personas_Tesista'
+CREATE TABLE [dbo].[Personas_Tesista] (
+    [tesista_legajo] nvarchar(max)  NOT NULL,
+    [tesista_sede] nvarchar(max)  NOT NULL,
+    [director_id] int  NOT NULL,
+    [persona_id] int  NOT NULL
+);
+GO
+
+-- Creating table 'Personas_Administrador'
+CREATE TABLE [dbo].[Personas_Administrador] (
+    [persona_id] int  NOT NULL
+);
+GO
+
+-- Creating table 'Personas_Juez'
+CREATE TABLE [dbo].[Personas_Juez] (
+    [persona_id] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -196,30 +196,6 @@ GO
 ALTER TABLE [dbo].[Personas]
 ADD CONSTRAINT [PK_Personas]
     PRIMARY KEY CLUSTERED ([persona_id] ASC);
-GO
-
--- Creating primary key on [tesista_id] in table 'Tesistas'
-ALTER TABLE [dbo].[Tesistas]
-ADD CONSTRAINT [PK_Tesistas]
-    PRIMARY KEY CLUSTERED ([tesista_id] ASC);
-GO
-
--- Creating primary key on [director_id] in table 'Directores'
-ALTER TABLE [dbo].[Directores]
-ADD CONSTRAINT [PK_Directores]
-    PRIMARY KEY CLUSTERED ([director_id] ASC);
-GO
-
--- Creating primary key on [administrador_id] in table 'Administradores'
-ALTER TABLE [dbo].[Administradores]
-ADD CONSTRAINT [PK_Administradores]
-    PRIMARY KEY CLUSTERED ([administrador_id] ASC);
-GO
-
--- Creating primary key on [juez_id] in table 'Jueces'
-ALTER TABLE [dbo].[Jueces]
-ADD CONSTRAINT [PK_Jueces]
-    PRIMARY KEY CLUSTERED ([juez_id] ASC);
 GO
 
 -- Creating primary key on [tesis_id] in table 'Tesinas'
@@ -252,99 +228,33 @@ ADD CONSTRAINT [PK_Servidores]
     PRIMARY KEY CLUSTERED ([servidor_id] ASC);
 GO
 
+-- Creating primary key on [persona_id] in table 'Personas_Director'
+ALTER TABLE [dbo].[Personas_Director]
+ADD CONSTRAINT [PK_Personas_Director]
+    PRIMARY KEY CLUSTERED ([persona_id] ASC);
+GO
+
+-- Creating primary key on [persona_id] in table 'Personas_Tesista'
+ALTER TABLE [dbo].[Personas_Tesista]
+ADD CONSTRAINT [PK_Personas_Tesista]
+    PRIMARY KEY CLUSTERED ([persona_id] ASC);
+GO
+
+-- Creating primary key on [persona_id] in table 'Personas_Administrador'
+ALTER TABLE [dbo].[Personas_Administrador]
+ADD CONSTRAINT [PK_Personas_Administrador]
+    PRIMARY KEY CLUSTERED ([persona_id] ASC);
+GO
+
+-- Creating primary key on [persona_id] in table 'Personas_Juez'
+ALTER TABLE [dbo].[Personas_Juez]
+ADD CONSTRAINT [PK_Personas_Juez]
+    PRIMARY KEY CLUSTERED ([persona_id] ASC);
+GO
+
 -- --------------------------------------------------
 -- Creating all FOREIGN KEY constraints
 -- --------------------------------------------------
-
--- Creating foreign key on [Persona_persona_id] in table 'Tesistas'
-ALTER TABLE [dbo].[Tesistas]
-ADD CONSTRAINT [FK_PersonaTesista]
-    FOREIGN KEY ([Persona_persona_id])
-    REFERENCES [dbo].[Personas]
-        ([persona_id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_PersonaTesista'
-CREATE INDEX [IX_FK_PersonaTesista]
-ON [dbo].[Tesistas]
-    ([Persona_persona_id]);
-GO
-
--- Creating foreign key on [Persona_persona_id] in table 'Directores'
-ALTER TABLE [dbo].[Directores]
-ADD CONSTRAINT [FK_PersonaDirector]
-    FOREIGN KEY ([Persona_persona_id])
-    REFERENCES [dbo].[Personas]
-        ([persona_id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_PersonaDirector'
-CREATE INDEX [IX_FK_PersonaDirector]
-ON [dbo].[Directores]
-    ([Persona_persona_id]);
-GO
-
--- Creating foreign key on [Persona_persona_id] in table 'Jueces'
-ALTER TABLE [dbo].[Jueces]
-ADD CONSTRAINT [FK_PersonaJuez]
-    FOREIGN KEY ([Persona_persona_id])
-    REFERENCES [dbo].[Personas]
-        ([persona_id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_PersonaJuez'
-CREATE INDEX [IX_FK_PersonaJuez]
-ON [dbo].[Jueces]
-    ([Persona_persona_id]);
-GO
-
--- Creating foreign key on [Persona_persona_id] in table 'Administradores'
-ALTER TABLE [dbo].[Administradores]
-ADD CONSTRAINT [FK_PersonaAdministrador]
-    FOREIGN KEY ([Persona_persona_id])
-    REFERENCES [dbo].[Personas]
-        ([persona_id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_PersonaAdministrador'
-CREATE INDEX [IX_FK_PersonaAdministrador]
-ON [dbo].[Administradores]
-    ([Persona_persona_id]);
-GO
-
--- Creating foreign key on [Tesis_tesis_id] in table 'Tesistas'
-ALTER TABLE [dbo].[Tesistas]
-ADD CONSTRAINT [FK_TesistaTesis]
-    FOREIGN KEY ([Tesis_tesis_id])
-    REFERENCES [dbo].[Tesinas]
-        ([tesis_id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_TesistaTesis'
-CREATE INDEX [IX_FK_TesistaTesis]
-ON [dbo].[Tesistas]
-    ([Tesis_tesis_id]);
-GO
-
--- Creating foreign key on [director_id] in table 'Tesistas'
-ALTER TABLE [dbo].[Tesistas]
-ADD CONSTRAINT [FK_DirectorTesista]
-    FOREIGN KEY ([director_id])
-    REFERENCES [dbo].[Directores]
-        ([director_id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_DirectorTesista'
-CREATE INDEX [IX_FK_DirectorTesista]
-ON [dbo].[Tesistas]
-    ([director_id]);
-GO
 
 -- Creating foreign key on [estado_tesis_id] in table 'Tesinas'
 ALTER TABLE [dbo].[Tesinas]
@@ -419,6 +329,72 @@ GO
 CREATE INDEX [IX_FK_LicenciaturaPersona]
 ON [dbo].[Personas]
     ([licenciatura_id]);
+GO
+
+-- Creating foreign key on [director_persona_id] in table 'Tesinas'
+ALTER TABLE [dbo].[Tesinas]
+ADD CONSTRAINT [FK_DirectorTesis]
+    FOREIGN KEY ([director_persona_id])
+    REFERENCES [dbo].[Personas_Director]
+        ([persona_id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DirectorTesis'
+CREATE INDEX [IX_FK_DirectorTesis]
+ON [dbo].[Tesinas]
+    ([director_persona_id]);
+GO
+
+-- Creating foreign key on [tesista_persona_id] in table 'Tesinas'
+ALTER TABLE [dbo].[Tesinas]
+ADD CONSTRAINT [FK_TesistaTesis]
+    FOREIGN KEY ([tesista_persona_id])
+    REFERENCES [dbo].[Personas_Tesista]
+        ([persona_id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TesistaTesis'
+CREATE INDEX [IX_FK_TesistaTesis]
+ON [dbo].[Tesinas]
+    ([tesista_persona_id]);
+GO
+
+-- Creating foreign key on [persona_id] in table 'Personas_Director'
+ALTER TABLE [dbo].[Personas_Director]
+ADD CONSTRAINT [FK_Director_inherits_Persona]
+    FOREIGN KEY ([persona_id])
+    REFERENCES [dbo].[Personas]
+        ([persona_id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [persona_id] in table 'Personas_Tesista'
+ALTER TABLE [dbo].[Personas_Tesista]
+ADD CONSTRAINT [FK_Tesista_inherits_Persona]
+    FOREIGN KEY ([persona_id])
+    REFERENCES [dbo].[Personas]
+        ([persona_id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [persona_id] in table 'Personas_Administrador'
+ALTER TABLE [dbo].[Personas_Administrador]
+ADD CONSTRAINT [FK_Administrador_inherits_Persona]
+    FOREIGN KEY ([persona_id])
+    REFERENCES [dbo].[Personas]
+        ([persona_id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [persona_id] in table 'Personas_Juez'
+ALTER TABLE [dbo].[Personas_Juez]
+ADD CONSTRAINT [FK_Juez_inherits_Persona]
+    FOREIGN KEY ([persona_id])
+    REFERENCES [dbo].[Personas]
+        ([persona_id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- --------------------------------------------------

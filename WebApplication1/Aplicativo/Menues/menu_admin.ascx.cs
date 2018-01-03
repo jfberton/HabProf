@@ -14,12 +14,8 @@ namespace WebApplication1.Aplicativo.Menues
         {
             if (!IsPostBack)
             {
-                using (HabProfDBContainer cxt = new HabProfDBContainer())
-                {
-                    Administrador admin = Session["UsuarioLogueado"] as Administrador;
-                    lbl_usuario.Text = cxt.Administradores.FirstOrDefault(aa => aa.administrador_id == admin.administrador_id).Persona.persona_nomyap;
-
-                }
+                Persona admin = Session["UsuarioLogueado"] as Persona;
+                lbl_usuario.Text = admin.persona_nomyap;
             }
         }
 

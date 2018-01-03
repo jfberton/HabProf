@@ -13,7 +13,131 @@
         <li>Personas</li>
         <li>Administrar tesistas</li>
     </ol>
+
     <h1>Tesistas <small>Listado de alumnos de la licenciatura</small></h1>
+
+    <div class="row">
+        <div class="col-md-10">
+            <div class="alert alert-warning" role="alert" runat="server" id="lbl_sin_tesistas">
+                <strong>No existen tesistas!</strong> Pruebe agregar algunos para comenzar.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button type="button" class="btn btn-default pull-right" id="btn_agregar_tesista" runat="server" data-toggle="modal" data-target="#agregar_tesista">
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Agregar nuevo
+            </button>
+            <div class="modal fade" id="agregar_tesista" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Agregar tesista</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <asp:ValidationSummary ID="validation_summary" runat="server" DisplayMode="BulletList" ValidationGroup="tesista"
+                                        CssClass="validationsummary panel panel-danger" HeaderText="<div class='panel-heading'>&nbsp;Corrija los siguientes errores antes de continuar:</div>" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table-condensed" style="width: 100%">
+                                        <tr>
+                                            <td>DNI</td>
+                                            <td style="width: auto">
+                                                <table style="width: 100%">
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" id="tb_dni_tesista" class="form-control" runat="server" placeholder="DNI del tesista por agregar" /></td>
+                                                        <td>
+                                                            <button class="btn btn-default" id="btn_buscar_dni" runat="server" onserverclick="btn_buscar_dni_ServerClick"><span class="glyphicon glyphicon-search"></span></button>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td>
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_dni_tesista" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe ingresar el DNI del tesista" ValidationGroup="tesista">
+                                                </asp:RequiredFieldValidator></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Nombre y apellido</td>
+                                            <td style="width: auto">
+                                                <input type="text" id="tb_nombre_tesista" class="form-control" runat="server" placeholder="Nombre y apellido del tesista por agregar" /></td>
+                                            <td>
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_nombre_tesista" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="rv_nombre_tesista" runat="server" ErrorMessage="Debe ingresar el nombre del tesista" ValidationGroup="tesista">
+                                                </asp:RequiredFieldValidator></td>
+                                        </tr>
+                                        <tr>
+                                            <td>E-mail</td>
+                                            <td style="width: auto">
+                                                <input type="text" id="tb_email" class="form-control" runat="server" placeholder="E-mail del tesista por agregar" /></td>
+                                            <td>
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_email" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RequiredFieldValidator2" runat="server" ErrorMessage="Debe ingresar el e-mail del tesista" ValidationGroup="tesista">
+                                                </asp:RequiredFieldValidator>
+                                                <asp:RegularExpressionValidator ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="tb_email" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="regex_email" runat="server" ErrorMessage="Debe ingresar un e-mail valido" ValidationGroup="tesista" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Domicilio</td>
+                                            <td style="width: auto">
+                                                <input type="text" id="tb_domicilio" class="form-control" runat="server" placeholder="Nombre del tesista por agregar" /></td>
+                                            <td>
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_domicilio" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RequiredFieldValidator3" runat="server" ErrorMessage="Debe ingresar el domicilio del tesista" ValidationGroup="tesista">
+                                                </asp:RequiredFieldValidator></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Teléfono</td>
+                                            <td style="width: auto">
+                                                <input type="text" id="tb_telefono" class="form-control" runat="server" placeholder="Nombre del tesista por agregar" /></td>
+                                            <td>
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_telefono" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RequiredFieldValidator4" runat="server" ErrorMessage="Debe ingresar el teléfono del tesista" ValidationGroup="tesista">
+                                                </asp:RequiredFieldValidator></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Legajo</td>
+                                            <td style="width: auto">
+                                                <input type="text" id="tb_legajo" class="form-control" runat="server" placeholder="Nombre del tesista por agregar" /></td>
+                                            <td>
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_legajo" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RequiredFieldValidator5" runat="server" ErrorMessage="Debe ingresar el legajo del tesista" ValidationGroup="tesista">
+                                                </asp:RequiredFieldValidator></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sede</td>
+                                            <td style="width: auto">
+                                                <input type="text" id="tb_sede" class="form-control" runat="server" placeholder="Nombre del tesista por agregar" /></td>
+                                            <td>
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_sede" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RequiredFieldValidator6" runat="server" ErrorMessage="Debe ingresar la sede del tesista" ValidationGroup="tesista">
+                                                </asp:RequiredFieldValidator></td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="btn_guardar" runat="server" onserverclick="btn_guardar_ServerClick" class="btn btn-success" validationgroup="tesista">
+                                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Guardar!
+                            </button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <asp:GridView ID="gv_tesistas" runat="server" OnPreRender="gv_tesistas_PreRender"
         AutoGenerateColumns="False" GridLines="None" CssClass="display">
@@ -30,12 +154,12 @@
                         type="button" class="btn btn-sm btn-danger"
                         data-toggle="modal"
                         data-target="#advertencia_eliminacion"
-                        data-id='<%#Eval("tesista_id")%>'
+                        data-id='<%#Eval("persona_id")%>'
                         data-introduccion="el área"
-                        data-nombre='<%#Eval("persona_nombre")%>'>
+                        data-nombre='<%#Eval("persona_nomyap")%>'>
                         <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>Eliminar
                     </button>
-                    <button runat="server" class="btn btn-sm btn-default" id="btn_ver" causesvalidation="false" onserverclick="btn_ver_ServerClick" data-id='<%#Eval("tesista_id")%>'>
+                    <button runat="server" class="btn btn-sm btn-default" id="btn_ver" causesvalidation="false" onserverclick="btn_ver_ServerClick" data-id='<%#Eval("persona_id")%>'>
                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Editar
                     </button>
                 </ItemTemplate>
@@ -65,74 +189,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-    <div class="row">
-        <div class="col-md-12">
-            <button type="button" class="btn btn-default pull-right" id="btn_agregar_tesista" runat="server" data-toggle="modal" data-target="#agregar_tesista">
-                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Agregar nuevo
-            </button>
-            <div class="modal fade" id="agregar_tesista" role="dialog" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Agregar tesista</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <asp:ValidationSummary ID="validation_summary" runat="server" DisplayMode="BulletList" ValidationGroup="tesista"
-                                        CssClass="validationsummary panel panel-danger" HeaderText="<div class='panel-heading'>&nbsp;Corrija los siguientes errores antes de continuar:</div>" />
-                                </div>
-                            </div>
-                          
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <table class="table-condensed" style="width: 100%">
-                                         <tr>
-                                            <td>DNI</td>
-                                            <td style="width: auto">
-                                                <input type="text" id="tb_dni_tesista" class="form-control" runat="server" placeholder="DNI del tesista por agregar" /></td>
-                                            <td>
-                                                <asp:RequiredFieldValidator ControlToValidate="tb_dni_tesista" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe ingresar el DNI del tesista" ValidationGroup="tesista">
-                                                </asp:RequiredFieldValidator></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Nombre</td>
-                                            <td style="width: auto">
-                                                <input type="text" id="tb_nombre_tesista" class="form-control" runat="server" placeholder="Nombre del tesista por agregar" /></td>
-                                            <td>
-                                                <asp:RequiredFieldValidator ControlToValidate="tb_nombre_tesista" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="rv_nombre_tesista" runat="server" ErrorMessage="Debe ingresar el nombre del tesista" ValidationGroup="tesista">
-                                                </asp:RequiredFieldValidator></td>
-                                        </tr>
-                                    </table>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button id="btn_guardar" runat="server" onserverclick="btn_guardar_ServerClick" class="btn btn-success" validationgroup="tesista">
-                                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Guardar!
-                            </button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-
-
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="CPH_Scripts" runat="server">

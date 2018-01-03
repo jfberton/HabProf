@@ -19,30 +19,19 @@ namespace WebApplication1
         private void Redireccionar()
         {
             Persona user = Session["UsuarioLogueado"] as Persona;
+            string perfil = Session["Perfil"].ToString();
 
-            Response.Redirect("~/Aplicativo/admin_home.aspx");
-
-            //switch (user.perfil)
-            //{
-            //    case perfil_usuario.Admin:
-            //        Response.Redirect("~/Aplicativo/main_admin.aspx");
-            //        break;
-            //    case perfil_usuario.Jefe:
-            //        Response.Redirect("~/Aplicativo/main_admin.aspx");
-            //        break;
-            //    case perfil_usuario.Supervisor:
-            //        break;
-            //    case perfil_usuario.Usuario:
-            //        Response.Redirect("~/Aplicativo/main_usuario.aspx");
-            //        break;
-            //    case perfil_usuario.Sistema:
-            //        Response.Redirect("~/Aplicativo/main_sistema.aspx");
-            //        break;
-            //    case perfil_usuario.Seleccionar:
-            //        break;
-            //    default:
-            //        break;
-            //}
+            switch (perfil)
+            {
+                case "Admin":
+                    Response.Redirect("~/Aplicativo/admin_home.aspx");
+                    break;
+                case "Dire":
+                    Response.Redirect("~/Aplicativo/director_home.aspx");
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

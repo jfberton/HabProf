@@ -12,15 +12,19 @@ namespace WebApplication1.Aplicativo
     using System;
     using System.Collections.Generic;
     
-    public partial class Tesista
+    public partial class Tesista : Persona
     {
-        public int tesista_id { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Tesista()
+        {
+            this.Tesinas = new HashSet<Tesis>();
+        }
+    
         public string tesista_legajo { get; set; }
         public string tesista_sede { get; set; }
         public int director_id { get; set; }
     
-        public virtual Persona Persona { get; set; }
-        public virtual Tesis Tesis { get; set; }
-        public virtual Director Director { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tesis> Tesinas { get; set; }
     }
 }
