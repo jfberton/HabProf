@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using WebApplication1.Aplicativo.ControlesDeUsuario;
 
@@ -25,6 +26,7 @@ namespace WebApplication1.Aplicativo
 
         private void ObtenerTesistas()
         {
+            lbl_agregar_actualizar_tesista.Text = "Agregar "; //seteo el encabezado del popup porque el boton agregar levanta el popup desde html sin venir hasta el servidor
             using (HabProfDBContainer cxt = new Aplicativo.HabProfDBContainer())
             {
                 List<Tesista> tesistas = (from t in cxt.Personas.OfType<Tesista>() where t.persona_fecha_baja == null select t).ToList();
@@ -75,9 +77,11 @@ namespace WebApplication1.Aplicativo
         protected void btn_guardar_ServerClick(object sender, EventArgs e)
         {
             Persona usuario = Session["UsuarioLogueado"] as Persona;
+            int id_tesista = Convert.ToInt32(hidden_id_tesista_editar.Value);
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
                 Tesista tesista = cxt.Personas.OfType<Tesista>().FirstOrDefault(pp => pp.persona_dni == tb_dni_tesista.Value);
+
 
                 if (tesista == null)
                 {
@@ -116,7 +120,7 @@ namespace WebApplication1.Aplicativo
 
                 try
                 {
-                    
+
                     cxt.SaveChanges();
 
                     tb_dni_tesista.Value = string.Empty;
@@ -135,7 +139,6 @@ namespace WebApplication1.Aplicativo
                 }
             }
 
-
             ObtenerTesistas();
         }
 
@@ -152,6 +155,7 @@ namespace WebApplication1.Aplicativo
                     tb_nombre_tesista.Value = tesista.persona_nomyap;
                     tb_sede.Value = tesista.tesista_sede;
                     tb_telefono.Value = tesista.persona_telefono;
+                    hidden_id_tesista_editar.Value = tesista.persona_id.ToString();
 
                     string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_tesista').modal('show')});</script>";
                     ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
@@ -161,6 +165,32 @@ namespace WebApplication1.Aplicativo
                     string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_tesista').modal('show')});</script>";
                     ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
                     MessageBox.Show(this, "No se encontró persona con este DNI", MessageBox.Tipo_MessageBox.Success, "Resultado búsqueda");
+                }
+            }
+        }
+
+        protected void btn_editar_ServerClick(object sender, EventArgs e)
+        {
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                int id_tesista = Convert.ToInt32(((HtmlButton)sender).Attributes["data-id"]);
+                
+                Tesista tesista = cxt.Personas.OfType<Tesista>().FirstOrDefault(pp => pp.persona_id == id_tesista);
+                if (tesista != null)
+                {
+                    tb_dni_tesista.Value = tesista.persona_dni;
+                    tb_domicilio.Value = tesista.persona_domicilio;
+                    tb_email.Value = tesista.persona_email;
+                    tb_legajo.Value = tesista.tesista_legajo;
+                    tb_nombre_tesista.Value = tesista.persona_nomyap;
+                    tb_sede.Value = tesista.tesista_sede;
+                    tb_telefono.Value = tesista.persona_telefono;
+                    lbl_agregar_actualizar_tesista.Text = "Actualizar ";
+
+                    hidden_id_tesista_editar.Value = tesista.persona_id.ToString();
+
+                    string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_tesista').modal('show')});</script>";
+                    ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
                 }
             }
         }

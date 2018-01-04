@@ -22,6 +22,15 @@ namespace WebApplication1.Aplicativo {
         protected global::WebApplication1.Aplicativo.Menues.menu_admin menu_admin;
         
         /// <summary>
+        /// lalalal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button lalalal;
+        
+        /// <summary>
         /// lbl_sin_tesistas control.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,24 @@ namespace WebApplication1.Aplicativo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton btn_agregar_tesista;
+        
+        /// <summary>
+        /// lbl_agregar_actualizar_tesista control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_agregar_actualizar_tesista;
+        
+        /// <summary>
+        /// hidden_id_tesista_editar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hidden_id_tesista_editar;
         
         /// <summary>
         /// validation_summary control.

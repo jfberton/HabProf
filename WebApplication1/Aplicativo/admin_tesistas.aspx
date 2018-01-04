@@ -15,7 +15,7 @@
     </ol>
 
     <h1>Tesistas <small>Listado de alumnos de la licenciatura</small></h1>
-
+    <asp:Button Text="borrar" ID="lalalal" runat="server" />
     <div class="row">
         <div class="col-md-10">
             <div class="alert alert-warning" role="alert" runat="server" id="lbl_sin_tesistas">
@@ -34,9 +34,11 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Agregar tesista</h4>
+                            <h4 class="modal-title">
+                                <asp:Label Text="text" ID="lbl_agregar_actualizar_tesista" runat="server" /> tesista</h4>
                         </div>
                         <div class="modal-body">
+                            <input type="hidden" runat="server" id="hidden_id_tesista_editar" />
                             <div class="row">
                                 <div class="col-md-12">
                                     <asp:ValidationSummary ID="validation_summary" runat="server" DisplayMode="BulletList" ValidationGroup="tesista"
@@ -157,10 +159,10 @@
                         data-id='<%#Eval("persona_id")%>'
                         data-introduccion="el área"
                         data-nombre='<%#Eval("persona_nomyap")%>'>
-                        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>Eliminar
+                        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>&nbsp;Eliminar
                     </button>
-                    <button runat="server" class="btn btn-sm btn-default" id="btn_ver" causesvalidation="false" onserverclick="btn_ver_ServerClick" data-id='<%#Eval("persona_id")%>'>
-                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>Editar
+                    <button runat="server" class="btn btn-sm btn-default" id="btn_editar" causesvalidation="false" onserverclick="btn_editar_ServerClick" data-id='<%#Eval("persona_id")%>'>
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp;Editar
                     </button>
                 </ItemTemplate>
             </asp:TemplateField>
@@ -219,31 +221,7 @@
                     "infoFiltered": "(filtrado de _MAX_ registros totales)"
                 }
             });
-            <%-- $('#<%= gv_areas_view.ClientID %>').DataTable({
-                "scrollY": "400px",
-                "scrollCollapse": true,
-                "paging": false,
-                "language": {
-                    "search": "Buscar:",
-                    "zeroRecords": "No se encontraron registros",
-                    "info": "Mostrando _START_ de _END_ de _TOTAL_ registros",
-                    "infoEmpty": "No hay registros disponibles",
-                    "infoFiltered": "(filtrado de _MAX_ registros totales)"
-                }
-            });
-            $('#<%= gv_empleado.ClientID %>').DataTable({
-                "scrollY": "200px",
-                "scrollCollapse": true,
-                "searching": false,
-                "paging": false,
-                "language": {
-                    "search": "Buscar:",
-                    "zeroRecords": "No se encontraron registros",
-                    "info": "Mostrando _START_ de _END_ de _TOTAL_ registros",
-                    "infoEmpty": "No hay registros disponibles",
-                    "infoFiltered": "(filtrado de _MAX_ registros totales)"
-                }
-            });--%>
+          
         });
     </script>
     <script>
@@ -253,3 +231,4 @@
     </script>
 
 </asp:Content>
+
