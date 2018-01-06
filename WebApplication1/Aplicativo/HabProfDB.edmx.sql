@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/03/2018 11:26:32
--- Generated from EDMX file: d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
+-- Date Created: 01/05/2018 21:44:56
+-- Generated from EDMX file: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -163,6 +163,7 @@ GO
 
 -- Creating table 'Personas_Director'
 CREATE TABLE [dbo].[Personas_Director] (
+    [director_calificacion] decimal(4,2)  NOT NULL,
     [persona_id] int  NOT NULL
 );
 GO
@@ -171,7 +172,6 @@ GO
 CREATE TABLE [dbo].[Personas_Tesista] (
     [tesista_legajo] nvarchar(max)  NOT NULL,
     [tesista_sede] nvarchar(max)  NOT NULL,
-    [director_id] int  NOT NULL,
     [persona_id] int  NOT NULL
 );
 GO

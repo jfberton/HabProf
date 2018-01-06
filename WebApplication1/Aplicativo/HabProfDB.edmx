@@ -136,6 +136,7 @@
     <Key>
       <PropertyRef Name="persona_id" />
     </Key>
+    <Property Name="director_calificacion" Type="decimal" Nullable="false" Precision="4" Scale="2" />
     <Property Name="persona_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Personas_Tesista">
@@ -144,7 +145,6 @@
     </Key>
     <Property Name="tesista_legajo" Type="nvarchar(max)" Nullable="false" />
     <Property Name="tesista_sede" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="director_id" Type="int" Nullable="false" />
     <Property Name="persona_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Personas_Administrador">
@@ -359,11 +359,11 @@
         <EntityType Name="Tesista" BaseType="HabProfDB.Persona">
           <Property Name="tesista_legajo" Type="String" Nullable="false" />
           <Property Name="tesista_sede" Type="String" Nullable="false" />
-          <Property Name="director_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Tesinas" Relationship="HabProfDB.TesistaTesis" FromRole="Tesista" ToRole="Tesis" />
         </EntityType>
         <EntityType Name="Director" BaseType="HabProfDB.Persona">
           <NavigationProperty Name="Tesinas" Relationship="HabProfDB.DirectorTesis" FromRole="Director" ToRole="Tesis" />
+          <Property Name="director_calificacion" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
         </EntityType>
         <EntityType Name="Administrador" BaseType="HabProfDB.Persona">
         </EntityType>
@@ -543,6 +543,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Director)">
         <MappingFragment StoreEntitySet="Personas_Director">
           <ScalarProperty Name="persona_id" ColumnName="persona_id" />
+          <ScalarProperty Name="director_calificacion" ColumnName="director_calificacion" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Tesista)">
@@ -550,7 +551,6 @@
           <ScalarProperty Name="persona_id" ColumnName="persona_id" />
           <ScalarProperty Name="tesista_legajo" ColumnName="tesista_legajo" />
           <ScalarProperty Name="tesista_sede" ColumnName="tesista_sede" />
-          <ScalarProperty Name="director_id" ColumnName="director_id" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Administrador)">

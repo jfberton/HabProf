@@ -10,7 +10,7 @@
 namespace WebApplication1.Aplicativo {
     
     
-    public partial class admin_tesistas {
+    public partial class admin_directores {
         
         /// <summary>
         /// menu_admin control.
@@ -22,40 +22,40 @@ namespace WebApplication1.Aplicativo {
         protected global::WebApplication1.Aplicativo.Menues.menu_admin menu_admin;
         
         /// <summary>
-        /// lbl_sin_tesistas control.
+        /// lbl_sin_directores control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_sin_tesistas;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_sin_directores;
         
         /// <summary>
-        /// btn_agregar_tesista control.
+        /// btn_agregar_director control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btn_agregar_tesista;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_agregar_director;
         
         /// <summary>
-        /// lbl_agregar_actualizar_tesista control.
+        /// lbl_agregar_actualizar_director control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_agregar_actualizar_tesista;
+        protected global::System.Web.UI.WebControls.Label lbl_agregar_actualizar_director;
         
         /// <summary>
-        /// hidden_id_tesista_editar control.
+        /// hidden_id_director_editar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hidden_id_tesista_editar;
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hidden_id_director_editar;
         
         /// <summary>
         /// validation_summary control.
@@ -67,13 +67,13 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.WebControls.ValidationSummary validation_summary;
         
         /// <summary>
-        /// tb_dni_tesista control.
+        /// tb_dni_director control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText tb_dni_tesista;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText tb_dni_director;
         
         /// <summary>
         /// cv_dni_duplicado control.
@@ -94,22 +94,22 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
         
         /// <summary>
-        /// tb_nombre_tesista control.
+        /// tb_nombre_director control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText tb_nombre_tesista;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText tb_nombre_director;
         
         /// <summary>
-        /// rv_nombre_tesista control.
+        /// rv_nombre_director control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rv_nombre_tesista;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rv_nombre_director;
         
         /// <summary>
         /// tb_email control.
@@ -175,13 +175,22 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
         
         /// <summary>
-        /// tb_legajo control.
+        /// tb_usuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText tb_legajo;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText tb_usuario;
+        
+        /// <summary>
+        /// cv_usuario_duplicado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_usuario_duplicado;
         
         /// <summary>
         /// RequiredFieldValidator5 control.
@@ -193,22 +202,31 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
         
         /// <summary>
-        /// tb_sede control.
+        /// chk_cambiar_clave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText tb_sede;
+        protected global::System.Web.UI.WebControls.CheckBox chk_cambiar_clave;
         
         /// <summary>
-        /// RequiredFieldValidator6 control.
+        /// tb_contraseña control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword tb_contraseña;
+        
+        /// <summary>
+        /// cv_contraseña control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_contraseña;
         
         /// <summary>
         /// btn_guardar control.
@@ -220,13 +238,13 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.HtmlControls.HtmlButton btn_guardar;
         
         /// <summary>
-        /// gv_tesistas control.
+        /// gv_directores control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_tesistas;
+        protected global::System.Web.UI.WebControls.GridView gv_directores;
         
         /// <summary>
         /// id_item_por_eliminar control.
@@ -247,67 +265,76 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.WebControls.Button btn_aceptar_eliminacion;
         
         /// <summary>
-        /// lbl_ver_tesista_dni control.
+        /// lbl_ver_director_dni control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ver_tesista_dni;
+        protected global::System.Web.UI.WebControls.Label lbl_ver_director_dni;
         
         /// <summary>
-        /// lbl_ver_tesista_nomyap control.
+        /// lbl_ver_director_nomyap control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ver_tesista_nomyap;
+        protected global::System.Web.UI.WebControls.Label lbl_ver_director_nomyap;
         
         /// <summary>
-        /// lbl_ver_tesista_email control.
+        /// lbl_ver_director_email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ver_tesista_email;
+        protected global::System.Web.UI.WebControls.Label lbl_ver_director_email;
         
         /// <summary>
-        /// lbl_ver_tesista_domicilio control.
+        /// lbl_ver_director_domicilio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ver_tesista_domicilio;
+        protected global::System.Web.UI.WebControls.Label lbl_ver_director_domicilio;
         
         /// <summary>
-        /// lbl_ver_tesista_telefono control.
+        /// lbl_ver_director_telefono control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ver_tesista_telefono;
+        protected global::System.Web.UI.WebControls.Label lbl_ver_director_telefono;
         
         /// <summary>
-        /// lbl_ver_tesista_legajo control.
+        /// lbl_ver_director_calificacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ver_tesista_legajo;
+        protected global::System.Web.UI.WebControls.Label lbl_ver_director_calificacion;
         
         /// <summary>
-        /// lbl_ver_tesista_sede control.
+        /// lbl_ver_director_usuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ver_tesista_sede;
+        protected global::System.Web.UI.WebControls.Label lbl_ver_director_usuario;
+        
+        /// <summary>
+        /// gv_tesinas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_tesinas;
         
         /// <summary>
         /// Button1 control.

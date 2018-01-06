@@ -32,6 +32,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Personas <b class="caret"></b></a>
                     <ul class="dropdown-menu multi-level">
                         <li><a href="../Aplicativo/admin_tesistas.aspx">Administrar tesistas</a></li>
+                        <li><a href="../Aplicativo/admin_directores.aspx">Administrar directores</a></li>
                     </ul>
                 </li>
                 <%-- <li>

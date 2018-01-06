@@ -79,6 +79,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Aplicativo\admin_directores.aspx" />
     <Content Include="Aplicativo\admin_home.aspx" />
     <Content Include="Aplicativo\admin_tesistas.aspx" />
     <Content Include="Aplicativo\director_home.aspx" />
@@ -609,6 +610,13 @@
   <ItemGroup>
     <Compile Include="Aplicativo\Administrador.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\admin_directores.aspx.cs">
+      <DependentUpon>admin_directores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicativo\admin_directores.aspx.designer.cs">
+      <DependentUpon>admin_directores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\admin_home.aspx.cs">
       <DependentUpon>admin_home.aspx</DependentUpon>

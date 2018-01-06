@@ -109,7 +109,8 @@ namespace WebApplication1
                         persona_telefono = "00000000",
                         persona_usuario = "dire",
                         persona_clave = Cripto.Encriptar("dire"),
-                        persona_estilo = "Sandstone"
+                        persona_estilo = "Sandstone",
+                        director_calificacion = 0
                     };
                     cxt.Personas.Add(dire);
 

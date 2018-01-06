@@ -10,7 +10,7 @@
         <EntityTypeShape EntityType="HabProfDB.Director" Width="2" PointX="5.375" PointY="4.5" />
         <EntityTypeShape EntityType="HabProfDB.Administrador" Width="2" PointX="7.875" PointY="4.5" />
         <EntityTypeShape EntityType="HabProfDB.Juez" Width="2.125" PointX="10.625" PointY="4.5" />
-        <EntityTypeShape EntityType="HabProfDB.Tesis" Width="2.5" PointX="2.375" PointY="7.25" />
+        <EntityTypeShape EntityType="HabProfDB.Tesis" Width="2.75" PointX="2.375" PointY="7.25" />
         <EntityTypeShape EntityType="HabProfDB.Licenciatura" Width="1.875" PointX="6.25" PointY="0.5" />
         <EntityTypeShape EntityType="HabProfDB.Estado_tesis" Width="2.625" PointX="6.875" PointY="11.125" />
         <AssociationConnector Association="HabProfDB.Estado_tesisTesis" />
