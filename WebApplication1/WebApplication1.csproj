@@ -43,9 +43,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Encriptador">
-      <HintPath>..\..\..\..\..\..\..\Desarrollo\Trabajos\Encriptador\bin\Debug\Encriptador.exe</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -59,6 +56,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Seguridad">
+      <HintPath>..\..\..\..\ATP\Viejos\Encriptador\Encriptador\Encriptador\bin\Debug\Seguridad.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -83,6 +83,7 @@
     <Content Include="Aplicativo\admin_home.aspx" />
     <Content Include="Aplicativo\admin_tesistas.aspx" />
     <Content Include="Aplicativo\director_home.aspx" />
+    <Content Include="Aplicativo\envio_mail.aspx" />
     <Content Include="Aplicativo\HabProfDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>HabProfDB.Context.cs</LastGenOutput>
@@ -96,7 +97,6 @@
     </Content>
     <Content Include="Aplicativo\Menues\MenuDemo.ascx" />
     <Content Include="Aplicativo\Menues\menu_admin.ascx" />
-    <Content Include="Aplicativo\Prueba.aspx" />
     <Content Include="Aplicativo\usuario_preferencias.aspx" />
     <Content Include="Content\bootstrap-theme-Cerulean.min.css" />
     <Content Include="Content\bootstrap-theme-Cosmo.min.css" />
@@ -123,6 +123,7 @@
     <Content Include="images\icon-link.png" />
     <Content Include="images\shadow.png" />
     <Content Include="images\turtle.png" />
+    <Content Include="images\utn.png" />
     <Content Include="images\wall-power-connection.png" />
     <Content Include="images\Warning.gif" />
     <Content Include="packages.config" />
@@ -135,6 +136,7 @@
     <Content Include="Aplicativo\HabProfDB.edmx.diagram">
       <DependentUpon>HabProfDB.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\habilitacion.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -633,6 +635,7 @@
       <DependentUpon>admin_tesistas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\ControlesDeUsuario\MessageBox.cs" />
+    <Compile Include="Aplicativo\Cripto.cs" />
     <Compile Include="Aplicativo\Director.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>
     </Compile>
@@ -642,6 +645,13 @@
     </Compile>
     <Compile Include="Aplicativo\director_home.aspx.designer.cs">
       <DependentUpon>director_home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\envio_mail.aspx.cs">
+      <DependentUpon>envio_mail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicativo\envio_mail.aspx.designer.cs">
+      <DependentUpon>envio_mail.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\Estado_tesis.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>
@@ -684,15 +694,9 @@
     <Compile Include="Aplicativo\Menues\menu_admin.ascx.designer.cs">
       <DependentUpon>menu_admin.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Aplicativo\MiEmail.cs" />
     <Compile Include="Aplicativo\Persona.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Aplicativo\Prueba.aspx.cs">
-      <DependentUpon>Prueba.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Aplicativo\Prueba.aspx.designer.cs">
-      <DependentUpon>Prueba.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\Servidor_de_correo.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>
@@ -743,7 +747,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

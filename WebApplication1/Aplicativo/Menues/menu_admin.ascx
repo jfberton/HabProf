@@ -21,6 +21,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="../Aplicativo/usuario_preferencias.aspx">Bienvenido,
+                       
                         <asp:Label Text="" ID="lbl_usuario" runat="server" /></a>
                 </li>
                 <li>
@@ -34,6 +35,9 @@
                         <li><a href="../Aplicativo/admin_tesistas.aspx">Administrar tesistas</a></li>
                         <li><a href="../Aplicativo/admin_directores.aspx">Administrar directores</a></li>
                     </ul>
+                </li>
+                <li>
+                    <a href="../Aplicativo/envio_mail.aspx">Envio mail</a>
                 </li>
                 <%-- <li>
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu 2 <b class="caret"></b></a>

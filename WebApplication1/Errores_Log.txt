@@ -361,3 +361,221 @@ STACKTRACE:    en System.Data.Entity.Core.Mapping.StorageMappingItemCollection.V
 
 
 ******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636508609524127821
+
+DATE: 06/01/2018 18:42:32
+
+AGENTE: admin
+
+MESSAGE: El servidor SMTP requiere una conexión segura o el cliente no se autenticó. La respuesta del servidor fue: 5.5.1 Authentication Required. Learn more at
+
+SOURCE: System
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/envio_mail.aspx
+
+TARGETSITE: Void CheckResponse(System.Net.Mail.SmtpStatusCode, System.String)
+
+STACKTRACE:    en System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   en System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   en System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   en WebApplication1.Aplicativo.envio_mail.SendEmail(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\envio_mail.aspx.cs:línea 39
+   en System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   en System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   en System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   en System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   en System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636508615601008899
+
+DATE: 06/01/2018 18:52:40
+
+AGENTE: admin
+
+MESSAGE: El servidor SMTP requiere una conexión segura o el cliente no se autenticó. La respuesta del servidor fue: 5.5.1 Authentication Required. Learn more at
+
+SOURCE: System
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/envio_mail.aspx
+
+TARGETSITE: Void CheckResponse(System.Net.Mail.SmtpStatusCode, System.String)
+
+STACKTRACE:    en System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   en System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   en System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   en WebApplication1.Aplicativo.envio_mail.SendEmail(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\envio_mail.aspx.cs:línea 31
+   en System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   en System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   en System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   en System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   en System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636508619168272544
+
+DATE: 06/01/2018 18:58:36
+
+AGENTE: admin
+
+MESSAGE: El servidor SMTP requiere una conexión segura o el cliente no se autenticó. La respuesta del servidor fue: 5.7.0 Must issue a STARTTLS command first. s58sm5469188qtb.41 - gsmtp
+
+SOURCE: System
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/envio_mail.aspx
+
+TARGETSITE: Void CheckResponse(System.Net.Mail.SmtpStatusCode, System.String)
+
+STACKTRACE:    en System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   en System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   en System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   en System.Net.Mail.SmtpClient.Send(MailMessage message)
+   en WebApplication1.Aplicativo.envio_mail.SendEmail(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\envio_mail.aspx.cs:línea 31
+   en System.Web.UI.WebControls.Button.OnClick(EventArgs e)
+   en System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
+   en System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   en System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   en System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636510382491111637
+
+DATE: 08/01/2018 19:57:29
+
+AGENTE: admin
+
+MESSAGE: Estado de vista no válido. 
+	Client IP: ::1
+	Port: 52483
+	Referer: http://localhost:60142/Aplicativo/envio_mail.aspx
+	Path: /Aplicativo/envio_mail.aspx
+	User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36
+	ViewState: L1fl7CEykY4g5xV5FxKb4FRsX1ocq7tPFjTRADoSOTo4FL0pSw9o0DVKlsJQ+0j3IHa/uYeU4sYT+l7+5tbx0hxlgflkqsuRXdEws9AlSFNk/5VX0Gtf/l69LFTrV5nPwNqqL8cW8uUB6YZcn9OVTHfe4wmWwJludE0gPUPHINIGQuD4xnSJWkkBK8YybFJTJtqbOmBpL+Nicky1FCV84uNOkI5I10YIbdadGAqDl3D7HcfcZ6hamrI3NKYIgorZ
+
+SOURCE: 
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/envio_mail.aspx
+
+TARGETSITE: 
+
+STACKTRACE: 
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636510955836911649
+
+DATE: 09/01/2018 11:53:03 a.m.
+
+AGENTE: Sin autenticar.
+
+MESSAGE: Login failed for user 'sa'.
+
+SOURCE: .Net SqlClient Data Provider
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/default.aspx
+
+TARGETSITE: Void .ctor(System.Data.ProviderBase.DbConnectionPoolIdentity, System.Data.SqlClient.SqlConnectionString, System.Data.SqlClient.SqlCredential, System.Object, System.String, System.Security.SecureString, Boolean, System.Data.SqlClient.SqlConnectionString, System.Data.SqlClient.SessionData, System.Data.ProviderBase.DbConnectionPool, System.String, Boolean)
+
+STACKTRACE:    en System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   en System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.<Open>b__36(DbConnection t, DbConnectionInterceptionContext c)
+   en System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext](TTarget target, Action`2 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.Open(DbConnection connection, DbInterceptionContext interceptionContext)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.<Open>b__2()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute(Action operation)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636510960984740001
+
+DATE: 09/01/2018 12:01:38 p.m.
+
+AGENTE: admin
+
+MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
+
+SOURCE: WebApplication1
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/envio_mail.aspx
+
+TARGETSITE: Void RefrescarEstilo()
+
+STACKTRACE:    en WebApplication1.Aplicativo.Site1.RefrescarEstilo() en D:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\Site1.Master.cs:línea 27
+   en WebApplication1.Aplicativo.Site1.Page_Load(Object sender, EventArgs e) en D:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\Site1.Master.cs:línea 17
+   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   en System.Web.UI.Control.OnLoad(EventArgs e)
+   en System.Web.UI.Control.LoadRecursive()
+   en System.Web.UI.Control.LoadRecursive()
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+
+******************************************************************

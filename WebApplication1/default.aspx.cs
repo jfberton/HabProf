@@ -1,5 +1,4 @@
-﻿using Encriptador;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -26,7 +25,7 @@ namespace WebApplication1
             RevisarCrearPrimerosDatos();
 
             string usuario = form_username.Value;
-            string clave = Encriptador.Cripto.Encriptar(form_password.Value);
+            string clave = Cripto.Encriptar(form_password.Value);
 
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {

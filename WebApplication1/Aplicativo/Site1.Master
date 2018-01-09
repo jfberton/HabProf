@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Tesina</title>
-    <link rel="shortcut icon" href="assets-default-login/ico/UTN.ico" />
+    <link rel="shortcut icon" href="../assets-default-login/ico/UTN.ico" />
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <link href="../Content/menuStyle.css" rel="stylesheet" />
     
