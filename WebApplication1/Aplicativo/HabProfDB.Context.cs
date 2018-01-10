@@ -44,6 +44,8 @@ public partial class HabProfDBContainer : DbContext
 
     public virtual DbSet<Servidor_de_correo> Servidores { get; set; }
 
+    public virtual DbSet<Envio_mail> Envio_mails { get; set; }
+
 }
 
 }

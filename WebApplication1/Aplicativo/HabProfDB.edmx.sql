@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/05/2018 21:44:56
--- Generated from EDMX file: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
+-- Date Created: 01/10/2018 09:16:04
+-- Generated from EDMX file: d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -37,6 +37,9 @@ IF OBJECT_ID(N'[dbo].[FK_DirectorTesis]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_TesistaTesis]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Tesinas] DROP CONSTRAINT [FK_TesistaTesis];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PersonaEnvio_mail]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Envio_mails] DROP CONSTRAINT [FK_PersonaEnvio_mail];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Director_inherits_Persona]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Personas_Director] DROP CONSTRAINT [FK_Director_inherits_Persona];
@@ -73,6 +76,9 @@ GO
 IF OBJECT_ID(N'[dbo].[Servidores]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Servidores];
 GO
+IF OBJECT_ID(N'[dbo].[Envio_mails]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Envio_mails];
+GO
 IF OBJECT_ID(N'[dbo].[Personas_Director]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Personas_Director];
 GO
@@ -96,6 +102,7 @@ CREATE TABLE [dbo].[Personas] (
     [persona_nomyap] nvarchar(max)  NOT NULL,
     [persona_dni] nvarchar(max)  NOT NULL,
     [persona_email] nvarchar(max)  NOT NULL,
+    [persona_email_validado] bit  NOT NULL,
     [persona_domicilio] nvarchar(max)  NOT NULL,
     [persona_telefono] nvarchar(max)  NOT NULL,
     [licenciatura_id] int  NOT NULL,
@@ -129,7 +136,7 @@ CREATE TABLE [dbo].[Licenciaturas] (
     [licenciatura_nombre] nvarchar(max)  NOT NULL,
     [licenciatura_descripcion] nvarchar(max)  NOT NULL,
     [licenciatura_email] nvarchar(max)  NOT NULL,
-    [licenciatura_clave] nvarchar(max)  NOT NULL,
+    [licenciatura_email_clave] nvarchar(max)  NOT NULL,
     [servidor_id] int  NOT NULL
 );
 GO
@@ -158,6 +165,18 @@ CREATE TABLE [dbo].[Servidores] (
     [servidor_smtp_host] nvarchar(max)  NOT NULL,
     [servidor_smtp_port] smallint  NOT NULL,
     [servidor_enable_ssl] bit  NOT NULL
+);
+GO
+
+-- Creating table 'Envio_mails'
+CREATE TABLE [dbo].[Envio_mails] (
+    [envio_id] int IDENTITY(1,1) NOT NULL,
+    [persona_id] int  NOT NULL,
+    [envio_fecha_hora] datetime  NOT NULL,
+    [envio_tipo] nvarchar(max)  NOT NULL,
+    [envio_email_destino] nvarchar(max)  NOT NULL,
+    [envio_respuesta_clave] nvarchar(max)  NOT NULL,
+    [envio_respuesta_recibida] datetime  NULL
 );
 GO
 
@@ -226,6 +245,12 @@ GO
 ALTER TABLE [dbo].[Servidores]
 ADD CONSTRAINT [PK_Servidores]
     PRIMARY KEY CLUSTERED ([servidor_id] ASC);
+GO
+
+-- Creating primary key on [envio_id] in table 'Envio_mails'
+ALTER TABLE [dbo].[Envio_mails]
+ADD CONSTRAINT [PK_Envio_mails]
+    PRIMARY KEY CLUSTERED ([envio_id] ASC);
 GO
 
 -- Creating primary key on [persona_id] in table 'Personas_Director'
@@ -359,6 +384,21 @@ GO
 CREATE INDEX [IX_FK_TesistaTesis]
 ON [dbo].[Tesinas]
     ([tesista_persona_id]);
+GO
+
+-- Creating foreign key on [persona_id] in table 'Envio_mails'
+ALTER TABLE [dbo].[Envio_mails]
+ADD CONSTRAINT [FK_PersonaEnvio_mail]
+    FOREIGN KEY ([persona_id])
+    REFERENCES [dbo].[Personas]
+        ([persona_id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PersonaEnvio_mail'
+CREATE INDEX [IX_FK_PersonaEnvio_mail]
+ON [dbo].[Envio_mails]
+    ([persona_id]);
 GO
 
 -- Creating foreign key on [persona_id] in table 'Personas_Director'

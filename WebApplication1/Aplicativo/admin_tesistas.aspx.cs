@@ -80,7 +80,7 @@ namespace WebApplication1.Aplicativo
                 int id_tesista = Convert.ToInt32(hidden_id_tesista_editar.Value);
                 using (HabProfDBContainer cxt = new HabProfDBContainer())
                 {
-                    Tesista tesista = new Tesista();
+                    Tesista tesista = null;
 
                     if (id_tesista != 0)
                     {
@@ -97,6 +97,7 @@ namespace WebApplication1.Aplicativo
                             persona_nomyap = tb_nombre_tesista.Value,
                             persona_dni = tb_dni_tesista.Value,
                             persona_email = tb_email.Value,
+                            persona_email_validado = false,
                             persona_domicilio = tb_domicilio.Value,
                             persona_telefono = tb_telefono.Value,
                             persona_usuario = "",
@@ -105,6 +106,7 @@ namespace WebApplication1.Aplicativo
                             tesista_legajo = tb_legajo.Value,
                             tesista_sede = tb_sede.Value
                         };
+
                         cxt.Personas.Add(tesista);
                     }
                     else
@@ -114,6 +116,7 @@ namespace WebApplication1.Aplicativo
                         tesista.persona_nomyap = tb_nombre_tesista.Value;
                         tesista.persona_dni = tb_dni_tesista.Value;
                         tesista.persona_email = tb_email.Value;
+                        tesista.persona_email_validado = false;
                         tesista.persona_domicilio = tb_domicilio.Value;
                         tesista.persona_telefono = tb_telefono.Value;
                         tesista.persona_usuario = "";

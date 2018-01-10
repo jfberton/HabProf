@@ -56,7 +56,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Seguridad">
+    <Reference Include="Seguridad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\ATP\Viejos\Encriptador\Encriptador\Encriptador\bin\Debug\Seguridad.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
@@ -83,7 +84,6 @@
     <Content Include="Aplicativo\admin_home.aspx" />
     <Content Include="Aplicativo\admin_tesistas.aspx" />
     <Content Include="Aplicativo\director_home.aspx" />
-    <Content Include="Aplicativo\envio_mail.aspx" />
     <Content Include="Aplicativo\HabProfDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>HabProfDB.Context.cs</LastGenOutput>
@@ -97,6 +97,7 @@
     </Content>
     <Content Include="Aplicativo\Menues\MenuDemo.ascx" />
     <Content Include="Aplicativo\Menues\menu_admin.ascx" />
+    <Content Include="Aplicativo\Prueba.aspx" />
     <Content Include="Aplicativo\usuario_preferencias.aspx" />
     <Content Include="Content\bootstrap-theme-Cerulean.min.css" />
     <Content Include="Content\bootstrap-theme-Cosmo.min.css" />
@@ -126,6 +127,7 @@
     <Content Include="images\utn.png" />
     <Content Include="images\wall-power-connection.png" />
     <Content Include="images\Warning.gif" />
+    <Content Include="landing_mail.aspx" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Aplicativo\Site1.Master" />
@@ -136,7 +138,6 @@
     <Content Include="Aplicativo\HabProfDB.edmx.diagram">
       <DependentUpon>HabProfDB.edmx</DependentUpon>
     </Content>
-    <None Include="Properties\PublishProfiles\habilitacion.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -646,12 +647,8 @@
     <Compile Include="Aplicativo\director_home.aspx.designer.cs">
       <DependentUpon>director_home.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Aplicativo\envio_mail.aspx.cs">
-      <DependentUpon>envio_mail.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Aplicativo\envio_mail.aspx.designer.cs">
-      <DependentUpon>envio_mail.aspx</DependentUpon>
+    <Compile Include="Aplicativo\Envio_mail.cs">
+      <DependentUpon>HabProfDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\Estado_tesis.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>
@@ -697,6 +694,13 @@
     <Compile Include="Aplicativo\MiEmail.cs" />
     <Compile Include="Aplicativo\Persona.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\Prueba.aspx.cs">
+      <DependentUpon>Prueba.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicativo\Prueba.aspx.designer.cs">
+      <DependentUpon>Prueba.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\Servidor_de_correo.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>
@@ -745,11 +749,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="landing_mail.aspx.cs">
+      <DependentUpon>landing_mail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="landing_mail.aspx.designer.cs">
+      <DependentUpon>landing_mail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

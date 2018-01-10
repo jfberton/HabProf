@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using WebApplication1.Aplicativo.ControlesDeUsuario;
 
@@ -12,13 +14,36 @@ namespace WebApplication1.Aplicativo
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                Persona usuario = Session["UsuarioLogueado"] as Persona;
+                lbl_email.Text = usuario.persona_email;
+                if (usuario.persona_email_validado)
+                {
+                    lbl_validado.Text = "Validado";
+                    lbl_correo_a_editar.Text = usuario.persona_email;
+                    lbl_estado_mail_a_editar.Text = "validado";
+                    p_validado_mail_editar.Attributes["class"] = "text-success";
+                    lbl_validado.ForeColor = Color.DarkGreen;
+                }
+                else
+                {
+                    lbl_validado.Text = "Sin validar";
+                    lbl_validado.ToolTip = "No va a poder recuperar la contraseña si no tiene validado su correo";
+                    lbl_correo_a_editar.Text = usuario.persona_email;
+                    p_validado_mail_editar.Attributes["class"] = "text-danger";
+                    lbl_estado_mail_a_editar.Text = "sin validar";
+                    lbl_validado.ForeColor = Color.DarkRed;
+                }
 
+
+            }
         }
 
         protected void changeStyleButton_Click(object sender, EventArgs e)
         {
 
-            string estilo = ((Button)sender).Text;
+            string estilo = ((LinkButton)sender).Text;
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
                 Persona admin = Session["UsuarioLogueado"] as Persona;
@@ -56,6 +81,65 @@ namespace WebApplication1.Aplicativo
                 }
                 MessageBox.Show(this, "La clave se actualizó correctamente.-", MessageBox.Tipo_MessageBox.Success);
             }
+        }
+
+        protected void btn_guardar_nuevo_mail_ServerClick(object sender, EventArgs e)
+        {
+            this.Validate("email");
+            if (this.IsValid)
+            {
+                Persona p = Session["UsuarioLogueado"] as Persona;
+                using (HabProfDBContainer cxt = new HabProfDBContainer())
+                {
+                    Persona p_cxt = cxt.Personas.FirstOrDefault(pp => pp.persona_id == p.persona_id);
+                    p_cxt.persona_email = tb_email.Value;
+                    p_cxt.persona_email_validado = false;
+                    cxt.SaveChanges();
+                    Enviar_validacion();
+                }
+            }
+            else
+            {
+                string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#modificar_mail').modal('show')});</script>";
+                ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
+            }
+        }
+
+        private void Enviar_validacion()
+        {
+            Persona p = Session["UsuarioLogueado"] as Persona;
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                Persona p_cxt = cxt.Personas.FirstOrDefault(pp => pp.persona_id == p.persona_id);
+
+                Envio_mail registro_envio_mail = new Envio_mail()
+                {
+                    persona_id = p_cxt.persona_id,
+                    envio_fecha_hora = DateTime.Now,
+                    envio_email_destino = p_cxt.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
+                    envio_respuesta_clave = Guid.NewGuid().ToString(),
+                    envio_tipo = MiEmail.tipo_mail.validacion.ToString()
+                };
+
+                cxt.Envio_mails.Add(registro_envio_mail);
+                cxt.SaveChanges();
+
+                MiEmail mail = new MiEmail(registro_envio_mail);
+
+                if (mail.Enviar_mail())
+                {
+                    MessageBox.Show(this, "El correo se envió satisfactoriamente", MessageBox.Tipo_MessageBox.Success);
+                }
+                else
+                {
+                    MessageBox.Show(this, "Ocurrio un error en el envio del correo", MessageBox.Tipo_MessageBox.Warning, "Oops!!");
+                }
+            }
+        }
+
+        protected void lnk_enviar_validacion_Click(object sender, EventArgs e)
+        {
+            Enviar_validacion();
         }
     }
 }

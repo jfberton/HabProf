@@ -12,6 +12,7 @@
     <EntitySet Name="Estados_tesis" EntityType="HabProfDB.Store.Estados_tesis" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Historial_estados" EntityType="HabProfDB.Store.Historial_estados" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Servidores" EntityType="HabProfDB.Store.Servidores" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Envio_mails" EntityType="HabProfDB.Store.Envio_mails" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Personas_Director" EntityType="HabProfDB.Store.Personas_Director" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Personas_Tesista" EntityType="HabProfDB.Store.Personas_Tesista" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Personas_Administrador" EntityType="HabProfDB.Store.Personas_Administrador" store:Type="Tables" Schema="dbo" />
@@ -44,6 +45,10 @@
       <End Role="Tesista" EntitySet="Personas_Tesista" />
       <End Role="Tesis" EntitySet="Tesinas" />
     </AssociationSet>
+    <AssociationSet Name="PersonaEnvio_mail" Association="HabProfDB.Store.PersonaEnvio_mail">
+      <End Role="Persona" EntitySet="Personas" />
+      <End Role="Envio_mail" EntitySet="Envio_mails" />
+    </AssociationSet>
     <AssociationSet Name="FK_Director_inherits_Persona" Association="HabProfDB.Store.FK_Director_inherits_Persona">
       <End Role="Persona" EntitySet="Personas" />
       <End Role="Director" EntitySet="Personas_Director" />
@@ -69,6 +74,7 @@
     <Property Name="persona_nomyap" Type="nvarchar(max)" Nullable="false" />
     <Property Name="persona_dni" Type="nvarchar(max)" Nullable="false" />
     <Property Name="persona_email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="persona_email_validado" Type="bit" Nullable="false" />
     <Property Name="persona_domicilio" Type="nvarchar(max)" Nullable="false" />
     <Property Name="persona_telefono" Type="nvarchar(max)" Nullable="false" />
     <Property Name="licenciatura_id" Type="int" Nullable="false" />
@@ -102,7 +108,7 @@
     <Property Name="licenciatura_nombre" Type="nvarchar(max)" Nullable="false" />
     <Property Name="licenciatura_descripcion" Type="nvarchar(max)" Nullable="false" />
     <Property Name="licenciatura_email" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="licenciatura_clave" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="licenciatura_email_clave" Type="nvarchar(max)" Nullable="false" />
     <Property Name="servidor_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Estados_tesis">
@@ -131,6 +137,18 @@
     <Property Name="servidor_smtp_host" Type="nvarchar(max)" Nullable="false" />
     <Property Name="servidor_smtp_port" Type="smallint" Nullable="false" />
     <Property Name="servidor_enable_ssl" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Envio_mails">
+    <Key>
+      <PropertyRef Name="envio_id" />
+    </Key>
+    <Property Name="envio_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="persona_id" Type="int" Nullable="false" />
+    <Property Name="envio_fecha_hora" Type="datetime" Nullable="false" />
+    <Property Name="envio_tipo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="envio_email_destino" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="envio_respuesta_clave" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="envio_respuesta_recibida" Type="datetime" Nullable="true" />
   </EntityType>
   <EntityType Name="Personas_Director">
     <Key>
@@ -243,6 +261,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="PersonaEnvio_mail">
+    <End Role="Persona" Type="HabProfDB.Store.Personas" Multiplicity="1" />
+    <End Role="Envio_mail" Type="HabProfDB.Store.Envio_mails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="persona_id" />
+      </Principal>
+      <Dependent Role="Envio_mail">
+        <PropertyRef Name="persona_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Director_inherits_Persona">
     <End Role="Persona" Type="HabProfDB.Store.Personas" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -338,6 +368,11 @@
             <End Role="Tesista" EntitySet="Personas" />
             <End Role="Tesis" EntitySet="Tesinas" />
           </AssociationSet>
+          <EntitySet Name="Envio_mails" EntityType="HabProfDB.Envio_mail" />
+          <AssociationSet Name="PersonaEnvio_mail" Association="HabProfDB.PersonaEnvio_mail">
+            <End Role="Persona" EntitySet="Personas" />
+            <End Role="Envio_mail" EntitySet="Envio_mails" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Persona">
           <Key>
@@ -347,6 +382,7 @@
           <Property Name="persona_nomyap" Type="String" Nullable="false" />
           <Property Name="persona_dni" Type="String" Nullable="false" />
           <Property Name="persona_email" Type="String" Nullable="false" />
+          <Property Name="persona_email_validado" Type="Boolean" Nullable="false" />
           <Property Name="persona_domicilio" Type="String" Nullable="false" />
           <Property Name="persona_telefono" Type="String" Nullable="false" />
           <NavigationProperty Name="Licenciatura" Relationship="HabProfDB.LicenciaturaPersona" FromRole="Persona" ToRole="Licenciatura" />
@@ -355,6 +391,7 @@
           <Property Name="persona_clave" Type="String" Nullable="false" />
           <Property Name="persona_estilo" Type="String" Nullable="false" />
           <Property Name="persona_fecha_baja" Type="DateTime" Nullable="true" />
+          <NavigationProperty Name="Envios_mail" Relationship="HabProfDB.PersonaEnvio_mail" FromRole="Persona" ToRole="Envio_mail" />
         </EntityType>
         <EntityType Name="Tesista" BaseType="HabProfDB.Persona">
           <Property Name="tesista_legajo" Type="String" Nullable="false" />
@@ -398,7 +435,7 @@
           <Property Name="licenciatura_nombre" Type="String" Nullable="false" />
           <Property Name="licenciatura_descripcion" Type="String" Nullable="false" />
           <Property Name="licenciatura_email" Type="String" Nullable="false" />
-          <Property Name="licenciatura_clave" Type="String" Nullable="false" />
+          <Property Name="licenciatura_email_clave" Type="String" Nullable="false" />
           <NavigationProperty Name="Servidor" Relationship="HabProfDB.ServidorLicenciatura" FromRole="Licenciatura" ToRole="Servidor" />
           <Property Name="servidor_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Personas" Relationship="HabProfDB.LicenciaturaPersona" FromRole="Licenciatura" ToRole="Persona" />
@@ -518,6 +555,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Envio_mail">
+          <Key>
+            <PropertyRef Name="envio_id" />
+          </Key>
+          <Property Name="envio_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="persona_id" Type="Int32" Nullable="false" />
+          <Property Name="envio_fecha_hora" Type="DateTime" Nullable="false" />
+          <Property Name="envio_tipo" Type="String" Nullable="false" />
+          <Property Name="envio_email_destino" Type="String" Nullable="false" />
+          <Property Name="envio_respuesta_clave" Type="String" Nullable="false" />
+          <NavigationProperty Name="Persona" Relationship="HabProfDB.PersonaEnvio_mail" FromRole="Envio_mail" ToRole="Persona" />
+          <Property Name="envio_respuesta_recibida" Type="DateTime" Nullable="true" />
+        </EntityType>
+        <Association Name="PersonaEnvio_mail">
+          <End Type="HabProfDB.Persona" Role="Persona" Multiplicity="1" />
+          <End Type="HabProfDB.Envio_mail" Role="Envio_mail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Persona">
+              <PropertyRef Name="persona_id" />
+            </Principal>
+            <Dependent Role="Envio_mail">
+              <PropertyRef Name="persona_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -531,6 +593,7 @@
           <ScalarProperty Name="persona_nomyap" ColumnName="persona_nomyap" />
           <ScalarProperty Name="persona_dni" ColumnName="persona_dni" />
           <ScalarProperty Name="persona_email" ColumnName="persona_email" />
+          <ScalarProperty Name="persona_email_validado" ColumnName="persona_email_validado" />
           <ScalarProperty Name="persona_domicilio" ColumnName="persona_domicilio" />
           <ScalarProperty Name="persona_telefono" ColumnName="persona_telefono" />
           <ScalarProperty Name="licenciatura_id" ColumnName="licenciatura_id" />
@@ -589,7 +652,7 @@
           <ScalarProperty Name="licenciatura_nombre" ColumnName="licenciatura_nombre" />
           <ScalarProperty Name="licenciatura_descripcion" ColumnName="licenciatura_descripcion" />
           <ScalarProperty Name="licenciatura_email" ColumnName="licenciatura_email" />
-          <ScalarProperty Name="licenciatura_clave" ColumnName="licenciatura_clave" />
+          <ScalarProperty Name="licenciatura_email_clave" ColumnName="licenciatura_email_clave" />
           <ScalarProperty Name="servidor_id" ColumnName="servidor_id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -621,6 +684,19 @@
           <ScalarProperty Name="servidor_smtp_host" ColumnName="servidor_smtp_host" />
           <ScalarProperty Name="servidor_smtp_port" ColumnName="servidor_smtp_port" />
           <ScalarProperty Name="servidor_enable_ssl" ColumnName="servidor_enable_ssl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Envio_mails">
+      <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Envio_mail)">
+        <MappingFragment StoreEntitySet="Envio_mails">
+          <ScalarProperty Name="envio_id" ColumnName="envio_id" />
+          <ScalarProperty Name="persona_id" ColumnName="persona_id" />
+          <ScalarProperty Name="envio_fecha_hora" ColumnName="envio_fecha_hora" />
+          <ScalarProperty Name="envio_tipo" ColumnName="envio_tipo" />
+          <ScalarProperty Name="envio_email_destino" ColumnName="envio_email_destino" />
+          <ScalarProperty Name="envio_respuesta_clave" ColumnName="envio_respuesta_clave" />
+          <ScalarProperty Name="envio_respuesta_recibida" ColumnName="envio_respuesta_recibida" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

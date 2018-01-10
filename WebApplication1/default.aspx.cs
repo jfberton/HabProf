@@ -83,7 +83,7 @@ namespace WebApplication1
                     cxt.Servidores.Add(servidor3);
                     cxt.Servidores.Add(servidor4);
 
-                    Licenciatura l = new Licenciatura() { licenciatura_nombre = "Licenciatura en Tecnología Educativa", licenciatura_descripcion = "Este Ciclo de Licenciatura se propone brindar una alternativa de formación de grado a aquellos profesores y/o técnicos superiores en áreas referidas en manejo de las tecnologías, interesados en Ia inserción de Ia tecnología educativa en los procesos de formación inicial y continua propios del sistema educativo. Asimismo, resulta una opción para cubrir los espacios de capacitación y actualización que se desarroIIan en las instituciones y organizaciones del sistema socio productivo, tanto de gestión pública como privada." , licenciatura_email="email.de.prueba", licenciatura_clave="clave.del.mail", Servidor= servidor0};
+                    Licenciatura l = new Licenciatura() { licenciatura_nombre = "Licenciatura en Tecnología Educativa", licenciatura_descripcion = "Este Ciclo de Licenciatura se propone brindar una alternativa de formación de grado a aquellos profesores y/o técnicos superiores en áreas referidas en manejo de las tecnologías, interesados en Ia inserción de Ia tecnología educativa en los procesos de formación inicial y continua propios del sistema educativo. Asimismo, resulta una opción para cubrir los espacios de capacitación y actualización que se desarroIIan en las instituciones y organizaciones del sistema socio productivo, tanto de gestión pública como privada." , licenciatura_email="fede.berton@gmail.com", licenciatura_email_clave="berton_mail", Servidor= servidor3};
                     cxt.Licenciaturas.Add(l);
 
                     Administrador admin = new Administrador() {
@@ -91,6 +91,7 @@ namespace WebApplication1
                             persona_nomyap = "Administrador",
                             persona_dni = "00000000",
                             persona_email = "un.mail@un.servidor.com",
+                            persona_email_validado = false,
                             persona_domicilio = "un domicilio",
                             persona_telefono = "00000000",
                             persona_usuario = "admin",
@@ -104,6 +105,7 @@ namespace WebApplication1
                         persona_nomyap = "director",
                         persona_dni = "00000000",
                         persona_email = "un.mail@un.servidor.com",
+                        persona_email_validado = false,
                         persona_domicilio = "un domicilio",
                         persona_telefono = "00000000",
                         persona_usuario = "dire",

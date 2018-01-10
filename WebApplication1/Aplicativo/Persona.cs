@@ -18,6 +18,15 @@ using System;
 public partial class Persona
 {
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Persona()
+    {
+
+        this.Envios_mail = new HashSet<Envio_mail>();
+
+    }
+
+
     public int persona_id { get; set; }
 
     public string persona_nomyap { get; set; }
@@ -25,6 +34,8 @@ public partial class Persona
     public string persona_dni { get; set; }
 
     public string persona_email { get; set; }
+
+    public bool persona_email_validado { get; set; }
 
     public string persona_domicilio { get; set; }
 
@@ -43,6 +54,10 @@ public partial class Persona
 
 
     public virtual Licenciatura Licenciatura { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Envio_mail> Envios_mail { get; set; }
 
 }
 

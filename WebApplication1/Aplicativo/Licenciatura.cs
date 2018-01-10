@@ -35,7 +35,7 @@ public partial class Licenciatura
 
     public string licenciatura_email { get; set; }
 
-    public string licenciatura_clave { get; set; }
+    public string licenciatura_email_clave { get; set; }
 
     public int servidor_id { get; set; }
 

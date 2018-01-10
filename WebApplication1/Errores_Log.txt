@@ -2,43 +2,9 @@
 
 ******************************************************************
 
-ERRORID: 636505759891658006
+ERRORID: 636511222472620796
 
-DATE: 03/01/2018 11:33:09 a.m.
-
-AGENTE: admin
-
-MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
-
-SOURCE: WebApplication1
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesistas.aspx
-
-TARGETSITE: Void gv_tesistas_PreRender(System.Object, System.EventArgs)
-
-STACKTRACE:    en WebApplication1.Aplicativo.admin_tesistas.gv_tesistas_PreRender(Object sender, EventArgs e) en d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\admin_tesistas.aspx.cs:línea 49
-   en System.Web.UI.Control.OnPreRender(EventArgs e)
-   en System.Web.UI.WebControls.GridView.OnPreRender(EventArgs e)
-   en System.Web.UI.Control.PreRenderRecursiveInternal()
-   en System.Web.UI.Control.PreRenderRecursiveInternal()
-   en System.Web.UI.Control.PreRenderRecursiveInternal()
-   en System.Web.UI.Control.PreRenderRecursiveInternal()
-   en System.Web.UI.Control.PreRenderRecursiveInternal()
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636505787374971854
-
-DATE: 03/01/2018 12:18:57 p.m.
+DATE: 09/01/2018 19:17:27
 
 AGENTE: admin
 
@@ -50,12 +16,11 @@ INSTANCE:
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/Aplicativo/admin_tesistas.aspx
+URL: http://localhost:60142/Aplicativo/usuario_preferencias.aspx
 
-TARGETSITE: Void ObtenerTesistas()
+TARGETSITE: Void Page_Load(System.Object, System.EventArgs)
 
-STACKTRACE:    en WebApplication1.Aplicativo.admin_tesistas.ObtenerTesistas() en d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\admin_tesistas.aspx.cs:línea 39
-   en WebApplication1.Aplicativo.admin_tesistas.Page_Load(Object sender, EventArgs e) en d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\admin_tesistas.aspx.cs:línea 22
+STACKTRACE:    en WebApplication1.Aplicativo.usuario_preferencias.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\usuario_preferencias.aspx.cs:línea 18
    en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
    en System.Web.UI.Control.OnLoad(EventArgs e)
    en System.Web.UI.Control.LoadRecursive()
@@ -67,52 +32,88 @@ STACKTRACE:    en WebApplication1.Aplicativo.admin_tesistas.ObtenerTesistas() en
 
 ******************************************************************
 
-ERRORID: 636505808865869620
+ERRORID: 636511224087456130
 
-DATE: 03/01/2018 12:54:46 p.m.
+DATE: 09/01/2018 19:20:08
 
 AGENTE: admin
 
-MESSAGE: DataBinding: 'System.Data.Entity.DynamicProxies.Tesista_7267A2DF40247FF0457A1D4102BDCFB00A1F15FF39D5CF169999822DABEBED92' no contiene una propiedad con el nombre 'tesista_id'.
+MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
 
-SOURCE: System.Web
+SOURCE: WebApplication1
 
 INSTANCE: 
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/Aplicativo/admin_tesistas.aspx
+URL: http://localhost:60142/Aplicativo/usuario_preferencias.aspx
 
-TARGETSITE: System.Object GetPropertyValue(System.Object, System.String)
+TARGETSITE: Void Page_Load(System.Object, System.EventArgs)
 
-STACKTRACE:    en System.Web.UI.DataBinder.GetPropertyValue(Object container, String propName)
-   en System.Web.UI.DataBinder.Eval(Object container, String[] expressionParts)
-   en System.Web.UI.DataBinder.Eval(Object container, String expression)
-   en System.Web.UI.TemplateControl.Eval(String expression)
-   en ASP.aplicativo_admin_tesistas_aspx.__DataBind__control38(Object sender, EventArgs e) en d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\admin_tesistas.aspx:línea 157
-   en System.Web.UI.Control.OnDataBinding(EventArgs e)
-   en System.Web.UI.Control.DataBind(Boolean raiseOnDataBinding)
-   en System.Web.UI.Control.DataBind()
-   en System.Web.UI.Control.DataBindChildren()
-   en System.Web.UI.Control.DataBind(Boolean raiseOnDataBinding)
-   en System.Web.UI.Control.DataBind()
-   en System.Web.UI.Control.DataBindChildren()
-   en System.Web.UI.Control.DataBind(Boolean raiseOnDataBinding)
-   en System.Web.UI.Control.DataBind()
-   en System.Web.UI.WebControls.GridView.CreateRow(Int32 rowIndex, Int32 dataSourceIndex, DataControlRowType rowType, DataControlRowState rowState, Boolean dataBind, Object dataItem, DataControlField[] fields, TableRowCollection rows, PagedDataSource pagedDataSource)
-   en System.Web.UI.WebControls.GridView.CreateChildControls(IEnumerable dataSource, Boolean dataBinding)
-   en System.Web.UI.WebControls.CompositeDataBoundControl.PerformDataBinding(IEnumerable data)
-   en System.Web.UI.WebControls.GridView.PerformDataBinding(IEnumerable data)
-   en System.Web.UI.WebControls.DataBoundControl.OnDataSourceViewSelectCallback(IEnumerable data)
-   en System.Web.UI.DataSourceView.Select(DataSourceSelectArguments arguments, DataSourceViewSelectCallback callback)
-   en System.Web.UI.WebControls.DataBoundControl.PerformSelect()
-   en System.Web.UI.WebControls.BaseDataBoundControl.DataBind()
-   en System.Web.UI.WebControls.GridView.DataBind()
-   en WebApplication1.Aplicativo.admin_tesistas.ObtenerTesistas() en d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\admin_tesistas.aspx.cs:línea 34
-   en WebApplication1.Aplicativo.admin_tesistas.btn_guardar_ServerClick(Object sender, EventArgs e) en d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\admin_tesistas.aspx.cs:línea 96
-   en System.Web.UI.HtmlControls.HtmlButton.OnServerClick(EventArgs e)
-   en System.Web.UI.HtmlControls.HtmlButton.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.HtmlControls.HtmlButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+STACKTRACE:    en WebApplication1.Aplicativo.usuario_preferencias.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\usuario_preferencias.aspx.cs:línea 18
+   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   en System.Web.UI.Control.OnLoad(EventArgs e)
+   en System.Web.UI.Control.LoadRecursive()
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636511264244315469
+
+DATE: 09/01/2018 20:27:04
+
+AGENTE: admin
+
+MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
+
+SOURCE: WebApplication1
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/usuario_preferencias.aspx
+
+TARGETSITE: Void Page_Load(System.Object, System.EventArgs)
+
+STACKTRACE:    en WebApplication1.Aplicativo.usuario_preferencias.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\usuario_preferencias.aspx.cs:línea 29
+   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   en System.Web.UI.Control.OnLoad(EventArgs e)
+   en System.Web.UI.Control.LoadRecursive()
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636511276990352243
+
+DATE: 09/01/2018 20:48:19
+
+AGENTE: admin
+
+MESSAGE: No se puede convertir un objeto de tipo 'System.Web.UI.WebControls.LinkButton' al tipo 'System.Web.UI.WebControls.Button'.
+
+SOURCE: WebApplication1
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/usuario_preferencias.aspx
+
+TARGETSITE: Void changeStyleButton_Click(System.Object, System.EventArgs)
+
+STACKTRACE:    en WebApplication1.Aplicativo.usuario_preferencias.changeStyleButton_Click(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\usuario_preferencias.aspx.cs:línea 38
+   en System.Web.UI.WebControls.LinkButton.OnClick(EventArgs e)
+   en System.Web.UI.WebControls.LinkButton.RaisePostBackEvent(String eventArgument)
+   en System.Web.UI.WebControls.LinkButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
    en System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
    en System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
    en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
@@ -123,48 +124,13 @@ STACKTRACE:    en System.Web.UI.DataBinder.GetPropertyValue(Object container, St
 
 ******************************************************************
 
-ERRORID: 636507711047688923
+ERRORID: 636511296103765099
 
-DATE: 05/01/2018 17:45:04
-
-AGENTE: admin
-
-MESSAGE: La cadena de entrada no tiene el formato correcto.
-
-SOURCE: mscorlib
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesistas.aspx
-
-TARGETSITE: Void StringToNumber(System.String, System.Globalization.NumberStyles, NumberBuffer ByRef, System.Globalization.NumberFormatInfo, Boolean)
-
-STACKTRACE:    en System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
-   en System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
-   en System.Convert.ToInt32(String value)
-   en WebApplication1.Aplicativo.admin_tesistas.btn_guardar_ServerClick(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesistas.aspx.cs:línea 80
-   en System.Web.UI.HtmlControls.HtmlButton.OnServerClick(EventArgs e)
-   en System.Web.UI.HtmlControls.HtmlButton.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.HtmlControls.HtmlButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636507765880295169
-
-DATE: 05/01/2018 19:16:28
+DATE: 09/01/2018 21:20:10
 
 AGENTE: admin
 
-MESSAGE: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_directores.aspx(118): error CS1061: 'aplicativo_admin_directores_aspx' does not contain a definition for 'gv_directors_PreRender' and no extension method 'gv_directors_PreRender' accepting a first argument of type 'aplicativo_admin_directores_aspx' could be found (are you missing a using directive or an assembly reference?)
+MESSAGE: La clase base incluye el campo 'LinkButton2', pero su tipo (System.Web.UI.WebControls.Button) no es compatible con el tipo de control (System.Web.UI.WebControls.LinkButton).
 
 SOURCE: System.Web
 
@@ -172,7 +138,77 @@ INSTANCE:
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/Aplicativo/admin_directores.aspx
+URL: http://localhost:60142/Aplicativo/usuario_preferencias.aspx
+
+TARGETSITE: Void BuildFieldDeclaration(System.Web.UI.ControlBuilder)
+
+STACKTRACE:    en System.Web.Compilation.BaseTemplateCodeDomTreeGenerator.BuildFieldDeclaration(ControlBuilder builder)
+   en System.Web.Compilation.BaseTemplateCodeDomTreeGenerator.BuildSourceDataTreeFromBuilder(ControlBuilder builder, Boolean fInTemplate, Boolean topLevelControlInTemplate, PropertyEntry pse)
+   en System.Web.Compilation.BaseTemplateCodeDomTreeGenerator.BuildSourceDataTreeFromBuilder(ControlBuilder builder, Boolean fInTemplate, Boolean topLevelControlInTemplate, PropertyEntry pse)
+   en System.Web.Compilation.BaseTemplateCodeDomTreeGenerator.BuildSourceDataTreeFromBuilder(ControlBuilder builder, Boolean fInTemplate, Boolean topLevelControlInTemplate, PropertyEntry pse)
+   en System.Web.Compilation.TemplateControlCodeDomTreeGenerator.BuildMiscClassMembers()
+   en System.Web.Compilation.PageCodeDomTreeGenerator.BuildMiscClassMembers()
+   en System.Web.Compilation.BaseCodeDomTreeGenerator.BuildSourceDataTree()
+   en System.Web.Compilation.BaseCodeDomTreeGenerator.GetCodeDomTree(CodeDomProvider codeDomProvider, StringResourceBuilder stringResourceBuilder, VirtualPath virtualPath)
+   en System.Web.Compilation.BaseTemplateBuildProvider.GenerateCode(AssemblyBuilder assemblyBuilder)
+   en System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636511297456726135
+
+DATE: 09/01/2018 21:22:25
+
+AGENTE: admin
+
+MESSAGE: La clase base incluye el campo 'LinkButton13', pero su tipo (System.Web.UI.WebControls.Button) no es compatible con el tipo de control (System.Web.UI.WebControls.LinkButton).
+
+SOURCE: System.Web
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/usuario_preferencias.aspx
+
+TARGETSITE: Void BuildFieldDeclaration(System.Web.UI.ControlBuilder)
+
+STACKTRACE:    en System.Web.Compilation.BaseTemplateCodeDomTreeGenerator.BuildFieldDeclaration(ControlBuilder builder)
+   en System.Web.Compilation.BaseTemplateCodeDomTreeGenerator.BuildSourceDataTreeFromBuilder(ControlBuilder builder, Boolean fInTemplate, Boolean topLevelControlInTemplate, PropertyEntry pse)
+   en System.Web.Compilation.BaseTemplateCodeDomTreeGenerator.BuildSourceDataTreeFromBuilder(ControlBuilder builder, Boolean fInTemplate, Boolean topLevelControlInTemplate, PropertyEntry pse)
+   en System.Web.Compilation.BaseTemplateCodeDomTreeGenerator.BuildSourceDataTreeFromBuilder(ControlBuilder builder, Boolean fInTemplate, Boolean topLevelControlInTemplate, PropertyEntry pse)
+   en System.Web.Compilation.TemplateControlCodeDomTreeGenerator.BuildMiscClassMembers()
+   en System.Web.Compilation.PageCodeDomTreeGenerator.BuildMiscClassMembers()
+   en System.Web.Compilation.BaseCodeDomTreeGenerator.BuildSourceDataTree()
+   en System.Web.Compilation.BaseCodeDomTreeGenerator.GetCodeDomTree(CodeDomProvider codeDomProvider, StringResourceBuilder stringResourceBuilder, VirtualPath virtualPath)
+   en System.Web.Compilation.BaseTemplateBuildProvider.GenerateCode(AssemblyBuilder assemblyBuilder)
+   en System.Web.Compilation.AssemblyBuilder.AddBuildProvider(BuildProvider buildProvider)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636511302128110932
+
+DATE: 09/01/2018 21:30:12
+
+AGENTE: admin
+
+MESSAGE: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\usuario_preferencias.aspx(178): error CS1061: 'aplicativo_usuario_preferencias_aspx' does not contain a definition for 'btn_guardar_nuevo_mail' and no extension method 'btn_guardar_nuevo_mail' accepting a first argument of type 'aplicativo_usuario_preferencias_aspx' could be found (are you missing a using directive or an assembly reference?)
+
+SOURCE: System.Web
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/usuario_preferencias.aspx
 
 TARGETSITE: System.CodeDom.Compiler.CompilerResults Compile()
 
@@ -194,13 +230,13 @@ STACKTRACE:    en System.Web.Compilation.AssemblyBuilder.Compile()
 
 ******************************************************************
 
-ERRORID: 636507807276632904
+ERRORID: 636511303258086983
 
-DATE: 05/01/2018 20:25:27
+DATE: 09/01/2018 21:32:05
 
 AGENTE: admin
 
-MESSAGE: No se encontró ningún campo o propiedad 'director_calificacion' en el origen de datos seleccionado.
+MESSAGE: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\usuario_preferencias.aspx(178): error CS1061: 'aplicativo_usuario_preferencias_aspx' does not contain a definition for 'btn_guardar_nuevo_mail_ServerClick' and no extension method 'btn_guardar_nuevo_mail_ServerClick' accepting a first argument of type 'aplicativo_usuario_preferencias_aspx' could be found (are you missing a using directive or an assembly reference?)
 
 SOURCE: System.Web
 
@@ -208,60 +244,13 @@ INSTANCE:
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/Aplicativo/admin_directores.aspx
+URL: http://localhost:60142/Aplicativo/usuario_preferencias.aspx
 
-TARGETSITE: Boolean TryGetSimplePropertyValue(System.Object, System.Object ByRef)
+TARGETSITE: System.CodeDom.Compiler.CompilerResults Compile()
 
-STACKTRACE:    en System.Web.UI.WebControls.BoundField.TryGetSimplePropertyValue(Object dataItem, Object& data)
-   en System.Web.UI.WebControls.BoundField.GetValue(Control controlContainer)
-   en System.Web.UI.WebControls.BoundField.OnDataBindField(Object sender, EventArgs e)
-   en System.Web.UI.Control.OnDataBinding(EventArgs e)
-   en System.Web.UI.Control.DataBind(Boolean raiseOnDataBinding)
-   en System.Web.UI.Control.DataBind()
-   en System.Web.UI.Control.DataBindChildren()
-   en System.Web.UI.Control.DataBind(Boolean raiseOnDataBinding)
-   en System.Web.UI.Control.DataBind()
-   en System.Web.UI.WebControls.GridView.CreateRow(Int32 rowIndex, Int32 dataSourceIndex, DataControlRowType rowType, DataControlRowState rowState, Boolean dataBind, Object dataItem, DataControlField[] fields, TableRowCollection rows, PagedDataSource pagedDataSource)
-   en System.Web.UI.WebControls.GridView.CreateChildControls(IEnumerable dataSource, Boolean dataBinding)
-   en System.Web.UI.WebControls.CompositeDataBoundControl.PerformDataBinding(IEnumerable data)
-   en System.Web.UI.WebControls.GridView.PerformDataBinding(IEnumerable data)
-   en System.Web.UI.WebControls.DataBoundControl.OnDataSourceViewSelectCallback(IEnumerable data)
-   en System.Web.UI.DataSourceView.Select(DataSourceSelectArguments arguments, DataSourceViewSelectCallback callback)
-   en System.Web.UI.WebControls.DataBoundControl.PerformSelect()
-   en System.Web.UI.WebControls.BaseDataBoundControl.DataBind()
-   en System.Web.UI.WebControls.GridView.DataBind()
-   en WebApplication1.Aplicativo.admin_directores.ObtenerDirectores() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_directores.aspx.cs:línea 69
-   en WebApplication1.Aplicativo.admin_directores.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_directores.aspx.cs:línea 23
-   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   en System.Web.UI.Control.OnLoad(EventArgs e)
-   en System.Web.UI.Control.LoadRecursive()
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636507825024938049
-
-DATE: 05/01/2018 20:55:02
-
-AGENTE: dire
-
-MESSAGE: El archivo '/Aplicativo/~/default.aspx' no existe.
-
-SOURCE: System.Web
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/~/default.aspx
-
-TARGETSITE: Void CheckVirtualFileExists(System.Web.VirtualPath)
-
-STACKTRACE:    en System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualPath)
+STACKTRACE:    en System.Web.Compilation.AssemblyBuilder.Compile()
+   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
    en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
    en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
    en System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
@@ -277,14 +266,60 @@ STACKTRACE:    en System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualP
 
 ******************************************************************
 
-ERRORID: 636507854254899907
+ERRORID: 636511661733493533
 
-DATE: 05/01/2018 21:43:45
+DATE: 10/01/2018 07:29:33 a.m.
+
+AGENTE: Sin autenticar.
+
+MESSAGE: Login failed for user 'sa'.
+
+SOURCE: .Net SqlClient Data Provider
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/default.aspx
+
+TARGETSITE: Void .ctor(System.Data.ProviderBase.DbConnectionPoolIdentity, System.Data.SqlClient.SqlConnectionString, System.Data.SqlClient.SqlCredential, System.Object, System.String, System.Security.SecureString, Boolean, System.Data.SqlClient.SqlConnectionString, System.Data.SqlClient.SessionData, System.Data.ProviderBase.DbConnectionPool, System.String, Boolean)
+
+STACKTRACE:    en System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
+   en System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   en System.Data.SqlClient.SqlConnection.Open()
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.<Open>b__36(DbConnection t, DbConnectionInterceptionContext c)
+   en System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext](TTarget target, Action`2 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.Open(DbConnection connection, DbInterceptionContext interceptionContext)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.<Open>b__2()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute(Action operation)
+   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636511703118802984
+
+DATE: 10/01/2018 08:38:31 a.m.
 
 AGENTE: Sin autenticar.
 
 MESSAGE: 
-Aplicativo.HabProfDB.msl(27,10) : error 3023: Problem in mapping fragments starting at line 27:Column Personas_Tesista.director_id in table Personas_Tesista must be mapped: It has no default value and is not nullable.
+Aplicativo.HabProfDB.msl(107,10) : error 3031: Problem in mapping fragments starting at line 107:Non-nullable column Envio_mails.envio_respuesta_recibida in table Envio_mails is mapped to a nullable entity property.
 
 
 SOURCE: EntityFramework
@@ -358,224 +393,6 @@ STACKTRACE:    en System.Data.Entity.Core.Mapping.StorageMappingItemCollection.V
    en System.Data.Entity.Core.Query.PlanCompiler.PlanCompiler.Compile(List`1& providerCommands, ColumnMap& resultColumnMap, Int32& columnCount, Set`1& entitySets)
    en System.Data.Entity.Core.Query.PlanCompiler.PlanCompiler.Compile(DbCommandTree ctree, List`1& providerCommands, ColumnMap& resultColumnMap, Int32& columnCount, Set`1& entitySets)
    en System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition..ctor(DbProviderFactory storeProviderFactory, DbCommandTree commandTree, DbInterceptionContext interceptionContext, IDbDependencyResolver resolver, BridgeDataReaderFactory bridgeDataReaderFactory, ColumnMapFactory columnMapFactory)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636508609524127821
-
-DATE: 06/01/2018 18:42:32
-
-AGENTE: admin
-
-MESSAGE: El servidor SMTP requiere una conexión segura o el cliente no se autenticó. La respuesta del servidor fue: 5.5.1 Authentication Required. Learn more at
-
-SOURCE: System
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/envio_mail.aspx
-
-TARGETSITE: Void CheckResponse(System.Net.Mail.SmtpStatusCode, System.String)
-
-STACKTRACE:    en System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
-   en System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
-   en System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
-   en System.Net.Mail.SmtpClient.Send(MailMessage message)
-   en WebApplication1.Aplicativo.envio_mail.SendEmail(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\envio_mail.aspx.cs:línea 39
-   en System.Web.UI.WebControls.Button.OnClick(EventArgs e)
-   en System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636508615601008899
-
-DATE: 06/01/2018 18:52:40
-
-AGENTE: admin
-
-MESSAGE: El servidor SMTP requiere una conexión segura o el cliente no se autenticó. La respuesta del servidor fue: 5.5.1 Authentication Required. Learn more at
-
-SOURCE: System
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/envio_mail.aspx
-
-TARGETSITE: Void CheckResponse(System.Net.Mail.SmtpStatusCode, System.String)
-
-STACKTRACE:    en System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
-   en System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
-   en System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
-   en System.Net.Mail.SmtpClient.Send(MailMessage message)
-   en WebApplication1.Aplicativo.envio_mail.SendEmail(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\envio_mail.aspx.cs:línea 31
-   en System.Web.UI.WebControls.Button.OnClick(EventArgs e)
-   en System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636508619168272544
-
-DATE: 06/01/2018 18:58:36
-
-AGENTE: admin
-
-MESSAGE: El servidor SMTP requiere una conexión segura o el cliente no se autenticó. La respuesta del servidor fue: 5.7.0 Must issue a STARTTLS command first. s58sm5469188qtb.41 - gsmtp
-
-SOURCE: System
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/envio_mail.aspx
-
-TARGETSITE: Void CheckResponse(System.Net.Mail.SmtpStatusCode, System.String)
-
-STACKTRACE:    en System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
-   en System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
-   en System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
-   en System.Net.Mail.SmtpClient.Send(MailMessage message)
-   en WebApplication1.Aplicativo.envio_mail.SendEmail(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\envio_mail.aspx.cs:línea 31
-   en System.Web.UI.WebControls.Button.OnClick(EventArgs e)
-   en System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636510382491111637
-
-DATE: 08/01/2018 19:57:29
-
-AGENTE: admin
-
-MESSAGE: Estado de vista no válido. 
-	Client IP: ::1
-	Port: 52483
-	Referer: http://localhost:60142/Aplicativo/envio_mail.aspx
-	Path: /Aplicativo/envio_mail.aspx
-	User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36
-	ViewState: L1fl7CEykY4g5xV5FxKb4FRsX1ocq7tPFjTRADoSOTo4FL0pSw9o0DVKlsJQ+0j3IHa/uYeU4sYT+l7+5tbx0hxlgflkqsuRXdEws9AlSFNk/5VX0Gtf/l69LFTrV5nPwNqqL8cW8uUB6YZcn9OVTHfe4wmWwJludE0gPUPHINIGQuD4xnSJWkkBK8YybFJTJtqbOmBpL+Nicky1FCV84uNOkI5I10YIbdadGAqDl3D7HcfcZ6hamrI3NKYIgorZ
-
-SOURCE: 
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/envio_mail.aspx
-
-TARGETSITE: 
-
-STACKTRACE: 
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636510955836911649
-
-DATE: 09/01/2018 11:53:03 a.m.
-
-AGENTE: Sin autenticar.
-
-MESSAGE: Login failed for user 'sa'.
-
-SOURCE: .Net SqlClient Data Provider
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/default.aspx
-
-TARGETSITE: Void .ctor(System.Data.ProviderBase.DbConnectionPoolIdentity, System.Data.SqlClient.SqlConnectionString, System.Data.SqlClient.SqlCredential, System.Object, System.String, System.Security.SecureString, Boolean, System.Data.SqlClient.SqlConnectionString, System.Data.SqlClient.SessionData, System.Data.ProviderBase.DbConnectionPool, System.String, Boolean)
-
-STACKTRACE:    en System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
-   en System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
-   en System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
-   en System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
-   en System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
-   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
-   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
-   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
-   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
-   en System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
-   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
-   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
-   en System.Data.SqlClient.SqlConnection.Open()
-   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.<Open>b__36(DbConnection t, DbConnectionInterceptionContext c)
-   en System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext](TTarget target, Action`2 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
-   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.Open(DbConnection connection, DbInterceptionContext interceptionContext)
-   en System.Data.Entity.Core.EntityClient.EntityConnection.<Open>b__2()
-   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
-   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
-   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute(Action operation)
-   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636510960984740001
-
-DATE: 09/01/2018 12:01:38 p.m.
-
-AGENTE: admin
-
-MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
-
-SOURCE: WebApplication1
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/envio_mail.aspx
-
-TARGETSITE: Void RefrescarEstilo()
-
-STACKTRACE:    en WebApplication1.Aplicativo.Site1.RefrescarEstilo() en D:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\Site1.Master.cs:línea 27
-   en WebApplication1.Aplicativo.Site1.Page_Load(Object sender, EventArgs e) en D:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\Site1.Master.cs:línea 17
-   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   en System.Web.UI.Control.OnLoad(EventArgs e)
-   en System.Web.UI.Control.LoadRecursive()
-   en System.Web.UI.Control.LoadRecursive()
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
 
 
 ******************************************************************

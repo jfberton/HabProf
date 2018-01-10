@@ -6,10 +6,10 @@
     <edmx:Diagrams>
       <Diagram DiagramId="6963da6c1f92482f83a2c7f54c0e46c5" Name="Diagram1" DisplayType="true" >
         <EntityTypeShape EntityType="HabProfDB.Persona" Width="2.25" PointX="9.5" PointY="0.5" />
-        <EntityTypeShape EntityType="HabProfDB.Tesista" Width="2" PointX="2.625" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HabProfDB.Director" Width="2" PointX="5.375" PointY="4.5" />
-        <EntityTypeShape EntityType="HabProfDB.Administrador" Width="2" PointX="7.875" PointY="4.5" />
-        <EntityTypeShape EntityType="HabProfDB.Juez" Width="2.125" PointX="10.625" PointY="4.5" />
+        <EntityTypeShape EntityType="HabProfDB.Tesista" Width="2" PointX="2.625" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HabProfDB.Director" Width="2" PointX="5.375" PointY="5" />
+        <EntityTypeShape EntityType="HabProfDB.Administrador" Width="2" PointX="7.875" PointY="5" />
+        <EntityTypeShape EntityType="HabProfDB.Juez" Width="2.125" PointX="10.625" PointY="5" />
         <EntityTypeShape EntityType="HabProfDB.Tesis" Width="2.75" PointX="2.375" PointY="7.25" />
         <EntityTypeShape EntityType="HabProfDB.Licenciatura" Width="1.875" PointX="6.25" PointY="0.5" />
         <EntityTypeShape EntityType="HabProfDB.Estado_tesis" Width="2.625" PointX="6.875" PointY="11.125" />
@@ -26,6 +26,8 @@
         <InheritanceConnector EntityType="HabProfDB.Juez" />
         <AssociationConnector Association="HabProfDB.DirectorTesis" />
         <AssociationConnector Association="HabProfDB.TesistaTesis" />
+        <EntityTypeShape EntityType="HabProfDB.Envio_mail" Width="2.625" PointX="12.75" PointY="0.5" />
+        <AssociationConnector Association="HabProfDB.PersonaEnvio_mail" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
