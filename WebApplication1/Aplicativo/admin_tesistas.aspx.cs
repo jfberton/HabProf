@@ -80,7 +80,7 @@ namespace WebApplication1.Aplicativo
                 int id_tesista = Convert.ToInt32(hidden_id_tesista_editar.Value);
                 using (HabProfDBContainer cxt = new HabProfDBContainer())
                 {
-                    Tesista tesista = null;
+                    Tesista tesista = cxt.Personas.OfType<Tesista>().FirstOrDefault(pp => pp.persona_dni == tb_dni_tesista.Value); 
 
                     if (id_tesista != 0)
                     {

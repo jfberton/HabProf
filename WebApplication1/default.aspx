@@ -52,10 +52,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2 text">
-                        <h1><strong>Habilitación Profesional</strong>
-                            <br />
-                            Sistema de administración de Tesis
-                        </h1>
+                        <h1><strong> Sistema de Administración de Tesis</strong></h1>
                         <div class="description">
                             <p>
                                 <%--Gestión y seguimiento del desarrollo de la Tesina Final de la carrera --%><strong>Licenciatura en Tecnología Educativa</strong>
@@ -65,12 +62,15 @@
                         </div>
                     </div>
                 </div>
+
+
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3 form-box">
                         <div class="form-top">
                             <div class="form-top-left">
-                                <h3>Acceso al sitio</h3>
-                                <p>Ingrese su usuario y contraseña:</p>
+                                <h3 id="texto_titulo">Acceso al sitio</h3>
+                                <p id="texto_encabezado">
+                                    Ingrese su usuario y contraseña:</p>
                             </div>
                             <div class="form-top-right">
                                 <i class="fa fa-lock"></i>
@@ -79,55 +79,63 @@
                         <div class="form-bottom">
                             <form id="form1" runat="server" class="login-form">
                                 <asp:ScriptManager runat="server" />
-                                <div class="form-group">
-                                    <label class="sr-only" for="form-username">Usuario</label>
-                                    <input type="text" runat="server" name="form-username" placeholder="Usuario..." class="form-username form-control" id="form_username" />
+
+                                <div class="tab-content">
+                                    <div id="ingreso" class="tab-pane fade in active">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-username">Usuario</label>
+                                            <input type="text" runat="server" name="form-username" placeholder="Usuario..." class="form-username form-control" id="form_username" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="form-password">Contraseña</label>
+                                            <input type="password" runat="server" name="form-password" placeholder="Contraseña..." class="form-password form-control" id="form_password" />
+                                        </div>
+                                        <button type="submit" runat="server" id="btn_ingresar" onserverclick="btn_ingresar_ServerClick" class="btn">Ingresar!</button>
+                                    </div>
+                                    <div id="recuperar" class="tab-pane fade">
+                                       <div class="form-group">
+                                            <label class="sr-only" for="form-username">Usuario o correo</label>
+                                            <input type="text" runat="server" name="form-username" placeholder="Usuario o correo..." class="form-username form-control" id="tb_recuperar_clave" />
+                                        </div>
+                                        <button type="submit" runat="server" id="btn_recuperar_clave" onserverclick="btn_recuperar_clave_ServerClick" class="btn">Recuperar!</button>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="sr-only" for="form-password">Contraseña</label>
-                                    <input type="password" runat="server" name="form-password" placeholder="Contraseña..." class="form-password form-control" id="form_password" />
-                                </div>
-                                <button type="submit" runat="server" id="btn_ingresar" onserverclick="btn_ingresar_ServerClick" class="btn">Ingresar!</button>
+                                <a data-toggle="tab" href="#recuperar" onclick="Ocultar('recuperar')" id="olvide_mi_clave">Olvide mi clave >></a>
+                                <a data-toggle="tab" href="#ingreso" onclick="Ocultar('ingreso')" style="display:none;" id="volver"><< Volver</a>
                             </form>
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>
 
 
+    <script>
+        function Ocultar(id)
+        {
+            if (id == "recuperar") {
+                //ocurre cuando selecciona recuperar
+                document.getElementById('olvide_mi_clave').style.display = 'none';
+                document.getElementById('volver').style.display = 'block';
+                document.getElementById('texto_titulo').innerText = 'Recuperar contraseña';
+                document.getElementById('texto_encabezado').innerText = 'Ingrese su usuario o correo:';
+            }
+            else {
+                //ocurre cuando selecciona volver
+                document.getElementById('olvide_mi_clave').style.display = 'block';
+                document.getElementById('volver').style.display = 'none';
+                document.getElementById('texto_titulo').innerText = 'Acceso al sistema';
+                document.getElementById('texto_encabezado').innerText = 'Ingrese su usuario y contraseña:';
+            }
+            
+        }
+    </script>
 
-    <div class="modal fade" id="ver_perfil" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Seleccione el perfil con el cual desea entrar</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="rb_admin" runat="server" checked="true"/>
-                        <label class="form-check-label" for="exampleRadios1">
-                            Administrador
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="rb_dire" runat="server" />
-                        <label class="form-check-label" for="exampleRadios2">
-                            Second default radio
-                        </label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
 
     <!-- Javascript -->
     <script src="assets-default-login/js/jquery-1.11.1.min.js"></script>

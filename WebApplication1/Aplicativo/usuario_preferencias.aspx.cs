@@ -25,6 +25,7 @@ namespace WebApplication1.Aplicativo
                     lbl_estado_mail_a_editar.Text = "validado";
                     p_validado_mail_editar.Attributes["class"] = "text-success";
                     lbl_validado.ForeColor = Color.DarkGreen;
+                    lnk_enviar_validacion.Visible = false;
                 }
                 else
                 {
@@ -34,6 +35,7 @@ namespace WebApplication1.Aplicativo
                     p_validado_mail_editar.Attributes["class"] = "text-danger";
                     lbl_estado_mail_a_editar.Text = "sin validar";
                     lbl_validado.ForeColor = Color.DarkRed;
+                    lnk_enviar_validacion.Visible = true;
                 }
 
 
@@ -95,6 +97,17 @@ namespace WebApplication1.Aplicativo
                     p_cxt.persona_email = tb_email.Value;
                     p_cxt.persona_email_validado = false;
                     cxt.SaveChanges();
+
+                    //cargo el nuevo mail en la ventana y lo seteo como no validado
+                    lbl_email.Text = p_cxt.persona_email;
+                    lbl_validado.Text = "Sin validar";
+                    lbl_validado.ToolTip = "No va a poder recuperar la contraseña si no tiene validado su correo";
+                    lbl_correo_a_editar.Text = p_cxt.persona_email;
+                    p_validado_mail_editar.Attributes["class"] = "text-danger";
+                    lbl_estado_mail_a_editar.Text = "sin validar";
+                    lbl_validado.ForeColor = Color.DarkRed;
+                    lnk_enviar_validacion.Visible = true;
+
                     Enviar_validacion();
                 }
             }
@@ -129,6 +142,9 @@ namespace WebApplication1.Aplicativo
                 if (mail.Enviar_mail())
                 {
                     MessageBox.Show(this, "El correo se envió satisfactoriamente", MessageBox.Tipo_MessageBox.Success);
+                    
+                    lbl_validado.Text = "Sin validar";
+                    lbl_validado.ForeColor = Color.DarkRed;
                 }
                 else
                 {

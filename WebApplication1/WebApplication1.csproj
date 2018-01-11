@@ -97,7 +97,6 @@
     </Content>
     <Content Include="Aplicativo\Menues\MenuDemo.ascx" />
     <Content Include="Aplicativo\Menues\menu_admin.ascx" />
-    <Content Include="Aplicativo\Prueba.aspx" />
     <Content Include="Aplicativo\usuario_preferencias.aspx" />
     <Content Include="Content\bootstrap-theme-Cerulean.min.css" />
     <Content Include="Content\bootstrap-theme-Cosmo.min.css" />
@@ -694,13 +693,6 @@
     <Compile Include="Aplicativo\MiEmail.cs" />
     <Compile Include="Aplicativo\Persona.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Aplicativo\Prueba.aspx.cs">
-      <DependentUpon>Prueba.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Aplicativo\Prueba.aspx.designer.cs">
-      <DependentUpon>Prueba.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\Servidor_de_correo.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>

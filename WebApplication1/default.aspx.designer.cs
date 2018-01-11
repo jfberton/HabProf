@@ -49,21 +49,21 @@ namespace WebApplication1 {
         protected global::System.Web.UI.HtmlControls.HtmlButton btn_ingresar;
         
         /// <summary>
-        /// rb_admin control.
+        /// tb_recuperar_clave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rb_admin;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText tb_recuperar_clave;
         
         /// <summary>
-        /// rb_dire control.
+        /// btn_recuperar_clave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rb_dire;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_recuperar_clave;
     }
 }
