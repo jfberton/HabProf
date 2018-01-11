@@ -50,6 +50,7 @@ namespace WebApplication1
                                 case MiEmail.tipo_mail.validacion:
                                     div_validar_correo.Visible = true;
                                     div_recuperar_contraseña.Visible = false;
+                                    div_error_generico.Visible = false;
                                     envio.Persona.persona_email_validado = true;
                                     envio.envio_respuesta_recibida = DateTime.Now;
                                     cxt.SaveChanges();
@@ -62,6 +63,7 @@ namespace WebApplication1
                                 case MiEmail.tipo_mail.recupero_contraseña:
                                     div_validar_correo.Visible = false;
                                     div_recuperar_contraseña.Visible = true;
+                                    div_error_generico.Visible = false;
                                     envio.envio_respuesta_recibida = DateTime.Now;
                                     cxt.SaveChanges();
                                     lbl_recuperar_contraseña.Text = "Recuperar contraseña";
@@ -78,6 +80,7 @@ namespace WebApplication1
                                 case MiEmail.tipo_mail.validacion:
                                     div_validar_correo.Visible = true;
                                     div_recuperar_contraseña.Visible = false;
+                                    div_error_generico.Visible = false;
                                     //se le vencio el tiempo o no es el mismo mail entre que envio la solicitud y entro a validar, caducó asi que tendra que pedir de nuevo la validacion
                                     lbl_titulo.Text = "Validación caducada!";
                                     lbl_titulo.ForeColor = Color.DarkRed;
@@ -90,6 +93,7 @@ namespace WebApplication1
                                 case MiEmail.tipo_mail.recupero_contraseña:
                                     div_validar_correo.Visible = false;
                                     div_recuperar_contraseña.Visible = true;
+                                    div_error_generico.Visible = false;
                                     lbl_recuperar_contraseña.Text = "Recuperar contraseña - ";
                                     textp_recuperar_contraseña.InnerHtml = "La solicitud ha caducado o existe una solicitud más reciente";
                                     MessageBox.Show(this, "La solicitud ha caducado o existe una solicitud más reciente.-", MessageBox.Tipo_MessageBox.Danger, "Error", "default.aspx");
@@ -100,6 +104,12 @@ namespace WebApplication1
                            
                         }
 
+                    }
+                    else
+                    {
+                        div_validar_correo.Visible = false;
+                        div_recuperar_contraseña.Visible = false;
+                        div_error_generico.Visible = true;
                     }
                 }
             }

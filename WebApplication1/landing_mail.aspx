@@ -12,6 +12,17 @@
 <body>
     <form id="form1" runat="server">
         <div>
+
+            <div class="jumbotron" runat="server" id="div_error_generico">
+                <div class="container">
+                    <h1 class="text-primary" style="color:darkred">Oops!</h1>
+                    <p>
+                       Lamentamos informarle que no encontramos la solicitud buscada
+                    </p>
+                    <p><a class="btn btn-primary btn-lg" href="default.aspx" role="button">Ingresar al sistema &raquo;</a></p>
+                </div>
+            </div>
+
             <div class="jumbotron" runat="server" id="div_validar_correo">
                 <div class="container">
                     <h1 class="text-primary">
