@@ -8,7 +8,7 @@
     <uc1:menu_admin runat="server" ID="menu_admin" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="CPH_Body" runat="server">
-   <ol class="breadcrumb">
+    <ol class="breadcrumb">
         <li><a href="admin_home.aspx">Inicio</a></li>
         <li>Administrar tesinas</li>
     </ol>
@@ -28,7 +28,7 @@
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Agregar nuevo
             </button>
             <div class="modal fade" id="agregar_tesina" role="dialog" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -48,7 +48,9 @@
                                 <div class="col-md-12">
                                     <table class="table-condensed" style="width: 100%">
                                         <tr>
-                                            <td><h3>Tema</h3></td>
+                                            <td>
+                                                <h3>Tema</h3>
+                                            </td>
                                             <td style="width: auto">
                                                 <input type="text" id="tb_tesis_tema" class="form-control" runat="server" placeholder="Tema de la tesina" /></td>
                                             <td>
@@ -58,10 +60,17 @@
                                                 <asp:CustomValidator ControlToValidate="tb_tesis_tema" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="cv_tesis_tema" runat="server" ErrorMessage="Ya existe una tesis con la misma temática" OnServerValidate="cv_tesis_tema_ServerValidate" ValidationGroup="tesina" />
                                             </td>
+                                            <td>Estado</td>
+                                            <td style="width: auto">
+                                                <asp:Label Text="Estado tesis" ID="lbl_tesis_estado" runat="server" /></td>
+                                            <td>
+                                                <button class="btn btn-warning" title="Modificar estado tesina" runat="server" id="btn_tesis_cambiar_estado" onserverclick="btn_tesis_cambiar_estado_ServerClick"><span class="glyphicon glyphicon-edit"></span></button>
+                                                <button class="btn btn-default" title="Ver historial de estados" runat="server" id="btn_tesis_ver_historial" onserverclick="btn_tesis_ver_historial_ServerClick"><span class="glyphicon glyphicon-calendar"></span></button>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Palabras clave</td>
-                                            <td style="width: auto">
+                                            <td colspan="4" style="width: auto">
                                                 <input type="text" id="tb_tesina_palabra_clave" class="form-control" runat="server" placeholder="Palabras clave de la tesina" /></td>
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_tesina_palabra_clave" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
@@ -72,19 +81,31 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Estado</td>
-                                            <td style="width: auto">
-                                                <asp:Label Text="Estado tesis" ID="lbl_tesis_estado" runat="server" /></td>
+                                            <td>Archivo Tesis</td>
+                                            <td style="width: auto" colspan="4">
+                                                <asp:FileUpload runat="server" ID="tesis_archivo_upload" CssClass="form-control" /></td>
                                             <td>
-                                                <button class="btn btn-warning" runat="server" id="btn_tesis_cambiar_estado" onserverclick="btn_tesis_cambiar_estado_ServerClick"><span class="glyphicon glyphicon-edit"></span></button> 
-                                                <button class="btn btn-default" runat="server" id="btn_tesis_ver_historial" onserverclick="btn_tesis_ver_historial_ServerClick"><span class="glyphicon glyphicon-calendar"></span></button> 
+                                                <button class="btn btn-warning" title="Guardar archivo seleccionado" runat="server" id="btn_aceptar_archivo" onserverclick="btn_aceptar_archivo_ServerClick"><span class="glyphicon glyphicon-save"></span></button>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Archivo Tesis</td>
-                                            <td style="width: auto"><asp:FileUpload runat="server" ID="tesis_archivo_upload" /></td>
+                                            <td>Fecha de presentación</td>
+                                            <td colspan="4" style="width: auto">
+                                                <div class="form-group">
+                                                    <div class='input-group date' id='datetimepicker1'>
+                                                        <input type='text' class="form-control" id="tb_fecha_presentacion" />
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </td>
                                             <td>
-                                                <button class="btn btn-warning" runat="server" id="btn_aceptar_archivo" onserverclick="btn_aceptar_archivo_ServerClick"><span class="glyphicon glyphicon-edit"></span></button> 
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_tesina_palabra_clave" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RequiredFieldValidator2" runat="server" ErrorMessage="Debe ingresar las palabras clave para esta tesina" ValidationGroup="tesina">
+                                                </asp:RequiredFieldValidator>
+                                                <asp:CustomValidator ControlToValidate="tb_tesina_palabra_clave" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="CustomValidator1" runat="server" ErrorMessage="Ya existe una tesis con alguna de estas palabras clave" OnServerValidate="cv_tesis_palabras_clave_ServerValidate" ValidationGroup="tesina" />
                                             </td>
                                         </tr>
                                     </table>
@@ -239,7 +260,11 @@
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="CPH_Scripts" runat="server">
-
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker();
+        });
+    </script>
     <script>
         $('#advertencia_eliminacion').on('show.bs.modal', function (event) {
             // Button that triggered the modal
