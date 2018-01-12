@@ -222,3 +222,29 @@ STACKTRACE:    en System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualP
 
 
 ******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636512988664970081
+
+DATE: 11/01/2018 20:21:06
+
+AGENTE: Sin autenticar.
+
+MESSAGE: El sistema no puede encontrar el archivo especificado
+
+SOURCE: 
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/default.aspx
+
+TARGETSITE: 
+
+STACKTRACE: 
+
+
+******************************************************************

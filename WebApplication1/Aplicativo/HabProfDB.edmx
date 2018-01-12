@@ -447,7 +447,6 @@
           <Property Name="estado_tesis_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="estado_estado" Type="String" Nullable="false" />
           <NavigationProperty Name="Tesinas" Relationship="HabProfDB.Estado_tesisTesis" FromRole="Estado_tesis" ToRole="Tesis" />
-          <NavigationProperty Name="Historial_estado" Relationship="HabProfDB.Estado_tesisHistorial_estado" FromRole="Estado_tesis" ToRole="Historial_estado" />
           <Property Name="estado_descripcion" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="Estado_tesisTesis">

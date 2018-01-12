@@ -118,6 +118,25 @@ namespace WebApplication1
                     };
                     cxt.Personas.Add(dire);
 
+                    Estado_tesis estado_inicial = new Estado_tesis()
+                    {
+                        estado_estado = "Tesina presentada",
+                        estado_descripcion = "Estado inicial, ocurre cuando aprueban el tema y el tesista presenta el borrador de la tesis para su aprobación"
+                    };
+
+                    Estado_tesis estado_intermedio = new Estado_tesis()
+                    {
+                        estado_estado = "Tesina rechazada",
+                        estado_descripcion = "Estado intermedio, ocurre cuando el director agrega correcciones sobre la tesis para que el tesista las corrija"
+                    };
+
+                    Estado_tesis estado_intermedio_1 = new Estado_tesis()
+                    {
+                        estado_estado = "Tesina aprobado",
+                        estado_descripcion = "Estado intermedio, ocurre cuando aprueban el borrador de tesis y la misma queda para la defenza ante jurado"
+                    };
+
+
                     cxt.SaveChanges();
 
                 }

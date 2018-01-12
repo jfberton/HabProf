@@ -24,8 +24,6 @@ public partial class Estado_tesis
 
         this.Tesinas = new HashSet<Tesis>();
 
-        this.Historial_estado = new HashSet<Historial_estado>();
-
     }
 
 
@@ -40,10 +38,6 @@ public partial class Estado_tesis
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<Tesis> Tesinas { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<Historial_estado> Historial_estado { get; set; }
 
 }
 
