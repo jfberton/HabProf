@@ -26,6 +26,8 @@ public partial class Historial_estado
 
     public string historial_descripcion { get; set; }
 
+    public System.DateTime historial_fecha { get; set; }
+
 
 
     public virtual Tesis Tesis { get; set; }

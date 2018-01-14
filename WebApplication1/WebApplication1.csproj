@@ -82,6 +82,7 @@
   <ItemGroup>
     <Content Include="Aplicativo\admin_directores.aspx" />
     <Content Include="Aplicativo\admin_home.aspx" />
+    <Content Include="Aplicativo\admin_tesina.aspx" />
     <Content Include="Aplicativo\admin_tesis.aspx" />
     <Content Include="Aplicativo\admin_tesistas.aspx" />
     <Content Include="Aplicativo\director_home.aspx" />
@@ -98,7 +99,10 @@
     </Content>
     <Content Include="Aplicativo\Menues\MenuDemo.ascx" />
     <Content Include="Aplicativo\Menues\menu_admin.ascx" />
+    <Content Include="Aplicativo\prueba.aspx" />
     <Content Include="Aplicativo\usuario_preferencias.aspx" />
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap-theme-Cerulean.min.css" />
     <Content Include="Content\bootstrap-theme-Cosmo.min.css" />
     <Content Include="Content\bootstrap-theme-Cyborg.min.css" />
@@ -129,6 +133,7 @@
     <Content Include="images\Warning.gif" />
     <Content Include="landing_mail.aspx" />
     <Content Include="packages.config" />
+    <Content Include="Scripts\bootstrap-filestyle.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
     <Content Include="Aplicativo\Site1.Master" />
     <EntityDeploy Include="Aplicativo\HabProfDB.edmx">
@@ -628,6 +633,13 @@
     <Compile Include="Aplicativo\admin_home.aspx.designer.cs">
       <DependentUpon>admin_home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Aplicativo\admin_tesina.aspx.cs">
+      <DependentUpon>admin_tesina.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicativo\admin_tesina.aspx.designer.cs">
+      <DependentUpon>admin_tesina.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Aplicativo\admin_tesis.aspx.cs">
       <DependentUpon>admin_tesis.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -642,6 +654,7 @@
     <Compile Include="Aplicativo\admin_tesistas.aspx.designer.cs">
       <DependentUpon>admin_tesistas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Aplicativo\Buscar.cs" />
     <Compile Include="Aplicativo\ControlesDeUsuario\MessageBox.cs" />
     <Compile Include="Aplicativo\Cripto.cs" />
     <Compile Include="Aplicativo\Director.cs">
@@ -701,6 +714,13 @@
     <Compile Include="Aplicativo\MiEmail.cs" />
     <Compile Include="Aplicativo\Persona.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\prueba.aspx.cs">
+      <DependentUpon>prueba.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicativo\prueba.aspx.designer.cs">
+      <DependentUpon>prueba.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\Servidor_de_correo.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>

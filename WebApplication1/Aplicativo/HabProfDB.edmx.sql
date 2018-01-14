@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/10/2018 09:16:04
--- Generated from EDMX file: d:\Usuarios\jfberton\Mis Documentos\Desarrollo\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
+-- Date Created: 01/13/2018 18:06:05
+-- Generated from EDMX file: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -119,14 +119,15 @@ CREATE TABLE [dbo].[Tesinas] (
     [estado_tesis_id] int  NOT NULL,
     [tesis_tema] nvarchar(max)  NOT NULL,
     [tesis_palabras_clave] nvarchar(max)  NOT NULL,
-    [tesis_borrador] nvarchar(max)  NOT NULL,
+    [tesis_borrador] nvarchar(max)  NULL,
     [tesis_plan_fch_presentacion] datetime  NOT NULL,
     [tesis_plan_duracion_meses] smallint  NOT NULL,
     [tesis_plan_aviso_meses] smallint  NOT NULL,
     [director_persona_id] int  NOT NULL,
     [tesista_persona_id] int  NOT NULL,
-    [tesis_calificacion] smallint  NOT NULL,
-    [tesis_fecha_cierre] datetime  NOT NULL
+    [tesis_calificacion] smallint  NULL,
+    [tesis_fecha_cierre] datetime  NULL,
+    [tesis_calificacion_director] smallint  NULL
 );
 GO
 
@@ -154,7 +155,8 @@ CREATE TABLE [dbo].[Historial_estados] (
     [historial_id] int IDENTITY(1,1) NOT NULL,
     [tesis_id] int  NOT NULL,
     [estado_tesis_id] int  NOT NULL,
-    [historial_descripcion] nvarchar(max)  NOT NULL
+    [historial_descripcion] nvarchar(max)  NOT NULL,
+    [historial_fecha] datetime  NOT NULL
 );
 GO
 

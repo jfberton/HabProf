@@ -10,7 +10,7 @@
 namespace WebApplication1.Aplicativo {
     
     
-    public partial class admin_tesis {
+    public partial class prueba {
         
         /// <summary>
         /// menu_admin control.
@@ -22,48 +22,39 @@ namespace WebApplication1.Aplicativo {
         protected global::WebApplication1.Aplicativo.Menues.menu_admin menu_admin;
         
         /// <summary>
-        /// lbl_sin_tesinas control.
+        /// tb_palabras_buscadas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_sin_tesinas;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText tb_palabras_buscadas;
         
         /// <summary>
-        /// btn_agregar_tesina control.
+        /// tb_texto_descripcion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btn_agregar_tesina;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea tb_texto_descripcion;
         
         /// <summary>
-        /// gv_tesinas control.
+        /// btn_buscar_en_el_texto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gv_tesinas;
+        protected global::System.Web.UI.WebControls.Button btn_buscar_en_el_texto;
         
         /// <summary>
-        /// id_item_por_eliminar control.
+        /// p_resultado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden id_item_por_eliminar;
-        
-        /// <summary>
-        /// btn_aceptar_eliminacion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_aceptar_eliminacion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl p_resultado;
     }
 }

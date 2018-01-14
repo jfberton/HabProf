@@ -91,14 +91,15 @@
     <Property Name="estado_tesis_id" Type="int" Nullable="false" />
     <Property Name="tesis_tema" Type="nvarchar(max)" Nullable="false" />
     <Property Name="tesis_palabras_clave" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="tesis_borrador" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="tesis_borrador" Type="nvarchar(max)" Nullable="true" />
     <Property Name="tesis_plan_fch_presentacion" Type="datetime" Nullable="false" />
     <Property Name="tesis_plan_duracion_meses" Type="smallint" Nullable="false" />
     <Property Name="tesis_plan_aviso_meses" Type="smallint" Nullable="false" />
     <Property Name="director_persona_id" Type="int" Nullable="false" />
     <Property Name="tesista_persona_id" Type="int" Nullable="false" />
-    <Property Name="tesis_calificacion" Type="smallint" Nullable="false" />
-    <Property Name="tesis_fecha_cierre" Type="datetime" Nullable="false" />
+    <Property Name="tesis_calificacion" Type="smallint" Nullable="true" />
+    <Property Name="tesis_fecha_cierre" Type="datetime" Nullable="true" />
+    <Property Name="tesis_calificacion_director" Type="smallint" Nullable="true" />
   </EntityType>
   <EntityType Name="Licenciaturas">
     <Key>
@@ -127,6 +128,7 @@
     <Property Name="tesis_id" Type="int" Nullable="false" />
     <Property Name="estado_tesis_id" Type="int" Nullable="false" />
     <Property Name="historial_descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="historial_fecha" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="Servidores">
     <Key>
@@ -415,7 +417,7 @@
           <Property Name="estado_tesis_id" Type="Int32" Nullable="false" />
           <Property Name="tesis_tema" Type="String" Nullable="false" />
           <Property Name="tesis_palabras_clave" Nullable="false" Type="String" />
-          <Property Name="tesis_borrador" Type="String" Nullable="false" />
+          <Property Name="tesis_borrador" Type="String" Nullable="true" />
           <Property Name="tesis_plan_fch_presentacion" Type="DateTime" Nullable="false" />
           <Property Name="tesis_plan_duracion_meses" Type="Int16" Nullable="false" />
           <Property Name="tesis_plan_aviso_meses" Type="Int16" Nullable="false" />
@@ -424,8 +426,9 @@
           <Property Name="director_persona_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Tesista" Relationship="HabProfDB.TesistaTesis" FromRole="Tesis" ToRole="Tesista" />
           <Property Name="tesista_persona_id" Type="Int32" Nullable="false" />
-          <Property Name="tesis_calificacion" Type="Int16" Nullable="false" />
-          <Property Name="tesis_fecha_cierre" Type="DateTime" Nullable="false" />
+          <Property Name="tesis_calificacion" Type="Int16" Nullable="true" />
+          <Property Name="tesis_fecha_cierre" Type="DateTime" Nullable="true" />
+          <Property Name="tesis_calificacion_director" Type="Int16" Nullable="true" />
         </EntityType>
         <EntityType Name="Licenciatura">
           <Key>
@@ -471,6 +474,7 @@
           <NavigationProperty Name="Estado" Relationship="HabProfDB.Estado_tesisHistorial_estado" FromRole="Historial_estado" ToRole="Estado_tesis" />
           <Property Name="estado_tesis_id" Type="Int32" Nullable="false" />
           <Property Name="historial_descripcion" Type="String" Nullable="false" />
+          <Property Name="historial_fecha" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="TesisHistorial_estado">
           <End Type="HabProfDB.Tesis" Role="Tesis" Multiplicity="1" />
@@ -641,6 +645,7 @@
           <ScalarProperty Name="tesista_persona_id" ColumnName="tesista_persona_id" />
           <ScalarProperty Name="tesis_calificacion" ColumnName="tesis_calificacion" />
           <ScalarProperty Name="tesis_fecha_cierre" ColumnName="tesis_fecha_cierre" />
+          <ScalarProperty Name="tesis_calificacion_director" ColumnName="tesis_calificacion_director" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -672,6 +677,7 @@
           <ScalarProperty Name="tesis_id" ColumnName="tesis_id" />
           <ScalarProperty Name="estado_tesis_id" ColumnName="estado_tesis_id" />
           <ScalarProperty Name="historial_descripcion" ColumnName="historial_descripcion" />
+          <ScalarProperty Name="historial_fecha" ColumnName="historial_fecha" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -118,24 +118,54 @@ namespace WebApplication1
                     };
                     cxt.Personas.Add(dire);
 
+                    Tesista tesista = new Tesista()
+                    {
+                        Licenciatura = l,
+                        persona_nomyap = "José Federico Bertoncini",
+                        persona_dni = "28162815",
+                        persona_email = "atp.jfbertoncini@chaco.gov.ar",
+                        persona_email_validado = false,
+                        persona_domicilio = "Brasil 335 - Barranqueras",
+                        persona_telefono = "03624716146",
+                        persona_usuario = "",
+                        persona_clave = "",
+                        persona_estilo = "Sandstone",
+                        tesista_legajo = "12337/6",
+                        tesista_sede = "Resistencia"
+                    };
+                    cxt.Personas.Add(tesista);
+
                     Estado_tesis estado_inicial = new Estado_tesis()
                     {
-                        estado_estado = "Tesina presentada",
+                        estado_estado = "Presentada",
                         estado_descripcion = "Estado inicial, ocurre cuando aprueban el tema y el tesista presenta el borrador de la tesis para su aprobación"
                     };
 
-                    Estado_tesis estado_intermedio = new Estado_tesis()
+                    cxt.Estados_tesis.Add(estado_inicial);
+
+                    Tesis tesis = new Tesis()
                     {
-                        estado_estado = "Tesina rechazada",
-                        estado_descripcion = "Estado intermedio, ocurre cuando el director agrega correcciones sobre la tesis para que el tesista las corrija"
+                        Director = dire,
+                        Tesista = tesista,
+                        estado_tesis_id = estado_inicial.estado_tesis_id,
+                        tesis_palabras_clave = "politica, importacion, electronico",
+                        tesis_tema = "Impacto de las politicas de importación sobre la producción de artículos electronicónicos en la región",
+                        tesis_plan_fch_presentacion = Convert.ToDateTime("01/06/2017"),
+                        tesis_plan_duracion_meses = 12,
+                        tesis_plan_aviso_meses = 3
                     };
 
-                    Estado_tesis estado_intermedio_1 = new Estado_tesis()
+                    cxt.Tesinas.Add(tesis);
+
+                    Historial_estado historial = new Historial_estado()
                     {
-                        estado_estado = "Tesina aprobado",
-                        estado_descripcion = "Estado intermedio, ocurre cuando aprueban el borrador de tesis y la misma queda para la defenza ante jurado"
+                        Tesis = tesis,
+                        Estado = estado_inicial,
+                        historial_descripcion = "Presento satisfactoriamente la tesina",
+                        historial_fecha = Convert.ToDateTime("01/06/2017")
                     };
 
+                    cxt.Historial_estados.Add(historial);
 
                     cxt.SaveChanges();
 

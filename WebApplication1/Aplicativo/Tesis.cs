@@ -47,9 +47,11 @@ public partial class Tesis
 
     public int tesista_persona_id { get; set; }
 
-    public short tesis_calificacion { get; set; }
+    public Nullable<short> tesis_calificacion { get; set; }
 
-    public System.DateTime tesis_fecha_cierre { get; set; }
+    public Nullable<System.DateTime> tesis_fecha_cierre { get; set; }
+
+    public Nullable<short> tesis_calificacion_director { get; set; }
 
 
 

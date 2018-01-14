@@ -2,54 +2,9 @@
 
 ******************************************************************
 
-ERRORID: 636512023447759449
+ERRORID: 636514443100935474
 
-DATE: 10/01/2018 17:32:24
-
-AGENTE: Sin autenticar.
-
-MESSAGE: El nombre de columna 'licenciatura_email_clave' no es válido.
-
-SOURCE: .Net SqlClient Data Provider
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/default.aspx
-
-TARGETSITE: Void OnError(System.Data.SqlClient.SqlException, Boolean, System.Action`1[System.Action])
-
-STACKTRACE:    en System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   en System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
-   en System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
-   en System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
-   en System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
-   en System.Data.SqlClient.SqlDataReader.get_MetaData()
-   en System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption)
-   en System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
-   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
-   en System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
-   en System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
-   en System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
-   en System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
-   en System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
-   en System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
-   en System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
-   en System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
-   en System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
-   en System.Data.Entity.Core.Mapping.Update.Internal.DynamicUpdateCommand.Execute(Dictionary`2 identifierValues, List`1 generatedValues)
-   en System.Data.Entity.Core.Mapping.Update.Internal.UpdateTranslator.Update()
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636512037505803523
-
-DATE: 10/01/2018 17:55:50
+DATE: 13/01/2018 12:45:10
 
 AGENTE: admin
 
@@ -61,11 +16,12 @@ INSTANCE:
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/Aplicativo/usuario_preferencias.aspx
+URL: http://localhost:60142/Aplicativo/admin_tesina.aspx
 
-TARGETSITE: Void Page_Load(System.Object, System.EventArgs)
+TARGETSITE: Void Mostrar_datos_tesis()
 
-STACKTRACE:    en WebApplication1.Aplicativo.usuario_preferencias.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\usuario_preferencias.aspx.cs:línea 20
+STACKTRACE:    en WebApplication1.Aplicativo.admin_tesina.Mostrar_datos_tesis() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 24
+   en WebApplication1.Aplicativo.admin_tesina.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 16
    en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
    en System.Web.UI.Control.OnLoad(EventArgs e)
    en System.Web.UI.Control.LoadRecursive()
@@ -77,34 +33,30 @@ STACKTRACE:    en WebApplication1.Aplicativo.usuario_preferencias.Page_Load(Obje
 
 ******************************************************************
 
-ERRORID: 636512150492716005
+ERRORID: 636514443688239066
 
-DATE: 10/01/2018 21:04:09
+DATE: 13/01/2018 12:46:08
 
-AGENTE: Sin autenticar.
+AGENTE: admin
 
-MESSAGE: El archivo '/~/default.aspx' no existe.
+MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
 
-SOURCE: System.Web
+SOURCE: WebApplication1
 
 INSTANCE: 
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/~/default.aspx
+URL: http://localhost:60142/Aplicativo/admin_tesina.aspx
 
-TARGETSITE: Void CheckVirtualFileExists(System.Web.VirtualPath)
+TARGETSITE: Void Mostrar_datos_tesis()
 
-STACKTRACE:    en System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualPath)
-   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
-   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
-   en System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
-   en System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
-   en System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
-   en System.Web.UI.PageHandlerFactory.GetHandler(HttpContext context, String requestType, String virtualPath, String path)
-   en System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   en System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
-   en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+STACKTRACE:    en WebApplication1.Aplicativo.admin_tesina.Mostrar_datos_tesis() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 25
+   en WebApplication1.Aplicativo.admin_tesina.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 16
+   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   en System.Web.UI.Control.OnLoad(EventArgs e)
+   en System.Web.UI.Control.LoadRecursive()
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
 
 
 ******************************************************************
@@ -112,45 +64,30 @@ STACKTRACE:    en System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualP
 
 ******************************************************************
 
-ERRORID: 636512604925196721
+ERRORID: 636514650167124989
 
-DATE: 11/01/2018 09:41:32 a.m.
+DATE: 13/01/2018 18:30:16
 
-AGENTE: Sin autenticar.
+AGENTE: admin
 
-MESSAGE: Login failed for user 'sa'.
+MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
 
-SOURCE: .Net SqlClient Data Provider
+SOURCE: WebApplication1
 
 INSTANCE: 
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/landing_mail.aspx?tipo_mail=recupero_contraseña&clave=5f1a9896-2d22-4464-9972-a20099d3e0b2
+URL: http://localhost:60142/Aplicativo/admin_tesina.aspx
 
-TARGETSITE: Void .ctor(System.Data.ProviderBase.DbConnectionPoolIdentity, System.Data.SqlClient.SqlConnectionString, System.Data.SqlClient.SqlCredential, System.Object, System.String, System.Security.SecureString, Boolean, System.Data.SqlClient.SqlConnectionString, System.Data.SqlClient.SessionData, System.Data.ProviderBase.DbConnectionPool, System.String, Boolean)
+TARGETSITE: Void Mostrar_datos_tesis()
 
-STACKTRACE:    en System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, DbConnectionPool pool, String accessToken, Boolean applyTransientFaultHandling)
-   en System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
-   en System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
-   en System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
-   en System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
-   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
-   en System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
-   en System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
-   en System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
-   en System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
-   en System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
-   en System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
-   en System.Data.SqlClient.SqlConnection.Open()
-   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.<Open>b__36(DbConnection t, DbConnectionInterceptionContext c)
-   en System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext](TTarget target, Action`2 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
-   en System.Data.Entity.Infrastructure.Interception.DbConnectionDispatcher.Open(DbConnection connection, DbInterceptionContext interceptionContext)
-   en System.Data.Entity.Core.EntityClient.EntityConnection.<Open>b__2()
-   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
-   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
-   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute(Action operation)
-   en System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+STACKTRACE:    en WebApplication1.Aplicativo.admin_tesina.Mostrar_datos_tesis() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 45
+   en WebApplication1.Aplicativo.admin_tesina.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 34
+   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   en System.Web.UI.Control.OnLoad(EventArgs e)
+   en System.Web.UI.Control.LoadRecursive()
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
 
 
 ******************************************************************
@@ -158,33 +95,36 @@ STACKTRACE:    en System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnect
 
 ******************************************************************
 
-ERRORID: 636512605735122892
+ERRORID: 636514668005005257
 
-DATE: 11/01/2018 09:42:53 a.m.
+DATE: 13/01/2018 19:00:00
 
-AGENTE: Sin autenticar.
+AGENTE: admin
 
-MESSAGE: El archivo '/~/default.aspx' no existe.
+MESSAGE: El índice y la longitud deben hacer referencia a una ubicación en la cadena.
+Nombre del parámetro: length
 
-SOURCE: System.Web
+SOURCE: mscorlib
 
 INSTANCE: 
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/~/default.aspx
+URL: http://localhost:60142/Aplicativo/admin_tesina.aspx
 
-TARGETSITE: Void CheckVirtualFileExists(System.Web.VirtualPath)
+TARGETSITE: System.String Substring(Int32, Int32)
 
-STACKTRACE:    en System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualPath)
-   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
-   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
-   en System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
-   en System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
-   en System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
-   en System.Web.UI.PageHandlerFactory.GetHandler(HttpContext context, String requestType, String virtualPath, String path)
-   en System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+STACKTRACE:    en System.String.Substring(Int32 startIndex, Int32 length)
+   en WebApplication1.Aplicativo.admin_tesina.<>c.<Mostrar_datos_tesis>b__2_1(<>f__AnonymousType3`3 he) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 56
+   en System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
+   en System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   en System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   en WebApplication1.Aplicativo.admin_tesina.Mostrar_datos_tesis() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 55
+   en WebApplication1.Aplicativo.admin_tesina.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 33
+   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   en System.Web.UI.Control.OnLoad(EventArgs e)
+   en System.Web.UI.Control.LoadRecursive()
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
 
 
 ******************************************************************
@@ -192,33 +132,32 @@ STACKTRACE:    en System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualP
 
 ******************************************************************
 
-ERRORID: 636512606450643766
+ERRORID: 636514720721236164
 
-DATE: 11/01/2018 09:44:05 a.m.
+DATE: 13/01/2018 20:27:52
 
-AGENTE: Sin autenticar.
+AGENTE: admin
 
-MESSAGE: El archivo '/~/default.aspx' no existe.
+MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
 
-SOURCE: System.Web
+SOURCE: WebApplication1
 
 INSTANCE: 
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/~/default.aspx
+URL: http://localhost:60142/Aplicativo/admin_tesina.aspx
 
-TARGETSITE: Void CheckVirtualFileExists(System.Web.VirtualPath)
+TARGETSITE: Void Cargar_historial_estados()
 
-STACKTRACE:    en System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualPath)
-   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
-   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
-   en System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
-   en System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
-   en System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
-   en System.Web.UI.PageHandlerFactory.GetHandler(HttpContext context, String requestType, String virtualPath, String path)
-   en System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+STACKTRACE:    en WebApplication1.Aplicativo.admin_tesina.Cargar_historial_estados() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 59
+   en WebApplication1.Aplicativo.admin_tesina.btn_tesis_ver_historial_ServerClick(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 161
+   en System.Web.UI.HtmlControls.HtmlButton.OnServerClick(EventArgs e)
+   en System.Web.UI.HtmlControls.HtmlButton.RaisePostBackEvent(String eventArgument)
+   en System.Web.UI.HtmlControls.HtmlButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   en System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   en System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
 
 
 ******************************************************************
@@ -226,25 +165,32 @@ STACKTRACE:    en System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualP
 
 ******************************************************************
 
-ERRORID: 636512988664970081
+ERRORID: 636514721503651713
 
-DATE: 11/01/2018 20:21:06
+DATE: 13/01/2018 20:29:10
 
-AGENTE: Sin autenticar.
+AGENTE: admin
 
-MESSAGE: El sistema no puede encontrar el archivo especificado
+MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
 
-SOURCE: 
+SOURCE: WebApplication1
 
 INSTANCE: 
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/default.aspx
+URL: http://localhost:60142/Aplicativo/admin_tesina.aspx
 
-TARGETSITE: 
+TARGETSITE: Void Cargar_historial_estados()
 
-STACKTRACE: 
+STACKTRACE:    en WebApplication1.Aplicativo.admin_tesina.Cargar_historial_estados() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 59
+   en WebApplication1.Aplicativo.admin_tesina.btn_tesis_ver_historial_ServerClick(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 161
+   en System.Web.UI.HtmlControls.HtmlButton.OnServerClick(EventArgs e)
+   en System.Web.UI.HtmlControls.HtmlButton.RaisePostBackEvent(String eventArgument)
+   en System.Web.UI.HtmlControls.HtmlButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+   en System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
+   en System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
 
 
 ******************************************************************

@@ -24,10 +24,10 @@
             </div>
         </div>
         <div class="col-md-2">
-            <button type="button" class="btn btn-default pull-right" id="btn_agregar_tesina" runat="server" data-toggle="modal" data-target="#agregar_tesina">
+            <button type="button" class="btn btn-default pull-right" id="btn_agregar_tesina" runat="server" onserverclick="btn_agregar_tesina_ServerClick">
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Agregar nuevo
             </button>
-            <div class="modal fade" id="agregar_tesina" role="dialog" aria-hidden="true">
+            <%--<div class="modal fade" id="agregar_tesina" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -48,10 +48,10 @@
                                 <div class="col-md-12">
                                     <table class="table-condensed" style="width: 100%">
                                         <tr>
-                                            <td>
+                                            <td style="width: 20%">
                                                 <h3>Tema</h3>
                                             </td>
-                                            <td style="width: auto">
+                                            <td style="width: 100%">
                                                 <input type="text" id="tb_tesis_tema" class="form-control" runat="server" placeholder="Tema de la tesina" /></td>
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_tesis_tema" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
@@ -60,17 +60,27 @@
                                                 <asp:CustomValidator ControlToValidate="tb_tesis_tema" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="cv_tesis_tema" runat="server" ErrorMessage="Ya existe una tesis con la misma temática" OnServerValidate="cv_tesis_tema_ServerValidate" ValidationGroup="tesina" />
                                             </td>
+
+                                        </tr>
+                                        <tr>
                                             <td>Estado</td>
-                                            <td style="width: auto">
-                                                <asp:Label Text="Estado tesis" ID="lbl_tesis_estado" runat="server" /></td>
                                             <td>
-                                                <button class="btn btn-warning" title="Modificar estado tesina" runat="server" id="btn_tesis_cambiar_estado" onserverclick="btn_tesis_cambiar_estado_ServerClick"><span class="glyphicon glyphicon-edit"></span></button>
-                                                <button class="btn btn-default" title="Ver historial de estados" runat="server" id="btn_tesis_ver_historial" onserverclick="btn_tesis_ver_historial_ServerClick"><span class="glyphicon glyphicon-calendar"></span></button>
+                                                <table>
+                                                    <tr>
+                                                        <td>
+                                                            <asp:TextBox runat="server" ID="tb_estado" CssClass="form-control" Enabled="false" Text="estado de la tesis" />
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-warning" title="Modificar estado tesina" id="btn_tesis_cambiar_estado" data-toggle="modal" data-target="#modificar_estado_tesis"><span class="glyphicon glyphicon-edit"></span></button>
+                                                            <button class="btn btn-default" title="Ver historial de estados" id="btn_tesis_ver_historial" data-toggle="modal" data-target="#ver_historial_estados_tesina"><span class="glyphicon glyphicon-calendar"></span></button>
+                                                        </td>
+                                                    </tr>
+                                                </table>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Palabras clave</td>
-                                            <td colspan="4" style="width: auto">
+                                            <td style="width: auto">
                                                 <input type="text" id="tb_tesina_palabra_clave" class="form-control" runat="server" placeholder="Palabras clave de la tesina" /></td>
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_tesina_palabra_clave" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
@@ -82,17 +92,24 @@
                                         </tr>
                                         <tr>
                                             <td>Archivo Tesis</td>
-                                            <td style="width: auto" colspan="4">
-                                                <asp:FileUpload runat="server" ID="tesis_archivo_upload" CssClass="form-control" /></td>
-                                            <td>
-                                                <button class="btn btn-warning" title="Guardar archivo seleccionado" runat="server" id="btn_aceptar_archivo" onserverclick="btn_aceptar_archivo_ServerClick"><span class="glyphicon glyphicon-save"></span></button>
+                                            <td style="width: auto">
+                                                <table style="width: 100%">
+                                                    <tr>
+                                                        <td style="width: 100%">
+                                                            <asp:FileUpload runat="server" ID="tesis_archivo_upload" CssClass="form-control" data-buttonText="Seleccionar archivo" /></td>
+                                                        <td>
+                                                            <button class="btn btn-warning" title="Guardar archivo seleccionado" runat="server" id="btn_aceptar_archivo" onserverclick="btn_aceptar_archivo_ServerClick"><span class="glyphicon glyphicon-save"></span></button>
+                                                        </td>
+                                                    </tr>
+                                                </table>
                                             </td>
+
                                         </tr>
                                         <tr>
                                             <td>Fecha de presentación</td>
-                                            <td colspan="4" style="width: auto">
+                                            <td style="width: auto">
                                                 <div class="form-group">
-                                                    <div class='input-group date' id='datetimepicker1'>
+                                                    <div class='input-group date' id='fecha_presentacion'>
                                                         <input type='text' class="form-control" id="tb_fecha_presentacion" />
                                                         <span class="input-group-addon">
                                                             <span class="glyphicon glyphicon-calendar"></span>
@@ -102,10 +119,77 @@
                                             </td>
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_tesina_palabra_clave" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="RequiredFieldValidator2" runat="server" ErrorMessage="Debe ingresar las palabras clave para esta tesina" ValidationGroup="tesina">
+                                                    ID="RequiredFieldValidator2" runat="server" ErrorMessage="Debe ingresar fecha de presentación" ValidationGroup="tesina">
                                                 </asp:RequiredFieldValidator>
                                                 <asp:CustomValidator ControlToValidate="tb_tesina_palabra_clave" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="CustomValidator1" runat="server" ErrorMessage="Ya existe una tesis con alguna de estas palabras clave" OnServerValidate="cv_tesis_palabras_clave_ServerValidate" ValidationGroup="tesina" />
+                                                    ID="CustomValidator1" runat="server" ErrorMessage="Debe ingresar una fecha válida" OnServerValidate="cv_tesis_palabras_clave_ServerValidate" ValidationGroup="tesina" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Duración (meses)</td>
+                                            <td>
+                                                <table style="width: 100%">
+                                                    <tr>
+                                                        <td>Plazo para entrega</td>
+                                                        <td style="width: 15%">
+                                                            <input type="text" class="form-control" id="tb_duracion_meses" runat="server" /></td>
+                                                        <td>
+                                                            <asp:RequiredFieldValidator ControlToValidate="tb_duracion_meses" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                                ID="RequiredFieldValidator3" runat="server" ErrorMessage="Debe ingresar los meses que tiene de plazo para la entrega de la tesina" ValidationGroup="tesina">
+                                                            </asp:RequiredFieldValidator></td>
+                                                        <td>Período entre notificaciones   </td>
+                                                        <td style="width: 15%">
+                                                            <input type="text" class="form-control" id="tb_plazo_notificaciones" runat="server" /></td>
+
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td>
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_plazo_notificaciones" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RequiredFieldValidator4" runat="server" ErrorMessage="Debe ingresar los meses entre los recordatorios para la entrega de la tesina" ValidationGroup="tesina">
+                                                </asp:RequiredFieldValidator>
+                                                <asp:CustomValidator ControlToValidate="tb_plazo_notificaciones" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="CustomValidator2" runat="server" ErrorMessage="El período entre notificaciones debe ser menor a la duración de la tesina" OnServerValidate="cv_tesis_palabras_clave_ServerValidate" ValidationGroup="tesina" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tesista</td>
+                                            <td>
+                                                <table>
+                                                    <tr>
+                                                        <td style="width: 100%;">
+                                                            <input runat="server" id="tb_tesista" placeholder="Seleccione Tesista..." type="text" class="form-control" disabled="disabled" />
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-warning" title="Seleccionar Tesista" runat="server" id="btn_seleccionar_tesista"><span class="glyphicon glyphicon-edit"></span></button>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td>
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_tesista" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RequiredFieldValidator5" runat="server" ErrorMessage="Debe seleccionar al Tesista" ValidationGroup="tesina">
+                                                </asp:RequiredFieldValidator>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Director</td>
+                                            <td>
+                                                <table>
+                                                    <tr>
+                                                        <td style="width: 100%;">
+                                                            <input runat="server" id="tb_director" placeholder="Seleccione Director..." type="text" class="form-control" disabled="disabled" />
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-warning" title="Seleccionar Director..." runat="server" id="btn_seleccionar_director"><span class="glyphicon glyphicon-edit"></span></button>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td>
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RequiredFieldValidator6" runat="server" ErrorMessage="Debe seleccionar al Director" ValidationGroup="tesina">
+                                                </asp:RequiredFieldValidator>
                                             </td>
                                         </tr>
                                     </table>
@@ -120,7 +204,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--%>
         </div>
     </div>
 
@@ -128,26 +212,32 @@
     <asp:GridView ID="gv_tesinas" runat="server" OnPreRender="gv_tesinas_PreRender"
         AutoGenerateColumns="False" GridLines="None" CssClass="display">
         <Columns>
-            <asp:BoundField DataField="persona_nomyap" HeaderText="Nombre" ReadOnly="true" />
-            <asp:BoundField DataField="persona_dni" HeaderText="DNI" ReadOnly="true" />
-            <asp:BoundField DataField="persona_email" HeaderText="E-mail" ReadOnly="true" />
-            <asp:BoundField DataField="tesina_calificacion" HeaderText="Calificación" ReadOnly="true" />
-            <asp:BoundField DataField="tesina_tesis_a_cargo" HeaderText="Tesis a cargo" ReadOnly="true" />
+            <asp:BoundField DataField="tesista" HeaderText="Tesista" ReadOnly="true" />
+            <asp:BoundField DataField="director" HeaderText="Director" ReadOnly="true" />
+            <asp:TemplateField HeaderText="Tema">
+                <ItemTemplate>
+                    <asp:Label ID="Label1" runat="server"
+                         ToolTip='<%# Eval("tema_completo") %>'
+                         Text='<%# Eval("tema") %>'>
+                    </asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:BoundField DataField="estado" HeaderText="Estado" ReadOnly="true" />
             <asp:TemplateField>
                 <ItemTemplate>
-                    <button runat="server" class="btn btn-sm btn-default" id="btn_ver" causesvalidation="false" onserverclick="btn_ver_ServerClick1" data-id='<%#Eval("persona_id")%>'>
+                    <button runat="server" class="btn btn-sm btn-default" id="btn_ver" causesvalidation="false" onserverclick="btn_ver_ServerClick" data-id='<%#Eval("tesis_id")%>'>
                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp;Ver
                     </button>
-                    <button runat="server" class="btn btn-sm btn-warning" id="btn_editar" causesvalidation="false" onserverclick="btn_editar_ServerClick" data-id='<%#Eval("persona_id")%>'>
+                    <button runat="server" class="btn btn-sm btn-warning" id="btn_editar" causesvalidation="false" onserverclick="btn_editar_ServerClick" data-id='<%#Eval("tesis_id")%>'>
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Editar
                     </button>
                     <button
                         type="button" class="btn btn-sm btn-danger"
                         data-toggle="modal"
                         data-target="#advertencia_eliminacion"
-                        data-id='<%#Eval("persona_id")%>'
-                        data-introduccion="el tesina"
-                        data-nombre='<%#Eval("persona_nomyap")%>'>
+                        data-id='<%#Eval("tesis_id")%>'
+                        data-introduccion="la tesina del tesista"
+                        data-nombre='<%#Eval("tesista")%>'>
                         <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>&nbsp;Eliminar
                     </button>
 
@@ -187,71 +277,9 @@
                     <h4 class="modal-title panel-title"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>Datos completos del tesina</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table class="table-condensed" style="width: 100%">
-                                <tr>
-                                    <td>DNI</td>
-                                    <td style="width: auto">
-                                        <asp:Label Text="" ID="lbl_ver_tesina_dni" runat="server" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Nombre y apellido</td>
-                                    <td style="width: auto">
-                                        <asp:Label Text="" ID="lbl_ver_tesina_nomyap" runat="server" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>E-mail</td>
-                                    <td style="width: auto">
-                                        <asp:Label Text="" ID="lbl_ver_tesina_email" runat="server" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Domicilio</td>
-                                    <td style="width: auto">
-                                        <asp:Label Text="" ID="lbl_ver_tesina_domicilio" runat="server" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Teléfono</td>
-                                    <td style="width: auto">
-                                        <asp:Label Text="" ID="lbl_ver_tesina_telefono" runat="server" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Calificaión</td>
-                                    <td style="width: auto">
-                                        <asp:Label Text="" ID="lbl_ver_tesina_calificacion" runat="server" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Usuario</td>
-                                    <td style="width: auto">
-                                        <asp:Label Text="" ID="lbl_ver_tesina_usuario" runat="server" />
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <asp:GridView ID="gv_tesinas_1" runat="server" OnPreRender="gv_tesinas_PreRender"
-                                AutoGenerateColumns="False" GridLines="None" CssClass="display">
-                                <Columns>
-                                    <asp:BoundField DataField="tesista_nombre" HeaderText="Tesista" ReadOnly="true" />
-                                    <asp:BoundField DataField="tesis_tema" HeaderText="Tema" ReadOnly="true" />
-                                    <asp:BoundField DataField="tesis_palabras_clave" HeaderText="Palabras clave" ReadOnly="true" />
-                                    <asp:BoundField DataField="tesis_plan_fch_presentacion" HeaderText="E-mail" ReadOnly="true" />
-                                    <asp:BoundField DataField="tesis_estado" HeaderText="Calificación" ReadOnly="true" />
-                                </Columns>
-                            </asp:GridView>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="modal-footer">
-                    <asp:Button Text="Aceptar" CssClass="btn btn-success" CausesValidation="false" ID="Button1" OnClick="btn_aceptar_eliminacion_Click" runat="server" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
@@ -260,12 +288,16 @@
 
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="CPH_Scripts" runat="server">
-    <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker1').datetimepicker();
-        });
-    </script>
     <script>
+        $(function () {
+            $('#fecha_presentacion').datetimepicker({
+                locale: 'es',
+                format: 'DD/MM/YYYY'
+            });
+        });
+
+        $(":file").filestyle({ buttonBefore: true, buttonText: "Seleccionar archivo" });
+
         $('#advertencia_eliminacion').on('show.bs.modal', function (event) {
             // Button that triggered the modal
             var button = $(event.relatedTarget)
