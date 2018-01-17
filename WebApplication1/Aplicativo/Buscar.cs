@@ -18,7 +18,7 @@ namespace WebApplication1.Aplicativo
 
         private string texto;
 
-        private List<string> palabras_exeptuadas = new List<string> { "a", "ante", "bajo", "cabe", "con", "contra", "de", "desde", "durante", "en", "entre", "hacia", "hasta", "mediante", "para", "por", "segun", "sin", "so", "sobre", "tras", "versus", "via", "que", "la", "el", "los" };
+        private List<string> palabras_exeptuadas = new List<string> { "a", "ante", "bajo", "cabe", "y", "con", "contra", "de", "desde", "durante", "en", "entre", "hacia", "hasta", "mediante", "para", "por", "segun", "sin", "so", "sobre", "tras", "versus", "via", "que", "la", "el", "los" };
 
         public Buscar(string palabras_buscadas, string texto)
         {
@@ -54,7 +54,7 @@ namespace WebApplication1.Aplicativo
             {
                 //agrego las palabras buscadas a la lista y les quito la coma, los acentos y la paso a minusculas. y que no este en el listado de palabras excluidas
                 string palabra_buscada_normalizada = RemoveDiacritics(palabra_buscada).ToLower().Replace(",", "");
-                if (palabras_exeptuadas.IndexOf(palabra_buscada_normalizada) >= 0)
+                if (palabras_exeptuadas.IndexOf(palabra_buscada_normalizada) < 0)
                 {
                     palabras_buscadas_lista.Add(palabra_buscada_normalizada);
                 }

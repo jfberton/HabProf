@@ -16,12 +16,12 @@ namespace WebApplication1.Aplicativo
             {
                 using (HabProfDBContainer cxt = new HabProfDBContainer())
                 {
-                    Persona p = Session["UsuarioLogueado"] as Persona;
-                    Administrador admin = cxt.Personas.OfType<Administrador>().FirstOrDefault(pp => pp.persona_id == p.persona_id);
-                    if (admin == null)
-                    {
-                        MessageBox.Show(this, "Usted no tiene permiso para acceder a esta página", MessageBox.Tipo_MessageBox.Danger, "Atención", "~/default.aspx");
-                    }
+                    //Persona p = Session["UsuarioLogueado"] as Persona;
+                    //Administrador admin = cxt.Administradores.FirstOrDefault(pp => pp.Persona.persona_id == p.persona_id);
+                    //if (admin == null)
+                    //{
+                    //    MessageBox.Show(this, "Usted no tiene permiso para acceder a esta página", MessageBox.Tipo_MessageBox.Danger, "Atención", "~/default.aspx");
+                    //}
 
                 }
             }

@@ -2,194 +2,35 @@
 
 ******************************************************************
 
-ERRORID: 636514443100935474
+ERRORID: 636517880017242895
 
-DATE: 13/01/2018 12:45:10
+DATE: 17/01/2018 12:13:21 p.m.
 
-AGENTE: admin
+AGENTE: Sin autenticar.
 
-MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
+MESSAGE: El control 'hidden_id_usuario' de tipo 'HiddenField' debe colocarse dentro de una etiqueta de formulario con runat=server.
 
-SOURCE: WebApplication1
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesina.aspx
-
-TARGETSITE: Void Mostrar_datos_tesis()
-
-STACKTRACE:    en WebApplication1.Aplicativo.admin_tesina.Mostrar_datos_tesis() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 24
-   en WebApplication1.Aplicativo.admin_tesina.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 16
-   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   en System.Web.UI.Control.OnLoad(EventArgs e)
-   en System.Web.UI.Control.LoadRecursive()
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636514443688239066
-
-DATE: 13/01/2018 12:46:08
-
-AGENTE: admin
-
-MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
-
-SOURCE: WebApplication1
+SOURCE: System.Web
 
 INSTANCE: 
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/Aplicativo/admin_tesina.aspx
+URL: http://localhost:60142/default.aspx
 
-TARGETSITE: Void Mostrar_datos_tesis()
+TARGETSITE: Void VerifyRenderingInServerForm(System.Web.UI.Control)
 
-STACKTRACE:    en WebApplication1.Aplicativo.admin_tesina.Mostrar_datos_tesis() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 25
-   en WebApplication1.Aplicativo.admin_tesina.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 16
-   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   en System.Web.UI.Control.OnLoad(EventArgs e)
-   en System.Web.UI.Control.LoadRecursive()
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636514650167124989
-
-DATE: 13/01/2018 18:30:16
-
-AGENTE: admin
-
-MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
-
-SOURCE: WebApplication1
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesina.aspx
-
-TARGETSITE: Void Mostrar_datos_tesis()
-
-STACKTRACE:    en WebApplication1.Aplicativo.admin_tesina.Mostrar_datos_tesis() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 45
-   en WebApplication1.Aplicativo.admin_tesina.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 34
-   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   en System.Web.UI.Control.OnLoad(EventArgs e)
-   en System.Web.UI.Control.LoadRecursive()
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636514668005005257
-
-DATE: 13/01/2018 19:00:00
-
-AGENTE: admin
-
-MESSAGE: El índice y la longitud deben hacer referencia a una ubicación en la cadena.
-Nombre del parámetro: length
-
-SOURCE: mscorlib
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesina.aspx
-
-TARGETSITE: System.String Substring(Int32, Int32)
-
-STACKTRACE:    en System.String.Substring(Int32 startIndex, Int32 length)
-   en WebApplication1.Aplicativo.admin_tesina.<>c.<Mostrar_datos_tesis>b__2_1(<>f__AnonymousType3`3 he) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 56
-   en System.Linq.Enumerable.WhereSelectListIterator`2.MoveNext()
-   en System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
-   en System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
-   en WebApplication1.Aplicativo.admin_tesina.Mostrar_datos_tesis() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 55
-   en WebApplication1.Aplicativo.admin_tesina.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 33
-   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   en System.Web.UI.Control.OnLoad(EventArgs e)
-   en System.Web.UI.Control.LoadRecursive()
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636514720721236164
-
-DATE: 13/01/2018 20:27:52
-
-AGENTE: admin
-
-MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
-
-SOURCE: WebApplication1
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesina.aspx
-
-TARGETSITE: Void Cargar_historial_estados()
-
-STACKTRACE:    en WebApplication1.Aplicativo.admin_tesina.Cargar_historial_estados() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 59
-   en WebApplication1.Aplicativo.admin_tesina.btn_tesis_ver_historial_ServerClick(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 161
-   en System.Web.UI.HtmlControls.HtmlButton.OnServerClick(EventArgs e)
-   en System.Web.UI.HtmlControls.HtmlButton.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.HtmlControls.HtmlButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636514721503651713
-
-DATE: 13/01/2018 20:29:10
-
-AGENTE: admin
-
-MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
-
-SOURCE: WebApplication1
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesina.aspx
-
-TARGETSITE: Void Cargar_historial_estados()
-
-STACKTRACE:    en WebApplication1.Aplicativo.admin_tesina.Cargar_historial_estados() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 59
-   en WebApplication1.Aplicativo.admin_tesina.btn_tesis_ver_historial_ServerClick(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 161
-   en System.Web.UI.HtmlControls.HtmlButton.OnServerClick(EventArgs e)
-   en System.Web.UI.HtmlControls.HtmlButton.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.HtmlControls.HtmlButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
+STACKTRACE:    en System.Web.UI.Page.VerifyRenderingInServerForm(Control control)
+   en System.Web.UI.WebControls.HiddenField.Render(HtmlTextWriter writer)
+   en System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   en System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   en System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
+   en System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
+   en System.Web.UI.Control.RenderChildren(HtmlTextWriter writer)
+   en System.Web.UI.Page.Render(HtmlTextWriter writer)
+   en System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
+   en System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
+   en System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
    en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
 
 

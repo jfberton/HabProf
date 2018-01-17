@@ -34,17 +34,25 @@ public partial class HabProfDBContainer : DbContext
 
     public virtual DbSet<Persona> Personas { get; set; }
 
-    public virtual DbSet<Tesis> Tesinas { get; set; }
+    public virtual DbSet<Tesina> Tesinas { get; set; }
 
     public virtual DbSet<Licenciatura> Licenciaturas { get; set; }
 
-    public virtual DbSet<Estado_tesis> Estados_tesis { get; set; }
+    public virtual DbSet<Estado_tesina> Estados_tesinas { get; set; }
 
     public virtual DbSet<Historial_estado> Historial_estados { get; set; }
 
     public virtual DbSet<Servidor_de_correo> Servidores { get; set; }
 
     public virtual DbSet<Envio_mail> Envio_mails { get; set; }
+
+    public virtual DbSet<Juez> Jueces { get; set; }
+
+    public virtual DbSet<Administrador> Administradores { get; set; }
+
+    public virtual DbSet<Director> Directores { get; set; }
+
+    public virtual DbSet<Tesista> Tesistas { get; set; }
 
 }
 

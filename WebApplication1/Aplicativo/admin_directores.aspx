@@ -19,14 +19,16 @@
         <div class="col-md-10">
             <div class="alert alert-warning" role="alert" runat="server" id="lbl_sin_directores">
                 <strong>No existen Directores!</strong> Pruebe agregar algunos para comenzar.
+               
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
         </div>
         <div class="col-md-2">
-            <button type="button" class="btn btn-default pull-right" id="btn_agregar_director" runat="server" data-toggle="modal" data-target="#agregar_director">
+            <button type="button" class="btn btn-default pull-right" id="btn_agregar_director" runat="server" data-toggle="modal" onserverclick="btn_agregar_director_ServerClick">
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Agregar nuevo
+           
             </button>
             <div class="modal fade" id="agregar_director" role="dialog" aria-hidden="true">
                 <div class="modal-dialog">
@@ -43,6 +45,8 @@
                                 <div class="col-md-12">
                                     <asp:ValidationSummary ID="validation_summary" runat="server" DisplayMode="BulletList" ValidationGroup="director"
                                         CssClass="validationsummary panel panel-danger" HeaderText="<div class='panel-heading'>&nbsp;Corrija los siguientes errores antes de continuar:</div>" />
+                                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" DisplayMode="BulletList" ValidationGroup="dni_persona"
+                                        CssClass="validationsummary panel panel-danger" HeaderText="<div class='panel-heading'>&nbsp;Corrija los siguientes errores antes de continuar:</div>" />
                                 </div>
                             </div>
                             <div class="row">
@@ -53,12 +57,20 @@
                                             <td style="width: auto">
                                                 <input type="text" id="tb_dni_director" class="form-control" runat="server" placeholder="DNI del director por agregar" /></td>
                                             <td>
-                                                <asp:CustomValidator ControlToValidate="tb_dni_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="cv_dni_duplicado" runat="server" ErrorMessage="Ya existe un director con el DNI ingresado" OnServerValidate="cv_dni_duplicado_ServerValidate" ValidationGroup="director" />
-                                                <asp:RequiredFieldValidator ControlToValidate="tb_dni_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                 <asp:RequiredFieldValidator ControlToValidate="tb_dni_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe ingresar el DNI del director" ValidationGroup="director">
-                                                </asp:RequiredFieldValidator></td>
+                                                </asp:RequiredFieldValidator>
+                                                
+                                                <asp:CustomValidator ControlToValidate="tb_dni_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="cv_dni" runat="server" ErrorMessage="Ingrese un DNI válido sin puntos" OnServerValidate="cv_dni_ServerValidate" ValidationGroup="dni_persona" />
+
+                                                <button runat="server" class="btn btn-default" id="btn_chequear_dni" onserverclick="btn_chequear_dni_ServerClick" validationgroup="dni_persona"><span class="glyphicon glyphicon-search"></span></button>
+
+                                            </td>
                                         </tr>
+
+                                    </table>
+                                    <table class="table-condensed" runat="server" id="tb_tabla_resto_campos" visible="false" style="width: 100%">
                                         <tr>
                                             <td>Nombre y apellido</td>
                                             <td style="width: auto">
@@ -111,23 +123,23 @@
                                         </tr>
                                         <tr>
                                             <td>
-                                                <asp:CheckBox Text="Cambiar contraseña" ID="chk_cambiar_clave" CausesValidation="false" AutoPostBack="true" OnCheckedChanged="chk_cambiar_clave_CheckedChanged" runat="server" Checked="true" /></td>
+                                                <asp:CheckBox Text="Cambiar contraseña" ID="chk_cambiar_clave" CausesValidation="false" AutoPostBack="true" OnCheckedChanged="chk_cambiar_clave_CheckedChanged" runat="server" Checked="false" /></td>
                                             <td style="width: auto">
-                                                <input type="password" id="tb_contraseña" class="form-control" runat="server" placeholder="Contraseña del director por agregar" />
+                                                <input type="password" id="tb_contraseña" class="form-control" visible="false" runat="server" placeholder="Contraseña del director por agregar" />
                                             </td>
                                             <td>
                                                 <asp:CustomValidator ControlToValidate="tb_contraseña" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="cv_contraseña" OnServerValidate="cv_contraseña_ServerValidate" runat="server" ErrorMessage="Debe ingresar la contraseña del director" ValidationGroup="director">
                                                 </asp:CustomValidator></td>
                                         </tr>
-
                                     </table>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button id="btn_guardar" runat="server" onserverclick="btn_guardar_ServerClick" class="btn btn-success" validationgroup="director">
+                            <button id="btn_guardar" runat="server" onserverclick="btn_guardar_ServerClick" visible="false" class="btn btn-success" validationgroup="director">
                                 <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Guardar!
+                           
                             </button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                         </div>
@@ -150,9 +162,11 @@
                 <ItemTemplate>
                     <button runat="server" class="btn btn-sm btn-default" id="btn_ver" causesvalidation="false" onserverclick="btn_ver_ServerClick1" data-id='<%#Eval("persona_id")%>'>
                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp;Ver
+                   
                     </button>
                     <button runat="server" class="btn btn-sm btn-warning" id="btn_editar" causesvalidation="false" onserverclick="btn_editar_ServerClick" data-id='<%#Eval("persona_id")%>'>
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Editar
+                   
                     </button>
                     <button
                         type="button" class="btn btn-sm btn-danger"
@@ -162,6 +176,7 @@
                         data-introduccion="el director"
                         data-nombre='<%#Eval("persona_nomyap")%>'>
                         <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>&nbsp;Eliminar
+                   
                     </button>
 
                 </ItemTemplate>

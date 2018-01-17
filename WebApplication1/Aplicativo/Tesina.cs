@@ -15,11 +15,11 @@ namespace WebApplication1.Aplicativo
 using System;
     using System.Collections.Generic;
     
-public partial class Tesis
+public partial class Tesina
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public Tesis()
+    public Tesina()
     {
 
         this.Historial_estados = new HashSet<Historial_estado>();
@@ -27,43 +27,43 @@ public partial class Tesis
     }
 
 
-    public int tesis_id { get; set; }
+    public int tesina_id { get; set; }
 
     public int estado_tesis_id { get; set; }
 
-    public string tesis_tema { get; set; }
+    public string tesina_tema { get; set; }
 
-    public string tesis_palabras_clave { get; set; }
+    public string tesina_palabras_clave { get; set; }
 
-    public string tesis_borrador { get; set; }
+    public string tesina_borrador { get; set; }
 
-    public System.DateTime tesis_plan_fch_presentacion { get; set; }
+    public System.DateTime tesina_plan_fch_presentacion { get; set; }
 
-    public short tesis_plan_duracion_meses { get; set; }
+    public short tesina_plan_duracion_meses { get; set; }
 
-    public short tesis_plan_aviso_meses { get; set; }
+    public short tesina_plan_aviso_meses { get; set; }
 
-    public int director_persona_id { get; set; }
+    public Nullable<short> tesina_calificacion { get; set; }
 
-    public int tesista_persona_id { get; set; }
+    public Nullable<System.DateTime> tesina_fecha_cierre { get; set; }
 
-    public Nullable<short> tesis_calificacion { get; set; }
+    public Nullable<short> tesina_calificacion_director { get; set; }
 
-    public Nullable<System.DateTime> tesis_fecha_cierre { get; set; }
+    public int tesista_id { get; set; }
 
-    public Nullable<short> tesis_calificacion_director { get; set; }
+    public int director_id { get; set; }
 
 
 
-    public virtual Estado_tesis Estado { get; set; }
+    public virtual Estado_tesina Estado { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<Historial_estado> Historial_estados { get; set; }
 
-    public virtual Director Director { get; set; }
-
     public virtual Tesista Tesista { get; set; }
+
+    public virtual Director Director { get; set; }
 
 }
 

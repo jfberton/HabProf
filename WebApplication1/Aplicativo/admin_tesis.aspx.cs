@@ -29,14 +29,14 @@ namespace WebApplication1.Aplicativo
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
                 var tesinas = (from t in cxt.Tesinas
-                               where t.tesis_fecha_cierre == null
+                               where t.tesina_fecha_cierre == null
                                select new
                                {
-                                   tesis_id = t.tesis_id,
-                                   tesista = t.Tesista.persona_nomyap,
-                                   director = t.Director.persona_nomyap,
-                                   tema = t.tesis_tema,
-                                   estado = t.Estado.estado_estado
+                                   tesis_id = t.tesina_id,
+                                   tesista = t.Tesista.Persona.persona_nomyap,
+                                   director = t.Director.Persona.persona_nomyap,
+                                   tema = t.tesina_tema,
+                                   estado = t.Estado.estado_tesina_estado
                                }
                                ).ToList();
 
@@ -99,7 +99,7 @@ namespace WebApplication1.Aplicativo
             {
                 int id_tesina = Convert.ToInt32(((HtmlButton)sender).Attributes["data-id"]);
 
-                Tesis tesina = cxt.Tesinas.FirstOrDefault(pp => pp.tesis_id == id_tesina);
+                Tesina tesina = cxt.Tesinas.FirstOrDefault(pp => pp.tesina_id == id_tesina);
                 if (tesina != null)
                 {
                     Session["Tesina"] = tesina;

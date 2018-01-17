@@ -15,8 +15,14 @@ namespace WebApplication1.Aplicativo
 using System;
     using System.Collections.Generic;
     
-public partial class Juez : Persona
+public partial class Juez
 {
+
+    public int juez_id { get; set; }
+
+
+
+    public virtual Persona Persona { get; set; }
 
 }
 

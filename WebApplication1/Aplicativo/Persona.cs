@@ -31,7 +31,7 @@ public partial class Persona
 
     public string persona_nomyap { get; set; }
 
-    public string persona_dni { get; set; }
+    public int persona_dni { get; set; }
 
     public string persona_email { get; set; }
 
@@ -58,6 +58,14 @@ public partial class Persona
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<Envio_mail> Envios_mail { get; set; }
+
+    public virtual Tesista Tesista { get; set; }
+
+    public virtual Director Director { get; set; }
+
+    public virtual Juez Juez { get; set; }
+
+    public virtual Administrador Administrador { get; set; }
 
 }
 

@@ -18,21 +18,21 @@ using System;
 public partial class Historial_estado
 {
 
-    public int historial_id { get; set; }
+    public int historial_tesina_id { get; set; }
 
-    public int tesis_id { get; set; }
+    public int tesina_id { get; set; }
 
-    public int estado_tesis_id { get; set; }
+    public int estado_tesina_id { get; set; }
 
-    public string historial_descripcion { get; set; }
+    public string historial_tesina_descripcion { get; set; }
 
-    public System.DateTime historial_fecha { get; set; }
+    public System.DateTime historial_tesina_fecha { get; set; }
 
 
 
-    public virtual Tesis Tesis { get; set; }
+    public virtual Tesina Tesina { get; set; }
 
-    public virtual Estado_tesis Estado { get; set; }
+    public virtual Estado_tesina Estado { get; set; }
 
 }
 

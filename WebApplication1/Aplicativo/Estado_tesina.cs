@@ -15,29 +15,29 @@ namespace WebApplication1.Aplicativo
 using System;
     using System.Collections.Generic;
     
-public partial class Estado_tesis
+public partial class Estado_tesina
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public Estado_tesis()
+    public Estado_tesina()
     {
 
-        this.Tesinas = new HashSet<Tesis>();
+        this.Tesinas = new HashSet<Tesina>();
 
     }
 
 
-    public int estado_tesis_id { get; set; }
+    public int estado_tesina_id { get; set; }
 
-    public string estado_estado { get; set; }
+    public string estado_tesina_estado { get; set; }
 
-    public string estado_descripcion { get; set; }
+    public string estado_tesina_descripcion { get; set; }
 
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<Tesis> Tesinas { get; set; }
+    public virtual ICollection<Tesina> Tesinas { get; set; }
 
 }
 

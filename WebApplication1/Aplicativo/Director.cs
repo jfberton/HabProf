@@ -15,17 +15,19 @@ namespace WebApplication1.Aplicativo
 using System;
     using System.Collections.Generic;
     
-public partial class Director : Persona
+public partial class Director
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
     public Director()
     {
 
-        this.Tesinas = new HashSet<Tesis>();
+        this.Tesinas = new HashSet<Tesina>();
 
     }
 
+
+    public int director_id { get; set; }
 
     public decimal director_calificacion { get; set; }
 
@@ -33,7 +35,9 @@ public partial class Director : Persona
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<Tesis> Tesinas { get; set; }
+    public virtual ICollection<Tesina> Tesinas { get; set; }
+
+    public virtual Persona Persona { get; set; }
 
 }
 

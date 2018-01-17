@@ -31,38 +31,105 @@ namespace WebApplication1
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
                 Persona usr = cxt.Personas.FirstOrDefault(pp => pp.persona_usuario == usuario && pp.persona_clave == clave);
-                Administrador admin = cxt.Personas.OfType<Administrador>().FirstOrDefault(pp => pp.persona_usuario == usuario && pp.persona_clave == clave);
-                Director dire = cxt.Personas.OfType<Director>().FirstOrDefault(pp => pp.persona_usuario == usuario && pp.persona_clave == clave);
 
                 if (usr != null)
                 {
                     Session["UsuarioLogueado"] = usr;
-                    if (admin != null && dire != null)
+                    int cantidad_perfiles = 0;
+                    cantidad_perfiles = cantidad_perfiles + (usr.Administrador != null ? 1 : 0);
+                    cantidad_perfiles = cantidad_perfiles + (usr.Director != null ? 1 : 0);
+                    cantidad_perfiles = cantidad_perfiles + (usr.Tesista != null ? 1 : 0);
+                    cantidad_perfiles = cantidad_perfiles + (usr.Juez != null ? 1 : 0);
+
+                    if (cantidad_perfiles > 1)
                     {
-                        string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#ver_perfil').modal('show')});</script>";
+                        lbl_bienvenida_perfil.Text = "Bienvenido " + usr.persona_nomyap;
+                        hidden_id_usuario.Value = usr.persona_id.ToString();
+
+                        ddl_perfil.Items.Clear();
+
+                        if (usr.Administrador != null)
+                        {
+                            ddl_perfil.Items.Add(new ListItem() { Text = Perfil_usuario.Administrador.ToString(), Value = Perfil_usuario.Administrador.ToString() });
+                        }
+
+                        if (usr.Director != null)
+                        {
+                            ddl_perfil.Items.Add(new ListItem() { Text = Perfil_usuario.Director.ToString(), Value = Perfil_usuario.Director.ToString() });
+                        }
+
+                        if (usr.Tesista != null)
+                        {
+                            ddl_perfil.Items.Add(new ListItem() { Text = Perfil_usuario.Tesista.ToString(), Value = Perfil_usuario.Tesista.ToString() });
+                        }
+
+                        if (usr.Juez != null)
+                        {
+                            ddl_perfil.Items.Add(new ListItem() { Text = Perfil_usuario.Juez.ToString(), Value = Perfil_usuario.Juez.ToString() });
+                        }
+
+                        string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#modal_perfil').modal('show')});</script>";
                         ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
                     }
                     else
                     {
-                        if (admin != null)
+                        if (usr.Administrador != null)
                         {
-                            Session["Perfil"] = "Admin";
-                            FormsAuthentication.RedirectFromLoginPage(usr.persona_usuario, false);
+                            Ingresar(Perfil_usuario.Administrador, usr);
                         }
 
-                        if (dire != null)
+                        if (usr.Director != null)
                         {
-                            Session["Perfil"] = "Dire";
-                            FormsAuthentication.RedirectFromLoginPage(usr.persona_usuario, false);
+                            Ingresar(Perfil_usuario.Director, usr);
+                        }
+
+                        if (usr.Tesista != null)
+                        {
+                            Ingresar(Perfil_usuario.Tesista, usr);
+                        }
+
+                        if (usr.Juez != null)
+                        {
+                            Ingresar(Perfil_usuario.Juez, usr);
                         }
                     }
-
                 }
                 else
                 {
                     MessageBox.Show(this, "Usuario o contraseña incorrecto", MessageBox.Tipo_MessageBox.Info);
                 }
 
+            }
+        }
+
+        public enum Perfil_usuario
+        {
+            Administrador,
+            Director,
+            Tesista,
+            Juez
+        }
+
+        private void Ingresar(Perfil_usuario perfil, Persona usr)
+        {
+            switch (perfil)
+            {
+                case Perfil_usuario.Administrador:
+                    Session["Perfil"] = "Admin";
+                    FormsAuthentication.RedirectFromLoginPage(usr.persona_usuario, false);
+                    break;
+                case Perfil_usuario.Director:
+                    Session["Perfil"] = "Dire";
+                    FormsAuthentication.RedirectFromLoginPage(usr.persona_usuario, false);
+                    break;
+                case Perfil_usuario.Tesista:
+                    MessageBox.Show(this, "Aún no se definieron funcionalidades para el perfil Tesista");
+                    break;
+                case Perfil_usuario.Juez:
+                    MessageBox.Show(this, "Aún no se definieron funcionalidades para el perfil Juez");
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -87,11 +154,11 @@ namespace WebApplication1
                     Licenciatura l = new Licenciatura() { licenciatura_nombre = "Licenciatura en Tecnología Educativa", licenciatura_descripcion = "Este Ciclo de Licenciatura se propone brindar una alternativa de formación de grado a aquellos profesores y/o técnicos superiores en áreas referidas en manejo de las tecnologías, interesados en Ia inserción de Ia tecnología educativa en los procesos de formación inicial y continua propios del sistema educativo. Asimismo, resulta una opción para cubrir los espacios de capacitación y actualización que se desarroIIan en las instituciones y organizaciones del sistema socio productivo, tanto de gestión pública como privada.", licenciatura_email = "fede.berton@gmail.com", licenciatura_email_clave = "berton_mail", Servidor = servidor3 };
                     cxt.Licenciaturas.Add(l);
 
-                    Administrador admin = new Administrador()
+                    Persona p_admin = new Persona()
                     {
                         Licenciatura = l,
                         persona_nomyap = "Administrador",
-                        persona_dni = "00000000",
+                        persona_dni = 12345678,
                         persona_email = "un.mail@un.servidor.com",
                         persona_email_validado = false,
                         persona_domicilio = "un domicilio",
@@ -100,69 +167,87 @@ namespace WebApplication1
                         persona_clave = Cripto.Encriptar("admin"),
                         persona_estilo = "Sandstone"
                     };
-                    cxt.Personas.Add(admin);
 
-                    Director dire = new Director()
+                    Administrador admin = new Administrador()
+                    {
+                       Persona = p_admin
+                    };
+                    cxt.Personas.Add(p_admin);
+                    cxt.Administradores.Add(admin);
+
+                    Persona p_director = new Persona()
                     {
                         Licenciatura = l,
                         persona_nomyap = "director",
-                        persona_dni = "00000000",
+                        persona_dni = 23456789,
                         persona_email = "un.mail@un.servidor.com",
                         persona_email_validado = false,
                         persona_domicilio = "un domicilio",
                         persona_telefono = "00000000",
                         persona_usuario = "dire",
                         persona_clave = Cripto.Encriptar("dire"),
-                        persona_estilo = "Sandstone",
+                        persona_estilo = "Sandstone"
+                    };
+
+                    Director dire = new Director()
+                    {
+                        Persona = p_director,
                         director_calificacion = 0
                     };
-                    cxt.Personas.Add(dire);
+                    cxt.Personas.Add(p_director);
+                    cxt.Directores.Add(dire);
 
-                    Tesista tesista = new Tesista()
+                    Persona p_tesista = new Persona()
                     {
                         Licenciatura = l,
                         persona_nomyap = "José Federico Bertoncini",
-                        persona_dni = "28162815",
+                        persona_dni = 28162815,
                         persona_email = "atp.jfbertoncini@chaco.gov.ar",
                         persona_email_validado = false,
                         persona_domicilio = "Brasil 335 - Barranqueras",
                         persona_telefono = "03624716146",
                         persona_usuario = "",
                         persona_clave = "",
-                        persona_estilo = "Sandstone",
+                        persona_estilo = "Sandstone"
+                    };
+
+                    Tesista tesista = new Tesista()
+                    {
+                        Persona = p_tesista,
                         tesista_legajo = "12337/6",
                         tesista_sede = "Resistencia"
                     };
-                    cxt.Personas.Add(tesista);
+                    cxt.Personas.Add(p_tesista);
+                    cxt.Tesistas.Add(tesista);
 
-                    Estado_tesis estado_inicial = new Estado_tesis()
+                    Estado_tesina estado_inicial = new Estado_tesina()
                     {
-                        estado_estado = "Presentada",
-                        estado_descripcion = "Estado inicial, ocurre cuando aprueban el tema y el tesista presenta el borrador de la tesis para su aprobación"
+                        estado_tesina_estado = "Presentada",
+                        estado_tesina_descripcion = "Estado inicial, ocurre cuando aprueban el tema y el tesista presenta el borrador de la tesis para su aprobación"
                     };
 
-                    cxt.Estados_tesis.Add(estado_inicial);
+                    cxt.Estados_tesinas.Add(estado_inicial);
 
-                    Tesis tesis = new Tesis()
+                    Tesina tesis = new Tesina()
                     {
                         Director = dire,
                         Tesista = tesista,
-                        estado_tesis_id = estado_inicial.estado_tesis_id,
-                        tesis_palabras_clave = "politica, importacion, electronico",
-                        tesis_tema = "Impacto de las politicas de importación sobre la producción de artículos electronicónicos en la región",
-                        tesis_plan_fch_presentacion = Convert.ToDateTime("01/06/2017"),
-                        tesis_plan_duracion_meses = 12,
-                        tesis_plan_aviso_meses = 3
+                        estado_tesis_id = estado_inicial.estado_tesina_id,
+                        tesina_palabras_clave = "politica, importacion, electronico",
+                        tesina_tema = "Impacto de las politicas de importación sobre la producción de artículos electronicónicos en la región",
+                        tesina_plan_fch_presentacion = Convert.ToDateTime("01/06/2017"),
+                        tesina_plan_duracion_meses = 12,
+                        tesina_plan_aviso_meses = 3
                     };
 
                     cxt.Tesinas.Add(tesis);
 
                     Historial_estado historial = new Historial_estado()
                     {
-                        Tesis = tesis,
+                        Tesina = tesis,
                         Estado = estado_inicial,
-                        historial_descripcion = "Presento satisfactoriamente la tesina",
-                        historial_fecha = Convert.ToDateTime("01/06/2017")
+                        historial_tesina_descripcion = "Presento satisfactoriamente la tesina",
+                        historial_tesina_fecha = Convert.ToDateTime("01/06/2017")
                     };
 
                     cxt.Historial_estados.Add(historial);
@@ -211,6 +296,20 @@ namespace WebApplication1
                 {
                     MessageBox.Show(this, "No existe el usuario o el correo no esta validado", MessageBox.Tipo_MessageBox.Danger, "Oops!!");
                 }
+            }
+        }
+
+        protected void btn_acceder_con_perfil_ServerClick(object sender, EventArgs e)
+        {
+            int id_usuario = Convert.ToInt32(hidden_id_usuario.Value);
+
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                Persona usr = cxt.Personas.FirstOrDefault(pp => pp.persona_id == id_usuario);
+
+                Perfil_usuario perfil = (Perfil_usuario) Enum.Parse(typeof(Perfil_usuario), ddl_perfil.SelectedValue);
+
+                Ingresar(perfil, usr);
             }
         }
     }

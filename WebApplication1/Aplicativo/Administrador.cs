@@ -15,8 +15,14 @@ namespace WebApplication1.Aplicativo
 using System;
     using System.Collections.Generic;
     
-public partial class Administrador : Persona
+public partial class Administrador
 {
+
+    public int administrador_id { get; set; }
+
+
+
+    public virtual Persona Persona { get; set; }
 
 }
 
