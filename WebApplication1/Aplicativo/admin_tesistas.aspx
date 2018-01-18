@@ -19,14 +19,16 @@
         <div class="col-md-10">
             <div class="alert alert-warning" role="alert" runat="server" id="lbl_sin_tesistas">
                 <strong>No existen tesistas!</strong> Pruebe agregar algunos para comenzar.
+               
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
         </div>
         <div class="col-md-2">
-            <button type="button" class="btn btn-default pull-right" id="btn_agregar_tesista" runat="server" data-toggle="modal" data-target="#agregar_tesista">
+            <button type="button" class="btn btn-default pull-right" id="btn_agregar_tesista" runat="server" onserverclick="btn_agregar_tesista_ServerClick">
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Agregar nuevo
+           
             </button>
             <div class="modal fade" id="agregar_tesista" role="dialog" aria-hidden="true">
                 <div class="modal-dialog">
@@ -43,6 +45,8 @@
                                 <div class="col-md-12">
                                     <asp:ValidationSummary ID="validation_summary" runat="server" DisplayMode="BulletList" ValidationGroup="tesista"
                                         CssClass="validationsummary panel panel-danger" HeaderText="<div class='panel-heading'>&nbsp;Corrija los siguientes errores antes de continuar:</div>" />
+                                    <asp:ValidationSummary ID="ValidationSummary1" runat="server" DisplayMode="BulletList" ValidationGroup="dni_persona"
+                                        CssClass="validationsummary panel panel-danger" HeaderText="<div class='panel-heading'>&nbsp;Corrija los siguientes errores antes de continuar:</div>" />
                                 </div>
                             </div>
                             <div class="row">
@@ -53,12 +57,21 @@
                                             <td style="width: auto">
                                                 <input type="text" id="tb_dni_tesista" class="form-control" runat="server" placeholder="DNI del tesista por agregar" /></td>
                                             <td>
-                                                <asp:CustomValidator ControlToValidate="tb_dni_tesista" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="cv_dni_duplicado" runat="server" ErrorMessage="Ya existe un tesista con el DNI ingresado" OnServerValidate="cv_dni_duplicado_ServerValidate" ValidationGroup="tesista" />
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_dni_tesista" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe ingresar el DNI del tesista" ValidationGroup="tesista">
-                                                </asp:RequiredFieldValidator></td>
+                                                    ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe ingresar el DNI del tesista" ValidationGroup="dni_persona">
+                                                </asp:RequiredFieldValidator>
+
+                                                <asp:CustomValidator ControlToValidate="tb_dni_tesista" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="cv_dni" runat="server" ErrorMessage="Ingrese un DNI válido sin puntos" OnServerValidate="cv_dni_ServerValidate" ValidationGroup="dni_persona" />
+
+                                                <button runat="server" class="btn btn-default" id="btn_chequear_dni" onserverclick="btn_chequear_dni_ServerClick" validationgroup="dni_persona"><span class="glyphicon glyphicon-search"></span></button>
+
+                                            </td>
                                         </tr>
+
+                                    </table>
+
+                                    <table class="table-condensed" runat="server" id="tb_tabla_resto_campos" visible="false" style="width: 100%">
                                         <tr>
                                             <td>Nombre y apellido</td>
                                             <td style="width: auto">
@@ -117,13 +130,13 @@
                                                 </asp:RequiredFieldValidator></td>
                                         </tr>
                                     </table>
-
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button id="btn_guardar" runat="server" onserverclick="btn_guardar_ServerClick" class="btn btn-success" validationgroup="tesista">
                                 <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Guardar!
+                           
                             </button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                         </div>
@@ -145,22 +158,25 @@
 
             <asp:TemplateField>
                 <ItemTemplate>
-                     <button runat="server" class="btn btn-sm btn-default" id="btn_ver" causesvalidation="false" onserverclick="btn_ver_ServerClick1" data-id='<%#Eval("persona_id")%>'>
+                    <button runat="server" class="btn btn-sm btn-default" id="btn_ver" causesvalidation="false" onserverclick="btn_ver_ServerClick1" data-id='<%#Eval("tesista_id")%>'>
                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp;Ver
+                   
                     </button>
-                    <button runat="server" class="btn btn-sm btn-warning" id="btn_editar" causesvalidation="false" onserverclick="btn_editar_ServerClick" data-id='<%#Eval("persona_id")%>'>
+                    <button runat="server" class="btn btn-sm btn-warning" id="btn_editar" causesvalidation="false" onserverclick="btn_editar_ServerClick" data-id='<%#Eval("tesista_id")%>'>
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Editar
+                   
                     </button>
                     <button
                         type="button" class="btn btn-sm btn-danger"
                         data-toggle="modal"
                         data-target="#advertencia_eliminacion"
-                        data-id='<%#Eval("persona_id")%>'
+                        data-id='<%#Eval("tesista_id")%>'
                         data-introduccion="el tesista"
                         data-nombre='<%#Eval("persona_nomyap")%>'>
                         <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>&nbsp;Eliminar
+                   
                     </button>
-                    
+
                 </ItemTemplate>
             </asp:TemplateField>
         </Columns>
@@ -171,7 +187,7 @@
             <div class="modal-content panel-danger">
                 <div class="modal-header panel-heading">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title panel-title" style="color:white; font-weight:bold;">ATENCIÓN!!</h4>
+                    <h4 class="modal-title panel-title" style="color: white; font-weight: bold;">ATENCIÓN!!</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -194,11 +210,13 @@
             <div class="modal-content panel-default">
                 <div class="modal-header panel-heading">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title panel-title"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>Datos completos del tesista</h4>
+                    <h4 class="modal-title panel-title">Datos completos del tesista</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
+                            <h3>
+                                <asp:Label Text="" ID="lbl_ver_tesista_nomyap" runat="server" /></h3>
                             <table class="table-condensed" style="width: 100%">
                                 <tr>
                                     <td>DNI</td>
@@ -207,15 +225,21 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Nombre y apellido</td>
+                                    <td>Legajo</td>
                                     <td style="width: auto">
-                                        <asp:Label Text="" ID="lbl_ver_tesista_nomyap" runat="server" />
+                                        <asp:Label Text="" ID="lbl_ver_tesista_legajo" runat="server" />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>E-mail</td>
                                     <td style="width: auto">
                                         <asp:Label Text="" ID="lbl_ver_tesista_email" runat="server" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sede</td>
+                                    <td style="width: auto">
+                                        <asp:Label Text="" ID="lbl_ver_tesista_sede" runat="server" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -230,24 +254,11 @@
                                         <asp:Label Text="" ID="lbl_ver_tesista_telefono" runat="server" />
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Legajo</td>
-                                    <td style="width: auto">
-                                        <asp:Label Text="" ID="lbl_ver_tesista_legajo" runat="server" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Sede</td>
-                                    <td style="width: auto">
-                                        <asp:Label Text="" ID="lbl_ver_tesista_sede" runat="server" />
-                                    </td>
-                                </tr>
                             </table>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button Text="Aceptar" CssClass="btn btn-success" CausesValidation="false" ID="Button1" OnClick="btn_aceptar_eliminacion_Click" runat="server" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>

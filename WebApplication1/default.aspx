@@ -107,7 +107,7 @@
 
                                 <div class="modal fade" id="modal_perfil" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog">
-                                        <div class="modal-content">
+                                        <div class="modal-content panel-default text-center">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                 <h4 class="modal-title">Seleccione el perfil</h4>
@@ -117,16 +117,14 @@
                                                 <p>
                                                     <asp:Label Text="" ID="lbl_bienvenida_perfil" runat="server" />
                                                 </p>
-                                                <p>El usuario que ingreso posee más de un perfil, por favor seleccione con cual de ellos desea ingresar.</p>
-                                                <asp:DropDownList runat="server" ID="ddl_perfil">
+                                                <p>Usted posee más de un perfil asociado, por favor seleccione con cual de ellos desea ingresar.</p>
+                                                <asp:DropDownList runat="server" ID="ddl_perfil" CssClass="form-control">
                                                 </asp:DropDownList>
                                             </div>
                                             <div class="modal-footer">
                                                 <button id="btn_acceder_con_perfil" runat="server" onserverclick="btn_acceder_con_perfil_ServerClick" visible="true" class="btn btn-success" validationgroup="director">
-                                                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Ingresar!
-                           
+                                                    Ingresar!
                                                 </button>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                                             </div>
                                         </div>
                                     </div>

@@ -26,9 +26,8 @@
             </div>
         </div>
         <div class="col-md-2">
-            <button type="button" class="btn btn-default pull-right" id="btn_agregar_director" runat="server" data-toggle="modal" onserverclick="btn_agregar_director_ServerClick">
+            <button type="button" class="btn btn-default pull-right" id="btn_agregar_director" runat="server" onserverclick="btn_agregar_director_ServerClick">
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Agregar nuevo
-           
             </button>
             <div class="modal fade" id="agregar_director" role="dialog" aria-hidden="true">
                 <div class="modal-dialog">
@@ -58,7 +57,7 @@
                                                 <input type="text" id="tb_dni_director" class="form-control" runat="server" placeholder="DNI del director por agregar" /></td>
                                             <td>
                                                  <asp:RequiredFieldValidator ControlToValidate="tb_dni_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe ingresar el DNI del director" ValidationGroup="director">
+                                                    ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe ingresar el DNI del director" ValidationGroup="dni_persona">
                                                 </asp:RequiredFieldValidator>
                                                 
                                                 <asp:CustomValidator ControlToValidate="tb_dni_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
@@ -157,14 +156,14 @@
             <asp:BoundField DataField="persona_dni" HeaderText="DNI" ReadOnly="true" />
             <asp:BoundField DataField="persona_email" HeaderText="E-mail" ReadOnly="true" />
             <asp:BoundField DataField="director_calificacion" HeaderText="Calificación" ReadOnly="true" />
-            <asp:BoundField DataField="director_tesis_a_cargo" HeaderText="Tesis a cargo" ReadOnly="true" />
+            <asp:BoundField DataField="director_tesina_a_cargo" HeaderText="Tesis a cargo" ReadOnly="true" />
             <asp:TemplateField>
                 <ItemTemplate>
-                    <button runat="server" class="btn btn-sm btn-default" id="btn_ver" causesvalidation="false" onserverclick="btn_ver_ServerClick1" data-id='<%#Eval("persona_id")%>'>
+                    <button runat="server" class="btn btn-sm btn-default" id="btn_ver" causesvalidation="false" onserverclick="btn_ver_ServerClick1" data-id='<%#Eval("director_id")%>'>
                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp;Ver
                    
                     </button>
-                    <button runat="server" class="btn btn-sm btn-warning" id="btn_editar" causesvalidation="false" onserverclick="btn_editar_ServerClick" data-id='<%#Eval("persona_id")%>'>
+                    <button runat="server" class="btn btn-sm btn-warning" id="btn_editar" causesvalidation="false" onserverclick="btn_editar_ServerClick" data-id='<%#Eval("director_id")%>'>
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Editar
                    
                     </button>
@@ -172,7 +171,7 @@
                         type="button" class="btn btn-sm btn-danger"
                         data-toggle="modal"
                         data-target="#advertencia_eliminacion"
-                        data-id='<%#Eval("persona_id")%>'
+                        data-id='<%#Eval("director_id")%>'
                         data-introduccion="el director"
                         data-nombre='<%#Eval("persona_nomyap")%>'>
                         <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>&nbsp;Eliminar
@@ -268,11 +267,11 @@
                             <asp:GridView ID="gv_tesinas" runat="server" OnPreRender="gv_directores_PreRender"
                                 AutoGenerateColumns="False" GridLines="None" CssClass="display">
                                 <Columns>
-                                    <asp:BoundField DataField="tesista_nombre" HeaderText="Tesista" ReadOnly="true" />
-                                    <asp:BoundField DataField="tesis_tema" HeaderText="Tema" ReadOnly="true" />
-                                    <asp:BoundField DataField="tesis_palabras_clave" HeaderText="Palabras clave" ReadOnly="true" />
-                                    <asp:BoundField DataField="tesis_plan_fch_presentacion" HeaderText="E-mail" ReadOnly="true" />
-                                    <asp:BoundField DataField="tesis_estado" HeaderText="Calificación" ReadOnly="true" />
+                                    <asp:BoundField DataField="tesinata_nombre" HeaderText="Tesista" ReadOnly="true" />
+                                    <asp:BoundField DataField="tesina_tema" HeaderText="Tema" ReadOnly="true" />
+                                    <asp:BoundField DataField="tesina_palabras_clave" HeaderText="Palabras clave" ReadOnly="true" />
+                                    <asp:BoundField DataField="tesina_plan_fch_presentacion" HeaderText="E-mail" ReadOnly="true" />
+                                    <asp:BoundField DataField="tesina_estado" HeaderText="Calificación" ReadOnly="true" />
                                 </Columns>
                             </asp:GridView>
                         </div>

@@ -712,6 +712,7 @@
       <DependentUpon>menu_admin.ascx</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\MiEmail.cs" />
+    <Compile Include="Aplicativo\partial_director.cs" />
     <Compile Include="Aplicativo\Persona.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>
     </Compile>

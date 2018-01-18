@@ -35,3 +35,37 @@ STACKTRACE:    en System.Web.UI.Page.VerifyRenderingInServerForm(Control control
 
 
 ******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636518706674852370
+
+DATE: 18/01/2018 11:11:07 a.m.
+
+AGENTE: admin
+
+MESSAGE: No se puede encontrar el identificador de control 'tb_dni_director' al que hace referencia la propiedad 'ControlToValidate' de 'cv_dni'.
+
+SOURCE: System.Web
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/admin_tesistas.aspx
+
+TARGETSITE: Void CheckControlValidationProperty(System.String, System.String)
+
+STACKTRACE:    en System.Web.UI.WebControls.BaseValidator.CheckControlValidationProperty(String name, String propertyName)
+   en System.Web.UI.WebControls.CustomValidator.ControlPropertiesValid()
+   en System.Web.UI.WebControls.BaseValidator.OnPreRender(EventArgs e)
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+
+******************************************************************
