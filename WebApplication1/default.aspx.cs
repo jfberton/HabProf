@@ -219,19 +219,89 @@ namespace WebApplication1
                     cxt.Personas.Add(p_tesista);
                     cxt.Tesistas.Add(tesista);
 
+                    //Estado inicial
                     Estado_tesina estado_inicial = new Estado_tesina()
                     {
-                        estado_tesina_estado = "Presentada",
-                        estado_tesina_descripcion = "Estado inicial, ocurre cuando aprueban el tema y el tesista presenta el borrador de la tesis para su aprobación"
+                        estado_tesina_estado = "Iniciada",
+                        estado_tesina_descripcion = "Estado inicial, ocurre cuando aprueban el tema y se cargan los valores inciales, director, tesista, fechas de presentación, duración y notificaciones"
                     };
 
+                    //puede llegar aqui por los estados:
+                    //          * iniciada
+                    //          * a corregir
+                    //          * prorroga
+                    Estado_tesina estado_entregada = new Estado_tesina()
+                    {
+                        estado_tesina_estado = "Entregada",
+                        estado_tesina_descripcion = "Ocurre cuando se sube el archivo para la correción del director"
+                    };
+
+                    //llega aqui del estado:
+                    //          * entregada
+                    Estado_tesina estado_a_corregir = new Estado_tesina()
+                    {
+                        estado_tesina_estado = "A corregir",
+                        estado_tesina_descripcion = "Ocurre cuando el director o administrador informan sobre correcciones a realizar en la tesina presentada"
+                    };
+
+                    //llega aqui del estado:
+                    //          * entregada
+                    Estado_tesina estado_lista_para_presentar = new Estado_tesina()
+                    {
+                        estado_tesina_estado = "Lista para presentar",
+                        estado_tesina_descripcion = "Ocurre cuando la presentació de la tesina no tiene observaciones y esta lista para su defenza"
+                    };
+
+
+                    //llega aqui del estado:
+                    //          * entregada
+                    //          * a corregir
+                    //          * prorroga
+                    Estado_tesina estado_vencida = new Estado_tesina()
+                    {
+                        estado_tesina_estado = "Vencida",
+                        estado_tesina_descripcion = "Ocurre cuando pasan los plazos establecidos y la tesina no fue aprobada para su defenza"
+                    };
+
+                    //llega aqui del estado:
+                    //          * vencida
+                    Estado_tesina estado_prorrogada = new Estado_tesina()
+                    {
+                        estado_tesina_estado = "Prorrogada",
+                        estado_tesina_descripcion = "Ocurre cuando luego de vencida la tesina, el tesista solicita prorroga, en este estado se vuelven a establecer duración y periodo entre notificaciones"
+                    };
+
+                    //llega aqui del estado:
+                    //          * lista para presentar
+                    Estado_tesina estado_aprobada = new Estado_tesina()
+                    {
+                        estado_tesina_estado = "Aprobada",
+                        estado_tesina_descripcion = "Estado final, en este momento se procede a calificar la tesina y al director"
+                    };
+
+                    //llega aqui del estado:
+                    //          * lista para presentar
+                    Estado_tesina estado_desaprobada = new Estado_tesina()
+                    {
+                        estado_tesina_estado = "Desaprobada",
+                        estado_tesina_descripcion = "Estado final, en este momento se procede a calificar la tesina y al director"
+                    };
+
+
                     cxt.Estados_tesinas.Add(estado_inicial);
+                    cxt.Estados_tesinas.Add(estado_entregada);
+                    cxt.Estados_tesinas.Add(estado_a_corregir);
+                    cxt.Estados_tesinas.Add(estado_lista_para_presentar);
+                    cxt.Estados_tesinas.Add(estado_vencida);
+                    cxt.Estados_tesinas.Add(estado_prorrogada);
+                    cxt.Estados_tesinas.Add(estado_aprobada);
+                    cxt.Estados_tesinas.Add(estado_desaprobada);
 
                     Tesina tesis = new Tesina()
                     {
                         Director = dire,
                         Tesista = tesista,
-                        estado_tesis_id = estado_inicial.estado_tesina_id,
+                        Estado = estado_inicial,
                         tesina_palabras_clave = "politica, importacion, electronico",
                         tesina_tema = "Impacto de las politicas de importación sobre la producción de artículos electronicónicos en la región",
                         tesina_plan_fch_presentacion = Convert.ToDateTime("01/06/2017"),

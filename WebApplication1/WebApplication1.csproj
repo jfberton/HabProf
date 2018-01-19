@@ -83,6 +83,7 @@
     <Content Include="Aplicativo\admin_directores.aspx" />
     <Content Include="Aplicativo\admin_home.aspx" />
     <Content Include="Aplicativo\admin_tesina.aspx" />
+    <Content Include="Aplicativo\admin_tesinas.aspx" />
     <Content Include="Aplicativo\admin_tesis.aspx" />
     <Content Include="Aplicativo\admin_tesistas.aspx" />
     <Content Include="Aplicativo\director_home.aspx" />
@@ -639,6 +640,13 @@
     </Compile>
     <Compile Include="Aplicativo\admin_tesina.aspx.designer.cs">
       <DependentUpon>admin_tesina.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\admin_tesinas.aspx.cs">
+      <DependentUpon>admin_tesinas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicativo\admin_tesinas.aspx.designer.cs">
+      <DependentUpon>admin_tesinas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\admin_tesis.aspx.cs">
       <DependentUpon>admin_tesis.aspx</DependentUpon>

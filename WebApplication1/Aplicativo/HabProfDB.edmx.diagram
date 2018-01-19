@@ -4,23 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6963da6c1f92482f83a2c7f54c0e46c5" Name="Diagram1" DisplayType="true" ZoomLevel="74" >
-        <EntityTypeShape EntityType="HabProfDB.Persona" Width="2.25" PointX="9.5" PointY="0.5" />
-        <EntityTypeShape EntityType="HabProfDB.Tesista" Width="2" PointX="5.125" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HabProfDB.Director" Width="2" PointX="7.875" PointY="6.875" />
-        <EntityTypeShape EntityType="HabProfDB.Administrador" Width="2" PointX="10.375" PointY="6.875" />
-        <EntityTypeShape EntityType="HabProfDB.Juez" Width="2.125" PointX="13.125" PointY="6.875" />
-        <EntityTypeShape EntityType="HabProfDB.Tesina" Width="2.75" PointX="4.875" PointY="10.375" />
-        <EntityTypeShape EntityType="HabProfDB.Licenciatura" Width="1.875" PointX="6.25" PointY="0.5" />
-        <EntityTypeShape EntityType="HabProfDB.Estado_tesina" Width="2.625" PointX="9.375" PointY="14.25" />
+      <Diagram DiagramId="6963da6c1f92482f83a2c7f54c0e46c5" Name="Diagram1" DisplayType="true" ZoomLevel="101" >
+        <EntityTypeShape EntityType="HabProfDB.Persona" Width="2.75" PointX="3.875" PointY="0.5" />
+        <EntityTypeShape EntityType="HabProfDB.Tesista" Width="2" PointX="0.5" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="HabProfDB.Director" Width="2" PointX="2.875" PointY="6" />
+        <EntityTypeShape EntityType="HabProfDB.Administrador" Width="2" PointX="5.375" PointY="6" />
+        <EntityTypeShape EntityType="HabProfDB.Juez" Width="2.125" PointX="7.875" PointY="6" />
+        <EntityTypeShape EntityType="HabProfDB.Tesina" Width="3" PointX="0.5" PointY="8.875" />
+        <EntityTypeShape EntityType="HabProfDB.Licenciatura" Width="2.625" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="HabProfDB.Estado_tesina" Width="2.625" PointX="4.75" PointY="11.625" />
         <AssociationConnector Association="HabProfDB.Estado_tesisTesis" />
-        <EntityTypeShape EntityType="HabProfDB.Historial_estado" Width="2" PointX="9.5" PointY="11.125" />
+        <EntityTypeShape EntityType="HabProfDB.Historial_estado" Width="3.25" PointX="5" PointY="8.625" />
         <AssociationConnector Association="HabProfDB.TesisHistorial_estado" />
         <AssociationConnector Association="HabProfDB.Estado_tesisHistorial_estado" />
-        <EntityTypeShape EntityType="HabProfDB.Servidor_de_correo" Width="2.375" PointX="2.625" PointY="0.5" />
+        <EntityTypeShape EntityType="HabProfDB.Servidor_de_correo" Width="2.375" PointX="0.5" PointY="3.5" />
         <AssociationConnector Association="HabProfDB.ServidorLicenciatura" />
         <AssociationConnector Association="HabProfDB.LicenciaturaPersona" />
-        <EntityTypeShape EntityType="HabProfDB.Envio_mail" Width="2.625" PointX="12.75" PointY="0.5" />
+        <EntityTypeShape EntityType="HabProfDB.Envio_mail" Width="2.625" PointX="7.625" PointY="0.5" />
         <AssociationConnector Association="HabProfDB.PersonaEnvio_mail" />
         <AssociationConnector Association="HabProfDB.TesistaTesina" />
         <AssociationConnector Association="HabProfDB.DirectorTesina" />

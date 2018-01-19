@@ -36,7 +36,7 @@
                         <li><a href="../Aplicativo/admin_directores.aspx">Administrar directores</a></li>
                     </ul>
                 </li>
-                <li><a href="../Aplicativo/admin_tesis.aspx">Administrar tesinas</a></li>
+                <li><a href="../Aplicativo/admin_tesinas.aspx">Administrar tesinas</a></li>
                 <li><a href="../Aplicativo/prueba.aspx">Prueba buscar texto</a></li>
             </ul>
         </div>
