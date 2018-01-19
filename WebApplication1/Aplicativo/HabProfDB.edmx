@@ -171,7 +171,6 @@
       <PropertyRef Name="director_id" />
     </Key>
     <Property Name="director_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="director_calificacion" Type="decimal" Nullable="false" Precision="4" Scale="2" />
     <Property Name="Persona_persona_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Tesistas">
@@ -430,7 +429,6 @@
             <PropertyRef Name="director_id" />
           </Key>
           <Property Name="director_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
-          <Property Name="director_calificacion" Type="Decimal" Nullable="false" Precision="4" Scale="2" />
           <NavigationProperty Name="Tesinas" Relationship="HabProfDB.DirectorTesina" FromRole="Director" ToRole="Tesina" />
           <NavigationProperty Name="Persona" Relationship="HabProfDB.PersonaDirector" FromRole="Director" ToRole="Persona" />
         </EntityType>
@@ -756,7 +754,6 @@
       <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Director)">
         <MappingFragment StoreEntitySet="Directores">
           <ScalarProperty Name="director_id" ColumnName="director_id" />
-          <ScalarProperty Name="director_calificacion" ColumnName="director_calificacion" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

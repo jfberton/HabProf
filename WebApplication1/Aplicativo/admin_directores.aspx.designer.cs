@@ -292,15 +292,6 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.WebControls.Button btn_aceptar_eliminacion;
         
         /// <summary>
-        /// lbl_ver_director_dni control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_ver_director_dni;
-        
-        /// <summary>
         /// lbl_ver_director_nomyap control.
         /// </summary>
         /// <remarks>
@@ -308,6 +299,15 @@ namespace WebApplication1.Aplicativo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_ver_director_nomyap;
+        
+        /// <summary>
+        /// lbl_ver_director_dni control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_ver_director_dni;
         
         /// <summary>
         /// lbl_ver_director_email control.
@@ -353,6 +353,15 @@ namespace WebApplication1.Aplicativo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_ver_director_usuario;
+        
+        /// <summary>
+        /// lbl_tesinas_director control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_tesinas_director;
         
         /// <summary>
         /// gv_tesinas control.

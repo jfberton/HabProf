@@ -32,25 +32,18 @@ namespace WebApplication1.Aplicativo
             {
                 var directores = (from d in cxt.Directores
                                   where d.Persona.persona_fecha_baja == null
-                                  select new
-                                  {
-                                      director_id = d.director_id,
-                                      persona_nomyap = d.Persona.persona_nomyap,
-                                      persona_dni = d.Persona.persona_dni,
-                                      persona_email = d.Persona.persona_email,
-                                      director_calificacion = d.director_calificacion
-                                  }).ToList();
+                                  select d).ToList();
 
                 var directores_con_tesina_a_cargo = (from d in directores
-                                                    select new
-                                                    {
-                                                        director_id = d.director_id,
-                                                        persona_nomyap = d.persona_nomyap,
-                                                        persona_dni = d.persona_dni,
-                                                        persona_email = d.persona_email,
-                                                        director_tesina_a_cargo = (cxt.Tesinas.Count(tt => tt.tesina_fecha_cierre != null && tt.director_id == d.director_id)),
-                                                        director_calificacion = d.director_calificacion
-                                                    }).ToList();
+                                                     select new
+                                                     {
+                                                         director_id = d.director_id,
+                                                         persona_nomyap = d.Persona.persona_nomyap,
+                                                         persona_dni = d.Persona.persona_dni,
+                                                         persona_email = d.Persona.persona_email,
+                                                         director_tesina_a_cargo = d.Tesinas_a_cargo,
+                                                         director_calificacion = d.Calificacion_general
+                                                     }).ToList();
 
 
                 if (directores_con_tesina_a_cargo.Count() > 0)
@@ -117,7 +110,7 @@ namespace WebApplication1.Aplicativo
                     if (id_director != 0)
                     {
                         //abrio por editar director y cambio el DNI, obtengo el director a editar
-                        director = cxt.Directores.FirstOrDefault(pp => pp.director_id == id_director);
+                        director = cxt.Directores.Include("Persona").FirstOrDefault(pp => pp.director_id == id_director);
                         p_director = director.Persona;
                     }
                     else
@@ -149,7 +142,6 @@ namespace WebApplication1.Aplicativo
                         p_director.persona_domicilio = tb_domicilio.Value;
                         p_director.persona_telefono = tb_telefono.Value;
                         p_director.persona_usuario = tb_usuario.Value;
-                        p_director.persona_clave = Cripto.Encriptar(tb_contraseña.Value);
                         p_director.persona_estilo = "Sandstone";
                         if (chk_cambiar_clave.Checked)
                         {
@@ -163,20 +155,12 @@ namespace WebApplication1.Aplicativo
                         //no existe hago un insert
                         director = new Director()
                         {
-                            director_calificacion = 0
+                            Persona = p_director
                         };
 
                         cxt.Directores.Add(director);
-
-                        if (chk_cambiar_clave.Checked)
-                        {
-                            p_director.persona_clave = Cripto.Encriptar(tb_contraseña.Value);
-                        }
-                        else
-                        {
-                            p_director.persona_clave = "debe cambiar la contraseña";
-                        }
                     }
+
 
                     try
                     {
@@ -237,7 +221,7 @@ namespace WebApplication1.Aplicativo
 
                     tb_tabla_resto_campos.Visible = true;
 
-                    hidden_id_director_editar.Value = director.Persona.persona_id.ToString();
+                    hidden_id_director_editar.Value = director.director_id.ToString();
 
                     string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_director').modal('show')});</script>";
                     ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
@@ -245,7 +229,7 @@ namespace WebApplication1.Aplicativo
             }
         }
 
-       
+
 
         protected void btn_ver_ServerClick1(object sender, EventArgs e)
         {
@@ -265,19 +249,21 @@ namespace WebApplication1.Aplicativo
                     lbl_ver_director_calificacion.Text = director.Calificacion_general.ToString();
                     lbl_ver_director_usuario.Text = director.Persona.persona_usuario;
 
-                    List<Tesina> tesinas = cxt.Tesinas.Where(tt => tt.director_id == director.director_id && tt.tesina_fecha_cierre == null).ToList();
+                    List<Tesina> tesinas = cxt.Tesinas.Where(tt => tt.director_id == director.director_id ).OrderByDescending(tt=>tt.tesina_plan_fch_presentacion).ToList();
 
                     var tesina_para_grilla = (from t in tesinas
-                                             select new
-                                             {
-                                                 tesina_id = t.tesina_id,
-                                                 tesina_tema = t.tesina_tema,
-                                                 tesina_palabras_clave = t.tesina_palabras_clave,
-                                                 tesina_plan_fch_presentacion = t.tesina_plan_fch_presentacion,
-                                                 tesinata_nombre = t.Tesista.Persona.persona_nomyap,
-                                                 tesina_estado = t.Estado.estado_tesina_estado
-                                             }).ToList();
+                                              select new
+                                              {
+                                                  tesina_id = t.tesina_id,
+                                                  tesina_tema_completo = t.tesina_tema,
+                                                  tesina_tema_recortado = t.tesina_tema.Substring(0,40),
+                                                  tesina_plan_fch_presentacion = t.tesina_plan_fch_presentacion,
+                                                  tesinata_nombre = t.Tesista.Persona.persona_nomyap,
+                                                  tesina_estado = t.Estado.estado_tesina_estado
+                                              }).ToList();
 
+
+                    lbl_tesinas_director.Text = tesina_para_grilla.Count == 0 ? "El director no participo en ninguna tesina aún.-" : "Tesinas supervisadas y en curso";
                     gv_tesinas.DataSource = tesina_para_grilla;
                     gv_tesinas.DataBind();
 
@@ -289,27 +275,15 @@ namespace WebApplication1.Aplicativo
 
         protected void cv_usuario_duplicado_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            Director director;
-            int id_director = Convert.ToInt32(hidden_id_director_editar.Value);
+            int dni = Convert.ToInt32(tb_dni_director.Value);
+            bool correcto = true;
 
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
-                Director director_a_editar = cxt.Directores.FirstOrDefault(dd => dd.director_id == id_director);
-
-                if (id_director != 0)
-                {
-                    //esta editando: controlo que no se repita el DNI en otro director
-                    Persona p_dire = director_a_editar.Persona;
-                }
-                else
-                {
-                    //esta agregando: controlo que no se repita el DNI en ningun otro director
-                    director = cxt.Directores.FirstOrDefault(pp => pp.Persona.persona_usuario == tb_usuario.Value);
-                }
-
+                correcto = cxt.Personas.FirstOrDefault(pp => pp.persona_usuario == tb_usuario.Value && pp.persona_dni != dni) == null;
             }
 
-            args.IsValid = director == null;
+            args.IsValid = correcto;
         }
 
         protected void cv_contraseña_ServerValidate(object source, ServerValidateEventArgs args)

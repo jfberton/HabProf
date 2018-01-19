@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/16/2018 20:31:56
+-- Date Created: 01/18/2018 19:34:23
 -- Generated from EDMX file: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
 -- --------------------------------------------------
 
@@ -42,16 +42,16 @@ IF OBJECT_ID(N'[dbo].[FK_DirectorTesina]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Tesinas] DROP CONSTRAINT [FK_DirectorTesina];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PersonaTesista]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[TesistaSet] DROP CONSTRAINT [FK_PersonaTesista];
+    ALTER TABLE [dbo].[Tesistas] DROP CONSTRAINT [FK_PersonaTesista];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PersonaDirector]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[DirectorSet] DROP CONSTRAINT [FK_PersonaDirector];
+    ALTER TABLE [dbo].[Directores] DROP CONSTRAINT [FK_PersonaDirector];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PersonaJuez]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[JuezSet] DROP CONSTRAINT [FK_PersonaJuez];
+    ALTER TABLE [dbo].[Jueces] DROP CONSTRAINT [FK_PersonaJuez];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PersonaAdministrador]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AdministradorSet] DROP CONSTRAINT [FK_PersonaAdministrador];
+    ALTER TABLE [dbo].[Administradores] DROP CONSTRAINT [FK_PersonaAdministrador];
 GO
 
 -- --------------------------------------------------
@@ -79,17 +79,17 @@ GO
 IF OBJECT_ID(N'[dbo].[Envio_mails]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Envio_mails];
 GO
-IF OBJECT_ID(N'[dbo].[JuezSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[JuezSet];
+IF OBJECT_ID(N'[dbo].[Jueces]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Jueces];
 GO
-IF OBJECT_ID(N'[dbo].[AdministradorSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[AdministradorSet];
+IF OBJECT_ID(N'[dbo].[Administradores]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Administradores];
 GO
-IF OBJECT_ID(N'[dbo].[DirectorSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[DirectorSet];
+IF OBJECT_ID(N'[dbo].[Directores]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Directores];
 GO
-IF OBJECT_ID(N'[dbo].[TesistaSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[TesistaSet];
+IF OBJECT_ID(N'[dbo].[Tesistas]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Tesistas];
 GO
 
 -- --------------------------------------------------
@@ -199,7 +199,6 @@ GO
 -- Creating table 'Directores'
 CREATE TABLE [dbo].[Directores] (
     [director_id] int IDENTITY(1,1) NOT NULL,
-    [director_calificacion] decimal(4,2)  NOT NULL,
     [Persona_persona_id] int  NOT NULL
 );
 GO

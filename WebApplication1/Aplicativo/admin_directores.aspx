@@ -56,10 +56,10 @@
                                             <td style="width: auto">
                                                 <input type="text" id="tb_dni_director" class="form-control" runat="server" placeholder="DNI del director por agregar" /></td>
                                             <td>
-                                                 <asp:RequiredFieldValidator ControlToValidate="tb_dni_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_dni_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe ingresar el DNI del director" ValidationGroup="dni_persona">
                                                 </asp:RequiredFieldValidator>
-                                                
+
                                                 <asp:CustomValidator ControlToValidate="tb_dni_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="cv_dni" runat="server" ErrorMessage="Ingrese un DNI válido sin puntos" OnServerValidate="cv_dni_ServerValidate" ValidationGroup="dni_persona" />
 
@@ -207,13 +207,14 @@
     </div>
 
     <div class="modal fade" id="panel_ver_director" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content panel-default">
                 <div class="modal-header panel-heading">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title panel-title"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span>Datos completos del director</h4>
+                    <h4 class="modal-title panel-title">Datos completos del director</h4>
                 </div>
                 <div class="modal-body">
+                    <h3> <asp:Label Text="" ID="lbl_ver_director_nomyap" runat="server" /></h3>
                     <div class="row">
                         <div class="col-md-12">
                             <table class="table-condensed" style="width: 100%">
@@ -221,12 +222,6 @@
                                     <td>DNI</td>
                                     <td style="width: auto">
                                         <asp:Label Text="" ID="lbl_ver_director_dni" runat="server" />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Nombre y apellido</td>
-                                    <td style="width: auto">
-                                        <asp:Label Text="" ID="lbl_ver_director_nomyap" runat="server" />
                                     </td>
                                 </tr>
                                 <tr>
@@ -262,16 +257,21 @@
                             </table>
                         </div>
                     </div>
+                    <h3>
+                        <asp:Label Text="" ID="lbl_tesinas_director" runat="server" /></h3>
                     <div class="row">
                         <div class="col-md-12">
                             <asp:GridView ID="gv_tesinas" runat="server" OnPreRender="gv_directores_PreRender"
                                 AutoGenerateColumns="False" GridLines="None" CssClass="display">
                                 <Columns>
                                     <asp:BoundField DataField="tesinata_nombre" HeaderText="Tesista" ReadOnly="true" />
-                                    <asp:BoundField DataField="tesina_tema" HeaderText="Tema" ReadOnly="true" />
-                                    <asp:BoundField DataField="tesina_palabras_clave" HeaderText="Palabras clave" ReadOnly="true" />
-                                    <asp:BoundField DataField="tesina_plan_fch_presentacion" HeaderText="E-mail" ReadOnly="true" />
-                                    <asp:BoundField DataField="tesina_estado" HeaderText="Calificación" ReadOnly="true" />
+                                    <asp:TemplateField HeaderText="Tema">
+                                        <ItemTemplate>
+                                            <asp:Label Text='<%#Eval("tesina_tema_recortado")%>' ToolTip='<%#Eval("tesina_tema_completo") %>' runat="server" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="tesina_plan_fch_presentacion" HeaderText="Fecha Presentación" DataFormatString="{0:d}" ReadOnly="true" />
+                                    <asp:BoundField DataField="tesina_estado" HeaderText="Estado" ReadOnly="true" />
                                 </Columns>
                             </asp:GridView>
                         </div>
@@ -301,6 +301,7 @@
             modal.find('.modal-body #' + '<%= id_item_por_eliminar.ClientID %>').val(id)
             modal.find('.modal-body #texto_a_mostrar').text('Esta por eliminar ' + introduccion + ' ' + nombre + '. Desea continuar?')
         })
+
         $(document).ready(function () {
             $('#<%= gv_directores.ClientID %>').DataTable({
                 "scrollY": "400px",
@@ -316,6 +317,28 @@
             });
 
         });
+
+        $(document).ready(function () {
+            $('#<%= gv_tesinas.ClientID %>').DataTable({
+                 "scrollY": "400px",
+                 "scrollCollapse": true,
+                 "paging": false,
+                 "searching": false,
+                 "language": {
+                     "search": "Buscar:",
+                     "zeroRecords": "No se encontraron registros",
+                     "info": "Mostrando _START_ de _END_ de _TOTAL_ registros",
+                     "infoEmpty": "No hay registros disponibles",
+                     "infoFiltered": "(filtrado de _MAX_ registros totales)"
+                 }
+             });
+
+        });
+
+        $('#panel_ver_director').on('shown.bs.modal', function () {
+            var table = $('#<%= gv_tesinas.ClientID %>').DataTable();
+            table.draw();
+        })
     </script>
     <script>
         $(document).ready(function () {

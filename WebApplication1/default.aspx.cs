@@ -191,8 +191,7 @@ namespace WebApplication1
 
                     Director dire = new Director()
                     {
-                        Persona = p_director,
-                        director_calificacion = 0
+                        Persona = p_director
                     };
                     cxt.Personas.Add(p_director);
                     cxt.Directores.Add(dire);

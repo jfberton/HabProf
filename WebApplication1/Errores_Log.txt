@@ -2,50 +2,13 @@
 
 ******************************************************************
 
-ERRORID: 636517880017242895
+ERRORID: 636519044555639275
 
-DATE: 17/01/2018 12:13:21 p.m.
-
-AGENTE: Sin autenticar.
-
-MESSAGE: El control 'hidden_id_usuario' de tipo 'HiddenField' debe colocarse dentro de una etiqueta de formulario con runat=server.
-
-SOURCE: System.Web
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/default.aspx
-
-TARGETSITE: Void VerifyRenderingInServerForm(System.Web.UI.Control)
-
-STACKTRACE:    en System.Web.UI.Page.VerifyRenderingInServerForm(Control control)
-   en System.Web.UI.WebControls.HiddenField.Render(HtmlTextWriter writer)
-   en System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
-   en System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
-   en System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
-   en System.Web.UI.Control.RenderChildrenInternal(HtmlTextWriter writer, ICollection children)
-   en System.Web.UI.Control.RenderChildren(HtmlTextWriter writer)
-   en System.Web.UI.Page.Render(HtmlTextWriter writer)
-   en System.Web.UI.Control.RenderControlInternal(HtmlTextWriter writer, ControlAdapter adapter)
-   en System.Web.UI.Control.RenderControl(HtmlTextWriter writer, ControlAdapter adapter)
-   en System.Web.UI.Control.RenderControl(HtmlTextWriter writer)
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636518706674852370
-
-DATE: 18/01/2018 11:11:07 a.m.
+DATE: 18/01/2018 20:34:15
 
 AGENTE: admin
 
-MESSAGE: No se puede encontrar el identificador de control 'tb_dni_director' al que hace referencia la propiedad 'ControlToValidate' de 'cv_dni'.
+MESSAGE: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx(53): error CS1061: 'aplicativo_admin_tesina_aspx' does not contain a definition for 'cv_tesis_tema_ServerValidate' and no extension method 'cv_tesis_tema_ServerValidate' accepting a first argument of type 'aplicativo_admin_tesina_aspx' could be found (are you missing a using directive or an assembly reference?)
 
 SOURCE: System.Web
 
@@ -53,19 +16,22 @@ INSTANCE:
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/Aplicativo/admin_tesistas.aspx
+URL: http://localhost:60142/Aplicativo/admin_tesina.aspx
 
-TARGETSITE: Void CheckControlValidationProperty(System.String, System.String)
+TARGETSITE: System.CodeDom.Compiler.CompilerResults Compile()
 
-STACKTRACE:    en System.Web.UI.WebControls.BaseValidator.CheckControlValidationProperty(String name, String propertyName)
-   en System.Web.UI.WebControls.CustomValidator.ControlPropertiesValid()
-   en System.Web.UI.WebControls.BaseValidator.OnPreRender(EventArgs e)
-   en System.Web.UI.Control.PreRenderRecursiveInternal()
-   en System.Web.UI.Control.PreRenderRecursiveInternal()
-   en System.Web.UI.Control.PreRenderRecursiveInternal()
-   en System.Web.UI.Control.PreRenderRecursiveInternal()
-   en System.Web.UI.Control.PreRenderRecursiveInternal()
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+STACKTRACE:    en System.Web.Compilation.AssemblyBuilder.Compile()
+   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   en System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   en System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   en System.Web.UI.PageHandlerFactory.GetHandler(HttpContext context, String requestType, String virtualPath, String path)
+   en System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   en System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
 
 ******************************************************************

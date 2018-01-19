@@ -29,8 +29,6 @@ public partial class Director
 
     public int director_id { get; set; }
 
-    public decimal director_calificacion { get; set; }
-
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
