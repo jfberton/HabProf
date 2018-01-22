@@ -33,7 +33,7 @@ public partial class Tesina
 
     public string tesina_tema { get; set; }
 
-    public string tesina_palabras_clave { get; set; }
+    public string tesina_descripcion { get; set; }
 
     public string tesina_borrador { get; set; }
 

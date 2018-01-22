@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/18/2018 19:34:23
+-- Date Created: 01/22/2018 09:16:58
 -- Generated from EDMX file: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
 -- --------------------------------------------------
 
@@ -118,7 +118,7 @@ CREATE TABLE [dbo].[Tesinas] (
     [tesina_id] int IDENTITY(1,1) NOT NULL,
     [estado_tesis_id] int  NOT NULL,
     [tesina_tema] nvarchar(max)  NOT NULL,
-    [tesina_palabras_clave] nvarchar(max)  NOT NULL,
+    [tesina_descripcion] nvarchar(max)  NOT NULL,
     [tesina_borrador] nvarchar(max)  NULL,
     [tesina_plan_fch_presentacion] datetime  NOT NULL,
     [tesina_plan_duracion_meses] smallint  NOT NULL,

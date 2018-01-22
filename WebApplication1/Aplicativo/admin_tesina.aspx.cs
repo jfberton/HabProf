@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using WebApplication1.Aplicativo.ControlesDeUsuario;
 
@@ -35,8 +36,7 @@ namespace WebApplication1.Aplicativo
                     {
                         tesina_a_editar_o_agregar = new Tesina();
                         tesina_a_editar_o_agregar.tesina_tema = "Ingrese el tema de la tesina";
-                        tesina_a_editar_o_agregar.tesina_palabras_clave = "Ingrese las palabras clave para la tesina";
-                        tesina_a_editar_o_agregar.Estado = cxt.Estados_tesinas.FirstOrDefault(ee => ee.estado_tesina_estado == "Presentada");
+                        tesina_a_editar_o_agregar.tesina_descripcion = "Ingrese las palabras clave para la tesina";
                         div_estado.Visible = false;
                         Session["Tesina"] = tesina_a_editar_o_agregar;
                     }
@@ -53,8 +53,8 @@ namespace WebApplication1.Aplicativo
         {
             tesina_a_editar_o_agregar = Session["Tesina"] as Tesina;
             lbl_bread_last_page.Text = tesina_a_editar_o_agregar.tesina_id != 0 ? "Modificar Tesina" : "Agregar Tesina";
-            lbl_tema_tesina.Text = tesina_a_editar_o_agregar.tesina_tema;
-            tb_estado.Text = tesina_a_editar_o_agregar.Estado.estado_tesina_estado;
+            tb_tema.Value = tesina_a_editar_o_agregar.tesina_tema;
+            tb_estado.Text = tesina_a_editar_o_agregar.Estado != null ? tesina_a_editar_o_agregar.Estado.estado_tesina_estado : "Ninguno";
             Cargar_historial_estados();
         }
 
@@ -90,38 +90,6 @@ namespace WebApplication1.Aplicativo
 
         }
 
-        protected void cv_tesina_tema_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            args.IsValid = Verificar_tema_tesina(tb_nuevo_tema_tesina.Value);
-
-            btn_guardar_tema_tesis.Visible = false;
-            btn_guardar_tema_de_todos_modos.Visible = true;
-        }
-
-
-        private bool Verificar_tema_tesina(string value)
-        {
-            //voy agregando las tesinas que contienen esa palabra
-            List<Tesina> tesinas_encontradas = new List<Tesina>();
-            using (HabProfDBContainer cxt = new HabProfDBContainer())
-            {
-                string[] palabras_tema = tb_nuevo_tema_tesina.Value.Split(' ');
-                List<Tesina> tesinas = cxt.Tesinas.ToList();
-
-                foreach (Tesina tesina in tesinas)
-                {
-                    Buscar b = new Buscar(palabras_tema, tesina.tesina_tema);
-
-                    if (b.Hubo_coincidencia)
-                    {
-                        tesinas_encontradas.Add(tesina);
-                    }
-
-                }
-            }
-
-            return tesinas_encontradas.Count() == 0;
-        }
 
         protected void btn_guardar_tema_tesina_ServerClick(object sender, EventArgs e)
         {
@@ -129,13 +97,6 @@ namespace WebApplication1.Aplicativo
             ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
         }
 
-        protected void btn_guardar_tema_de_todos_modos_ServerClick(object sender, EventArgs e)
-        {
-            Tesina tesina = Session["Tesina"] as Tesina;
-            tesina.tesina_tema = tb_nuevo_tema_tesina.Value;
-            Session["Tesina"] = tesina;
-            Mostrar_datos_tesina();
-        }
 
         protected void btn_modificar_estado_ServerClick(object sender, EventArgs e)
         {
@@ -148,14 +109,24 @@ namespace WebApplication1.Aplicativo
         protected void btn_cancelar_ServerClick(object sender, EventArgs e)
         {
             Session["Tesina"] = null;
-            Response.Redirect("~/Aplicativo/admin_tesina.aspx");
+            Response.Redirect("~/Aplicativo/admin_tesinas.aspx");
         }
 
-        protected void gv_historial_PreRender(object sender, EventArgs e)
+        protected void gv_PreRender(object sender, EventArgs e)
         {
             if (gv_historial.Rows.Count > 0)
             {
                 gv_historial.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
+
+            if (gv_tesistas.Rows.Count > 0)
+            {
+                gv_tesistas.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
+
+            if (gv_directores.Rows.Count > 0)
+            {
+                gv_directores.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
         }
 
@@ -167,6 +138,121 @@ namespace WebApplication1.Aplicativo
             ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
         }
 
-       
+        protected void cv_fecha_inicio_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            DateTime fecha;
+            if (DateTime.TryParse(tb_fecha_inicio.Value, out fecha))
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
+        }
+
+        protected void btn_buscar_tesista_ServerClick(object sender, EventArgs e)
+        {
+            using (HabProfDBContainer cxt = new Aplicativo.HabProfDBContainer())
+            {
+                var tesistas = (
+                    from t in cxt.Tesistas
+                    where t.Persona.persona_fecha_baja == null && t.Tesina.Where(tt => tt.tesina_fecha_cierre == null).Count() == 0
+                    select new
+                    {
+                        tesista_id = t.tesista_id,
+                        persona_nomyap = t.Persona.persona_nomyap,
+                        persona_dni = t.Persona.persona_dni,
+                        persona_email = t.Persona.persona_email,
+                        tesista_legajo = t.tesista_legajo,
+                        tesista_sede = t.tesista_sede
+                    }).ToList();
+
+                if (tesistas.Count() > 0)
+                {
+                    lbl_sin_tesistas_habilitados.Visible = false;
+                    gv_tesistas.DataSource = tesistas;
+                    gv_tesistas.DataBind();
+                }
+                else
+                {
+                    lbl_sin_tesistas_habilitados.Visible = true;
+                    gv_tesistas.DataSource = null;
+                    gv_tesistas.DataBind();
+                }
+
+            }
+
+            string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#buscar_tesista').modal('show')});</script>";
+            ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
+        }
+
+        protected void btn_buscar_director_ServerClick(object sender, EventArgs e)
+        {
+            using (HabProfDBContainer cxt = new Aplicativo.HabProfDBContainer())
+            {
+                var directores = (from d in cxt.Directores
+                                  where d.Persona.persona_fecha_baja == null
+                                  select d).ToList();
+
+                var directores_con_tesina_a_cargo = (from d in directores
+                                                     select new
+                                                     {
+                                                         director_id = d.director_id,
+                                                         persona_nomyap = d.Persona.persona_nomyap,
+                                                         persona_dni = d.Persona.persona_dni,
+                                                         persona_email = d.Persona.persona_email,
+                                                         director_calificacion = d.Calificacion_general
+                                                     }).ToList();
+
+
+                if (directores_con_tesina_a_cargo.Count() > 0)
+                {
+                    gv_directores.DataSource = directores_con_tesina_a_cargo;
+                    gv_directores.DataBind();
+                    lbl_sin_directores.Visible = false;
+                }
+                else
+                {
+                    lbl_sin_directores.Visible = true;
+                    gv_directores.DataSource = null;
+                    gv_directores.DataBind();
+                }
+
+            }
+
+            string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#buscar_director').modal('show')});</script>";
+            ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
+        }
+
+        protected void btn_seleccionar_tesista_Click(object sender, EventArgs e)
+        {
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                int id_tesista = Convert.ToInt32(((HtmlButton)sender).Attributes["data-id"]);
+
+                Tesista tesista = cxt.Tesistas.FirstOrDefault(pp => pp.tesista_id == id_tesista);
+                if (tesista != null)
+                {
+                    tb_tesista.Value = tesista.Persona.persona_nomyap;
+                    hidden_tesista_id.Value = tesista.tesista_id.ToString();
+                }
+            }
+        }
+
+        protected void btn_seleccionar_director_ServerClick(object sender, EventArgs e)
+        {
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                int id_director = Convert.ToInt32(((HtmlButton)sender).Attributes["data-id"]);
+
+                Director director = cxt.Directores.FirstOrDefault(pp => pp.director_id == id_director);
+                if (director != null)
+                {
+                    tb_director.Value = director.Persona.persona_nomyap;
+                    hidden_director_id.Value = director.director_id.ToString();
+                }
+            }
+        }
     }
 }

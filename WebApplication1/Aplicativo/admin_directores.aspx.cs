@@ -116,7 +116,11 @@ namespace WebApplication1.Aplicativo
                     else
                     {
                         p_director = cxt.Personas.FirstOrDefault(pp => pp.persona_dni == dni);
-                        director = p_director.Director;
+                        if (p_director != null)
+                        {
+                            director = p_director.Director;
+                        }
+                       
                     }
 
                     //agrego o actualizo el director
@@ -331,19 +335,6 @@ namespace WebApplication1.Aplicativo
 
             string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_director').modal('show')});</script>";
             ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
-        }
-
-        protected void cv_dni_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            int dni = 0;
-            if (tb_dni_director.Value.Length <= 8 && Int32.TryParse(tb_dni_director.Value, out dni))
-            {
-                args.IsValid = true;
-            }
-            else
-            {
-                args.IsValid = false;
-            }
         }
 
         protected void btn_agregar_director_ServerClick(object sender, EventArgs e)

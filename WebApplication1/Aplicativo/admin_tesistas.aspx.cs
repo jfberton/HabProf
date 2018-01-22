@@ -108,7 +108,10 @@ namespace WebApplication1.Aplicativo
                     else
                     {
                         p_tesista = cxt.Personas.FirstOrDefault(pp => pp.persona_dni == dni);
-                        tesista = p_tesista.Tesista;
+                        if (p_tesista != null)
+                        {
+                            tesista = p_tesista.Tesista;
+                        }
                     }
 
                     //Agrego o actualizo la persona
@@ -284,19 +287,6 @@ namespace WebApplication1.Aplicativo
 
             string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_tesista').modal('show')});</script>";
             ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
-        }
-
-        protected void cv_dni_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            int dni = 0;
-            if (tb_dni_tesista.Value.Length <= 8 && Int32.TryParse(tb_dni_tesista.Value, out dni))
-            {
-                args.IsValid = true;
-            }
-            else
-            {
-                args.IsValid = false;
-            }
         }
 
         protected void btn_agregar_tesista_ServerClick(object sender, EventArgs e)

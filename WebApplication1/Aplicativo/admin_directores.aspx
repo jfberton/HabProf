@@ -60,8 +60,8 @@
                                                     ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe ingresar el DNI del director" ValidationGroup="dni_persona">
                                                 </asp:RequiredFieldValidator>
 
-                                                <asp:CustomValidator ControlToValidate="tb_dni_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="cv_dni" runat="server" ErrorMessage="Ingrese un DNI válido sin puntos" OnServerValidate="cv_dni_ServerValidate" ValidationGroup="dni_persona" />
+                                                <asp:RegularExpressionValidator ValidationExpression="\d{7,8}" ControlToValidate="tb_dni_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RegularExpressionValidator2" runat="server" ErrorMessage="Debe ingresar un DNI válido (solo números entre 7 y 8 caracteres)" ValidationGroup="dni_persona" />
 
                                                 <button runat="server" class="btn btn-default" id="btn_chequear_dni" onserverclick="btn_chequear_dni_ServerClick" validationgroup="dni_persona"><span class="glyphicon glyphicon-search"></span></button>
 
@@ -77,7 +77,10 @@
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_nombre_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="rv_nombre_director" runat="server" ErrorMessage="Debe ingresar el nombre del director" ValidationGroup="director">
-                                                </asp:RequiredFieldValidator></td>
+                                                </asp:RequiredFieldValidator>
+                                                <asp:RegularExpressionValidator  ControlToValidate="tb_nombre_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="regular_nombre_director" runat="server" ValidationExpression="^([^0-9]*)$" ErrorMessage="El nombre no debe contener números" ValidationGroup="director" />
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>E-mail</td>
@@ -107,7 +110,11 @@
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_telefono" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="RequiredFieldValidator4" runat="server" ErrorMessage="Debe ingresar el teléfono del director" ValidationGroup="director">
-                                                </asp:RequiredFieldValidator></td>
+                                                </asp:RequiredFieldValidator>
+                                                <asp:RegularExpressionValidator ValidationExpression="\d{6,11}" ControlToValidate="tb_telefono" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RegularExpressionValidator1" runat="server" ErrorMessage="Debe ingresar un teléfono válido (solo números entre 6 y 11 caracteres)" ValidationGroup="director" />
+
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Usuario</td>

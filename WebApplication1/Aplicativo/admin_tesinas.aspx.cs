@@ -94,7 +94,7 @@ namespace WebApplication1.Aplicativo
                     lbl_alta.Text = tesina.tesina_plan_fch_presentacion.ToString();
                     lbl_calificacion.Text = tesina.tesina_calificacion == 0 ? "Sin calificación" : tesina.tesina_calificacion.ToString();
                     lbl_calificacion_director.Text = tesina.tesina_calificacion_director == 0 ? "Sin calificación" : tesina.tesina_calificacion_director.ToString();
-                    lbl_descripcion.Text = tesina.tesina_palabras_clave;
+                    lbl_descripcion.Text = tesina.tesina_descripcion;
                     lbl_director.Text = tesina.Director.Persona.persona_nomyap;
                     lbl_duracion.Text = tesina.tesina_plan_duracion_meses.ToString() + " meses.";
                     lbl_estado.Text = tesina.Estado.estado_tesina_estado;

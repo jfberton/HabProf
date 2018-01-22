@@ -61,8 +61,8 @@
                                                     ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe ingresar el DNI del tesista" ValidationGroup="dni_persona">
                                                 </asp:RequiredFieldValidator>
 
-                                                <asp:CustomValidator ControlToValidate="tb_dni_tesista" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="cv_dni" runat="server" ErrorMessage="Ingrese un DNI válido sin puntos" OnServerValidate="cv_dni_ServerValidate" ValidationGroup="dni_persona" />
+                                                <asp:RegularExpressionValidator ValidationExpression="\d{7,8}" ControlToValidate="tb_dni_tesista" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RegularExpressionValidator2" runat="server" ErrorMessage="Debe ingresar un DNI válido (solo números entre 7 y 8 caracteres)" ValidationGroup="dni_persona" />
 
                                                 <button runat="server" class="btn btn-default" id="btn_chequear_dni" onserverclick="btn_chequear_dni_ServerClick" validationgroup="dni_persona"><span class="glyphicon glyphicon-search"></span></button>
 
@@ -79,7 +79,10 @@
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_nombre_tesista" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="rv_nombre_tesista" runat="server" ErrorMessage="Debe ingresar el nombre del tesista" ValidationGroup="tesista">
-                                                </asp:RequiredFieldValidator></td>
+                                                </asp:RequiredFieldValidator>
+                                                <asp:RegularExpressionValidator  ControlToValidate="tb_nombre_tesista" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="regular_nombre_director" runat="server" ValidationExpression="^([^0-9]*)$" ErrorMessage="El nombre no debe contener números" ValidationGroup="tesista" />
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>E-mail</td>
@@ -105,11 +108,14 @@
                                         <tr>
                                             <td>Teléfono</td>
                                             <td style="width: auto">
-                                                <input type="text" id="tb_telefono" class="form-control" runat="server" placeholder="Nombre del tesista por agregar" /></td>
+                                                <input type="text" id="tb_telefono" class="form-control" runat="server" placeholder="Teléfono del tesista por agregar" /></td>
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_telefono" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="RequiredFieldValidator4" runat="server" ErrorMessage="Debe ingresar el teléfono del tesista" ValidationGroup="tesista">
-                                                </asp:RequiredFieldValidator></td>
+                                                </asp:RequiredFieldValidator>
+                                                <asp:RegularExpressionValidator ValidationExpression="\d{6,11}" ControlToValidate="tb_telefono" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RegularExpressionValidator1" runat="server" ErrorMessage="Debe ingresar un teléfono válido (solo números entre 6 y 11 caracteres)" ValidationGroup="tesista" />
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Legajo</td>

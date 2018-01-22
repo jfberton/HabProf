@@ -84,7 +84,6 @@
     <Content Include="Aplicativo\admin_home.aspx" />
     <Content Include="Aplicativo\admin_tesina.aspx" />
     <Content Include="Aplicativo\admin_tesinas.aspx" />
-    <Content Include="Aplicativo\admin_tesis.aspx" />
     <Content Include="Aplicativo\admin_tesistas.aspx" />
     <Content Include="Aplicativo\director_home.aspx" />
     <Content Include="Aplicativo\HabProfDB.Context.tt">
@@ -647,13 +646,6 @@
     </Compile>
     <Compile Include="Aplicativo\admin_tesinas.aspx.designer.cs">
       <DependentUpon>admin_tesinas.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Aplicativo\admin_tesis.aspx.cs">
-      <DependentUpon>admin_tesis.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Aplicativo\admin_tesis.aspx.designer.cs">
-      <DependentUpon>admin_tesis.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\admin_tesistas.aspx.cs">
       <DependentUpon>admin_tesistas.aspx</DependentUpon>

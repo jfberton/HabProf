@@ -90,7 +90,7 @@
     <Property Name="tesina_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="estado_tesis_id" Type="int" Nullable="false" />
     <Property Name="tesina_tema" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="tesina_palabras_clave" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="tesina_descripcion" Type="nvarchar(max)" Nullable="false" />
     <Property Name="tesina_borrador" Type="nvarchar(max)" Nullable="true" />
     <Property Name="tesina_plan_fch_presentacion" Type="datetime" Nullable="false" />
     <Property Name="tesina_plan_duracion_meses" Type="smallint" Nullable="false" />
@@ -454,7 +454,7 @@
           <NavigationProperty Name="Estado" Relationship="HabProfDB.Estado_tesisTesis" FromRole="Tesis" ToRole="Estado_tesis" />
           <Property Name="estado_tesis_id" Type="Int32" Nullable="false" />
           <Property Name="tesina_tema" Type="String" Nullable="false" />
-          <Property Name="tesina_palabras_clave" Nullable="false" Type="String" />
+          <Property Name="tesina_descripcion" Nullable="false" Type="String" />
           <Property Name="tesina_borrador" Type="String" Nullable="true" />
           <Property Name="tesina_plan_fch_presentacion" Type="DateTime" Nullable="false" />
           <Property Name="tesina_plan_duracion_meses" Type="Int16" Nullable="false" />
@@ -667,7 +667,7 @@
           <ScalarProperty Name="tesina_id" ColumnName="tesina_id" />
           <ScalarProperty Name="estado_tesis_id" ColumnName="estado_tesis_id" />
           <ScalarProperty Name="tesina_tema" ColumnName="tesina_tema" />
-          <ScalarProperty Name="tesina_palabras_clave" ColumnName="tesina_palabras_clave" />
+          <ScalarProperty Name="tesina_descripcion" ColumnName="tesina_descripcion" />
           <ScalarProperty Name="tesina_borrador" ColumnName="tesina_borrador" />
           <ScalarProperty Name="tesina_plan_fch_presentacion" ColumnName="tesina_plan_fch_presentacion" />
           <ScalarProperty Name="tesina_plan_duracion_meses" ColumnName="tesina_plan_duracion_meses" />
