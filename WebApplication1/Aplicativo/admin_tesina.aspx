@@ -10,7 +10,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="CPH_Body" runat="server">
     <ol class="breadcrumb">
         <li><a href="admin_home.aspx">Inicio</a></li>
-        <li><a href="admin_tesina.aspx">Administrar tesinas</a></li>
+        <li><a href="admin_tesinas.aspx">Administrar tesinas</a></li>
         <li>
             <asp:Label Text="" ID="lbl_bread_last_page" runat="server" /></li>
     </ol>
@@ -31,7 +31,7 @@
         </div>
         <div class="col-md-1">
             <asp:RequiredFieldValidator ControlToValidate="tb_tema" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                ID="RequiredFieldValidator6" runat="server" ErrorMessage="Debe ingresar la fecha de inicio de la tesina" ValidationGroup="tesina">
+                ID="RequiredFieldValidator6" runat="server" ErrorMessage="Debe ingresar tema de la tesina" ValidationGroup="tesina">
             </asp:RequiredFieldValidator>
         </div>
     </div>
@@ -40,7 +40,7 @@
     <div class="row" runat="server" id="div_descripcion">
         <div class="col-md-2">Descripción</div>
         <div class="col-md-9">
-            <textarea runat="server" id="tb_descripcion" rows="5" class="form-control" placeholder="Ingrese la descripción del contenido de la tesina.-"></textarea>
+            <textarea runat="server" id="tb_descripcion" rows="2" class="form-control" placeholder="Ingrese la descripción del contenido de la tesina.-"></textarea>
         </div>
         <div class="col-md-1">
             <asp:RequiredFieldValidator ControlToValidate="tb_descripcion" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
@@ -58,26 +58,34 @@
         <div class="col-md-3">
             <asp:HiddenField runat="server" ID="hidden_tesista_id" />
             <div class="input-group">
-                <input type="text" class="form-control" runat="server" id="tb_tesista" />
+                <input type="text" class="form-control" readonly="true" runat="server" id="tb_tesista" />
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button" runat="server" id="btn_buscar_tesista" onserverclick="btn_buscar_tesista_ServerClick"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
             </div>
         </div>
-        <div class="col-md-1">validators</div>
+        <div class="col-md-1">
+            <asp:RequiredFieldValidator ControlToValidate="tb_tesista" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe seleccionar el tesista responsable de la tesina" ValidationGroup="tesina">
+            </asp:RequiredFieldValidator>
+        </div>
         <div class="col-md-2">
             Director
         </div>
         <div class="col-md-3">
             <asp:HiddenField runat="server" ID="hidden_director_id" />
             <div class="input-group">
-                <input type="text" class="form-control" runat="server" id="tb_director" />
+                <input type="text" class="form-control" readonly="true" runat="server" id="tb_director" />
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button" runat="server" id="btn_buscar_director" onserverclick="btn_buscar_director_ServerClick"><span class="glyphicon glyphicon-search"></span></button>
                 </span>
             </div>
         </div>
-        <div class="col-md-1">validators</div>
+        <div class="col-md-1">
+            <asp:RequiredFieldValidator ControlToValidate="tb_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                ID="RequiredFieldValidator7" runat="server" ErrorMessage="Debe seleccionar el director asociado a la tesina" ValidationGroup="tesina">
+            </asp:RequiredFieldValidator>
+        </div>
 
         <div class="modal fade" id="buscar_tesista" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
@@ -100,7 +108,6 @@
                                     <ItemTemplate>
                                         <button runat="server" class="btn btn-sm btn-default" id="btn_seleccionar_tesista" causesvalidation="false" onserverclick="btn_seleccionar_tesista_Click" data-id='<%#Eval("tesista_id")%>'>
                                             Seleccionar
-                                       
                                         </button>
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -184,7 +191,7 @@
         </div>
         <div class="col-md-1">
             <asp:RequiredFieldValidator ControlToValidate="tb_duracion" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                ID="RequiredFieldValidator4" runat="server" ErrorMessage="Debe ingresar la fecha de inicio de la tesina" ValidationGroup="tesina">
+                ID="RequiredFieldValidator4" runat="server" ErrorMessage="Debe ingresar los meses de duración para la entrega final de la tesina" ValidationGroup="tesina">
             </asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ValidationExpression="\d{1,2}" ControlToValidate="tb_duracion" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                 ID="RegularExpressionValidator2" runat="server" ErrorMessage="Debe ingresar un numero entero de hasta dos dígitos" ValidationGroup="tesina" />
@@ -200,18 +207,29 @@
         </div>
         <div class="col-md-1">
             <asp:RequiredFieldValidator ControlToValidate="tb_notificacion" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                ID="RequiredFieldValidator5" runat="server" ErrorMessage="Debe ingresar la fecha de inicio de la tesina" ValidationGroup="tesina">
+                ID="RequiredFieldValidator5" runat="server" ErrorMessage="Debe ingresar los meses entre recordatorios automáticos" ValidationGroup="tesina">
             </asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ValidationExpression="\d{1}" ControlToValidate="tb_notificacion" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                 ID="RegularExpressionValidator1" runat="server" ErrorMessage="Debe ingresar un numero entero de un dígito" ValidationGroup="tesina" />
             <asp:CustomValidator ControlToValidate="tb_notificacion" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                ID="CustomValidator2" runat="server" ErrorMessage="Debe ingresar una fecha válida" OnServerValidate="cv_fecha_inicio_ServerValidate" ValidationGroup="tesina" />
+                ID="cv_notificacion" runat="server" ErrorMessage="El valor ingresado debe ser menor o igual a el plazo para la entrega de la tesina" OnServerValidate="cv_notificacion_ServerValidate" ValidationGroup="tesina" />
+        </div>
+    </div>
+
+    <br />
+    <%--ARCHIVO--%>
+    <div class="row" runat="server" id="div_archivo">
+        <div class="col-md-2">
+            Tesina
+        </div>
+        <div class="col-md-9">
+            <asp:FileUpload runat="server" ID="file_tesina" />
         </div>
     </div>
 
     <br />
     <%--ESTADO--%>
-    <div class="row" runat="server" id="div_estado">
+    <div class="row" runat="server" id="div_estado" visible="false">
         <div class="col-md-12">
             <table style="width: 100%">
                 <tr>
@@ -301,9 +319,9 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button id="btn_modificar_estado" runat="server" validationgroup="estado_tesina" onserverclick="btn_modificar_estado_ServerClick" class="btn btn-success">
+                            <%--<button id="btn_modificar_estado" runat="server" validationgroup="estado_tesina" onserverclick="btn_modificar_estado_ServerClick" class="btn btn-success">
                                 <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Modificar estado!
-                            </button>
+                            </button>--%>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                         </div>
                     </div>
@@ -341,11 +359,29 @@
         </div>
     </div>
 
+    <%--COINCIDENCIAS EN EL TEMA O DESCRIPCION--%>
+    <div class="modal fade" id="mostrar_coincidencias" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Listado de tesinas similares</h4>
+                </div>
+                <div class="modal-body" runat="server" id="div_coincidencias">
+                    
+                </div>
+                <div class="modal-footer">
+                    <asp:Button Text="Habilitar guardado de todas maneras!" runat="server" ID="btn_habilitar_guardar" CssClass="btn btn-success" OnClick="btn_habilitar_guardar_Click" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12 text-right">
-            <button id="btn_guardar_tesina" runat="server" onserverclick="btn_guardar_tesina_ServerClick" class="btn btn-success" validationgroup="tesina">
-                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Guardar!
-            </button>
+            <asp:Button Text="Verificar" ID="btn_verificar_tesina" OnClick="btn_verificar_tesina_Click" ValidationGroup="tesina" CausesValidation="true" CssClass="btn btn-success" runat="server" />
+            <asp:Button Text="Guardar" OnClick="btn_guardar_tesina_ServerClick" ID="btn_guardar_tesina" CssClass="btn btn-primary" Enabled="false" runat="server" />
             <button type="button" class="btn btn-default" runat="server" id="btn_cancelar" onserverclick="btn_cancelar_ServerClick">Cancelar</button>
         </div>
     </div>
@@ -370,7 +406,13 @@
                     "zeroRecords": "No se encontraron registros",
                     "info": "Mostrando _START_ de _END_ de _TOTAL_ registros",
                     "infoEmpty": "No hay registros disponibles",
-                    "infoFiltered": "(filtrado de _MAX_ registros totales)"
+                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                    "paginate": {
+                        "first": "primero",
+                        "last": "último",
+                        "next": "próximo",
+                        "previous": "anterior"
+                    },
                 }
             });
 
@@ -383,7 +425,13 @@
                     "zeroRecords": "No se encontraron registros",
                     "info": "Mostrando _START_ de _END_ de _TOTAL_ registros",
                     "infoEmpty": "No hay registros disponibles",
-                    "infoFiltered": "(filtrado de _MAX_ registros totales)"
+                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                    "paginate": {
+                        "first": "primero",
+                        "last": "último",
+                        "next": "próximo",
+                        "previous": "anterior"
+                    },
                 }
             });
 
@@ -396,10 +444,18 @@
                     "zeroRecords": "No se encontraron registros",
                     "info": "Mostrando _START_ de _END_ de _TOTAL_ registros",
                     "infoEmpty": "No hay registros disponibles",
-                    "infoFiltered": "(filtrado de _MAX_ registros totales)"
+                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                    "paginate": {
+                        "first": "primero",
+                        "last": "último",
+                        "next": "próximo",
+                        "previous": "anterior"
+                    },
                 }
             });
         });
+
+        $(":file").filestyle({ buttonBefore: false, buttonText: "Seleccionar archivo" });
 
         $('#ver_historial_de_estados').on('shown.bs.modal', function () {
             var table = $('#<%= gv_historial.ClientID %>').DataTable();
@@ -421,9 +477,9 @@
             table.draw();
         })
 
-        $('#buscar_director').on('shown.bs.modal', function () {
-            var table = $('#<%= gv_directores.ClientID %>').DataTable();
-            table.draw();
-        })
+            $('#buscar_director').on('shown.bs.modal', function () {
+                var table = $('#<%= gv_directores.ClientID %>').DataTable();
+                table.draw();
+            })
     </script>
 </asp:Content>

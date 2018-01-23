@@ -313,13 +313,21 @@
             $('#<%= gv_directores.ClientID %>').DataTable({
                 "scrollY": "400px",
                 "scrollCollapse": true,
-                "paging": false,
+                "paging": true,
                 "language": {
                     "search": "Buscar:",
+                    "emptyTable": "Sin registros",
+                    "lengthMenu": "Mostrando _MENU_ registros",
                     "zeroRecords": "No se encontraron registros",
                     "info": "Mostrando _START_ de _END_ de _TOTAL_ registros",
                     "infoEmpty": "No hay registros disponibles",
-                    "infoFiltered": "(filtrado de _MAX_ registros totales)"
+                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                    "paginate": {
+                        "first": "primero",
+                        "last": "último",
+                        "next": "próximo",
+                        "previous": "anterior"
+                    }
                 }
             });
 

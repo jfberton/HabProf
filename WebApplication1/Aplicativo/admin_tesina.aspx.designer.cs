@@ -121,6 +121,15 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.HtmlControls.HtmlButton btn_buscar_tesista;
         
         /// <summary>
+        /// RequiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        
+        /// <summary>
         /// hidden_director_id control.
         /// </summary>
         /// <remarks>
@@ -146,6 +155,15 @@ namespace WebApplication1.Aplicativo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton btn_buscar_director;
+        
+        /// <summary>
+        /// RequiredFieldValidator7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
         
         /// <summary>
         /// lbl_sin_tesistas_habilitados control.
@@ -283,13 +301,31 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
         
         /// <summary>
-        /// CustomValidator2 control.
+        /// cv_notificacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator CustomValidator2;
+        protected global::System.Web.UI.WebControls.CustomValidator cv_notificacion;
+        
+        /// <summary>
+        /// div_archivo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_archivo;
+        
+        /// <summary>
+        /// file_tesina control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload file_tesina;
         
         /// <summary>
         /// div_estado control.
@@ -355,15 +391,6 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.HtmlControls.HtmlInputText t_observacion_nuevo_estado;
         
         /// <summary>
-        /// btn_modificar_estado control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btn_modificar_estado;
-        
-        /// <summary>
         /// gv_historial control.
         /// </summary>
         /// <remarks>
@@ -373,13 +400,40 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.WebControls.GridView gv_historial;
         
         /// <summary>
+        /// div_coincidencias control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_coincidencias;
+        
+        /// <summary>
+        /// btn_habilitar_guardar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_habilitar_guardar;
+        
+        /// <summary>
+        /// btn_verificar_tesina control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_verificar_tesina;
+        
+        /// <summary>
         /// btn_guardar_tesina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btn_guardar_tesina;
+        protected global::System.Web.UI.WebControls.Button btn_guardar_tesina;
         
         /// <summary>
         /// btn_cancelar control.
