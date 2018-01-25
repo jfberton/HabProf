@@ -15,7 +15,7 @@ namespace WebApplication1.Aplicativo
         {
             if (!IsPostBack)
             {
-                if (Session["Perfil"].ToString() != "Admin")
+                if (Session["Perfil"].ToString() != "Administrador")
                 {
                     MessageBox.Show(this, "Usted no tiene permiso para acceder a esta página", MessageBox.Tipo_MessageBox.Danger, "Acceso restringido", "../default.aspx");
                 }
@@ -126,8 +126,8 @@ namespace WebApplication1.Aplicativo
                             persona_email_validado = false,
                             persona_domicilio = tb_domicilio.Value,
                             persona_telefono = tb_telefono.Value,
-                            persona_usuario = "",
-                            persona_clave = "",
+                            persona_usuario = tb_usuario.Value,
+                            persona_clave = Cripto.Encriptar(tb_pass_alta.Value),
                             persona_estilo = "Sandstone"
                         };
                         cxt.Personas.Add(p_tesista);
@@ -137,13 +137,16 @@ namespace WebApplication1.Aplicativo
                         p_tesista.licenciatura_id = usuario.licenciatura_id;
                         p_tesista.persona_nomyap = tb_nombre_tesista.Value;
                         p_tesista.persona_dni = dni;
+                        p_tesista.licenciatura_id = usuario.licenciatura_id;
                         p_tesista.persona_email = tb_email.Value;
                         p_tesista.persona_email_validado = false;
                         p_tesista.persona_domicilio = tb_domicilio.Value;
                         p_tesista.persona_telefono = tb_telefono.Value;
-                        p_tesista.persona_usuario = "";
-                        p_tesista.persona_clave = "";
-                        p_tesista.persona_estilo = "Sandstone";
+                        p_tesista.persona_usuario = tb_usuario.Value;
+                        if (chk_cambiar_clave.Checked)
+                        {
+                            p_tesista.persona_clave = Cripto.Encriptar(tb_contraseña.Value);
+                        }
                     }
 
                     //agrego o actualizo el tesista
@@ -198,6 +201,27 @@ namespace WebApplication1.Aplicativo
             }
         }
 
+        protected void cv_usuario_duplicado_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            int dni = Convert.ToInt32(tb_dni_tesista.Value);
+            bool correcto = true;
+
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                correcto = cxt.Personas.FirstOrDefault(pp => pp.persona_usuario == tb_usuario.Value && pp.persona_dni != dni) == null;
+            }
+
+            args.IsValid = correcto;
+        }
+
+        protected void chk_cambiar_clave_CheckedChanged(object sender, EventArgs e)
+        {
+            tr_chk_change_pass.Visible = chk_cambiar_clave.Checked;
+
+            string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_director').modal('show')});</script>";
+            ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
+        }
+
         protected void btn_editar_ServerClick(object sender, EventArgs e)
         {
             using (HabProfDBContainer cxt = new HabProfDBContainer())
@@ -212,6 +236,11 @@ namespace WebApplication1.Aplicativo
                     tb_email.Value = tesista.Persona.persona_email;
                     tb_nombre_tesista.Value = tesista.Persona.persona_nomyap;
                     tb_telefono.Value = tesista.Persona.persona_telefono;
+                    tb_usuario.Value = tesista.Persona.persona_usuario;
+                    tr_pass_alta.Visible = false;
+                    tr_pass_edit.Visible = true;
+                    chk_cambiar_clave.Checked = false;
+                    tr_chk_change_pass.Visible = false;
                     tb_legajo.Value = tesista.tesista_legajo;
                     tb_sede.Value = tesista.tesista_sede;
                     lbl_agregar_actualizar_tesista.Text = "Actualizar ";
@@ -273,6 +302,16 @@ namespace WebApplication1.Aplicativo
                             tb_email.Value = persona.persona_email;
                             tb_nombre_tesista.Value = persona.persona_nomyap;
                             tb_telefono.Value = persona.persona_telefono;
+                            tb_usuario.Value = persona.persona_usuario;
+                            tr_pass_edit.Visible = true;
+                            chk_cambiar_clave.Checked = false;
+                            tr_chk_change_pass.Visible = false;
+                            tr_pass_alta.Visible = false;
+                        }
+                        else
+                        {
+                            tr_pass_edit.Visible = false;
+                            tr_pass_alta.Visible = true;
                         }
                     }
                 }
@@ -303,6 +342,10 @@ namespace WebApplication1.Aplicativo
             btn_guardar.Visible = false;
 
             tb_tabla_resto_campos.Visible = false;
+            tb_usuario.Value = string.Empty;
+            tb_contraseña.Value = string.Empty;
+            tb_pass_alta.Value = string.Empty;
+            hidden_id_tesista_editar.Value = "0";
 
             string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_tesista').modal('show')});</script>";
             ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);

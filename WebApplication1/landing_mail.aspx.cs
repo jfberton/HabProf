@@ -58,8 +58,6 @@ namespace WebApplication1
                                     texto.InnerHtml = "Listo! Completó los pasos necesarios para la validación del correo: <strong>" + envio.envio_email_destino + "</strong>.<br/>Haga click en el botón para acceder al sistema.";
                                     btn_redireccionar.HRef = "~/default.aspx";
                                     break;
-                                case MiEmail.tipo_mail.notificacion:
-                                    break;
                                 case MiEmail.tipo_mail.recupero_contraseña:
                                     div_validar_correo.Visible = false;
                                     div_recuperar_contraseña.Visible = true;
@@ -67,7 +65,7 @@ namespace WebApplication1
                                     envio.envio_respuesta_recibida = DateTime.Now;
                                     cxt.SaveChanges();
                                     lbl_recuperar_contraseña.Text = "Recuperar contraseña";
-                                    textp_recuperar_contraseña.InnerHtml = "Bienvenido <strong>" + envio.Persona.persona_nomyap +"</strong>, esta teniendo problemas para ingresar? <br/>Para modificar su contraseña complete los siguientes campos y haga click en el botón recuperar.";
+                                    textp_recuperar_contraseña.InnerHtml = "Bienvenido <strong>" + envio.Persona.persona_nomyap + "</strong>, esta teniendo problemas para ingresar? <br/>Para modificar su contraseña complete los siguientes campos y haga click en el botón recuperar.";
                                     break;
                                 default:
                                     break;
@@ -88,8 +86,7 @@ namespace WebApplication1
                                     btn_redireccionar.HRef = "~/default.aspx";
                                     MessageBox.Show(this, "El correo que intenta validar fue modificado o la solicitud ha caducado. Solicite nuevamente el envío de una nueva validación.-", MessageBox.Tipo_MessageBox.Danger, "Error al validar correo", "default.aspx");
                                     break;
-                                case MiEmail.tipo_mail.notificacion:
-                                    break;
+
                                 case MiEmail.tipo_mail.recupero_contraseña:
                                     div_validar_correo.Visible = false;
                                     div_recuperar_contraseña.Visible = true;
@@ -101,7 +98,7 @@ namespace WebApplication1
                                 default:
                                     break;
                             }
-                           
+
                         }
 
                     }
@@ -117,25 +114,20 @@ namespace WebApplication1
 
         protected void btn_recuperar_contraseña_Click(object sender, EventArgs e)
         {
-            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            Validate("pass");
+            if (IsValid)
             {
-                string clave = Request.QueryString["clave"];
-                Envio_mail envio = cxt.Envio_mails.FirstOrDefault(eemm => eemm.envio_respuesta_clave == clave);
-                Persona p_cxt = cxt.Personas.FirstOrDefault(pp => pp.persona_id == envio.persona_id);
-
-                if (tb_pass.Value == tb_pass1.Value)
+                using (HabProfDBContainer cxt = new HabProfDBContainer())
                 {
-                    p_cxt.persona_clave = Cripto.Encriptar(tb_pass.Value);
+                    string clave = Request.QueryString["clave"];
+                    Envio_mail envio = cxt.Envio_mails.FirstOrDefault(eemm => eemm.envio_respuesta_clave == clave);
+                    Persona p_cxt = cxt.Personas.FirstOrDefault(pp => pp.persona_id == envio.persona_id);
+
+                    p_cxt.persona_clave = Cripto.Encriptar(tb_pass.Text);
                     cxt.SaveChanges();
                     MessageBox.Show(this, "La contraseña se modificó correctamente", MessageBox.Tipo_MessageBox.Success, "Éxito!", "default.aspx");
                 }
-                else
-                {
-                    MessageBox.Show(this, "Las contraseñas ingresadas no coinciden", MessageBox.Tipo_MessageBox.Danger);
-                }
-
             }
-            
         }
     }
 }

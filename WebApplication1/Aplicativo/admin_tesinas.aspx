@@ -13,7 +13,8 @@
         <li>Administrar tesinas</li>
     </ol>
 
-    <h1>Tesinas <small>Listado de tesinas de la licenciatura</small></h1>
+    <h1>Tesinas <small>
+        <asp:Label Text="Listado de Tesinas de la Licenciatura" runat="server" ID="lbl_small_titulo" /></small></h1>
     <div class="row">
         <div class="col-md-10">
             <div class="alert alert-warning" role="alert" runat="server" id="lbl_sin_tesinas">
@@ -34,6 +35,7 @@
             <asp:GridView ID="gv_tesinas" runat="server" OnPreRender="gv_tesinas_PreRender"
                 AutoGenerateColumns="False" GridLines="None" CssClass="display">
                 <Columns>
+                    <asp:BoundField DataField="prioridad_orden" HeaderText="Orden" ReadOnly="true" />
                     <asp:BoundField DataField="tesista" HeaderText="Tesista" ReadOnly="true" />
                     <asp:BoundField DataField="director" HeaderText="Director" ReadOnly="true" />
                     <asp:TemplateField HeaderText="Tema">
@@ -162,6 +164,7 @@
                                     <asp:GridView ID="gv_historial" runat="server" OnPreRender="gv_tesinas_PreRender"
                                         AutoGenerateColumns="False" GridLines="None" CssClass="display">
                                         <Columns>
+
                                             <asp:BoundField DataField="fecha" HeaderText="Fecha" DataFormatString="{0:d}" ReadOnly="true" />
                                             <asp:BoundField DataField="estado" HeaderText="Estado" ReadOnly="true" />
                                             <asp:TemplateField HeaderText="Observaciones">
@@ -203,9 +206,17 @@
 
         $(document).ready(function () {
             $('#<%= gv_tesinas.ClientID %>').DataTable({
-                //"scrollY": "400px",
-                //"scrollCollapse": true,
-                "paging": true,
+                "scrollY": "400px",
+                "scrollCollapse": true,
+                "columns": [
+                          { "visible": false },
+                          null,
+                          null,
+                          null,
+                          null,
+                          null
+                ],
+                "order": [ 0, 'asc' ],
                 "language": {
                     "search": "Buscar:",
                     "emptyTable": "Sin registros",

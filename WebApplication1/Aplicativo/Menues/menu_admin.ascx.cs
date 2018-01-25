@@ -14,8 +14,25 @@ namespace WebApplication1.Aplicativo.Menues
         {
             if (!IsPostBack)
             {
-                Persona admin = Session["UsuarioLogueado"] as Persona;
-                lbl_usuario.Text = admin.persona_nomyap;
+                Persona user = Session["UsuarioLogueado"] as Persona;
+                lbl_usuario.Text = user.persona_nomyap;
+
+                string perfil = Session["Perfil"].ToString();
+
+                switch (perfil)
+                {
+                    case "Administrador":
+                        break;
+                    case "Director":
+                        li_admin_directores.Visible = false;
+                        li_admin_jueces.Visible = false;
+                        li_admin_tesistas.Visible = false;
+                        li_comprobar_tema.Visible = false;
+                        break;
+
+                    default:
+                        break;
+                }
             }
         }
 

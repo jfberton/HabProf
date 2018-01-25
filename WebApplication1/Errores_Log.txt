@@ -2,317 +2,13 @@
 
 ******************************************************************
 
-ERRORID: 636522178371219342
+ERRORID: 636523918764960330
 
-DATE: 22/01/2018 11:37:17
-
-AGENTE: admin
-
-MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
-
-SOURCE: WebApplication1
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesistas.aspx
-
-TARGETSITE: Void btn_guardar_ServerClick(System.Object, System.EventArgs)
-
-STACKTRACE:    en WebApplication1.Aplicativo.admin_tesistas.btn_guardar_ServerClick(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesistas.aspx.cs:línea 111
-   en System.Web.UI.HtmlControls.HtmlButton.OnServerClick(EventArgs e)
-   en System.Web.UI.HtmlControls.HtmlButton.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.HtmlControls.HtmlButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636522398712952168
-
-DATE: 22/01/2018 17:44:31
+DATE: 24/01/2018 11:57:56
 
 AGENTE: admin
 
-MESSAGE: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx(315): error CS1061: 'aplicativo_admin_tesina_aspx' does not contain a definition for 'btn_modificar_estado_ServerClick' and no extension method 'btn_modificar_estado_ServerClick' accepting a first argument of type 'aplicativo_admin_tesina_aspx' could be found (are you missing a using directive or an assembly reference?)
-
-SOURCE: System.Web
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesina.aspx
-
-TARGETSITE: System.CodeDom.Compiler.CompilerResults Compile()
-
-STACKTRACE:    en System.Web.Compilation.AssemblyBuilder.Compile()
-   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
-   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
-   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
-   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
-   en System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
-   en System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
-   en System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
-   en System.Web.UI.PageHandlerFactory.GetHandler(HttpContext context, String requestType, String virtualPath, String path)
-   en System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   en System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
-   en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636522398809607697
-
-DATE: 22/01/2018 17:44:40
-
-AGENTE: admin
-
-MESSAGE: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx(315): error CS1061: 'aplicativo_admin_tesina_aspx' does not contain a definition for 'btn_modificar_estado_ServerClick' and no extension method 'btn_modificar_estado_ServerClick' accepting a first argument of type 'aplicativo_admin_tesina_aspx' could be found (are you missing a using directive or an assembly reference?)
-
-SOURCE: System.Web
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesina.aspx
-
-TARGETSITE: System.CodeDom.Compiler.CompilerResults Compile()
-
-STACKTRACE:    en System.Web.Compilation.BuildManager.PostProcessFoundBuildResult(BuildResult result, Boolean keyFromVPP, VirtualPath virtualPath)
-   en System.Web.Compilation.BuildManager.GetBuildResultFromCacheInternal(String cacheKey, Boolean keyFromVPP, VirtualPath virtualPath, Int64 hashCode, Boolean ensureIsUpToDate)
-   en System.Web.Compilation.BuildManager.GetVPathBuildResultFromCacheInternal(VirtualPath virtualPath, Boolean ensureIsUpToDate)
-   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
-   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
-   en System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
-   en System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
-   en System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
-   en System.Web.UI.PageHandlerFactory.GetHandler(HttpContext context, String requestType, String virtualPath, String path)
-   en System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   en System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
-   en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636522405531292155
-
-DATE: 22/01/2018 17:55:53
-
-AGENTE: admin
-
-MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
-
-SOURCE: WebApplication1
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesina.aspx?t=mey2kB1VSEUyIkLQiQgeNQ%3d%3d
-
-TARGETSITE: Void Cargar_historial_estados()
-
-STACKTRACE:    en WebApplication1.Aplicativo.admin_tesina.Cargar_historial_estados() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 53
-   en WebApplication1.Aplicativo.admin_tesina.btn_tesina_ver_historial_ServerClick(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 116
-   en System.Web.UI.HtmlControls.HtmlButton.OnServerClick(EventArgs e)
-   en System.Web.UI.HtmlControls.HtmlButton.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.HtmlControls.HtmlButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636522424313616443
-
-DATE: 22/01/2018 18:27:11
-
-AGENTE: admin
-
-MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
-
-SOURCE: Seguridad
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesina.aspx
-
-TARGETSITE: Void Desencriptar()
-
-STACKTRACE:    en Seguridad.Encriptacion.Desencriptar() en D:\Desarrollo\Encriptador\Encriptador\Seguridad\Encriptacion.cs:línea 112
-   en WebApplication1.Aplicativo.Cripto.Desencriptar(String valor) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\Cripto.cs:línea 31
-   en WebApplication1.Aplicativo.admin_tesina.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 22
-   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   en System.Web.UI.Control.OnLoad(EventArgs e)
-   en System.Web.UI.Control.LoadRecursive()
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636522426747535655
-
-DATE: 22/01/2018 18:31:14
-
-AGENTE: admin
-
-MESSAGE: Longitud no válida para una matriz o cadena de caracteres Base-64.
-
-SOURCE: mscorlib
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesina.aspx?t=K62J/j8NV7JuENo8+87SFA==
-
-TARGETSITE: Int32 FromBase64_Decode(Char*, Int32, Byte*, Int32)
-
-STACKTRACE:    en System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
-   en System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
-   en System.Convert.FromBase64String(String s)
-   en Seguridad.Encriptacion.Desencriptar() en D:\Desarrollo\Encriptador\Encriptador\Seguridad\Encriptacion.cs:línea 129
-   en WebApplication1.Aplicativo.Cripto.Desencriptar(String valor) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\Cripto.cs:línea 31
-   en WebApplication1.Aplicativo.admin_tesina.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 23
-   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   en System.Web.UI.Control.OnLoad(EventArgs e)
-   en System.Web.UI.Control.LoadRecursive()
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636522427018401147
-
-DATE: 22/01/2018 18:31:41
-
-AGENTE: admin
-
-MESSAGE: Longitud no válida para una matriz o cadena de caracteres Base-64.
-
-SOURCE: mscorlib
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesina.aspx?t=K62J/j8NV7JuENo8+87SFA==
-
-TARGETSITE: Int32 FromBase64_Decode(Char*, Int32, Byte*, Int32)
-
-STACKTRACE:    en System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
-   en System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
-   en System.Convert.FromBase64String(String s)
-   en Seguridad.Encriptacion.Desencriptar() en D:\Desarrollo\Encriptador\Encriptador\Seguridad\Encriptacion.cs:línea 129
-   en WebApplication1.Aplicativo.Cripto.Desencriptar(String valor) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\Cripto.cs:línea 31
-   en WebApplication1.Aplicativo.admin_tesina.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 23
-   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   en System.Web.UI.Control.OnLoad(EventArgs e)
-   en System.Web.UI.Control.LoadRecursive()
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636522433295860198
-
-DATE: 22/01/2018 18:42:09
-
-AGENTE: admin
-
-MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
-
-SOURCE: WebApplication1
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesina.aspx?t=6
-
-TARGETSITE: Void Mostrar_datos_tesina()
-
-STACKTRACE:    en WebApplication1.Aplicativo.admin_tesina.Mostrar_datos_tesina() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 43
-   en WebApplication1.Aplicativo.admin_tesina.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 20
-   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   en System.Web.UI.Control.OnLoad(EventArgs e)
-   en System.Web.UI.Control.LoadRecursive()
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636522445875437336
-
-DATE: 22/01/2018 19:03:07
-
-AGENTE: admin
-
-MESSAGE: Referencia a objeto no establecida como instancia de un objeto.
-
-SOURCE: WebApplication1
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesina.aspx?t=1
-
-TARGETSITE: Void Cargar_historial_estados()
-
-STACKTRACE:    en WebApplication1.Aplicativo.admin_tesina.Cargar_historial_estados() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 77
-   en WebApplication1.Aplicativo.admin_tesina.Mostrar_datos_tesina() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 61
-   en WebApplication1.Aplicativo.admin_tesina.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 20
-   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   en System.Web.UI.Control.OnLoad(EventArgs e)
-   en System.Web.UI.Control.LoadRecursive()
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636523032827836781
-
-DATE: 23/01/2018 11:21:22
-
-AGENTE: admin
-
-MESSAGE: The ObjectContext instance has been disposed and can no longer be used for operations that require a connection.
+MESSAGE: Only parameterless constructors and initializers are supported in LINQ to Entities.
 
 SOURCE: EntityFramework
 
@@ -320,19 +16,184 @@ INSTANCE:
 
 DATA: System.Collections.ListDictionaryInternal
 
+URL: http://localhost:60142/Aplicativo/admin_tesinas.aspx
+
+TARGETSITE: System.Data.Entity.Core.Common.CommandTrees.DbExpression TypedTranslate(System.Data.Entity.Core.Objects.ELinq.ExpressionConverter, System.Linq.Expressions.MemberInitExpression)
+
+STACKTRACE:    en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MemberInitTranslator.TypedTranslate(ExpressionConverter parent, MemberInitExpression linq)
+   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input)
+   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input, DbExpressionBinding& binding)
+   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
+   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SelectTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
+   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
+   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
+   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
+   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
+   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
+   en System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   en System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   en System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   en System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   en WebApplication1.Aplicativo.admin_tesinas.ObtenerTesinas() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesinas.aspx.cs:línea 48
+   en WebApplication1.Aplicativo.admin_tesinas.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesinas.aspx.cs:línea 24
+   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   en System.Web.UI.Control.OnLoad(EventArgs e)
+   en System.Web.UI.Control.LoadRecursive()
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636523922380207111
+
+DATE: 24/01/2018 12:03:58
+
+AGENTE: dire
+
+MESSAGE: El método no estático necesita un destino.
+
+SOURCE: mscorlib
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/admin_tesinas.aspx
+
+TARGETSITE: Void CheckConsistency(System.Object)
+
+STACKTRACE:    en System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
+   en System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   en System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   en System.Reflection.RuntimePropertyInfo.GetValue(Object obj, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
+   en System.Reflection.RuntimePropertyInfo.GetValue(Object obj, Object[] index)
+   en System.Data.Entity.Core.Objects.ELinq.QueryParameterExpression.TryGetFieldOrPropertyValue(MemberExpression me, Object instance, Object& memberValue)
+   en System.Data.Entity.Core.Objects.ELinq.QueryParameterExpression.TryEvaluatePath(Expression expression, ConstantExpression& constantExpression)
+   en System.Data.Entity.Core.Objects.ELinq.QueryParameterExpression.EvaluateParameter(Object[] arguments)
+   en System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   en System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   en System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   en System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   en System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
+   en System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   en System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   en System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   en System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
+   en WebApplication1.Aplicativo.admin_tesinas.ObtenerTesinas() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesinas.aspx.cs:línea 54
+   en WebApplication1.Aplicativo.admin_tesinas.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesinas.aspx.cs:línea 24
+   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
+   en System.Web.UI.Control.OnLoad(EventArgs e)
+   en System.Web.UI.Control.LoadRecursive()
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636524742664500308
+
+DATE: 25/01/2018 10:51:06
+
+AGENTE: Sin autenticar.
+
+MESSAGE: No se puede encontrar el identificador de control 'tb_pass_alta' al que hace referencia la propiedad 'ControlToValidate' de 'regx_pass'.
+
+SOURCE: System.Web
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/landing_mail.aspx?tipo_mail=recupero_contraseña&clave=cc43e9ad-94e4-4aae-b420-e32f83b94650
+
+TARGETSITE: Void CheckControlValidationProperty(System.String, System.String)
+
+STACKTRACE:    en System.Web.UI.WebControls.BaseValidator.CheckControlValidationProperty(String name, String propertyName)
+   en System.Web.UI.WebControls.BaseValidator.ControlPropertiesValid()
+   en System.Web.UI.WebControls.BaseValidator.OnPreRender(EventArgs e)
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636524744784501565
+
+DATE: 25/01/2018 10:54:38
+
+AGENTE: Sin autenticar.
+
+MESSAGE: No se puede encontrar el identificador de control 'tb_pass_alta' al que hace referencia la propiedad 'ControlToValidate' de 'regx_pass'.
+
+SOURCE: System.Web
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/landing_mail.aspx?tipo_mail=recupero_contraseña&clave=cc43e9ad-94e4-4aae-b420-e32f83b94650
+
+TARGETSITE: Void CheckControlValidationProperty(System.String, System.String)
+
+STACKTRACE:    en System.Web.UI.WebControls.BaseValidator.CheckControlValidationProperty(String name, String propertyName)
+   en System.Web.UI.WebControls.BaseValidator.ControlPropertiesValid()
+   en System.Web.UI.WebControls.BaseValidator.OnPreRender(EventArgs e)
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636524781244242492
+
+DATE: 25/01/2018 11:55:24
+
+AGENTE: admin
+
+MESSAGE: No se puede convertir un objeto de tipo 'System.Web.UI.WebControls.HiddenField' al tipo 'System.IConvertible'.
+
+SOURCE: mscorlib
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
 URL: http://localhost:60142/Aplicativo/admin_tesina.aspx
 
-TARGETSITE: System.Data.Common.DbConnection get_Connection()
+TARGETSITE: Int32 ToInt32(System.Object)
 
-STACKTRACE:    en System.Data.Entity.Core.Objects.ObjectContext.get_Connection()
-   en System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   en System.Data.Entity.Core.Objects.ObjectQuery`1.Execute(MergeOption mergeOption)
-   en System.Data.Entity.Core.Objects.DataClasses.EntityReference`1.Load(MergeOption mergeOption)
-   en System.Data.Entity.Core.Objects.DataClasses.RelatedEnd.DeferredLoad()
-   en System.Data.Entity.Core.Objects.Internal.LazyLoadBehavior.LoadProperty[TItem](TItem propertyValue, String relationshipName, String targetRoleName, Boolean mustBeNull, Object wrapperObject)
-   en System.Data.Entity.Core.Objects.Internal.LazyLoadBehavior.<>c__DisplayClass7`2.<GetInterceptorDelegate>b__2(TProxy proxy, TItem item)
-   en System.Data.Entity.DynamicProxies.Tesina_527C3537C38759AC4272B23815127C4ED1EF54A8970E6C5C4E5FD9F5A67020E1.get_Tesista()
-   en WebApplication1.Aplicativo.admin_tesina.btn_verificar_tesina_Click(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 334
+STACKTRACE:    en System.Convert.ToInt32(Object value)
+   en WebApplication1.Aplicativo.admin_tesina.btn_enviar_correos_Click(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 497
    en System.Web.UI.WebControls.Button.OnClick(EventArgs e)
    en System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
    en System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
@@ -346,89 +207,13 @@ STACKTRACE:    en System.Data.Entity.Core.Objects.ObjectContext.get_Connection()
 
 ******************************************************************
 
-ERRORID: 636523058847768090
+ERRORID: 636524832913237819
 
-DATE: 23/01/2018 12:04:44
+DATE: 25/01/2018 13:21:31
 
-AGENTE: admin
+AGENTE: dire
 
-MESSAGE: A relationship multiplicity constraint violation occurred: An EntityReference can have no more than one related object, but the query returned more than one related object. This is a non-recoverable error.
-
-SOURCE: EntityFramework
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/default.aspx
-
-TARGETSITE: Void HandleRefreshedValue(System.Data.Entity.Core.Objects.MergeOption, System.Collections.Generic.IList`1[TEntity])
-
-STACKTRACE:    en System.Data.Entity.Core.Objects.DataClasses.EntityReference`1.HandleRefreshedValue(MergeOption mergeOption, IList`1 refreshedValue)
-   en System.Data.Entity.Core.Objects.DataClasses.EntityReference`1.Load(MergeOption mergeOption)
-   en System.Data.Entity.Core.Objects.DataClasses.RelatedEnd.DeferredLoad()
-   en System.Data.Entity.Core.Objects.Internal.LazyLoadBehavior.LoadProperty[TItem](TItem propertyValue, String relationshipName, String targetRoleName, Boolean mustBeNull, Object wrapperObject)
-   en System.Data.Entity.Core.Objects.Internal.LazyLoadBehavior.<>c__DisplayClass7`2.<GetInterceptorDelegate>b__2(TProxy proxy, TItem item)
-   en System.Data.Entity.DynamicProxies.Persona_7580C8417F54308716327CDA93A98DEF5883C6B1CF3B3753E4F32B75AF5645D2.get_Administrador()
-   en WebApplication1._default.btn_ingresar_ServerClick(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\default.aspx.cs:línea 39
-   en System.Web.UI.HtmlControls.HtmlButton.OnServerClick(EventArgs e)
-   en System.Web.UI.HtmlControls.HtmlButton.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.HtmlControls.HtmlButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636523061768346688
-
-DATE: 23/01/2018 12:09:36
-
-AGENTE: admin
-
-MESSAGE: A relationship multiplicity constraint violation occurred: An EntityReference can have no more than one related object, but the query returned more than one related object. This is a non-recoverable error.
-
-SOURCE: EntityFramework
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/default.aspx
-
-TARGETSITE: Void HandleRefreshedValue(System.Data.Entity.Core.Objects.MergeOption, System.Collections.Generic.IList`1[TEntity])
-
-STACKTRACE:    en System.Data.Entity.Core.Objects.DataClasses.EntityReference`1.HandleRefreshedValue(MergeOption mergeOption, IList`1 refreshedValue)
-   en System.Data.Entity.Core.Objects.DataClasses.EntityReference`1.Load(MergeOption mergeOption)
-   en System.Data.Entity.Core.Objects.DataClasses.RelatedEnd.DeferredLoad()
-   en System.Data.Entity.Core.Objects.Internal.LazyLoadBehavior.LoadProperty[TItem](TItem propertyValue, String relationshipName, String targetRoleName, Boolean mustBeNull, Object wrapperObject)
-   en System.Data.Entity.Core.Objects.Internal.LazyLoadBehavior.<>c__DisplayClass7`2.<GetInterceptorDelegate>b__2(TProxy proxy, TItem item)
-   en System.Data.Entity.DynamicProxies.Persona_7580C8417F54308716327CDA93A98DEF5883C6B1CF3B3753E4F32B75AF5645D2.get_Tesista()
-   en WebApplication1._default.btn_ingresar_ServerClick(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\default.aspx.cs:línea 41
-   en System.Web.UI.HtmlControls.HtmlButton.OnServerClick(EventArgs e)
-   en System.Web.UI.HtmlControls.HtmlButton.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.HtmlControls.HtmlButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636523280510067554
-
-DATE: 23/01/2018 18:14:11
-
-AGENTE: admin
-
-MESSAGE: Se excedió la longitud de solicitud máxima.
+MESSAGE: El archivo '/Aplicativo/director_jueces.aspx' no existe.
 
 SOURCE: System.Web
 
@@ -436,19 +221,20 @@ INSTANCE:
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/Aplicativo/admin_tesina.aspx?t=124
+URL: http://localhost:60142/Aplicativo/director_jueces.aspx
 
-TARGETSITE: System.Web.HttpRawUploadedContent GetEntireRawContent()
+TARGETSITE: Void CheckVirtualFileExists(System.Web.VirtualPath)
 
-STACKTRACE:    en System.Web.HttpRequest.GetEntireRawContent()
-   en System.Web.HttpRequest.GetMultipartContent()
-   en System.Web.HttpRequest.FillInFormCollection()
-   en System.Web.HttpRequest.EnsureForm()
-   en System.Web.HttpRequest.get_Form()
-   en System.Web.HttpRequest.get_HasForm()
-   en System.Web.UI.Page.GetCollectionBasedOnMethod(Boolean dontReturnNull)
-   en System.Web.UI.Page.DeterminePostBackMode()
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+STACKTRACE:    en System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   en System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   en System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   en System.Web.UI.PageHandlerFactory.GetHandler(HttpContext context, String requestType, String virtualPath, String path)
+   en System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   en System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
 
 ******************************************************************
@@ -456,13 +242,13 @@ STACKTRACE:    en System.Web.HttpRequest.GetEntireRawContent()
 
 ******************************************************************
 
-ERRORID: 636523280715611840
+ERRORID: 636524833583435221
 
-DATE: 23/01/2018 18:14:31
+DATE: 25/01/2018 13:22:38
 
-AGENTE: admin
+AGENTE: dire
 
-MESSAGE: Argumento de postback o de devolución de llamadas no válido. La validación de eventos se habilita usando <pages enableEventValidation="true"/> en la configuración o <%@ Page EnableEventValidation="true" %> en una página. Por motivos de seguridad, esta característica comprueba que los argumentos pasados a eventos de postback o de devolución de llamadas se origina desde el control del servidor que inicialmente los procesó. Si los datos son válidos y son los que se esperaba, utilice el método ClientScriptManager.RegisterForEventValidation para registrar los datos de postback o de devolución de llamadas para su validación.
+MESSAGE: El archivo '/Aplicativo/~/default.aspx' no existe.
 
 SOURCE: System.Web
 
@@ -470,17 +256,20 @@ INSTANCE:
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/Aplicativo/admin_tesinas.aspx
+URL: http://localhost:60142/Aplicativo/~/default.aspx
 
-TARGETSITE: Void ValidateEvent(System.String, System.String)
+TARGETSITE: Void CheckVirtualFileExists(System.Web.VirtualPath)
 
-STACKTRACE:    en System.Web.UI.ClientScriptManager.ValidateEvent(String uniqueId, String argument)
-   en System.Web.UI.Control.ValidateEvent(String uniqueID, String eventArgument)
-   en System.Web.UI.HtmlControls.HtmlButton.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.HtmlControls.HtmlButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
-   en System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+STACKTRACE:    en System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   en System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   en System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   en System.Web.UI.PageHandlerFactory.GetHandler(HttpContext context, String requestType, String virtualPath, String path)
+   en System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   en System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
 
 ******************************************************************

@@ -23,10 +23,10 @@ namespace WebApplication1
 
             switch (perfil)
             {
-                case "Admin":
+                case "Administrador":
                     Response.Redirect("~/Aplicativo/admin_home.aspx");
                     break;
-                case "Dire":
+                case "Director":
                     Response.Redirect("~/Aplicativo/director_home.aspx");
                     break;
                 default:

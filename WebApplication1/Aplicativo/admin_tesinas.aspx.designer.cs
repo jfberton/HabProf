@@ -22,6 +22,15 @@ namespace WebApplication1.Aplicativo {
         protected global::WebApplication1.Aplicativo.Menues.menu_admin menu_admin;
         
         /// <summary>
+        /// lbl_small_titulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_small_titulo;
+        
+        /// <summary>
         /// lbl_sin_tesinas control.
         /// </summary>
         /// <remarks>

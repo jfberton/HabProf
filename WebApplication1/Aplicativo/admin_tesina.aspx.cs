@@ -15,11 +15,66 @@ namespace WebApplication1.Aplicativo
         {
             if (!IsPostBack)
             {
-
-
+                Verificar_Acceso();
                 Mostrar_datos_tesina();
             }
 
+        }
+
+        /// <summary>
+        /// Verifico el usuario que esta logueado y si puede ver esta pagina
+        /// </summary>
+        private void Verificar_Acceso()
+        {
+            Persona usuario = Session["UsuarioLogueado"] as Persona;
+            string perfil = Session["Perfil"].ToString();
+            string str_tesina_id = Request.QueryString["t"];
+            if (str_tesina_id == null)
+            {
+                //la tesina es nueva o sea tiene que ser administrador
+                if (perfil != "Administrador")
+                {
+                    MessageBox.Show(this, "Usted no tiene permiso para acceder a esta página", MessageBox.Tipo_MessageBox.Danger, "Acceso restringido", "../default.aspx");
+                }
+            }
+            else
+            {
+                int tesina_id;
+                if (int.TryParse(str_tesina_id, out tesina_id))
+                {
+                    //existe la tesina, entro a editar, si el perfil es director o tesista, los mismos tienen que estar asignados a la tesina, sino fuera!
+                    using (HabProfDBContainer cxt = new HabProfDBContainer())
+                    {
+                        if (perfil == "Director")
+                        {
+                            Persona p = cxt.Personas.FirstOrDefault(pp => pp.persona_id == usuario.persona_id);
+                            //se que la persona tiene perfil director porque se logueo con ese perfil, por eso consulto por p.Director.director_id sin miedo a que de error
+                            Tesina t = cxt.Tesinas.FirstOrDefault(tt => tt.director_id == p.Director.director_id && tt.tesina_id == tesina_id);
+                            if (t == null)
+                            {
+                                //ese director no tiene la tesina que se esta por editar entre sus tesinas
+                                MessageBox.Show(this, "Usted no tiene permiso para acceder a esta página", MessageBox.Tipo_MessageBox.Danger, "Acceso restringido", "../default.aspx");
+                            }
+                        }
+
+                        if (perfil == "Tesista")
+                        {
+                            Persona p = cxt.Personas.FirstOrDefault(pp => pp.persona_id == usuario.persona_id);
+                            //se que la persona tiene perfil director porque se logueo con ese perfil, por eso consulto por p.Director.director_id sin miedo a que de error
+                            Tesina t = cxt.Tesinas.FirstOrDefault(tt => tt.director_id == p.Tesista.tesista_id && tt.tesina_id == tesina_id);
+                            if (t == null)
+                            {
+                                //ese tesista no tiene la tesina que se esta por editar
+                                MessageBox.Show(this, "Usted no tiene permiso para acceder a esta página", MessageBox.Tipo_MessageBox.Danger, "Acceso restringido", "../default.aspx");
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(this, "Usted no tiene permiso para acceder a esta página", MessageBox.Tipo_MessageBox.Danger, "Acceso restringido", "../default.aspx");
+                }
+            }
         }
 
         private void Mostrar_datos_tesina()
@@ -38,7 +93,7 @@ namespace WebApplication1.Aplicativo
                 tb_duracion.Value = "";
                 tb_notificacion.Value = "";
                 tb_estado.Text = "";
-                file_tesina.Visible = false;
+                div_archivo.Visible = false;
             }
             else
             {
@@ -59,6 +114,7 @@ namespace WebApplication1.Aplicativo
                         tb_duracion.Value = t.tesina_plan_duracion_meses.ToString();
                         tb_notificacion.Value = t.tesina_plan_aviso_meses.ToString();
                         tb_estado.Text = t.Estado.estado_tesina_estado;
+                        btn_buscar_tesista.Visible = false;
                         Cargar_historial_estados();
                     }
 
@@ -71,29 +127,38 @@ namespace WebApplication1.Aplicativo
             string str_tesina_id = Request.QueryString["t"];
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
-                int tesina_id = Convert.ToInt32(str_tesina_id);
-                Tesina t = cxt.Tesinas.FirstOrDefault(tt => tt.tesina_id == tesina_id);
-                if (t != null)
+                if (str_tesina_id != null)
                 {
-                    var historial = (from he in t.Historial_estados
-                                     select new
-                                     {
-                                         fecha = he.historial_tesina_fecha,
-                                         estado = he.Estado.estado_tesina_estado,
-                                         observacion_completa = he.historial_tesina_descripcion
-                                     }).ToList();
+                    int tesina_id = Convert.ToInt32(str_tesina_id);
+                    Tesina t = cxt.Tesinas.FirstOrDefault(tt => tt.tesina_id == tesina_id);
+                    if (t != null)
+                    {
+                        var historial = (from he in t.Historial_estados
+                                         select new
+                                         {
+                                             fecha = he.historial_tesina_fecha,
+                                             estado = he.Estado.estado_tesina_estado,
+                                             observacion_completa = he.historial_tesina_descripcion
+                                         }).ToList();
 
-                    var historial_con_observacion_recortada = (from he in historial
-                                                               select new
-                                                               {
-                                                                   fecha = he.fecha,
-                                                                   estado = he.estado,
-                                                                   observacion_completa = he.observacion_completa,
-                                                                   observacion_recortada = he.observacion_completa.Length > 40 ? he.observacion_completa.Substring(0, 40) + "..." : he.observacion_completa
-                                                               }).ToList();
+                        var historial_con_observacion_recortada = (from he in historial
+                                                                   select new
+                                                                   {
+                                                                       fecha = he.fecha,
+                                                                       estado = he.estado,
+                                                                       observacion_completa = he.observacion_completa,
+                                                                       observacion_recortada = he.observacion_completa.Length > 40 ? he.observacion_completa.Substring(0, 40) + "..." : he.observacion_completa
+                                                                   }).ToList();
 
-                    gv_historial.DataSource = historial_con_observacion_recortada;
-                    gv_historial.DataBind();
+                        gv_historial.DataSource = historial_con_observacion_recortada;
+                        gv_historial.DataBind();
+
+
+                    }
+                }
+                else
+                {
+                    btn_buscar_tesista.Visible = true;
                 }
             }
         }
@@ -264,7 +329,6 @@ namespace WebApplication1.Aplicativo
             args.IsValid = notificaciones <= duracion;
         }
 
-
         private struct resultado_coincidencias
         {
             public Tesina tesina { get; set; }
@@ -340,6 +404,10 @@ namespace WebApplication1.Aplicativo
                     string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#mostrar_coincidencias').modal('show')});</script>";
                     ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
                 }
+                else
+                {
+                    btn_guardar_tesina.Enabled = true;
+                }
 
                 #endregion
             }
@@ -352,10 +420,131 @@ namespace WebApplication1.Aplicativo
 
         protected void btn_guardar_tesina_ServerClick(object sender, EventArgs e)
         {
+            //se supone que ingreso aca porque esta todo bien, sino corregir en el boton verificar
+            string str_tesina_id = Request.QueryString["t"];
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                if (str_tesina_id == null)
+                {
+                    try
+                    {
+                        //tesina nueva (la mas facil)
+                        Tesina t = new Tesina();
+                        t.director_id = Convert.ToInt32(hidden_director_id.Value);
+                        t.tesista_id = Convert.ToInt32(hidden_tesista_id.Value);
+                        t.tesina_tema = tb_tema.Value;
+                        t.tesina_descripcion = tb_descripcion.Value;
+                        t.tesina_plan_fch_presentacion = Convert.ToDateTime(tb_fecha_inicio.Value);
+                        t.tesina_plan_duracion_meses = Convert.ToInt16(tb_duracion.Value);
+                        t.tesina_plan_aviso_meses = Convert.ToInt16(tb_notificacion.Value);
+                        t.estado_tesis_id = cxt.Estados_tesinas.FirstOrDefault(ee => ee.estado_tesina_estado == "Iniciada").estado_tesina_id;
+                        Historial_estado he = new Historial_estado()
+                        {
+                            estado_tesina_id = t.estado_tesis_id,
+                            historial_tesina_fecha = DateTime.Today,
+                            Tesina = t,
+                            historial_tesina_descripcion = "Se ha dado de alta la tesina con fecha de inicio " + tb_fecha_inicio.Value
+                        };
 
+                        cxt.Tesinas.Add(t);
+                        cxt.Historial_estados.Add(he);
+                        cxt.SaveChanges();
+
+                        hidden_id_tesina_a_mandar.Value = t.tesina_id.ToString();
+
+                        string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#consulto_por_envio_mail').modal('show')});</script>";
+                        ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
+                    }
+                    catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                    {
+                        Exception raise = dbEx;
+                        foreach (var validationErrors in dbEx.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                string message = string.Format("{0}:{1}",
+                                    validationErrors.Entry.Entity.ToString(),
+                                    validationError.ErrorMessage);
+                                // raise a new exception nesting
+                                // the current instance as InnerException
+                                raise = new InvalidOperationException(message, raise);
+                            }
+                        }
+
+                        MessageBox.Show(this, raise.Message, MessageBox.Tipo_MessageBox.Danger, "Ups! ocurrio un error al guardar los cambios");
+                    }
+
+                }
+                else
+                {
+                    //tesina existente, editar
+                    int tesina_id = 0;
+                    if (int.TryParse(str_tesina_id, out tesina_id))
+                    {
+                        //aca verificar el estado y los cambios que tiene que hacer dependiendo del mismo.
+                    }
+                    else
+                    {
+                        MessageBox.Show(this, "Error en el identificador de la tesina", MessageBox.Tipo_MessageBox.Danger, "Error general", "../default.aspx");
+                    }
+                }
+            }
+           
         }
 
-        
+        protected void btn_enviar_correos_Click(object sender, EventArgs e)
+        {
+            int tesina_id = Convert.ToInt32(hidden_id_tesina_a_mandar.Value);
+
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                Tesina t = cxt.Tesinas.
+                    Include("Tesista").
+                    Include("Tesista.Persona").
+                    Include("Director").
+                    Include("Director.Persona").FirstOrDefault(tt => tt.tesina_id == tesina_id);
+
+                Envio_mail registro_envio_mail_director = new Envio_mail()
+                {
+                    persona_id = t.Director.Persona.persona_id,
+                    envio_fecha_hora = DateTime.Now,
+                    envio_email_destino = t.Director.Persona.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
+                    envio_respuesta_clave = "no se usa",
+                    envio_tipo = MiEmail.tipo_mail.notificacion_asignacion_tesina_director.ToString()
+                };
+
+                Envio_mail registro_envio_mail_tesista = new Envio_mail()
+                {
+                    persona_id = t.Tesista.Persona.persona_id,
+                    envio_fecha_hora = DateTime.Now,
+                    envio_email_destino = t.Tesista.Persona.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
+                    envio_respuesta_clave = "no se usa",
+                    envio_tipo = MiEmail.tipo_mail.notificacion_inicio_tesina_tesista.ToString()
+                };
+
+                cxt.Envio_mails.Add(registro_envio_mail_director);
+                cxt.Envio_mails.Add(registro_envio_mail_tesista);
+                cxt.SaveChanges();
+
+                MiEmail mail_director = new MiEmail(registro_envio_mail_director, t);
+                MiEmail mail_tesista = new MiEmail(registro_envio_mail_tesista, t);
+
+                if (mail_director.Enviar_mail() && mail_tesista.Enviar_mail())
+                {
+                    MessageBox.Show(this, "Los correos se enviaron satisfactoriamente", MessageBox.Tipo_MessageBox.Success, "Atención", "../Aplicativo/admin_tesinas.aspx");
+                }
+                else
+                {
+                    MessageBox.Show(this, "Ocurrio un error en el envio del correo", MessageBox.Tipo_MessageBox.Warning, "Oops!!", "../Aplicativo/admin_tesinas.aspx");
+                }
+
+            }
+        }
+
+        protected void btn_cancelar_envio_mail_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Aplicativo/admin_tesinas.aspx");
+        }
     }
 
 }

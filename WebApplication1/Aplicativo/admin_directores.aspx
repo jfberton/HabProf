@@ -14,7 +14,7 @@
         <li>Administrar directores</li>
     </ol>
 
-    <h1>Directores <small>Listado de directores de la licenciatura</small></h1>
+    <h1>Directores <small>Listado de Directores de la Licenciatura</small></h1>
     <div class="row">
         <div class="col-md-10">
             <div class="alert alert-warning" role="alert" runat="server" id="lbl_sin_directores">
@@ -36,7 +36,7 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title">
                                 <asp:Label Text="text" ID="lbl_agregar_actualizar_director" runat="server" />
-                                director</h4>
+                                Director</h4>
                         </div>
                         <div class="modal-body">
                             <input type="hidden" runat="server" id="hidden_id_director_editar" />
@@ -54,7 +54,7 @@
                                         <tr>
                                             <td>DNI</td>
                                             <td style="width: auto">
-                                                <input type="text" id="tb_dni_director" class="form-control" runat="server" placeholder="DNI del director por agregar" /></td>
+                                                <input type="text" id="tb_dni_director" class="form-control" runat="server" placeholder="DNI del director" /></td>
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_dni_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe ingresar el DNI del director" ValidationGroup="dni_persona">
@@ -73,12 +73,12 @@
                                         <tr>
                                             <td>Nombre y apellido</td>
                                             <td style="width: auto">
-                                                <input type="text" id="tb_nombre_director" class="form-control" runat="server" placeholder="Nombre y apellido del director por agregar" /></td>
+                                                <input type="text" id="tb_nombre_director" class="form-control" runat="server" placeholder="Nombre y apellido del director" /></td>
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_nombre_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="rv_nombre_director" runat="server" ErrorMessage="Debe ingresar el nombre del director" ValidationGroup="director">
                                                 </asp:RequiredFieldValidator>
-                                                <asp:RegularExpressionValidator  ControlToValidate="tb_nombre_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                <asp:RegularExpressionValidator ControlToValidate="tb_nombre_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="regular_nombre_director" runat="server" ValidationExpression="^([^0-9]*)$" ErrorMessage="El nombre no debe contener números" ValidationGroup="director" />
                                             </td>
                                         </tr>
@@ -97,7 +97,7 @@
                                         <tr>
                                             <td>Domicilio</td>
                                             <td style="width: auto">
-                                                <input type="text" id="tb_domicilio" class="form-control" runat="server" placeholder="Nombre del director por agregar" /></td>
+                                                <input type="text" id="tb_domicilio" class="form-control" runat="server" placeholder="Domicilio del director" /></td>
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_domicilio" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="RequiredFieldValidator3" runat="server" ErrorMessage="Debe ingresar el domicilio del director" ValidationGroup="director">
@@ -106,20 +106,20 @@
                                         <tr>
                                             <td>Teléfono</td>
                                             <td style="width: auto">
-                                                <input type="text" id="tb_telefono" class="form-control" runat="server" placeholder="Nombre del director por agregar" /></td>
+                                                <input type="text" id="tb_telefono" class="form-control" runat="server" placeholder="Teléfono del director" /></td>
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_telefono" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="RequiredFieldValidator4" runat="server" ErrorMessage="Debe ingresar el teléfono del director" ValidationGroup="director">
                                                 </asp:RequiredFieldValidator>
                                                 <asp:RegularExpressionValidator ValidationExpression="\d{6,11}" ControlToValidate="tb_telefono" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="RegularExpressionValidator1" runat="server" ErrorMessage="Debe ingresar un teléfono válido (solo números entre 6 y 11 caracteres)" ValidationGroup="director" />
+                                                    ID="RegularExpressionValidator1" runat="server" ErrorMessage="Debe ingresar un teléfono válido (solo números entre 6 y 11 dígitos)" ValidationGroup="director" />
 
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Usuario</td>
                                             <td style="width: auto">
-                                                <input type="text" id="tb_usuario" class="form-control" runat="server" placeholder="Usuario del director por agregar" /></td>
+                                                <input type="text" id="tb_usuario" class="form-control" runat="server" placeholder="Usuario del director" /></td>
                                             <td>
                                                 <asp:CustomValidator ControlToValidate="tb_usuario" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="cv_usuario_duplicado" runat="server" ErrorMessage="Ya existe una persona con ese usuario" OnServerValidate="cv_usuario_duplicado_ServerValidate" ValidationGroup="director" />
@@ -127,16 +127,37 @@
                                                     ID="RequiredFieldValidator5" runat="server" ErrorMessage="Debe ingresar el usuario del director" ValidationGroup="director">
                                                 </asp:RequiredFieldValidator></td>
                                         </tr>
-                                        <tr>
+                                        <tr runat="server" id="tr_pass_alta">
+                                            <td>Contraseña</td>
+                                            <td style="width: auto">
+                                                <input type="password" id="tb_pass_alta" class="form-control" runat="server" placeholder="Contraseña del director" /></td>
+                                            <td>
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_pass_alta" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RequiredFieldValidator6" runat="server" ErrorMessage="Debe asignar una contraseña" ValidationGroup="director">
+                                                </asp:RequiredFieldValidator>
+                                                <asp:RegularExpressionValidator ValidationExpression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$" ControlToValidate="tb_pass_alta" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="regx_pass" runat="server" ErrorMessage="La contraseña debe tener entre 4 y 8 caracteres, al menos una mayúscula, una minúscula y un número" ValidationGroup="director" />
+                                            </td>
+                                        </tr>
+                                        <tr runat="server" id="tr_pass_edit">
                                             <td>
                                                 <asp:CheckBox Text="Cambiar contraseña" ID="chk_cambiar_clave" CausesValidation="false" AutoPostBack="true" OnCheckedChanged="chk_cambiar_clave_CheckedChanged" runat="server" Checked="false" /></td>
-                                            <td style="width: auto">
-                                                <input type="password" id="tb_contraseña" class="form-control" visible="false" runat="server" placeholder="Contraseña del director por agregar" />
+                                            <td colspan="2">
+                                                <table style="width: 100%">
+                                                    <tr runat="server" id="tr_chk_change_pass">
+                                                        <td style="width: auto">
+                                                            <input type="password" id="tb_contraseña" class="form-control" runat="server" placeholder="Contraseña del director" />
+                                                        </td>
+                                                        <td>
+                                                            <asp:RequiredFieldValidator ControlToValidate="tb_contraseña" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                                ID="RequiredFieldValidator7" runat="server" ErrorMessage="Debe asignar uan contraseña o destilde la opción de cambiar contraseña" ValidationGroup="director">
+                                                            </asp:RequiredFieldValidator>
+                                                            <asp:RegularExpressionValidator ValidationExpression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$" ControlToValidate="tb_contraseña" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                                ID="RegularExpressionValidator3" runat="server" ErrorMessage="La contraseña debe tener entre 4 y 8 caracteres, al menos una mayúscula, una minúscula y un número" ValidationGroup="director" />
+                                                        </td>
+                                                    </tr>
+                                                </table>
                                             </td>
-                                            <td>
-                                                <asp:CustomValidator ControlToValidate="tb_contraseña" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="cv_contraseña" OnServerValidate="cv_contraseña_ServerValidate" runat="server" ErrorMessage="Debe ingresar la contraseña del director" ValidationGroup="director">
-                                                </asp:CustomValidator></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -221,7 +242,8 @@
                     <h4 class="modal-title panel-title">Datos completos del director</h4>
                 </div>
                 <div class="modal-body">
-                    <h3> <asp:Label Text="" ID="lbl_ver_director_nomyap" runat="server" /></h3>
+                    <h3>
+                        <asp:Label Text="" ID="lbl_ver_director_nomyap" runat="server" /></h3>
                     <div class="row">
                         <div class="col-md-12">
                             <table class="table-condensed" style="width: 100%">
@@ -335,18 +357,18 @@
 
         $(document).ready(function () {
             $('#<%= gv_tesinas.ClientID %>').DataTable({
-                 "scrollY": "400px",
-                 "scrollCollapse": true,
-                 "paging": false,
-                 "searching": false,
-                 "language": {
-                     "search": "Buscar:",
-                     "zeroRecords": "No se encontraron registros",
-                     "info": "Mostrando _START_ de _END_ de _TOTAL_ registros",
-                     "infoEmpty": "No hay registros disponibles",
-                     "infoFiltered": "(filtrado de _MAX_ registros totales)"
-                 }
-             });
+                "scrollY": "400px",
+                "scrollCollapse": true,
+                "paging": false,
+                "searching": false,
+                "language": {
+                    "search": "Buscar:",
+                    "zeroRecords": "No se encontraron registros",
+                    "info": "Mostrando _START_ de _END_ de _TOTAL_ registros",
+                    "infoEmpty": "No hay registros disponibles",
+                    "infoFiltered": "(filtrado de _MAX_ registros totales)"
+                }
+            });
 
         });
 

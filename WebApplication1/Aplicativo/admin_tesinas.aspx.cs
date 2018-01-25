@@ -15,7 +15,8 @@ namespace WebApplication1.Aplicativo
         {
             if (!IsPostBack)
             {
-                if (Session["Perfil"].ToString() != "Admin")
+                if (Session["Perfil"].ToString() != "Administrador" &&
+                    Session["Perfil"].ToString() != "Director")
                 {
                     MessageBox.Show(this, "Usted no tiene permiso para acceder a esta página", MessageBox.Tipo_MessageBox.Danger, "Acceso restringido", "../default.aspx");
                 }
@@ -33,32 +34,44 @@ namespace WebApplication1.Aplicativo
             public string tema_recortado { get; set; }
             public string tema_completo { get; set; }
             public string estado { get; set; }
+            public int prioridad_orden { get; set; }
         }
         private void ObtenerTesinas()
         {
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
-                var tesinas = (from t in cxt.Tesinas
-                               where t.tesina_fecha_cierre == null
-                               select new
-                               {
-                                   tesis_id = t.tesina_id,
-                                   tesista = t.Tesista.Persona.persona_nomyap,
-                                   director = t.Director.Persona.persona_nomyap,
-                                   tema = t.tesina_tema,
-                                   estado = t.Estado.estado_tesina_estado
-                               }
+                Persona usuario_logueado = Session["UsuarioLogueado"] as Persona;
+                List<Tesina> tesinas = new List<Tesina>();
+
+                if (Session["Perfil"].ToString() == "Administrador")
+                {//administrador: obtengo todas las tesinas
+
+                    tesinas = (from t in cxt.Tesinas
+                                select t
                                ).ToList();
+                }
+                else
+                {//director: obtengo las tesinas asociadas al director
+                    Director dire = cxt.Personas.FirstOrDefault(pp => pp.persona_id == usuario_logueado.persona_id).Director;
+                    tesinas = (from t in cxt.Tesinas
+                               where t.director_id == dire.director_id
+                               select t
+                               ).ToList();
+
+                    btn_agregar_tesina.Visible = false;
+                    lbl_small_titulo.Text = "Listado de Tesinas bajo su supervición";
+                }
 
                 List<itemgrilla_tesina> tesinas_tema_recortado = (from t in tesinas
                                                                   select new itemgrilla_tesina
                                                                   {
-                                                                      tesis_id = t.tesis_id,
-                                                                      tesista = t.tesista,
-                                                                      director = t.director,
-                                                                      tema_recortado = t.tema.Length > 20 ? t.tema.Substring(0, 20) + "..." : t.tema,
-                                                                      tema_completo = t.tema,
-                                                                      estado = t.estado
+                                                                      tesis_id = t.tesina_id,
+                                                                      tesista = t.Tesista.Persona.persona_nomyap,
+                                                                      director = t.Director.Persona.persona_nomyap,
+                                                                      tema_recortado = t.tesina_tema.Length > 20 ? t.tesina_tema.Substring(0, 20) + "..." : t.tesina_tema,
+                                                                      tema_completo = t.tesina_tema,
+                                                                      estado = t.Estado.estado_tesina_estado,
+                                                                      prioridad_orden = Obtener_prioridad(t.Estado.estado_tesina_estado)
                                                                   }).ToList();
 
                 if (tesinas_tema_recortado.Count > 0)
@@ -74,21 +87,67 @@ namespace WebApplication1.Aplicativo
             }
         }
 
+        private int Obtener_prioridad(string estado)
+        {
+            int ret = 99;
+
+            switch (estado)
+            {
+                case "Prorrogar":
+                    ret = 0;
+                    break;
+                case "Lista para presentar":
+                    ret = 1;
+                    break;
+                case "Iniciada":
+                    ret = 2;
+                    break;
+                case "Entregada":
+                    ret = 3;
+                    break;
+                case "A corregir":
+                    ret = 4;
+                    break;
+                case "Vencida":
+                    ret = 5;
+                    break;
+                case "Aprobada":
+                    ret = 6;
+                    break;
+                case "Desaprobada":
+                    ret = 7;
+                    break;
+                default:
+                    break;
+            }
+
+            return ret;
+        }
+
         protected void btn_aceptar_eliminacion_Click(object sender, EventArgs e)
         {
-            //int id_tesina = Convert.ToInt32(id_item_por_eliminar.Value);
+            int id_tesina = Convert.ToInt32(id_item_por_eliminar.Value);
 
-            //using (HabProfDBContainer cxt = new HabProfDBContainer())
-            //{
-            //    Tesina tesina = cxt.Tesinas.FirstOrDefault(tt=>tt.tesina_id == id_tesina);
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                Tesina tesina = cxt.Tesinas.FirstOrDefault(tt => tt.tesina_id == id_tesina);
 
-            //    tesina.tesina_fecha_cierre = DateTime.Today;
+                if (tesina.Estado.estado_tesina_estado == "Iniciada")
+                {
 
-            //    cxt.SaveChanges();
-            //    MessageBox.Show(this, "Se ha eliminado correctamente la tesina del tesista" + tesina.persona_nomyap, MessageBox.Tipo_MessageBox.Success);
-            //}
+                    cxt.Historial_estados.RemoveRange(tesina.Historial_estados);
+                    cxt.Tesinas.Remove(tesina);
+                    cxt.SaveChanges();
+                    MessageBox.Show(this, "Se ha eliminado correctamente la tesina.", MessageBox.Tipo_MessageBox.Success);
+                    ObtenerTesinas();
+                }
+                else
+                {
+                    MessageBox.Show(this, "No se puede eliminar una tesina cuyo estado sea posterior al de iniciada");
+                }
+            }
 
-            //ObtenerTesinas();
+            ObtenerTesinas();
         }
 
         protected void btn_ver_ServerClick(object sender, EventArgs e)
@@ -101,14 +160,14 @@ namespace WebApplication1.Aplicativo
                 {
                     Tesina tesina = cxt.Tesinas.FirstOrDefault(tt => tt.tesina_id == id_tesina);
 
-                    lbl_alta.Text = tesina.tesina_plan_fch_presentacion.ToString();
+                    lbl_alta.Text = tesina.tesina_plan_fch_presentacion.ToShortDateString();
                     lbl_calificacion.Text = tesina.tesina_calificacion == 0 ? "Sin calificación" : tesina.tesina_calificacion.ToString();
                     lbl_calificacion_director.Text = tesina.tesina_calificacion_director == 0 ? "Sin calificación" : tesina.tesina_calificacion_director.ToString();
                     lbl_descripcion.Text = tesina.tesina_descripcion;
                     lbl_director.Text = tesina.Director.Persona.persona_nomyap;
                     lbl_duracion.Text = tesina.tesina_plan_duracion_meses.ToString() + " meses.";
                     lbl_estado.Text = tesina.Estado.estado_tesina_estado;
-                    lbl_periodo_notificaciones.Text = tesina.tesina_plan_duracion_meses.ToString() + " meses.";
+                    lbl_periodo_notificaciones.Text = tesina.tesina_plan_aviso_meses.ToString() + " meses.";
                     lbl_tema.Text = tesina.tesina_tema;
                     lbl_tesista.Text = tesina.Tesista.Persona.persona_nomyap;
 
@@ -139,9 +198,6 @@ namespace WebApplication1.Aplicativo
                 }
 
             }
-
-
-
 
         }
 

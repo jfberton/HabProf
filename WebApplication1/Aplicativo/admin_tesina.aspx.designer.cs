@@ -418,6 +418,15 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.WebControls.Button btn_habilitar_guardar;
         
         /// <summary>
+        /// btn_cancelar_envio_mail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_cancelar_envio_mail;
+        
+        /// <summary>
         /// btn_verificar_tesina control.
         /// </summary>
         /// <remarks>
@@ -443,5 +452,23 @@ namespace WebApplication1.Aplicativo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton btn_cancelar;
+        
+        /// <summary>
+        /// hidden_id_tesina_a_mandar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidden_id_tesina_a_mandar;
+        
+        /// <summary>
+        /// btn_enviar_correos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_enviar_correos;
     }
 }

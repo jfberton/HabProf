@@ -115,11 +115,11 @@ namespace WebApplication1
             switch (perfil)
             {
                 case Perfil_usuario.Administrador:
-                    Session["Perfil"] = "Admin";
+                    Session["Perfil"] = perfil.ToString();
                     FormsAuthentication.RedirectFromLoginPage(usr.persona_usuario, false);
                     break;
                 case Perfil_usuario.Director:
-                    Session["Perfil"] = "Dire";
+                    Session["Perfil"] = perfil.ToString();
                     FormsAuthentication.RedirectFromLoginPage(usr.persona_usuario, false);
                     break;
                 case Perfil_usuario.Tesista:
@@ -267,7 +267,7 @@ namespace WebApplication1
                     //          * vencida
                     Estado_tesina estado_prorrogada = new Estado_tesina()
                     {
-                        estado_tesina_estado = "Prorrogada",
+                        estado_tesina_estado = "Prorrogar",
                         estado_tesina_descripcion = "Ocurre cuando luego de vencida la tesina, el tesista solicita prorroga, en este estado se vuelven a establecer duración y periodo entre notificaciones"
                     };
 

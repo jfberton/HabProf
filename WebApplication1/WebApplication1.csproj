@@ -82,6 +82,7 @@
   <ItemGroup>
     <Content Include="Aplicativo\admin_directores.aspx" />
     <Content Include="Aplicativo\admin_home.aspx" />
+    <Content Include="Aplicativo\admin_jueces.aspx" />
     <Content Include="Aplicativo\admin_tesina.aspx" />
     <Content Include="Aplicativo\admin_tesinas.aspx" />
     <Content Include="Aplicativo\admin_tesistas.aspx" />
@@ -101,6 +102,7 @@
     <Content Include="Aplicativo\Menues\menu_admin.ascx" />
     <Content Include="Aplicativo\prueba.aspx" />
     <Content Include="Aplicativo\usuario_preferencias.aspx" />
+    <Content Include="Aplicativo\verificar_coincidencias.aspx" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap-theme-Cerulean.min.css" />
@@ -633,6 +635,13 @@
     <Compile Include="Aplicativo\admin_home.aspx.designer.cs">
       <DependentUpon>admin_home.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Aplicativo\admin_jueces.aspx.cs">
+      <DependentUpon>admin_jueces.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicativo\admin_jueces.aspx.designer.cs">
+      <DependentUpon>admin_jueces.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Aplicativo\admin_tesina.aspx.cs">
       <DependentUpon>admin_tesina.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -746,6 +755,13 @@
     <Compile Include="Aplicativo\usuario_preferencias.aspx.designer.cs">
       <DependentUpon>usuario_preferencias.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Aplicativo\verificar_coincidencias.aspx.cs">
+      <DependentUpon>verificar_coincidencias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicativo\verificar_coincidencias.aspx.designer.cs">
+      <DependentUpon>verificar_coincidencias.aspx</DependentUpon>
+    </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -779,7 +795,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

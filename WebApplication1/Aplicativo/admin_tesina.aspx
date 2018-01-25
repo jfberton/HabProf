@@ -10,7 +10,7 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="CPH_Body" runat="server">
     <ol class="breadcrumb">
         <li><a href="admin_home.aspx">Inicio</a></li>
-        <li><a href="admin_tesinas.aspx">Administrar tesinas</a></li>
+        <li><a href="admin_tesinas.aspx">Administrar Tesinas</a></li>
         <li>
             <asp:Label Text="" ID="lbl_bread_last_page" runat="server" /></li>
     </ol>
@@ -115,8 +115,7 @@
                         </asp:GridView>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
@@ -149,8 +148,7 @@
                         </asp:GridView>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
@@ -372,17 +370,38 @@
                 </div>
                 <div class="modal-footer">
                     <asp:Button Text="Habilitar guardado de todas maneras!" runat="server" ID="btn_habilitar_guardar" CssClass="btn btn-success" OnClick="btn_habilitar_guardar_Click" />
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <asp:Button Text="Cancelar" runat="server" ID="btn_cancelar_envio_mail" CssClass="btn btn-default" OnClick="btn_cancelar_envio_mail_Click" />
                 </div>
             </div>
         </div>
     </div>
 
+    <%--VERIFICAR GUARDAR, CANCELAR--%>
     <div class="row">
         <div class="col-md-12 text-right">
             <asp:Button Text="Verificar" ID="btn_verificar_tesina" OnClick="btn_verificar_tesina_Click" ValidationGroup="tesina" CausesValidation="true" CssClass="btn btn-success" runat="server" />
             <asp:Button Text="Guardar" OnClick="btn_guardar_tesina_ServerClick" ID="btn_guardar_tesina" CssClass="btn btn-primary" Enabled="false" runat="server" />
             <button type="button" class="btn btn-default" runat="server" id="btn_cancelar" onserverclick="btn_cancelar_ServerClick">Cancelar</button>
+        </div>
+    </div>
+
+    <%--MODAL PREGUNTA POR ENVIO DE MAILS--%>
+    <div class="modal fade" id="consulto_por_envio_mail" role="dialog" aria-hidden="true">
+        <div class="modal-dialog panel-success">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Se guardo correctamente la tesina</h4>
+                </div>
+                <div class="modal-body">
+                    <asp:HiddenField runat="server" ID="hidden_id_tesina_a_mandar" />
+                    <h4>Desea enviar correos a las personas implicadas para avisar de estos cambios?</h4>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button Text="Enviar correos!" runat="server" ID="btn_enviar_correos" CssClass="btn btn-success" OnClick="btn_enviar_correos_Click" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
         </div>
     </div>
 

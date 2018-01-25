@@ -15,7 +15,7 @@ namespace WebApplication1.Aplicativo
         {
             if (!IsPostBack)
             {
-                if (Session["Perfil"].ToString() != "Admin")
+                if (Session["Perfil"].ToString() != "Administrador")
                 {
                     MessageBox.Show(this, "Usted no tiene permiso para acceder a esta página", MessageBox.Tipo_MessageBox.Danger, "Acceso restringido", "../default.aspx");
                 }
@@ -94,7 +94,6 @@ namespace WebApplication1.Aplicativo
 
         protected void btn_guardar_ServerClick(object sender, EventArgs e)
         {
-            this.Validate("director");
             if (this.IsValid)
             {
                 Persona usuario = Session["UsuarioLogueado"] as Persona;
@@ -129,11 +128,12 @@ namespace WebApplication1.Aplicativo
                         p_director = new Persona();
                         p_director.persona_nomyap = tb_nombre_director.Value;
                         p_director.persona_dni = dni;
+                        p_director.licenciatura_id = usuario.licenciatura_id;
                         p_director.persona_email = tb_email.Value;
                         p_director.persona_domicilio = tb_domicilio.Value;
                         p_director.persona_telefono = tb_telefono.Value;
                         p_director.persona_usuario = tb_usuario.Value;
-                        p_director.persona_clave = Cripto.Encriptar(tb_contraseña.Value);
+                        p_director.persona_clave = Cripto.Encriptar(tb_pass_alta.Value);
                         p_director.persona_estilo = "Sandstone";
 
                         cxt.Personas.Add(p_director);
@@ -146,7 +146,6 @@ namespace WebApplication1.Aplicativo
                         p_director.persona_domicilio = tb_domicilio.Value;
                         p_director.persona_telefono = tb_telefono.Value;
                         p_director.persona_usuario = tb_usuario.Value;
-                        p_director.persona_estilo = "Sandstone";
                         if (chk_cambiar_clave.Checked)
                         {
                             p_director.persona_clave = Cripto.Encriptar(tb_contraseña.Value);
@@ -182,9 +181,24 @@ namespace WebApplication1.Aplicativo
 
                         MessageBox.Show(this, "Se guardó correctamente el director!", MessageBox.Tipo_MessageBox.Success, "Exito!");
                     }
-                    catch (Exception ex)
+                    catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
                     {
-                        MessageBox.Show(this, ex.Message, MessageBox.Tipo_MessageBox.Danger);
+                        Exception raise = dbEx;
+                        foreach (var validationErrors in dbEx.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                string message = string.Format("{0}:{1}",
+                                    validationErrors.Entry.Entity.ToString(),
+                                    validationError.ErrorMessage);
+                                // raise a new exception nesting
+                                // the current instance as InnerException
+                                raise = new InvalidOperationException(message, raise);
+                            }
+                        }
+
+
+                        MessageBox.Show(this, raise.Message);
                     }
                 }
 
@@ -213,9 +227,10 @@ namespace WebApplication1.Aplicativo
                     tb_nombre_director.Value = director.Persona.persona_nomyap;
                     tb_telefono.Value = director.Persona.persona_telefono;
                     tb_usuario.Value = director.Persona.persona_usuario;
-                    tb_contraseña.Attributes["type"] = "text";
-                    tb_contraseña.Value = Cripto.Desencriptar(director.Persona.persona_clave);
-                    tb_contraseña.Attributes["type"] = "password";
+                    tr_pass_alta.Visible = false;
+                    tr_pass_edit.Visible = true;
+                    chk_cambiar_clave.Checked = false;
+                    tr_chk_change_pass.Visible = false;
                     lbl_agregar_actualizar_director.Text = "Actualizar ";
 
                     tb_dni_director.Disabled = true;
@@ -232,8 +247,6 @@ namespace WebApplication1.Aplicativo
                 }
             }
         }
-
-
 
         protected void btn_ver_ServerClick1(object sender, EventArgs e)
         {
@@ -290,14 +303,10 @@ namespace WebApplication1.Aplicativo
             args.IsValid = correcto;
         }
 
-        protected void cv_contraseña_ServerValidate(object source, ServerValidateEventArgs args)
-        {
-            args.IsValid = (chk_cambiar_clave.Checked && tb_contraseña.Value.Length > 0) || !chk_cambiar_clave.Checked;
-        }
-
         protected void chk_cambiar_clave_CheckedChanged(object sender, EventArgs e)
         {
-            tb_contraseña.Visible = chk_cambiar_clave.Checked;
+            tr_chk_change_pass.Visible = chk_cambiar_clave.Checked;
+
             string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_director').modal('show')});</script>";
             ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
         }
@@ -321,13 +330,21 @@ namespace WebApplication1.Aplicativo
                             tb_nombre_director.Value = persona.persona_nomyap;
                             tb_telefono.Value = persona.persona_telefono;
                             tb_usuario.Value = persona.persona_usuario;
+                            tr_pass_edit.Visible = true;
+                            chk_cambiar_clave.Checked = false;
+                            tr_chk_change_pass.Visible = false;
+                            tr_pass_alta.Visible = false;
+                        }
+                        else
+                        {
+                            tr_pass_edit.Visible = false;
+                            tr_pass_alta.Visible = true;
                         }
                     }
                 }
 
                 tb_dni_director.Disabled = true;
                 btn_chequear_dni.Visible = false;
-
                 btn_guardar.Visible = true;
 
                 tb_tabla_resto_campos.Visible = true;
@@ -350,6 +367,15 @@ namespace WebApplication1.Aplicativo
             btn_guardar.Visible = false;
 
             tb_tabla_resto_campos.Visible = false;
+
+            tb_domicilio.Value = string.Empty;
+            tb_email.Value = string.Empty;
+            tb_nombre_director.Value = string.Empty;
+            tb_telefono.Value = string.Empty;
+            tb_usuario.Value = string.Empty;
+            tb_contraseña.Value = string.Empty;
+            tb_pass_alta.Value = string.Empty;
+            hidden_id_director_editar.Value = "0";
 
             string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_director').modal('show')});</script>";
             ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);

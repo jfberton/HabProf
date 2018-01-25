@@ -28,16 +28,12 @@
                     <asp:LinkButton Text="Salir" ID="btn_salir" OnClick="btn_salir_Click" runat="server" />
                 </li>
             </ul>
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Personas <b class="caret"></b></a>
-                    <ul class="dropdown-menu multi-level">
-                        <li><a href="../Aplicativo/admin_tesistas.aspx">Administrar tesistas</a></li>
-                        <li><a href="../Aplicativo/admin_directores.aspx">Administrar directores</a></li>
-                    </ul>
-                </li>
-                <li><a href="../Aplicativo/admin_tesinas.aspx">Administrar tesinas</a></li>
-                <li><a href="../Aplicativo/prueba.aspx">Prueba buscar texto</a></li>
+            <ul class="nav navbar-nav"><%--si uso el runat server tengo que quitar el path aplicativo--%>
+                <li><a href="../admin_tesistas.aspx" runat="server" id="li_admin_tesistas">Admin Tesistas</a></li>
+                <li><a href="../admin_directores.aspx" runat="server" id="li_admin_directores">Admin Directores</a></li>
+                <li><a href="../admin_jueces.aspx" runat="server" id="li_admin_jueces">Admin Jueces</a></li>
+                <li><a href="../admin_tesinas.aspx" runat="server" id="li_admin_tesinas">Admin Tesinas</a></li>
+                <li><a href="../verificar_coincidencias.aspx" runat="server" id="li_comprobar_tema">Comprobar tema tesina</a></li>
             </ul>
         </div>
         <!--/.nav-collapse -->
