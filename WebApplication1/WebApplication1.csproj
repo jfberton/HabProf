@@ -101,6 +101,7 @@
     <Content Include="Aplicativo\Menues\MenuDemo.ascx" />
     <Content Include="Aplicativo\Menues\menu_admin.ascx" />
     <Content Include="Aplicativo\prueba.aspx" />
+    <Content Include="Aplicativo\tesista_home.aspx" />
     <Content Include="Aplicativo\usuario_preferencias.aspx" />
     <Content Include="Aplicativo\verificar_coincidencias.aspx" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
@@ -747,6 +748,13 @@
     </Compile>
     <Compile Include="Aplicativo\Tesista.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\tesista_home.aspx.cs">
+      <DependentUpon>tesista_home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicativo\tesista_home.aspx.designer.cs">
+      <DependentUpon>tesista_home.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\usuario_preferencias.aspx.cs">
       <DependentUpon>usuario_preferencias.aspx</DependentUpon>

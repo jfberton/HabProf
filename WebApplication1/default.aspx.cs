@@ -123,7 +123,8 @@ namespace WebApplication1
                     FormsAuthentication.RedirectFromLoginPage(usr.persona_usuario, false);
                     break;
                 case Perfil_usuario.Tesista:
-                    MessageBox.Show(this, "Aún no se definieron funcionalidades para el perfil Tesista");
+                    Session["Perfil"] = perfil.ToString();
+                    FormsAuthentication.RedirectFromLoginPage(usr.persona_usuario, false);
                     break;
                 case Perfil_usuario.Juez:
                     MessageBox.Show(this, "Aún no se definieron funcionalidades para el perfil Juez");

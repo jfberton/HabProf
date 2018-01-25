@@ -29,6 +29,9 @@ namespace WebApplication1
                 case "Director":
                     Response.Redirect("~/Aplicativo/director_home.aspx");
                     break;
+                case "Tesista":
+                    Response.Redirect("~/Aplicativo/tesista_home.aspx");
+                    break;
                 default:
                     break;
             }

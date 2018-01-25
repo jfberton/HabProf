@@ -117,7 +117,24 @@
                                                     ID="RegularExpressionValidator1" runat="server" ErrorMessage="Debe ingresar un teléfono válido (solo números entre 6 y 11 dígitos)" ValidationGroup="tesista" />
                                             </td>
                                         </tr>
-
+                                        <tr>
+                                            <td>Legajo</td>
+                                            <td style="width: auto">
+                                                <input type="text" id="tb_legajo" class="form-control" runat="server" placeholder="Legajo del tesista" /></td>
+                                            <td>
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_legajo" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RequiredFieldValidator5" runat="server" ErrorMessage="Debe ingresar el legajo del tesista" ValidationGroup="tesista">
+                                                </asp:RequiredFieldValidator></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sede</td>
+                                            <td style="width: auto">
+                                                <input type="text" id="tb_sede" class="form-control" runat="server" placeholder="Sede del tesista" /></td>
+                                            <td>
+                                                <asp:RequiredFieldValidator ControlToValidate="tb_sede" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="RequiredFieldValidator6" runat="server" ErrorMessage="Debe ingresar la sede del tesista" ValidationGroup="tesista">
+                                                </asp:RequiredFieldValidator></td>
+                                        </tr>
                                         <tr>
                                             <td>Usuario</td>
                                             <td style="width: auto">
@@ -160,25 +177,6 @@
                                                     </tr>
                                                 </table>
                                             </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Legajo</td>
-                                            <td style="width: auto">
-                                                <input type="text" id="tb_legajo" class="form-control" runat="server" placeholder="Legajo del tesista" /></td>
-                                            <td>
-                                                <asp:RequiredFieldValidator ControlToValidate="tb_legajo" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="RequiredFieldValidator5" runat="server" ErrorMessage="Debe ingresar el legajo del tesista" ValidationGroup="tesista">
-                                                </asp:RequiredFieldValidator></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sede</td>
-                                            <td style="width: auto">
-                                                <input type="text" id="tb_sede" class="form-control" runat="server" placeholder="Sede del tesista" /></td>
-                                            <td>
-                                                <asp:RequiredFieldValidator ControlToValidate="tb_sede" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="RequiredFieldValidator6" runat="server" ErrorMessage="Debe ingresar la sede del tesista" ValidationGroup="tesista">
-                                                </asp:RequiredFieldValidator></td>
                                         </tr>
                                     </table>
                                 </div>

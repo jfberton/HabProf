@@ -218,7 +218,7 @@ namespace WebApplication1.Aplicativo
         {
             tr_chk_change_pass.Visible = chk_cambiar_clave.Checked;
 
-            string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_director').modal('show')});</script>";
+            string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_tesista').modal('show')});</script>";
             ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
         }
 

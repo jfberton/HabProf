@@ -22,15 +22,25 @@ namespace WebApplication1.Aplicativo.Menues
                 switch (perfil)
                 {
                     case "Administrador":
+                        li_admin_tesinas.Visible = true;
+                        li_admin_directores.Visible = true;
+                        li_admin_jueces.Visible = true;
+                        li_admin_tesistas.Visible = true;
+                        li_comprobar_tema.Visible = true;
                         break;
                     case "Director":
                         li_admin_directores.Visible = false;
                         li_admin_jueces.Visible = false;
                         li_admin_tesistas.Visible = false;
                         li_comprobar_tema.Visible = false;
+                        li_admin_tesinas.Visible = true;
                         break;
-
                     default:
+                        li_admin_tesinas.Visible = false;
+                        li_admin_directores.Visible = false;
+                        li_admin_jueces.Visible = false;
+                        li_admin_tesistas.Visible = false;
+                        li_comprobar_tema.Visible = false;
                         break;
                 }
             }
