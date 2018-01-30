@@ -237,7 +237,6 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button Text="Aceptar" CssClass="btn btn-success" CausesValidation="false" ID="Button1" OnClick="btn_aceptar_eliminacion_Click" runat="server" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>

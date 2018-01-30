@@ -2,119 +2,13 @@
 
 ******************************************************************
 
-ERRORID: 636523918764960330
+ERRORID: 636528564896367838
 
-DATE: 24/01/2018 11:57:56
+DATE: 29/1/2018 21:01:29
 
 AGENTE: admin
 
-MESSAGE: Only parameterless constructors and initializers are supported in LINQ to Entities.
-
-SOURCE: EntityFramework
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesinas.aspx
-
-TARGETSITE: System.Data.Entity.Core.Common.CommandTrees.DbExpression TypedTranslate(System.Data.Entity.Core.Objects.ELinq.ExpressionConverter, System.Linq.Expressions.MemberInitExpression)
-
-STACKTRACE:    en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MemberInitTranslator.TypedTranslate(ExpressionConverter parent, MemberInitExpression linq)
-   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input)
-   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateLambda(LambdaExpression lambda, DbExpression input, DbExpressionBinding& binding)
-   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.OneLambdaTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, DbExpression& source, DbExpressionBinding& sourceBinding, DbExpression& lambda)
-   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SelectTranslator.Translate(ExpressionConverter parent, MethodCallExpression call)
-   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.SequenceMethodTranslator.Translate(ExpressionConverter parent, MethodCallExpression call, SequenceMethod sequenceMethod)
-   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.MethodCallTranslator.TypedTranslate(ExpressionConverter parent, MethodCallExpression linq)
-   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TypedTranslator`1.Translate(ExpressionConverter parent, Expression linq)
-   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.TranslateExpression(Expression linq)
-   en System.Data.Entity.Core.Objects.ELinq.ExpressionConverter.Convert()
-   en System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
-   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
-   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
-   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
-   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
-   en System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   en System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
-   en System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
-   en System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
-   en System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
-   en WebApplication1.Aplicativo.admin_tesinas.ObtenerTesinas() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesinas.aspx.cs:línea 48
-   en WebApplication1.Aplicativo.admin_tesinas.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesinas.aspx.cs:línea 24
-   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   en System.Web.UI.Control.OnLoad(EventArgs e)
-   en System.Web.UI.Control.LoadRecursive()
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636523922380207111
-
-DATE: 24/01/2018 12:03:58
-
-AGENTE: dire
-
-MESSAGE: El método no estático necesita un destino.
-
-SOURCE: mscorlib
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/admin_tesinas.aspx
-
-TARGETSITE: Void CheckConsistency(System.Object)
-
-STACKTRACE:    en System.Reflection.RuntimeMethodInfo.CheckConsistency(Object target)
-   en System.Reflection.RuntimeMethodInfo.InvokeArgumentsCheck(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
-   en System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
-   en System.Reflection.RuntimePropertyInfo.GetValue(Object obj, BindingFlags invokeAttr, Binder binder, Object[] index, CultureInfo culture)
-   en System.Reflection.RuntimePropertyInfo.GetValue(Object obj, Object[] index)
-   en System.Data.Entity.Core.Objects.ELinq.QueryParameterExpression.TryGetFieldOrPropertyValue(MemberExpression me, Object instance, Object& memberValue)
-   en System.Data.Entity.Core.Objects.ELinq.QueryParameterExpression.TryEvaluatePath(Expression expression, ConstantExpression& constantExpression)
-   en System.Data.Entity.Core.Objects.ELinq.QueryParameterExpression.EvaluateParameter(Object[] arguments)
-   en System.Data.Entity.Core.Objects.ELinq.ELinqQueryState.GetExecutionPlan(Nullable`1 forMergeOption)
-   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
-   en System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
-   en System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
-   en System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
-   en System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
-   en System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
-   en System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
-   en System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
-   en System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
-   en System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
-   en System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
-   en System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
-   en System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source, Expression`1 predicate)
-   en WebApplication1.Aplicativo.admin_tesinas.ObtenerTesinas() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesinas.aspx.cs:línea 54
-   en WebApplication1.Aplicativo.admin_tesinas.Page_Load(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesinas.aspx.cs:línea 24
-   en System.Web.Util.CalliEventHandlerDelegateProxy.Callback(Object sender, EventArgs e)
-   en System.Web.UI.Control.OnLoad(EventArgs e)
-   en System.Web.UI.Control.LoadRecursive()
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636524742664500308
-
-DATE: 25/01/2018 10:51:06
-
-AGENTE: Sin autenticar.
-
-MESSAGE: No se puede encontrar el identificador de control 'tb_pass_alta' al que hace referencia la propiedad 'ControlToValidate' de 'regx_pass'.
+MESSAGE: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesinas.aspx(324): error CS1061: 'aplicativo_admin_tesinas_aspx' does not contain a definition for 'cv_fecha_inicio_ServerValidate' and no extension method 'cv_fecha_inicio_ServerValidate' accepting a first argument of type 'aplicativo_admin_tesinas_aspx' could be found (are you missing a using directive or an assembly reference?)
 
 SOURCE: System.Web
 
@@ -122,18 +16,22 @@ INSTANCE:
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/landing_mail.aspx?tipo_mail=recupero_contraseña&clave=cc43e9ad-94e4-4aae-b420-e32f83b94650
+URL: http://localhost:60142/Aplicativo/admin_tesinas.aspx
 
-TARGETSITE: Void CheckControlValidationProperty(System.String, System.String)
+TARGETSITE: System.CodeDom.Compiler.CompilerResults Compile()
 
-STACKTRACE:    en System.Web.UI.WebControls.BaseValidator.CheckControlValidationProperty(String name, String propertyName)
-   en System.Web.UI.WebControls.BaseValidator.ControlPropertiesValid()
-   en System.Web.UI.WebControls.BaseValidator.OnPreRender(EventArgs e)
-   en System.Web.UI.Control.PreRenderRecursiveInternal()
-   en System.Web.UI.Control.PreRenderRecursiveInternal()
-   en System.Web.UI.Control.PreRenderRecursiveInternal()
-   en System.Web.UI.Control.PreRenderRecursiveInternal()
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+STACKTRACE:    en System.Web.Compilation.AssemblyBuilder.Compile()
+   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   en System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   en System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   en System.Web.UI.PageHandlerFactory.GetHandler(HttpContext context, String requestType, String virtualPath, String path)
+   en System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   en System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
 
 ******************************************************************
@@ -141,13 +39,13 @@ STACKTRACE:    en System.Web.UI.WebControls.BaseValidator.CheckControlValidation
 
 ******************************************************************
 
-ERRORID: 636524744784501565
+ERRORID: 636528567462772341
 
-DATE: 25/01/2018 10:54:38
+DATE: 29/1/2018 21:05:46
 
-AGENTE: Sin autenticar.
+AGENTE: admin
 
-MESSAGE: No se puede encontrar el identificador de control 'tb_pass_alta' al que hace referencia la propiedad 'ControlToValidate' de 'regx_pass'.
+MESSAGE: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesinas.aspx(361): error CS1061: 'aplicativo_admin_tesinas_aspx' does not contain a definition for 'cv_notificacion_ServerValidate' and no extension method 'cv_notificacion_ServerValidate' accepting a first argument of type 'aplicativo_admin_tesinas_aspx' could be found (are you missing a using directive or an assembly reference?)
 
 SOURCE: System.Web
 
@@ -155,18 +53,22 @@ INSTANCE:
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/landing_mail.aspx?tipo_mail=recupero_contraseña&clave=cc43e9ad-94e4-4aae-b420-e32f83b94650
+URL: http://localhost:60142/Aplicativo/admin_tesinas.aspx
 
-TARGETSITE: Void CheckControlValidationProperty(System.String, System.String)
+TARGETSITE: System.CodeDom.Compiler.CompilerResults Compile()
 
-STACKTRACE:    en System.Web.UI.WebControls.BaseValidator.CheckControlValidationProperty(String name, String propertyName)
-   en System.Web.UI.WebControls.BaseValidator.ControlPropertiesValid()
-   en System.Web.UI.WebControls.BaseValidator.OnPreRender(EventArgs e)
-   en System.Web.UI.Control.PreRenderRecursiveInternal()
-   en System.Web.UI.Control.PreRenderRecursiveInternal()
-   en System.Web.UI.Control.PreRenderRecursiveInternal()
-   en System.Web.UI.Control.PreRenderRecursiveInternal()
-   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
+STACKTRACE:    en System.Web.Compilation.AssemblyBuilder.Compile()
+   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   en System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   en System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   en System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
+   en System.Web.UI.PageHandlerFactory.GetHandler(HttpContext context, String requestType, String virtualPath, String path)
+   en System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   en System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
 
 
 ******************************************************************
@@ -174,29 +76,197 @@ STACKTRACE:    en System.Web.UI.WebControls.BaseValidator.CheckControlValidation
 
 ******************************************************************
 
-ERRORID: 636524781244242492
+ERRORID: 636529345745634626
 
-DATE: 25/01/2018 11:55:24
+DATE: 30/1/2018 18:42:54
 
 AGENTE: admin
 
-MESSAGE: No se puede convertir un objeto de tipo 'System.Web.UI.WebControls.HiddenField' al tipo 'System.IConvertible'.
+MESSAGE: Etiqueta de servidor incorrecta.
 
-SOURCE: mscorlib
+SOURCE: System.Web
 
 INSTANCE: 
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/Aplicativo/admin_tesina.aspx
+URL: http://localhost:60142/Aplicativo/admin_tesinas.aspx
 
-TARGETSITE: Int32 ToInt32(System.Object)
+TARGETSITE: Void ProcessError(System.String)
 
-STACKTRACE:    en System.Convert.ToInt32(Object value)
-   en WebApplication1.Aplicativo.admin_tesina.btn_enviar_correos_Click(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesina.aspx.cs:línea 497
-   en System.Web.UI.WebControls.Button.OnClick(EventArgs e)
-   en System.Web.UI.WebControls.Button.RaisePostBackEvent(String eventArgument)
-   en System.Web.UI.WebControls.Button.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
+STACKTRACE:    en System.Web.UI.TemplateParser.ProcessError(String message)
+   en System.Web.UI.TemplateParser.DetectSpecialServerTagError(String text, Int32 textPos)
+   en System.Web.UI.TemplateParser.ParseStringInternal(String text, Encoding fileEncoding)
+   en System.Web.UI.TemplateParser.ParseString(String text, VirtualPath virtualPath, Encoding fileEncoding)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636529349620677042
+
+DATE: 30/1/2018 18:49:22
+
+AGENTE: admin
+
+MESSAGE: Etiqueta de servidor incorrecta.
+
+SOURCE: System.Web
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/admin_tesinas.aspx
+
+TARGETSITE: Void ProcessError(System.String)
+
+STACKTRACE:    en System.Web.UI.TemplateParser.ProcessError(String message)
+   en System.Web.UI.TemplateParser.DetectSpecialServerTagError(String text, Int32 textPos)
+   en System.Web.UI.TemplateParser.ParseStringInternal(String text, Encoding fileEncoding)
+   en System.Web.UI.TemplateParser.ParseString(String text, VirtualPath virtualPath, Encoding fileEncoding)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636529350939845508
+
+DATE: 30/1/2018 18:51:33
+
+AGENTE: admin
+
+MESSAGE: Etiqueta de servidor incorrecta.
+
+SOURCE: System.Web
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/admin_tesinas.aspx
+
+TARGETSITE: Void ProcessError(System.String)
+
+STACKTRACE:    en System.Web.UI.TemplateParser.ProcessError(String message)
+   en System.Web.UI.TemplateParser.DetectSpecialServerTagError(String text, Int32 textPos)
+   en System.Web.UI.TemplateParser.ParseStringInternal(String text, Encoding fileEncoding)
+   en System.Web.UI.TemplateParser.ParseString(String text, VirtualPath virtualPath, Encoding fileEncoding)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636529356542285803
+
+DATE: 30/1/2018 19:00:54
+
+AGENTE: admin
+
+MESSAGE: Etiqueta de servidor incorrecta.
+
+SOURCE: System.Web
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/admin_tesinas.aspx
+
+TARGETSITE: Void ProcessError(System.String)
+
+STACKTRACE:    en System.Web.UI.TemplateParser.ProcessError(String message)
+   en System.Web.UI.TemplateParser.DetectSpecialServerTagError(String text, Int32 textPos)
+   en System.Web.UI.TemplateParser.ParseStringInternal(String text, Encoding fileEncoding)
+   en System.Web.UI.TemplateParser.ParseString(String text, VirtualPath virtualPath, Encoding fileEncoding)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636529365519325941
+
+DATE: 30/1/2018 19:15:51
+
+AGENTE: admin
+
+MESSAGE: Etiqueta de servidor incorrecta.
+
+SOURCE: System.Web
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/admin_tesinas.aspx
+
+TARGETSITE: Void ProcessError(System.String)
+
+STACKTRACE:    en System.Web.UI.TemplateParser.ProcessError(String message)
+   en System.Web.UI.TemplateParser.DetectSpecialServerTagError(String text, Int32 textPos)
+   en System.Web.UI.TemplateParser.ParseStringInternal(String text, Encoding fileEncoding)
+   en System.Web.UI.TemplateParser.ParseString(String text, VirtualPath virtualPath, Encoding fileEncoding)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636529367365334189
+
+DATE: 30/1/2018 19:18:56
+
+AGENTE: admin
+
+MESSAGE: DataBinding: '<>f__AnonymousType7`4[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]' no contiene una propiedad con el nombre 'tesis_id'.
+
+SOURCE: System.Web
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/admin_tesinas.aspx
+
+TARGETSITE: System.Object GetPropertyValue(System.Object, System.String)
+
+STACKTRACE:    en System.Web.UI.DataBinder.GetPropertyValue(Object container, String propName)
+   en System.Web.UI.DataBinder.Eval(Object container, String[] expressionParts)
+   en System.Web.UI.DataBinder.Eval(Object container, String expression)
+   en System.Web.UI.TemplateControl.Eval(String expression)
+   en ASP.aplicativo_admin_tesinas_aspx.__DataBinding__control121(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesinas.aspx:línea 440
+   en System.Web.UI.Control.OnDataBinding(EventArgs e)
+   en System.Web.UI.Control.DataBind(Boolean raiseOnDataBinding)
+   en System.Web.UI.Control.DataBind()
+   en System.Web.UI.Control.DataBindChildren()
+   en System.Web.UI.Control.DataBind(Boolean raiseOnDataBinding)
+   en System.Web.UI.Control.DataBind()
+   en System.Web.UI.Control.DataBindChildren()
+   en System.Web.UI.Control.DataBind(Boolean raiseOnDataBinding)
+   en System.Web.UI.Control.DataBind()
+   en System.Web.UI.WebControls.GridView.CreateRow(Int32 rowIndex, Int32 dataSourceIndex, DataControlRowType rowType, DataControlRowState rowState, Boolean dataBind, Object dataItem, DataControlField[] fields, TableRowCollection rows, PagedDataSource pagedDataSource)
+   en System.Web.UI.WebControls.GridView.CreateChildControls(IEnumerable dataSource, Boolean dataBinding)
+   en System.Web.UI.WebControls.CompositeDataBoundControl.PerformDataBinding(IEnumerable data)
+   en System.Web.UI.WebControls.GridView.PerformDataBinding(IEnumerable data)
+   en System.Web.UI.WebControls.DataBoundControl.OnDataSourceViewSelectCallback(IEnumerable data)
+   en System.Web.UI.DataSourceView.Select(DataSourceSelectArguments arguments, DataSourceViewSelectCallback callback)
+   en System.Web.UI.WebControls.DataBoundControl.PerformSelect()
+   en System.Web.UI.WebControls.BaseDataBoundControl.DataBind()
+   en System.Web.UI.WebControls.GridView.DataBind()
+   en WebApplication1.Aplicativo.admin_tesinas.CargarJueces() en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesinas.aspx.cs:línea 666
+   en WebApplication1.Aplicativo.admin_tesinas.btn_aprobar_ServerClick(Object sender, EventArgs e) en D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\admin_tesinas.aspx.cs:línea 641
+   en System.Web.UI.HtmlControls.HtmlButton.OnServerClick(EventArgs e)
+   en System.Web.UI.HtmlControls.HtmlButton.RaisePostBackEvent(String eventArgument)
+   en System.Web.UI.HtmlControls.HtmlButton.System.Web.UI.IPostBackEventHandler.RaisePostBackEvent(String eventArgument)
    en System.Web.UI.Page.RaisePostBackEvent(IPostBackEventHandler sourceControl, String eventArgument)
    en System.Web.UI.Page.RaisePostBackEvent(NameValueCollection postData)
    en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
@@ -207,13 +277,13 @@ STACKTRACE:    en System.Convert.ToInt32(Object value)
 
 ******************************************************************
 
-ERRORID: 636524832913237819
+ERRORID: 636529384683634439
 
-DATE: 25/01/2018 13:21:31
+DATE: 30/1/2018 19:47:48
 
-AGENTE: dire
+AGENTE: admin
 
-MESSAGE: El archivo '/Aplicativo/director_jueces.aspx' no existe.
+MESSAGE: No se puede encontrar el identificador de control 'tb_usuario' al que hace referencia la propiedad 'ControlToValidate' de 'cv_jueces'.
 
 SOURCE: System.Web
 
@@ -221,20 +291,19 @@ INSTANCE:
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/Aplicativo/director_jueces.aspx
+URL: http://localhost:60142/Aplicativo/admin_tesinas.aspx
 
-TARGETSITE: Void CheckVirtualFileExists(System.Web.VirtualPath)
+TARGETSITE: Void CheckControlValidationProperty(System.String, System.String)
 
-STACKTRACE:    en System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualPath)
-   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
-   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
-   en System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
-   en System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
-   en System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
-   en System.Web.UI.PageHandlerFactory.GetHandler(HttpContext context, String requestType, String virtualPath, String path)
-   en System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   en System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
-   en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+STACKTRACE:    en System.Web.UI.WebControls.BaseValidator.CheckControlValidationProperty(String name, String propertyName)
+   en System.Web.UI.WebControls.CustomValidator.ControlPropertiesValid()
+   en System.Web.UI.WebControls.BaseValidator.OnPreRender(EventArgs e)
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
 
 
 ******************************************************************
@@ -242,13 +311,13 @@ STACKTRACE:    en System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualP
 
 ******************************************************************
 
-ERRORID: 636524833583435221
+ERRORID: 636529385044780556
 
-DATE: 25/01/2018 13:22:38
+DATE: 30/1/2018 19:48:24
 
-AGENTE: dire
+AGENTE: admin
 
-MESSAGE: El archivo '/Aplicativo/~/default.aspx' no existe.
+MESSAGE: No se puede validar el control 'lbl_jueces' al que hace referencia la propiedad ControlToValidate de 'cv_jueces'.
 
 SOURCE: System.Web
 
@@ -256,20 +325,19 @@ INSTANCE:
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/Aplicativo/~/default.aspx
+URL: http://localhost:60142/Aplicativo/admin_tesinas.aspx
 
-TARGETSITE: Void CheckVirtualFileExists(System.Web.VirtualPath)
+TARGETSITE: Void CheckControlValidationProperty(System.String, System.String)
 
-STACKTRACE:    en System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualPath)
-   en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
-   en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
-   en System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
-   en System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
-   en System.Web.UI.PageHandlerFactory.GetHandlerHelper(HttpContext context, String requestType, VirtualPath virtualPath, String physicalPath)
-   en System.Web.UI.PageHandlerFactory.GetHandler(HttpContext context, String requestType, String virtualPath, String path)
-   en System.Web.HttpApplication.MaterializeHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   en System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
-   en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+STACKTRACE:    en System.Web.UI.WebControls.BaseValidator.CheckControlValidationProperty(String name, String propertyName)
+   en System.Web.UI.WebControls.CustomValidator.ControlPropertiesValid()
+   en System.Web.UI.WebControls.BaseValidator.OnPreRender(EventArgs e)
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
 
 
 ******************************************************************

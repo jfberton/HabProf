@@ -18,11 +18,26 @@ using System;
 public partial class Juez
 {
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Juez()
+    {
+
+        this.Tesinas = new HashSet<Tesina>();
+
+    }
+
+
     public int juez_id { get; set; }
+
+    public Nullable<System.DateTime> juez_fecha_baja { get; set; }
 
 
 
     public virtual Persona Persona { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Tesina> Tesinas { get; set; }
 
 }
 

@@ -12,9 +12,9 @@
         <EntityTypeShape EntityType="HabProfDB.Juez" Width="2.125" PointX="7.875" PointY="6" />
         <EntityTypeShape EntityType="HabProfDB.Tesina" Width="3" PointX="0.5" PointY="8.875" />
         <EntityTypeShape EntityType="HabProfDB.Licenciatura" Width="2.625" PointX="0.5" PointY="0.5" />
-        <EntityTypeShape EntityType="HabProfDB.Estado_tesina" Width="2.625" PointX="4.75" PointY="11.625" />
+        <EntityTypeShape EntityType="HabProfDB.Estado_tesina" Width="2.625" PointX="0.75" PointY="14.125" />
         <AssociationConnector Association="HabProfDB.Estado_tesisTesis" />
-        <EntityTypeShape EntityType="HabProfDB.Historial_estado" Width="3.25" PointX="5" PointY="8.625" />
+        <EntityTypeShape EntityType="HabProfDB.Historial_estado" Width="3.25" PointX="4.75" PointY="12" />
         <AssociationConnector Association="HabProfDB.TesisHistorial_estado" />
         <AssociationConnector Association="HabProfDB.Estado_tesisHistorial_estado" />
         <EntityTypeShape EntityType="HabProfDB.Servidor_de_correo" Width="2.375" PointX="0.5" PointY="3.5" />
@@ -28,6 +28,7 @@
         <AssociationConnector Association="HabProfDB.PersonaDirector" />
         <AssociationConnector Association="HabProfDB.PersonaJuez" />
         <AssociationConnector Association="HabProfDB.PersonaAdministrador" />
+        <AssociationConnector Association="HabProfDB.JuezTesina" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

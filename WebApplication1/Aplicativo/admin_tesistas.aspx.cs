@@ -32,7 +32,7 @@ namespace WebApplication1.Aplicativo
             {
                 var tesistas = (
                     from t in cxt.Tesistas
-                    where t.Persona.persona_fecha_baja == null
+                    where t.tesista_fecha_baja == null
                     select new
                     {
                         tesista_id = t.tesista_id,
@@ -66,7 +66,17 @@ namespace WebApplication1.Aplicativo
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
                 Tesista tesista = cxt.Tesistas.FirstOrDefault(pp => pp.tesista_id == id_tesista);
-                tesista.Persona.persona_fecha_baja = DateTime.Today;
+                tesista.tesista_fecha_baja = DateTime.Today;
+
+                if (
+                   (tesista.Persona.Administrador == null || tesista.Persona.Administrador.administrador_fecha_baja != null) && //no tiene el perfil o esta dado de baja
+                   (tesista.Persona.Director == null || tesista.Persona.Director.director_fecha_baja != null) && //no tiene el perfil o esta dado de baja
+                   (tesista.Persona.Juez == null || tesista.Persona.Juez.juez_fecha_baja != null)  //no tiene el perfil o esta dado de baja
+                   )
+                {
+                    tesista.Persona.persona_usuario = "";
+                    tesista.Persona.persona_clave = "";
+                }
 
                 cxt.SaveChanges();
                 MessageBox.Show(this, "Se ha eliminado correctamente al tesista " + tesista.Persona.persona_nomyap, MessageBox.Tipo_MessageBox.Success);

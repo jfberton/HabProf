@@ -22,7 +22,6 @@
                 CssClass="validationsummary panel panel-danger" HeaderText="<div class='panel-heading'>&nbsp;Corrija los siguientes errores antes de continuar:</div>" />
         </div>
     </div>
-
     <%--TEMA--%>
     <div class="row" runat="server" id="div_tema">
         <div class="col-md-2">Tema</div>
@@ -213,149 +212,72 @@
                 ID="cv_notificacion" runat="server" ErrorMessage="El valor ingresado debe ser menor o igual a el plazo para la entrega de la tesina" OnServerValidate="cv_notificacion_ServerValidate" ValidationGroup="tesina" />
         </div>
     </div>
-
     <br />
-    <%--ARCHIVO--%>
-    <div class="row" runat="server" id="div_archivo">
-        <div class="col-md-2">
-            Tesina
-        </div>
-        <div class="col-md-9">
-            <asp:FileUpload runat="server" ID="file_tesina" />
-        </div>
-    </div>
 
-    <br />
-    <%--ESTADO--%>
-    <div class="row" runat="server" id="div_estado" visible="false">
-        <div class="col-md-12">
-            <table style="width: 100%">
-                <tr>
-                    <td>Estado</td>
-                    <td>
-                        <table style="width: 100%">
-                            <tr>
-                                <td>
-                                    <asp:TextBox runat="server" ID="tb_estado" CssClass="form-control" Enabled="false" Text="estado de la tesina" />
-                                </td>
-                                <td>
+    <%--ARCHIVO Y ESTADO--%>
+    <%--    <div class="row">
+        <div class="col-md-4">
+            <div class="row" runat="server" id="div_archivo">
+                <div class="col-md-2">
+                    Tesina
+                </div>
+                <div class="col-md-10">
+                    <a href="#" runat="server" id="descargar_archivo_tesina">No existe archivo.-</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row" runat="server" id="div_estado">
+                <div class="col-md-12">
+                    <table style="width: 100%">
+                        <tr>
+                            <td>Estado tesina
+                            </td>
+                            <td>
+                                <asp:TextBox runat="server" ID="tb_estado" CssClass="form-control" Enabled="false" Text="estado de la tesina" />
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="...">
                                     <button class="btn btn-default" title="Ver historial de estados" onserverclick="btn_tesina_ver_historial_ServerClick" runat="server" id="btn_tesina_ver_historial"><span class="glyphicon glyphicon-calendar"></span></button>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
+                                </div>
 
-            <div class="modal fade" id="estado_iniciar" role="dialog" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Marcar fecha de inicio</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <asp:ValidationSummary ID="ValidationSummary3" runat="server" DisplayMode="BulletList" ValidationGroup="estado_inicio"
-                                        CssClass="validationsummary panel panel-danger" HeaderText="<div class='panel-heading'>&nbsp;Corrija los siguientes errores antes de continuar:</div>" />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    Fecha inicial
-                                </div>
-                                <div class="col-md-9">
-                                </div>
-                                <div class="col-md-1">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <%--<button id="Button1" runat="server" validationgroup="estado_tesina" onserverclick="btn_modificar_estado_ServerClick" class="btn btn-success">
-                                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Modificar estado!
-                            </button>--%>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        </div>
-                        |
-                    </div>
-                </div>
-            </div>
+                                <div class="modal fade" id="ver_historial_de_estados" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Historial de estados tesina</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <asp:GridView ID="gv_historial" runat="server" OnPreRender="gv_PreRender"
+                                                    AutoGenerateColumns="False" GridLines="None" CssClass="display">
+                                                    <Columns>
+                                                        <asp:BoundField DataField="fecha" HeaderText="Fecha" DataFormatString="{0:d}" ReadOnly="true" />
+                                                        <asp:BoundField DataField="estado" HeaderText="Estado" ReadOnly="true" />
+                                                        <asp:TemplateField HeaderText="Observaciones">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="Label1" runat="server"
+                                                                    ToolTip='<%# Eval("observacion_completa") %>'
+                                                                    Text='<%# Eval("observacion_recortada") %>'>
+                                                                </asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                </asp:GridView>
 
-            <div class="modal fade" id="modificar_estado_tesina" role="dialog" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Modificar estado Tesina</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <asp:ValidationSummary ID="ValidationSummary2" runat="server" DisplayMode="BulletList" ValidationGroup="estado_tesina"
-                                        CssClass="validationsummary panel panel-danger" HeaderText="<div class='panel-heading'>&nbsp;Corrija los siguientes errores antes de continuar:</div>" />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    Estado
-                                </div>
-                                <div class="col-md-9">
-                                    <asp:DropDownList runat="server" ID="ddl_estados" CssClass="form-control">
-                                    </asp:DropDownList>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-2">
-                                    Observaciones
-                                </div>
-                                <div class="col-md-9">
-                                    <input type="text" runat="server" id="t_observacion_nuevo_estado" aria-multiline="true" class="form-control has-error" placeholder="Ingrese el tema de la tesina..." />
-                                </div>
-                                <div class="col-md-1">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <%--<button id="btn_modificar_estado" runat="server" validationgroup="estado_tesina" onserverclick="btn_modificar_estado_ServerClick" class="btn btn-success">
-                                <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Modificar estado!
-                            </button>--%>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            </td>
 
-            <div class="modal fade" id="ver_historial_de_estados" role="dialog" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">Historial de estados tesina</h4>
-                        </div>
-                        <div class="modal-body">
-                            <asp:GridView ID="gv_historial" runat="server" OnPreRender="gv_PreRender"
-                                AutoGenerateColumns="False" GridLines="None" CssClass="display">
-                                <Columns>
-                                    <asp:BoundField DataField="fecha" HeaderText="Fecha" DataFormatString="{0:d}" ReadOnly="true" />
-                                    <asp:BoundField DataField="estado" HeaderText="Estado" ReadOnly="true" />
-                                    <asp:TemplateField HeaderText="Observaciones">
-                                        <ItemTemplate>
-                                            <asp:Label ID="Label1" runat="server"
-                                                ToolTip='<%# Eval("observacion_completa") %>'
-                                                Text='<%# Eval("observacion_recortada") %>'>
-                                            </asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                </Columns>
-                            </asp:GridView>
-
-                        </div>
-                    </div>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+    <br />--%>
 
     <%--COINCIDENCIAS EN EL TEMA O DESCRIPCION--%>
     <div class="modal fade" id="mostrar_coincidencias" role="dialog" aria-hidden="true">
@@ -366,7 +288,6 @@
                     <h4 class="modal-title">Listado de tesinas similares</h4>
                 </div>
                 <div class="modal-body" runat="server" id="div_coincidencias">
-                    
                 </div>
                 <div class="modal-footer">
                     <asp:Button Text="Habilitar guardado de todas maneras!" runat="server" ID="btn_habilitar_guardar" CssClass="btn btn-success" OnClick="btn_habilitar_guardar_Click" />
@@ -381,41 +302,21 @@
         <div class="col-md-12 text-right">
             <asp:Button Text="Verificar" ID="btn_verificar_tesina" OnClick="btn_verificar_tesina_Click" ValidationGroup="tesina" CausesValidation="true" CssClass="btn btn-success" runat="server" />
             <asp:Button Text="Guardar" OnClick="btn_guardar_tesina_ServerClick" ID="btn_guardar_tesina" CssClass="btn btn-primary" Enabled="false" runat="server" />
+            <asp:Button Text="Enviar correos" OnClick="btn_enviar_correos_Click" ID="btn_enviar_correos" CssClass="btn btn-primary" Enabled="false" runat="server" />
             <button type="button" class="btn btn-default" runat="server" id="btn_cancelar" onserverclick="btn_cancelar_ServerClick">Cancelar</button>
         </div>
     </div>
 
-    <%--MODAL PREGUNTA POR ENVIO DE MAILS--%>
-    <div class="modal fade" id="consulto_por_envio_mail" role="dialog" aria-hidden="true">
-        <div class="modal-dialog panel-success">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Se guardo correctamente la tesina</h4>
-                </div>
-                <div class="modal-body">
-                    <asp:HiddenField runat="server" ID="hidden_id_tesina_a_mandar" />
-                    <h4>Desea enviar correos a las personas implicadas para avisar de estos cambios?</h4>
-                </div>
-                <div class="modal-footer">
-                    <asp:Button Text="Enviar correos!" runat="server" ID="btn_enviar_correos" CssClass="btn btn-success" OnClick="btn_enviar_correos_Click" />
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="CPH_Scripts" runat="server">
     <script>
-        $(document).ready(function () {
-            $('.select2').select2();
-        });
+        //$(document).ready(function () {
+        //    $('.select2').select2();
+        //});
 
         $(document).ready(function () {
 
-            $('#<%= gv_historial.ClientID %>').DataTable({
+           <%-- $('#<%= gv_historial.ClientID %>').DataTable({
                 "scrollY": "400px",
                 "scrollCollapse": true,
                 "paging": false,
@@ -433,7 +334,7 @@
                         "previous": "anterior"
                     },
                 }
-            });
+            });--%>
 
             $('#<%= gv_tesistas.ClientID %>').DataTable({
                 "scrollY": "400px",
@@ -474,12 +375,10 @@
             });
         });
 
-        $(":file").filestyle({ buttonBefore: false, buttonText: "Seleccionar archivo" });
-
-        $('#ver_historial_de_estados').on('shown.bs.modal', function () {
+       <%-- $('#ver_historial_de_estados').on('shown.bs.modal', function () {
             var table = $('#<%= gv_historial.ClientID %>').DataTable();
             table.draw();
-        })
+        })--%>
 
         var d = new Date();
         d.getDate();
@@ -496,9 +395,9 @@
             table.draw();
         })
 
-            $('#buscar_director').on('shown.bs.modal', function () {
-                var table = $('#<%= gv_directores.ClientID %>').DataTable();
-                table.draw();
-            })
+        $('#buscar_director').on('shown.bs.modal', function () {
+            var table = $('#<%= gv_directores.ClientID %>').DataTable();
+            table.draw();
+        })
     </script>
 </asp:Content>

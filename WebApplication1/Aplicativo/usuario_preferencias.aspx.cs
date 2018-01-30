@@ -63,13 +63,13 @@ namespace WebApplication1.Aplicativo
         protected void btn_cambiar_clave_Click(object sender, EventArgs e)
         {
             Persona admin = Session["UsuarioLogueado"] as Persona;
-            string clave_actual_db = Cripto.Desencriptar(admin.persona_clave);
+            string clave_actual_db = admin.persona_clave;
             string clave_actual_ingresada = tb_clave_actual.Text;
             string clave_nueva = tb_clave_nueva.Text;
             string clave_nueva_repite = tb_clave_nueva_repite.Text;
 
 
-            if (clave_actual_db != clave_actual_ingresada || clave_nueva != clave_nueva_repite)
+            if (clave_actual_db != Cripto.Encriptar(clave_actual_ingresada) || clave_nueva != clave_nueva_repite)
             {
                 MessageBox.Show(this, "Las claves ingresadas no coinciden", MessageBox.Tipo_MessageBox.Danger);
             }

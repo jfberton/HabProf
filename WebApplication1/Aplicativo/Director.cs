@@ -29,6 +29,8 @@ public partial class Director
 
     public int director_id { get; set; }
 
+    public Nullable<System.DateTime> director_fecha_baja { get; set; }
+
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

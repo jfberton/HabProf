@@ -21,7 +21,6 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="../Aplicativo/usuario_preferencias.aspx">Bienvenido,
-                       
                         <asp:Label Text="" ID="lbl_usuario" runat="server" /></a>
                 </li>
                 <li>

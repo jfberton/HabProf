@@ -152,7 +152,12 @@ namespace WebApplication1
                     cxt.Servidores.Add(servidor3);
                     cxt.Servidores.Add(servidor4);
 
-                    Licenciatura l = new Licenciatura() { licenciatura_nombre = "Licenciatura en Tecnología Educativa", licenciatura_descripcion = "Este Ciclo de Licenciatura se propone brindar una alternativa de formación de grado a aquellos profesores y/o técnicos superiores en áreas referidas en manejo de las tecnologías, interesados en Ia inserción de Ia tecnología educativa en los procesos de formación inicial y continua propios del sistema educativo. Asimismo, resulta una opción para cubrir los espacios de capacitación y actualización que se desarroIIan en las instituciones y organizaciones del sistema socio productivo, tanto de gestión pública como privada.", licenciatura_email = "fede.berton@gmail.com", licenciatura_email_clave = "berton_mail", Servidor = servidor3 };
+                    Licenciatura l = new Licenciatura() {
+                        licenciatura_nombre = "Licenciatura en Tecnología Educativa",
+                        licenciatura_descripcion = "Este Ciclo de Licenciatura se propone brindar una alternativa de formación de grado a aquellos profesores y/o técnicos superiores en áreas referidas en manejo de las tecnologías, interesados en Ia inserción de Ia tecnología educativa en los procesos de formación inicial y continua propios del sistema educativo. Asimismo, resulta una opción para cubrir los espacios de capacitación y actualización que se desarroIIan en las instituciones y organizaciones del sistema socio productivo, tanto de gestión pública como privada.",
+                        licenciatura_email = "fede.berton@gmail.com",
+                        licenciatura_email_clave = "berton_mail",
+                        Servidor = servidor3 };
                     cxt.Licenciaturas.Add(l);
 
                     Persona p_admin = new Persona()
@@ -306,7 +311,7 @@ namespace WebApplication1
                         tesina_descripcion = "politica, importacion, electronico",
                         tesina_tema = "Impacto de las politicas de importación sobre la producción de artículos electronicónicos en la región",
                         tesina_plan_fch_presentacion = Convert.ToDateTime("01/06/2017"),
-                        tesina_plan_duracion_meses = 12,
+                        tesina_plan_duracion_meses = 18,
                         tesina_plan_aviso_meses = 3
                     };
 
@@ -316,7 +321,7 @@ namespace WebApplication1
                     {
                         Tesina = tesis,
                         Estado = estado_inicial,
-                        historial_tesina_descripcion = "Presento satisfactoriamente la tesina",
+                        historial_tesina_descripcion = "Se inicia el seguimiento de la tesina",
                         historial_tesina_fecha = Convert.ToDateTime("01/06/2017")
                     };
 

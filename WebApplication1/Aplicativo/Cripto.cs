@@ -13,27 +13,34 @@ namespace WebApplication1.Aplicativo
         {
             string ret = string.Empty;
 
-            encriptador.Contenido = valor;
+            if (valor == string.Empty)
+            {
+                ret = "contenido nulo";
+            }
+            else
+            {
+                encriptador.Contenido = valor;
 
-            encriptador.Encriptar();
+                encriptador.Encriptar();
 
-            ret = encriptador.Resultado;
-
-            return ret;
-        }
-
-        public static string Desencriptar(string valor)
-        {
-            string ret = string.Empty;
-
-            encriptador.Contenido = valor;
-
-            encriptador.Desencriptar();
-
-            ret = encriptador.Resultado;
+                ret = encriptador.Resultado;
+            }
 
             return ret;
         }
+
+        //public static string Desencriptar(string valor)
+        //{
+        //    string ret = string.Empty;
+
+        //    encriptador.Contenido = valor;
+
+        //    encriptador.Desencriptar();
+
+        //    ret = encriptador.Resultado;
+
+        //    return ret;
+        //}
 
     }
 }

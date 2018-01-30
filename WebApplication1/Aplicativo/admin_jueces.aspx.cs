@@ -31,7 +31,7 @@ namespace WebApplication1.Aplicativo
             using (HabProfDBContainer cxt = new Aplicativo.HabProfDBContainer())
             {
                 var jueces = (from d in cxt.Jueces
-                                  where d.Persona.persona_fecha_baja == null
+                                  where d.juez_fecha_baja == null
                                   select d).ToList();
 
                 var jueces_con_tesina_a_cargo = (from d in jueces
@@ -68,7 +68,16 @@ namespace WebApplication1.Aplicativo
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
                 Juez juez = cxt.Jueces.FirstOrDefault(pp => pp.juez_id == id_juez);
-                juez.Persona.persona_fecha_baja = DateTime.Today;
+                juez.juez_fecha_baja = DateTime.Today;
+                if (
+                    (juez.Persona.Administrador == null || juez.Persona.Administrador.administrador_fecha_baja != null) && //no tiene el perfil o esta dado de baja
+                    (juez.Persona.Tesista == null || juez.Persona.Tesista.tesista_fecha_baja != null) && //no tiene el perfil o esta dado de baja
+                    (juez.Persona.Director == null || juez.Persona.Director.director_fecha_baja != null)  //no tiene el perfil o esta dado de baja
+                    )
+                {
+                    juez.Persona.persona_usuario = "";
+                    juez.Persona.persona_clave = "";
+                }
 
                 cxt.SaveChanges();
                 MessageBox.Show(this, "Se ha eliminado correctamente al juez " + juez.Persona.persona_nomyap, MessageBox.Tipo_MessageBox.Success);

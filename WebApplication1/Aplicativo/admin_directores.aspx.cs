@@ -31,7 +31,7 @@ namespace WebApplication1.Aplicativo
             using (HabProfDBContainer cxt = new Aplicativo.HabProfDBContainer())
             {
                 var directores = (from d in cxt.Directores
-                                  where d.Persona.persona_fecha_baja == null
+                                  where d.director_fecha_baja == null
                                   select d).ToList();
 
                 var directores_con_tesina_a_cargo = (from d in directores
@@ -70,7 +70,17 @@ namespace WebApplication1.Aplicativo
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
                 Director director = cxt.Directores.FirstOrDefault(pp => pp.director_id == id_director);
-                director.Persona.persona_fecha_baja = DateTime.Today;
+                director.director_fecha_baja = DateTime.Today;
+                if (
+                    (director.Persona.Administrador == null || director.Persona.Administrador.administrador_fecha_baja != null) && //no tiene el perfil o esta dado de baja
+                    (director.Persona.Tesista == null || director.Persona.Tesista.tesista_fecha_baja != null) && //no tiene el perfil o esta dado de baja
+                    (director.Persona.Juez == null || director.Persona.Juez.juez_fecha_baja != null)  //no tiene el perfil o esta dado de baja
+                    )
+                {
+                    director.Persona.persona_usuario = "";
+                    director.Persona.persona_clave = "";
+                }
+            
 
                 cxt.SaveChanges();
                 MessageBox.Show(this, "Se ha eliminado correctamente al director " + director.Persona.persona_nomyap, MessageBox.Tipo_MessageBox.Success);
@@ -119,7 +129,7 @@ namespace WebApplication1.Aplicativo
                         {
                             director = p_director.Director;
                         }
-                       
+
                     }
 
                     //agrego o actualizo el director
@@ -266,14 +276,14 @@ namespace WebApplication1.Aplicativo
                     lbl_ver_director_calificacion.Text = director.Calificacion_general.ToString();
                     lbl_ver_director_usuario.Text = director.Persona.persona_usuario;
 
-                    List<Tesina> tesinas = cxt.Tesinas.Where(tt => tt.director_id == director.director_id ).OrderByDescending(tt=>tt.tesina_plan_fch_presentacion).ToList();
+                    List<Tesina> tesinas = cxt.Tesinas.Where(tt => tt.director_id == director.director_id).OrderByDescending(tt => tt.tesina_plan_fch_presentacion).ToList();
 
                     var tesina_para_grilla = (from t in tesinas
                                               select new
                                               {
                                                   tesina_id = t.tesina_id,
                                                   tesina_tema_completo = t.tesina_tema,
-                                                  tesina_tema_recortado = t.tesina_tema.Substring(0,40),
+                                                  tesina_tema_recortado = t.tesina_tema.Substring(0, 40),
                                                   tesina_plan_fch_presentacion = t.tesina_plan_fch_presentacion,
                                                   tesinata_nombre = t.Tesista.Persona.persona_nomyap,
                                                   tesina_estado = t.Estado.estado_tesina_estado

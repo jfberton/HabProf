@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/22/2018 09:16:58
+-- Date Created: 01/30/2018 18:04:56
 -- Generated from EDMX file: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
 -- --------------------------------------------------
 
@@ -108,8 +108,7 @@ CREATE TABLE [dbo].[Personas] (
     [licenciatura_id] int  NOT NULL,
     [persona_usuario] nvarchar(max)  NOT NULL,
     [persona_clave] nvarchar(max)  NOT NULL,
-    [persona_estilo] nvarchar(max)  NOT NULL,
-    [persona_fecha_baja] datetime  NULL
+    [persona_estilo] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -185,6 +184,7 @@ GO
 -- Creating table 'Jueces'
 CREATE TABLE [dbo].[Jueces] (
     [juez_id] int IDENTITY(1,1) NOT NULL,
+    [juez_fecha_baja] datetime  NULL,
     [Persona_persona_id] int  NOT NULL
 );
 GO
@@ -192,6 +192,7 @@ GO
 -- Creating table 'Administradores'
 CREATE TABLE [dbo].[Administradores] (
     [administrador_id] int IDENTITY(1,1) NOT NULL,
+    [administrador_fecha_baja] datetime  NULL,
     [Persona_persona_id] int  NOT NULL
 );
 GO
@@ -199,6 +200,7 @@ GO
 -- Creating table 'Directores'
 CREATE TABLE [dbo].[Directores] (
     [director_id] int IDENTITY(1,1) NOT NULL,
+    [director_fecha_baja] datetime  NULL,
     [Persona_persona_id] int  NOT NULL
 );
 GO
@@ -208,7 +210,15 @@ CREATE TABLE [dbo].[Tesistas] (
     [tesista_id] int IDENTITY(1,1) NOT NULL,
     [tesista_legajo] nvarchar(max)  NOT NULL,
     [tesista_sede] nvarchar(max)  NOT NULL,
+    [tesista_fecha_baja] datetime  NULL,
     [Persona_persona_id] int  NOT NULL
+);
+GO
+
+-- Creating table 'JuezTesina'
+CREATE TABLE [dbo].[JuezTesina] (
+    [Jueces_juez_id] int  NOT NULL,
+    [Tesinas_tesina_id] int  NOT NULL
 );
 GO
 
@@ -280,6 +290,12 @@ GO
 ALTER TABLE [dbo].[Tesistas]
 ADD CONSTRAINT [PK_Tesistas]
     PRIMARY KEY CLUSTERED ([tesista_id] ASC);
+GO
+
+-- Creating primary key on [Jueces_juez_id], [Tesinas_tesina_id] in table 'JuezTesina'
+ALTER TABLE [dbo].[JuezTesina]
+ADD CONSTRAINT [PK_JuezTesina]
+    PRIMARY KEY CLUSTERED ([Jueces_juez_id], [Tesinas_tesina_id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -464,6 +480,30 @@ GO
 CREATE INDEX [IX_FK_PersonaAdministrador]
 ON [dbo].[Administradores]
     ([Persona_persona_id]);
+GO
+
+-- Creating foreign key on [Jueces_juez_id] in table 'JuezTesina'
+ALTER TABLE [dbo].[JuezTesina]
+ADD CONSTRAINT [FK_JuezTesina_Juez]
+    FOREIGN KEY ([Jueces_juez_id])
+    REFERENCES [dbo].[Jueces]
+        ([juez_id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Tesinas_tesina_id] in table 'JuezTesina'
+ALTER TABLE [dbo].[JuezTesina]
+ADD CONSTRAINT [FK_JuezTesina_Tesina]
+    FOREIGN KEY ([Tesinas_tesina_id])
+    REFERENCES [dbo].[Tesinas]
+        ([tesina_id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_JuezTesina_Tesina'
+CREATE INDEX [IX_FK_JuezTesina_Tesina]
+ON [dbo].[JuezTesina]
+    ([Tesinas_tesina_id]);
 GO
 
 -- --------------------------------------------------

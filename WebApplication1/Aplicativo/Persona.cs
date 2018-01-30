@@ -49,8 +49,6 @@ public partial class Persona
 
     public string persona_estilo { get; set; }
 
-    public Nullable<System.DateTime> persona_fecha_baja { get; set; }
-
 
 
     public virtual Licenciatura Licenciatura { get; set; }

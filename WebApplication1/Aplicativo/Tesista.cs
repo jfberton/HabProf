@@ -33,6 +33,8 @@ public partial class Tesista
 
     public string tesista_sede { get; set; }
 
+    public Nullable<System.DateTime> tesista_fecha_baja { get; set; }
+
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
