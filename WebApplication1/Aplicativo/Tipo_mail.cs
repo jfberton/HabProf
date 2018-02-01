@@ -15,30 +15,14 @@ namespace WebApplication1.Aplicativo
 using System;
     using System.Collections.Generic;
     
-public partial class Envio_mail
+public partial class Tipo_mail
 {
-
-    public int envio_id { get; set; }
-
-    public int persona_id { get; set; }
-
-    public System.DateTime envio_fecha_hora { get; set; }
-
-    public string envio_tipo { get; set; }
-
-    public string envio_email_destino { get; set; }
-
-    public string envio_respuesta_clave { get; set; }
-
-    public Nullable<System.DateTime> envio_respuesta_recibida { get; set; }
 
     public int tipo_mail_id { get; set; }
 
+    public string tipo_mail_tipo { get; set; }
 
-
-    public virtual Persona Persona { get; set; }
-
-    public virtual Tipo_mail Tipo_mail { get; set; }
+    public string tipo_mail_html { get; set; }
 
 }
 

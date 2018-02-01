@@ -17,6 +17,7 @@
     <EntitySet Name="Administradores" EntityType="HabProfDB.Store.Administradores" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Directores" EntityType="HabProfDB.Store.Directores" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Tesistas" EntityType="HabProfDB.Store.Tesistas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tipos_de_mail" EntityType="HabProfDB.Store.Tipos_de_mail" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="JuezTesina" EntityType="HabProfDB.Store.JuezTesina" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="Estado_tesisTesis" Association="HabProfDB.Store.Estado_tesisTesis">
       <End Role="Estado_tesis" EntitySet="Estados_tesinas" />
@@ -73,6 +74,10 @@
     <AssociationSet Name="FK_JuezTesina_Tesina" Association="HabProfDB.Store.FK_JuezTesina_Tesina">
       <End Role="Tesina" EntitySet="Tesinas" />
       <End Role="JuezTesina" EntitySet="JuezTesina" />
+    </AssociationSet>
+    <AssociationSet Name="Tipo_mailEnvio_mail" Association="HabProfDB.Store.Tipo_mailEnvio_mail">
+      <End Role="Tipo_mail" EntitySet="Tipos_de_mail" />
+      <End Role="Envio_mail" EntitySet="Envio_mails" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Personas">
@@ -159,6 +164,7 @@
     <Property Name="envio_email_destino" Type="nvarchar(max)" Nullable="false" />
     <Property Name="envio_respuesta_clave" Type="nvarchar(max)" Nullable="false" />
     <Property Name="envio_respuesta_recibida" Type="datetime" Nullable="true" />
+    <Property Name="tipo_mail_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Jueces">
     <Key>
@@ -193,6 +199,14 @@
     <Property Name="tesista_sede" Type="nvarchar(max)" Nullable="false" />
     <Property Name="tesista_fecha_baja" Type="datetime" Nullable="true" />
     <Property Name="Persona_persona_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tipos_de_mail">
+    <Key>
+      <PropertyRef Name="tipo_mail_id" />
+    </Key>
+    <Property Name="tipo_mail_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tipo_mail_tipo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="tipo_mail_html" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="JuezTesina">
     <Key>
@@ -346,6 +360,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="Tipo_mailEnvio_mail">
+    <End Role="Tipo_mail" Type="HabProfDB.Store.Tipos_de_mail" Multiplicity="1" />
+    <End Role="Envio_mail" Type="HabProfDB.Store.Envio_mails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tipo_mail">
+        <PropertyRef Name="tipo_mail_id" />
+      </Principal>
+      <Dependent Role="Envio_mail">
+        <PropertyRef Name="tipo_mail_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_JuezTesina_Juez">
     <End Role="Juez" Type="HabProfDB.Store.Jueces" Multiplicity="1" />
     <End Role="JuezTesina" Type="HabProfDB.Store.JuezTesina" Multiplicity="*" />
@@ -437,6 +463,11 @@
           <AssociationSet Name="JuezTesina" Association="HabProfDB.JuezTesina">
             <End Role="Juez" EntitySet="Jueces" />
             <End Role="Tesina" EntitySet="Tesinas" />
+          </AssociationSet>
+          <EntitySet Name="Tipos_de_mail" EntityType="HabProfDB.Tipo_mail" />
+          <AssociationSet Name="Tipo_mailEnvio_mail" Association="HabProfDB.Tipo_mailEnvio_mail">
+            <End Role="Tipo_mail" EntitySet="Tipos_de_mail" />
+            <End Role="Envio_mail" EntitySet="Envio_mails" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Persona">
@@ -637,6 +668,8 @@
           <Property Name="envio_respuesta_clave" Type="String" Nullable="false" />
           <NavigationProperty Name="Persona" Relationship="HabProfDB.PersonaEnvio_mail" FromRole="Envio_mail" ToRole="Persona" />
           <Property Name="envio_respuesta_recibida" Type="DateTime" Nullable="true" />
+          <NavigationProperty Name="Tipo_mail" Relationship="HabProfDB.Tipo_mailEnvio_mail" FromRole="Envio_mail" ToRole="Tipo_mail" />
+          <Property Name="tipo_mail_id" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="PersonaEnvio_mail">
           <End Type="HabProfDB.Persona" Role="Persona" Multiplicity="1" />
@@ -693,6 +726,26 @@
         <Association Name="JuezTesina">
           <End Type="HabProfDB.Juez" Role="Juez" Multiplicity="*" />
           <End Type="HabProfDB.Tesina" Role="Tesina" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Tipo_mail">
+          <Key>
+            <PropertyRef Name="tipo_mail_id" />
+          </Key>
+          <Property Name="tipo_mail_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tipo_mail_tipo" Type="String" Nullable="false" />
+          <Property Name="tipo_mail_html" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="Tipo_mailEnvio_mail">
+          <End Type="HabProfDB.Tipo_mail" Role="Tipo_mail" Multiplicity="1" />
+          <End Type="HabProfDB.Envio_mail" Role="Envio_mail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tipo_mail">
+              <PropertyRef Name="tipo_mail_id" />
+            </Principal>
+            <Dependent Role="Envio_mail">
+              <PropertyRef Name="tipo_mail_id" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -789,6 +842,7 @@
           <ScalarProperty Name="envio_email_destino" ColumnName="envio_email_destino" />
           <ScalarProperty Name="envio_respuesta_clave" ColumnName="envio_respuesta_clave" />
           <ScalarProperty Name="envio_respuesta_recibida" ColumnName="envio_respuesta_recibida" />
+          <ScalarProperty Name="tipo_mail_id" ColumnName="tipo_mail_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -823,6 +877,15 @@
           <ScalarProperty Name="tesista_legajo" ColumnName="tesista_legajo" />
           <ScalarProperty Name="tesista_sede" ColumnName="tesista_sede" />
           <ScalarProperty Name="tesista_fecha_baja" ColumnName="tesista_fecha_baja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tipos_de_mail">
+      <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Tipo_mail)">
+        <MappingFragment StoreEntitySet="Tipos_de_mail">
+          <ScalarProperty Name="tipo_mail_id" ColumnName="tipo_mail_id" />
+          <ScalarProperty Name="tipo_mail_tipo" ColumnName="tipo_mail_tipo" />
+          <ScalarProperty Name="tipo_mail_html" ColumnName="tipo_mail_html" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

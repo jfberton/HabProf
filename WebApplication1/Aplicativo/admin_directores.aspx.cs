@@ -70,20 +70,27 @@ namespace WebApplication1.Aplicativo
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
                 Director director = cxt.Directores.FirstOrDefault(pp => pp.director_id == id_director);
-                director.director_fecha_baja = DateTime.Today;
-                if (
-                    (director.Persona.Administrador == null || director.Persona.Administrador.administrador_fecha_baja != null) && //no tiene el perfil o esta dado de baja
-                    (director.Persona.Tesista == null || director.Persona.Tesista.tesista_fecha_baja != null) && //no tiene el perfil o esta dado de baja
-                    (director.Persona.Juez == null || director.Persona.Juez.juez_fecha_baja != null)  //no tiene el perfil o esta dado de baja
-                    )
-                {
-                    director.Persona.persona_usuario = "";
-                    director.Persona.persona_clave = "";
-                }
-            
 
-                cxt.SaveChanges();
-                MessageBox.Show(this, "Se ha eliminado correctamente al director " + director.Persona.persona_nomyap, MessageBox.Tipo_MessageBox.Success);
+                if (director.Tesinas.Count == 0)
+                {
+                    director.director_fecha_baja = DateTime.Today;
+                    if (
+                        (director.Persona.Administrador == null || director.Persona.Administrador.administrador_fecha_baja != null) && //no tiene el perfil o esta dado de baja
+                        (director.Persona.Tesista == null || director.Persona.Tesista.tesista_fecha_baja != null) && //no tiene el perfil o esta dado de baja
+                        (director.Persona.Juez == null || director.Persona.Juez.juez_fecha_baja != null)  //no tiene el perfil o esta dado de baja
+                        )
+                    {
+                        director.Persona.persona_usuario = "";
+                        director.Persona.persona_clave = "";
+                    }
+
+                    cxt.SaveChanges();
+                    MessageBox.Show(this, "Se ha eliminado correctamente al director " + director.Persona.persona_nomyap, MessageBox.Tipo_MessageBox.Success);
+                }
+                else
+                {
+                    MessageBox.Show(this, "No se puede eliminar el director " + director.Persona.persona_nomyap + " el mismo tiene tesinas asociadas. ", MessageBox.Tipo_MessageBox.Warning);
+                }
             }
 
             ObtenerDirectores();
@@ -389,6 +396,19 @@ namespace WebApplication1.Aplicativo
 
             string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_director').modal('show')});</script>";
             ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
+        }
+
+        protected void cv_correo_duplicado_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            int dni = Convert.ToInt32(tb_dni_director.Value);
+            bool correcto = true;
+
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                correcto = cxt.Personas.FirstOrDefault(pp => pp.persona_email == tb_email.Value && pp.persona_dni != dni) == null;
+            }
+
+            args.IsValid = correcto;
         }
     }
 }

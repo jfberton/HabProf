@@ -317,5 +317,18 @@ namespace WebApplication1.Aplicativo
             string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_juez').modal('show')});</script>";
             ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
         }
+
+        protected void cv_correo_duplicado_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            int dni = Convert.ToInt32(tb_dni_juez.Value);
+            bool correcto = true;
+
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                correcto = cxt.Personas.FirstOrDefault(pp => pp.persona_email == tb_email.Value && pp.persona_dni != dni) == null;
+            }
+
+            args.IsValid = correcto;
+        }
     }
 }

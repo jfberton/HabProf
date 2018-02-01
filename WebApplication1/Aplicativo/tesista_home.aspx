@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Aplicativo/Site1.Master" AutoEventWireup="true" CodeBehind="tesista_home.aspx.cs" Inherits="WebApplication1.Aplicativo.tesista_home" %>
+﻿<%@ Page Title="" Language="C#" Async="true" MasterPageFile="~/Aplicativo/Site1.Master" AutoEventWireup="true" CodeBehind="tesista_home.aspx.cs" Inherits="WebApplication1.Aplicativo.tesista_home" %>
 
 <%@ Register Src="~/Aplicativo/Menues/menu_admin.ascx" TagPrefix="uc1" TagName="menu_admin" %>
 

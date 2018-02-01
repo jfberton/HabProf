@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Aplicativo/Site1.Master" AutoEventWireup="true" CodeBehind="admin_tesistas.aspx.cs" Inherits="WebApplication1.Aplicativo.admin_tesistas" %>
+﻿<%@ Page Title="" Language="C#" Async="true" MasterPageFile="~/Aplicativo/Site1.Master" AutoEventWireup="true" CodeBehind="admin_tesistas.aspx.cs" Inherits="WebApplication1.Aplicativo.admin_tesistas" %>
 
 <%@ Register Src="~/Aplicativo/Menues/menu_admin.ascx" TagPrefix="uc1" TagName="menu_admin" %>
 
@@ -94,6 +94,8 @@
                                                 </asp:RequiredFieldValidator>
                                                 <asp:RegularExpressionValidator ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="tb_email" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="regex_email" runat="server" ErrorMessage="Debe ingresar un e-mail valido" ValidationGroup="tesista" />
+                                                <asp:CustomValidator ControlToValidate="tb_usuario" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                    ID="cv_correo_duplicado" runat="server" ErrorMessage="Ya existe una persona con ese correo" OnServerValidate="cv_correo_duplicado_ServerValidate" ValidationGroup="tesista" />
                                             </td>
                                         </tr>
                                         <tr>
@@ -199,6 +201,7 @@
     <asp:GridView ID="gv_tesistas" runat="server" OnPreRender="gv_tesistas_PreRender"
         AutoGenerateColumns="False" GridLines="None" CssClass="display">
         <Columns>
+            <asp:BoundField DataField="estado" HeaderText="Estado" ReadOnly="true" />
             <asp:BoundField DataField="persona_nomyap" HeaderText="Nombre" ReadOnly="true" />
             <asp:BoundField DataField="persona_dni" HeaderText="DNI" ReadOnly="true" />
             <asp:BoundField DataField="persona_email" HeaderText="E-mail" ReadOnly="true" />
@@ -209,21 +212,26 @@
                 <ItemTemplate>
                     <button runat="server" class="btn btn-sm btn-default" id="btn_ver" causesvalidation="false" onserverclick="btn_ver_ServerClick1" data-id='<%#Eval("tesista_id")%>'>
                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp;Ver
-                   
                     </button>
+                    
                     <button runat="server" class="btn btn-sm btn-warning" id="btn_editar" causesvalidation="false" onserverclick="btn_editar_ServerClick" data-id='<%#Eval("tesista_id")%>'>
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Editar
-                   
                     </button>
+                   
+                     <button runat="server" class="btn btn-sm btn-success" id="btn_habilitar_tesista" visible='<%#Eval("mostrar_habilitar")%>' causesvalidation="false" onserverclick="btn_habilitar_tesista_ServerClick" data-id='<%#Eval("tesista_id")%>'>
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Habilitar
+                    </button>
+                    
                     <button
                         type="button" class="btn btn-sm btn-danger"
                         data-toggle="modal"
+                        runat="server"
                         data-target="#advertencia_eliminacion"
+                        visible='<%#Eval("mostrar_inhabilitar")%>'
                         data-id='<%#Eval("tesista_id")%>'
                         data-introduccion="el tesista"
                         data-nombre='<%#Eval("persona_nomyap")%>'>
-                        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>&nbsp;Eliminar
-                   
+                        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>&nbsp;Inhabilitar
                     </button>
 
                 </ItemTemplate>
@@ -328,7 +336,7 @@
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             var modal = $(this)
             modal.find('.modal-body #' + '<%= id_item_por_eliminar.ClientID %>').val(id)
-            modal.find('.modal-body #texto_a_mostrar').text('Esta por eliminar ' + introduccion + ' ' + nombre + '. Desea continuar?')
+            modal.find('.modal-body #texto_a_mostrar').text('Esta por pasar a inactivo ' + introduccion + ' ' + nombre + '. Desea continuar?')
         })
         $(document).ready(function () {
             $('#<%= gv_tesistas.ClientID %>').DataTable({

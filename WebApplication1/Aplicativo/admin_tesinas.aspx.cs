@@ -65,7 +65,7 @@ namespace WebApplication1.Aplicativo
                                    ).ToList();
 
                         btn_agregar_tesina.Visible = false;
-                        lbl_small_titulo.Text = "Listado de Tesinas bajo su supervición";
+                        lbl_small_titulo.Text = "Listado de Tesinas bajo su supervisión";
                     }
                     else
                     {

@@ -14,6 +14,7 @@ namespace WebApplication1.Aplicativo
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
                 Persona usuario = Session["UsuarioLogueado"] as Persona;
@@ -125,13 +126,16 @@ namespace WebApplication1.Aplicativo
             {
                 Persona p_cxt = cxt.Personas.FirstOrDefault(pp => pp.persona_id == p.persona_id);
 
+                Tipo_mail tm = cxt.Tipos_de_mail.FirstOrDefault(ttmm => ttmm.tipo_mail_tipo == MiEmail.tipo_mail.validacion.ToString());
+
                 Envio_mail registro_envio_mail = new Envio_mail()
                 {
                     persona_id = p_cxt.persona_id,
                     envio_fecha_hora = DateTime.Now,
                     envio_email_destino = p_cxt.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
                     envio_respuesta_clave = Guid.NewGuid().ToString(),
-                    envio_tipo = MiEmail.tipo_mail.validacion.ToString()
+                    envio_tipo = MiEmail.tipo_mail.validacion.ToString(),
+                    tipo_mail_id = tm.tipo_mail_id
                 };
 
                 cxt.Envio_mails.Add(registro_envio_mail);

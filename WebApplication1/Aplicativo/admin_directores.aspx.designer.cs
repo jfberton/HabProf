@@ -175,6 +175,15 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator regex_email;
         
         /// <summary>
+        /// cv_correo_duplicado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_correo_duplicado;
+        
+        /// <summary>
         /// tb_domicilio control.
         /// </summary>
         /// <remarks>

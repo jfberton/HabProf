@@ -56,6 +56,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Seguridad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\ATP\Viejos\Encriptador\Encriptador\Encriptador\bin\Debug\Seguridad.dll</HintPath>
@@ -101,6 +103,7 @@
     <Content Include="Aplicativo\Menues\MenuDemo.ascx" />
     <Content Include="Aplicativo\Menues\menu_admin.ascx" />
     <Content Include="Aplicativo\prueba.aspx" />
+    <Content Include="Aplicativo\Reportes\reportes.aspx" />
     <Content Include="Aplicativo\tesista_home.aspx" />
     <Content Include="Aplicativo\usuario_preferencias.aspx" />
     <Content Include="Aplicativo\verificar_coincidencias.aspx" />
@@ -145,6 +148,17 @@
     </EntityDeploy>
     <Content Include="Aplicativo\HabProfDB.edmx.diagram">
       <DependentUpon>HabProfDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Aplicativo\Reportes\reporte_director.xsc">
+      <DependentUpon>reporte_director.xsd</DependentUpon>
+    </Content>
+    <None Include="Aplicativo\Reportes\reporte_director.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>reporte_director.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Aplicativo\Reportes\reporte_director.xss">
+      <DependentUpon>reporte_director.xsd</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -733,6 +747,18 @@
     <Compile Include="Aplicativo\prueba.aspx.designer.cs">
       <DependentUpon>prueba.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Aplicativo\Reportes\reportes.aspx.cs">
+      <DependentUpon>reportes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicativo\Reportes\reportes.aspx.designer.cs">
+      <DependentUpon>reportes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\Reportes\reporte_director.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>reporte_director.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Aplicativo\Servidor_de_correo.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>
     </Compile>
@@ -755,6 +781,9 @@
     </Compile>
     <Compile Include="Aplicativo\tesista_home.aspx.designer.cs">
       <DependentUpon>tesista_home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\Tipo_mail.cs">
+      <DependentUpon>HabProfDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\usuario_preferencias.aspx.cs">
       <DependentUpon>usuario_preferencias.aspx</DependentUpon>
@@ -808,6 +837,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Aplicativo\Reportes\reporte_director.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

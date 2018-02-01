@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Aplicativo/Site1.Master" AutoEventWireup="true" CodeBehind="admin_tesinas.aspx.cs" Inherits="WebApplication1.Aplicativo.admin_tesinas" %>
+﻿<%@ Page Title="" Language="C#" Async="true" MasterPageFile="~/Aplicativo/Site1.Master" AutoEventWireup="true" CodeBehind="admin_tesinas.aspx.cs" Inherits="WebApplication1.Aplicativo.admin_tesinas" %>
 
 <%@ Register Src="~/Aplicativo/Menues/menu_admin.ascx" TagPrefix="uc1" TagName="menu_admin" %>
 
@@ -42,7 +42,7 @@
                         <ItemTemplate>
                             <asp:Label ID="Label1" runat="server"
                                 ToolTip='<%# Eval("tema_completo") %>'
-                                Text='<%# Eval("tema_completo") %>'>
+                                Text='<%# Eval("tema_recortado") %>'>
                             </asp:Label>
                         </ItemTemplate>
                     </asp:TemplateField>

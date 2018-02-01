@@ -32,7 +32,6 @@ namespace WebApplication1.Aplicativo
             {
                 var tesistas = (
                     from t in cxt.Tesistas
-                    where t.tesista_fecha_baja == null
                     select new
                     {
                         tesista_id = t.tesista_id,
@@ -40,12 +39,27 @@ namespace WebApplication1.Aplicativo
                         persona_dni = t.Persona.persona_dni,
                         persona_email = t.Persona.persona_email,
                         tesista_legajo = t.tesista_legajo,
-                        tesista_sede = t.tesista_sede
+                        tesista_sede = t.tesista_sede,
+                        fecha_baja = t.tesista_fecha_baja
                     }).ToList();
+
+                var tesistas_estado_activo_inactivo = (from t in tesistas
+                                                       select new
+                                                       {
+                                                           tesista_id = t.tesista_id,
+                                                           persona_nomyap = t.persona_nomyap,
+                                                           persona_dni = t.persona_dni,
+                                                           persona_email = t.persona_email,
+                                                           tesista_legajo = t.tesista_legajo,
+                                                           tesista_sede = t.tesista_sede,
+                                                           estado = t.fecha_baja == null ? "Activo" : "Inactivo",
+                                                           mostrar_inhabilitar = t.fecha_baja == null,
+                                                           mostrar_habilitar = t.fecha_baja != null
+                                                       }).OrderBy(t => t.estado).ThenBy(t => t.persona_nomyap).ToList();
 
                 if (tesistas.Count() > 0)
                 {
-                    gv_tesistas.DataSource = tesistas;
+                    gv_tesistas.DataSource = tesistas_estado_activo_inactivo;
                     gv_tesistas.DataBind();
                     lbl_sin_tesistas.Visible = false;
                 }
@@ -79,7 +93,7 @@ namespace WebApplication1.Aplicativo
                 }
 
                 cxt.SaveChanges();
-                MessageBox.Show(this, "Se ha eliminado correctamente al tesista " + tesista.Persona.persona_nomyap, MessageBox.Tipo_MessageBox.Success);
+                MessageBox.Show(this, "Se ha inhabilitado correctamente al tesista " + tesista.Persona.persona_nomyap, MessageBox.Tipo_MessageBox.Success);
             }
 
             ObtenerTesistas();
@@ -224,6 +238,19 @@ namespace WebApplication1.Aplicativo
             args.IsValid = correcto;
         }
 
+        protected void cv_correo_duplicado_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            int dni = Convert.ToInt32(tb_dni_tesista.Value);
+            bool correcto = true;
+
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                correcto = cxt.Personas.FirstOrDefault(pp => pp.persona_email == tb_email.Value && pp.persona_dni != dni) == null;
+            }
+
+            args.IsValid = correcto;
+        }
+
         protected void chk_cambiar_clave_CheckedChanged(object sender, EventArgs e)
         {
             tr_chk_change_pass.Visible = chk_cambiar_clave.Checked;
@@ -359,6 +386,23 @@ namespace WebApplication1.Aplicativo
 
             string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_tesista').modal('show')});</script>";
             ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
+        }
+
+        protected void btn_habilitar_tesista_ServerClick(object sender, EventArgs e)
+        {
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                int id_tesista = Convert.ToInt32(((HtmlButton)sender).Attributes["data-id"]);
+                Tesista tesista = cxt.Tesistas.FirstOrDefault(pp => pp.tesista_id == id_tesista);
+                if (tesista != null)
+                {
+                    tesista.tesista_fecha_baja = null;
+                    cxt.SaveChanges();
+                    MessageBox.Show(this, "Se habilitó correctamente al tesista " + tesista.Persona.persona_nomyap, MessageBox.Tipo_MessageBox.Success);
+                }
+            }
+
+            ObtenerTesistas();
         }
     }
 }

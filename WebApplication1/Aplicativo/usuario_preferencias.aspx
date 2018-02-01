@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Aplicativo/Site1.Master" AutoEventWireup="true" CodeBehind="usuario_preferencias.aspx.cs" Inherits="WebApplication1.Aplicativo.usuario_preferencias" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Aplicativo/Site1.Master" AutoEventWireup="true" CodeBehind="usuario_preferencias.aspx.cs" Inherits="WebApplication1.Aplicativo.usuario_preferencias" Async="True" %>
 
 <%@ Register Src="~/Aplicativo/Menues/menu_admin.ascx" TagPrefix="uc1" TagName="menu_admin" %>
 

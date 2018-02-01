@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/30/2018 18:04:56
+-- Date Created: 01/31/2018 18:35:11
 -- Generated from EDMX file: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
 -- --------------------------------------------------
 
@@ -53,6 +53,12 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_PersonaAdministrador]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Administradores] DROP CONSTRAINT [FK_PersonaAdministrador];
 GO
+IF OBJECT_ID(N'[dbo].[FK_JuezTesina_Juez]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[JuezTesina] DROP CONSTRAINT [FK_JuezTesina_Juez];
+GO
+IF OBJECT_ID(N'[dbo].[FK_JuezTesina_Tesina]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[JuezTesina] DROP CONSTRAINT [FK_JuezTesina_Tesina];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -90,6 +96,9 @@ IF OBJECT_ID(N'[dbo].[Directores]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Tesistas]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Tesistas];
+GO
+IF OBJECT_ID(N'[dbo].[JuezTesina]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[JuezTesina];
 GO
 
 -- --------------------------------------------------
@@ -177,7 +186,8 @@ CREATE TABLE [dbo].[Envio_mails] (
     [envio_tipo] nvarchar(max)  NOT NULL,
     [envio_email_destino] nvarchar(max)  NOT NULL,
     [envio_respuesta_clave] nvarchar(max)  NOT NULL,
-    [envio_respuesta_recibida] datetime  NULL
+    [envio_respuesta_recibida] datetime  NULL,
+    [tipo_mail_id] int  NOT NULL
 );
 GO
 
@@ -212,6 +222,14 @@ CREATE TABLE [dbo].[Tesistas] (
     [tesista_sede] nvarchar(max)  NOT NULL,
     [tesista_fecha_baja] datetime  NULL,
     [Persona_persona_id] int  NOT NULL
+);
+GO
+
+-- Creating table 'Tipos_de_mail'
+CREATE TABLE [dbo].[Tipos_de_mail] (
+    [tipo_mail_id] int IDENTITY(1,1) NOT NULL,
+    [tipo_mail_tipo] nvarchar(max)  NOT NULL,
+    [tipo_mail_html] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -290,6 +308,12 @@ GO
 ALTER TABLE [dbo].[Tesistas]
 ADD CONSTRAINT [PK_Tesistas]
     PRIMARY KEY CLUSTERED ([tesista_id] ASC);
+GO
+
+-- Creating primary key on [tipo_mail_id] in table 'Tipos_de_mail'
+ALTER TABLE [dbo].[Tipos_de_mail]
+ADD CONSTRAINT [PK_Tipos_de_mail]
+    PRIMARY KEY CLUSTERED ([tipo_mail_id] ASC);
 GO
 
 -- Creating primary key on [Jueces_juez_id], [Tesinas_tesina_id] in table 'JuezTesina'
@@ -504,6 +528,21 @@ GO
 CREATE INDEX [IX_FK_JuezTesina_Tesina]
 ON [dbo].[JuezTesina]
     ([Tesinas_tesina_id]);
+GO
+
+-- Creating foreign key on [tipo_mail_id] in table 'Envio_mails'
+ALTER TABLE [dbo].[Envio_mails]
+ADD CONSTRAINT [FK_Tipo_mailEnvio_mail]
+    FOREIGN KEY ([tipo_mail_id])
+    REFERENCES [dbo].[Tipos_de_mail]
+        ([tipo_mail_id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Tipo_mailEnvio_mail'
+CREATE INDEX [IX_FK_Tipo_mailEnvio_mail]
+ON [dbo].[Envio_mails]
+    ([tipo_mail_id]);
 GO
 
 -- --------------------------------------------------

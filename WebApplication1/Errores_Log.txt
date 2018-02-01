@@ -341,3 +341,61 @@ STACKTRACE:    en System.Web.UI.WebControls.BaseValidator.CheckControlValidation
 
 
 ******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636531064658508353
+
+DATE: 01/02/2018 18:27:45
+
+AGENTE: admin
+
+MESSAGE: La directiva contiene atributos 'async' duplicados.
+
+SOURCE: System.Web
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/usuario_preferencias.aspx
+
+TARGETSITE: Void ProcessError(System.String)
+
+STACKTRACE:    en System.Web.UI.TemplateParser.ProcessError(String message)
+   en System.Web.UI.TemplateParser.ProcessAttributes(String text, Match match, ParsedAttributeCollection& attribs, Boolean fDirective, String& duplicateAttribute)
+   en System.Web.UI.TemplateParser.ParseStringInternal(String text, Encoding fileEncoding)
+   en System.Web.UI.TemplateParser.ParseString(String text, VirtualPath virtualPath, Encoding fileEncoding)
+
+
+******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636531064728179566
+
+DATE: 01/02/2018 18:27:52
+
+AGENTE: admin
+
+MESSAGE: La directiva contiene atributos 'async' duplicados.
+
+SOURCE: System.Web
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/usuario_preferencias.aspx
+
+TARGETSITE: Void ProcessError(System.String)
+
+STACKTRACE:    en System.Web.UI.TemplateParser.ProcessError(String message)
+   en System.Web.UI.TemplateParser.ProcessAttributes(String text, Match match, ParsedAttributeCollection& attribs, Boolean fDirective, String& duplicateAttribute)
+   en System.Web.UI.TemplateParser.ParseStringInternal(String text, Encoding fileEncoding)
+   en System.Web.UI.TemplateParser.ParseString(String text, VirtualPath virtualPath, Encoding fileEncoding)
+
+
+******************************************************************
