@@ -32,13 +32,9 @@ public partial class Envio_mail
 
     public Nullable<System.DateTime> envio_respuesta_recibida { get; set; }
 
-    public int tipo_mail_id { get; set; }
-
 
 
     public virtual Persona Persona { get; set; }
-
-    public virtual Tipo_mail Tipo_mail { get; set; }
 
 }
 

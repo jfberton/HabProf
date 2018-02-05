@@ -28,10 +28,10 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav"><%--si uso el runat server tengo que quitar el path aplicativo--%>
-                <li><a href="../admin_tesistas.aspx" runat="server" id="li_admin_tesistas">Admin Tesistas</a></li>
-                <li><a href="../admin_directores.aspx" runat="server" id="li_admin_directores">Admin Directores</a></li>
-                <li><a href="../admin_jueces.aspx" runat="server" id="li_admin_jueces">Admin Jueces</a></li>
-                <li><a href="../admin_tesinas.aspx" runat="server" id="li_admin_tesinas">Admin Tesinas</a></li>
+                <li><a href="../admin_tesistas.aspx" runat="server" id="li_admin_tesistas">Tesistas</a></li>
+                <li><a href="../admin_directores.aspx" runat="server" id="li_admin_directores">Directores</a></li>
+                <li><a href="../admin_jueces.aspx" runat="server" id="li_admin_jueces">Jueces</a></li>
+                <li><a href="../admin_tesinas.aspx" runat="server" id="li_admin_tesinas">Tesinas</a></li>
                 <li><a href="../verificar_coincidencias.aspx" runat="server" id="li_comprobar_tema">Comprobar tema tesina</a></li>
             </ul>
         </div>

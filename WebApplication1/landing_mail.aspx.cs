@@ -43,14 +43,18 @@ namespace WebApplication1
                         //controlo que ya no haya sido respondida anteriormente
                         correcto = correcto && envio.envio_respuesta_recibida == null;
 
+                        
+                        div_error_generico.Visible = false;
+                        div_recuperar_contraseña.Visible = false;
+                        div_validar_correo_alta_director.Visible = false;
+                        div_validar_correo.Visible = false;
+
                         if (correcto)
                         {
                             switch (tipo_mail)
                             {
                                 case MiEmail.tipo_mail.validacion:
                                     div_validar_correo.Visible = true;
-                                    div_recuperar_contraseña.Visible = false;
-                                    div_error_generico.Visible = false;
                                     envio.Persona.persona_email_validado = true;
                                     envio.envio_respuesta_recibida = DateTime.Now;
                                     cxt.SaveChanges();
@@ -59,13 +63,20 @@ namespace WebApplication1
                                     btn_redireccionar.HRef = "~/default.aspx";
                                     break;
                                 case MiEmail.tipo_mail.recupero_contraseña:
-                                    div_validar_correo.Visible = false;
                                     div_recuperar_contraseña.Visible = true;
-                                    div_error_generico.Visible = false;
                                     envio.envio_respuesta_recibida = DateTime.Now;
                                     cxt.SaveChanges();
                                     lbl_recuperar_contraseña.Text = "Recuperar contraseña";
                                     textp_recuperar_contraseña.InnerHtml = "Bienvenido <strong>" + envio.Persona.persona_nomyap + "</strong>, esta teniendo problemas para ingresar? <br/>Para modificar su contraseña complete los siguientes campos y haga click en el botón recuperar.";
+                                    break;
+                                case MiEmail.tipo_mail.alta_director:
+                                    div_validar_correo_alta_director.Visible = true;
+                                    envio.Persona.persona_email_validado = true;
+                                    envio.envio_respuesta_recibida = DateTime.Now;
+                                    cxt.SaveChanges();
+                                    lbl_titulo_alta_director.Text = "Bienvenido Director! - Su correo ha sido validado";
+                                    texto_director.InnerHtml = "Le damos la bienvenida al sistema, su correo <strong>" + envio.envio_email_destino + "</strong> ha sido validado exitosamente.<br/>Haga click en el botón para acceder al sistema.";
+                                    btn_redireccionar_alta_director.HRef = "~/default.aspx";
                                     break;
                                 default:
                                     break;

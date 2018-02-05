@@ -327,24 +327,6 @@ namespace WebApplication1
 
                     cxt.Historial_estados.Add(historial);
 
-                    Tipo_mail validacion = new Tipo_mail() { tipo_mail_tipo = "validacion", tipo_mail_html = "" };
-                    Tipo_mail recupero_contraseña = new Tipo_mail() { tipo_mail_tipo = "recupero_contraseña", tipo_mail_html = "" };
-                    Tipo_mail notificacion_asignacion_tesina_director = new Tipo_mail() { tipo_mail_tipo = "notificacion_asignacion_tesina_director", tipo_mail_html = "" };
-                    Tipo_mail notificacion_inicio_tesina_tesista = new Tipo_mail() { tipo_mail_tipo = "notificacion_inicio_tesina_tesista", tipo_mail_html = "" };
-                    Tipo_mail notificacion_modificacion_tesina_tesista = new Tipo_mail() { tipo_mail_tipo = "notificacion_modificacion_tesina_tesista", tipo_mail_html = "" };
-                    Tipo_mail notificacion_modificacion_tesina_director = new Tipo_mail() { tipo_mail_tipo = "notificacion_modificacion_tesina_director", tipo_mail_html = "" };
-                    Tipo_mail notificacion_eliminacion_tesina_tesista = new Tipo_mail() { tipo_mail_tipo = "notificacion_eliminacion_tesina_tesista", tipo_mail_html = "" };
-                    Tipo_mail notificacion_eliminacion_tesina_director = new Tipo_mail() { tipo_mail_tipo = "notificacion_eliminacion_tesina_director", tipo_mail_html = "" };
-
-                    cxt.Tipos_de_mail.Add(validacion);
-                    cxt.Tipos_de_mail.Add(recupero_contraseña);
-                    cxt.Tipos_de_mail.Add(notificacion_asignacion_tesina_director);
-                    cxt.Tipos_de_mail.Add(notificacion_inicio_tesina_tesista);
-                    cxt.Tipos_de_mail.Add(notificacion_modificacion_tesina_tesista);
-                    cxt.Tipos_de_mail.Add(notificacion_modificacion_tesina_director);
-                    cxt.Tipos_de_mail.Add(notificacion_eliminacion_tesina_tesista);
-                    cxt.Tipos_de_mail.Add(notificacion_eliminacion_tesina_director);
-
                     cxt.SaveChanges();
 
                 }
@@ -368,8 +350,7 @@ namespace WebApplication1
                         envio_fecha_hora = DateTime.Now,
                         envio_email_destino = p_cxt.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
                         envio_respuesta_clave = Guid.NewGuid().ToString(),
-                        envio_tipo = MiEmail.tipo_mail.recupero_contraseña.ToString(),
-                        tipo_mail_id = cxt.Tipos_de_mail.FirstOrDefault(tm=>tm.tipo_mail_tipo == MiEmail.tipo_mail.recupero_contraseña.ToString()).tipo_mail_id
+                        envio_tipo = MiEmail.tipo_mail.recupero_contraseña.ToString()
                     };
 
                     cxt.Envio_mails.Add(registro_envio_mail);

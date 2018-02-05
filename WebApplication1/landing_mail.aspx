@@ -33,6 +33,16 @@
                 </div>
             </div>
 
+            <div class="jumbotron" runat="server" id="div_validar_correo_alta_director">
+                <div class="container">
+                    <h1 class="text-primary">
+                        <asp:Label Text="" ID="lbl_titulo_alta_director" runat="server" /></h1>
+                    <p runat="server" id="texto_director">
+                    </p>
+                    <p><a class="btn btn-primary btn-lg" href="#" runat="server" id="btn_redireccionar_alta_director" role="button">Llevame al sistema! &raquo;</a></p>
+                </div>
+            </div>
+
             <div class="jumbotron" runat="server" id="div_recuperar_contraseña">
                 <div class="container">
                     <h1 class="text-primary">

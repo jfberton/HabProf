@@ -433,8 +433,7 @@ namespace WebApplication1.Aplicativo
                             envio_fecha_hora = DateTime.Now,
                             envio_email_destino = director_asignado.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
                             envio_respuesta_clave = "no se usa",
-                            envio_tipo = MiEmail.tipo_mail.notificacion_asignacion_tesina_director.ToString(),
-                            tipo_mail_id = cxt.Tipos_de_mail.FirstOrDefault(ttmm => ttmm.tipo_mail_tipo == MiEmail.tipo_mail.notificacion_asignacion_tesina_director.ToString()).tipo_mail_id
+                            envio_tipo = MiEmail.tipo_mail.notificacion_asignacion_tesina_director.ToString()
                         };
 
                         Envio_mail registro_envio_mail_tesista = new Envio_mail()
@@ -443,8 +442,7 @@ namespace WebApplication1.Aplicativo
                             envio_fecha_hora = DateTime.Now,
                             envio_email_destino = tesista_asignado.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
                             envio_respuesta_clave = "no se usa",
-                            envio_tipo = MiEmail.tipo_mail.notificacion_inicio_tesina_tesista.ToString(),
-                            tipo_mail_id = cxt.Tipos_de_mail.FirstOrDefault(ttmm => ttmm.tipo_mail_tipo == MiEmail.tipo_mail.notificacion_inicio_tesina_tesista.ToString()).tipo_mail_id
+                            envio_tipo = MiEmail.tipo_mail.notificacion_inicio_tesina_tesista.ToString()
                         };
 
                         correos_por_enviar.envios_por_realizar.Add(registro_envio_mail_director);
@@ -521,8 +519,7 @@ namespace WebApplication1.Aplicativo
                                             envio_fecha_hora = DateTime.Now,
                                             envio_email_destino = nuevo_director.persona_email,
                                             envio_respuesta_clave = "no se usa",
-                                            envio_tipo = MiEmail.tipo_mail.notificacion_asignacion_tesina_director.ToString(),
-                                            tipo_mail_id = cxt.Tipos_de_mail.FirstOrDefault(ttmm => ttmm.tipo_mail_tipo == MiEmail.tipo_mail.notificacion_asignacion_tesina_director.ToString()).tipo_mail_id
+                                            envio_tipo = MiEmail.tipo_mail.notificacion_asignacion_tesina_director.ToString()
                                         };
 
                                         Envio_mail registro_envio_mail_director_eliminacion = new Envio_mail()
@@ -531,8 +528,7 @@ namespace WebApplication1.Aplicativo
                                             envio_fecha_hora = DateTime.Now,
                                             envio_email_destino = t.Director.Persona.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
                                             envio_respuesta_clave = "no se usa",
-                                            envio_tipo = MiEmail.tipo_mail.notificacion_eliminacion_tesina_director.ToString(),
-                                            tipo_mail_id = cxt.Tipos_de_mail.FirstOrDefault(ttmm => ttmm.tipo_mail_tipo == MiEmail.tipo_mail.notificacion_eliminacion_tesina_director.ToString()).tipo_mail_id
+                                            envio_tipo = MiEmail.tipo_mail.notificacion_eliminacion_tesina_director.ToString()
                                         };
 
                                         correos_por_enviar.envios_por_realizar.Add(registro_envio_mail_director_aisgnacion);
@@ -547,8 +543,7 @@ namespace WebApplication1.Aplicativo
                                             envio_fecha_hora = DateTime.Now,
                                             envio_email_destino = t.Director.Persona.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
                                             envio_respuesta_clave = "no se usa",
-                                            envio_tipo = MiEmail.tipo_mail.notificacion_modificacion_tesina_director.ToString(),
-                                            tipo_mail_id = cxt.Tipos_de_mail.FirstOrDefault(ttmm => ttmm.tipo_mail_tipo == MiEmail.tipo_mail.notificacion_modificacion_tesina_director.ToString()).tipo_mail_id
+                                            envio_tipo = MiEmail.tipo_mail.notificacion_modificacion_tesina_director.ToString()
                                         };
 
                                         correos_por_enviar.envios_por_realizar.Add(registro_envio_mail_director_modificacion);
@@ -561,8 +556,7 @@ namespace WebApplication1.Aplicativo
                                         envio_fecha_hora = DateTime.Now,
                                         envio_email_destino = t.Tesista.Persona.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
                                         envio_respuesta_clave = "no se usa",
-                                        envio_tipo = MiEmail.tipo_mail.notificacion_modificacion_tesina_tesista.ToString(),
-                                        tipo_mail_id = cxt.Tipos_de_mail.FirstOrDefault(ttmm => ttmm.tipo_mail_tipo == MiEmail.tipo_mail.notificacion_modificacion_tesina_tesista.ToString()).tipo_mail_id
+                                        envio_tipo = MiEmail.tipo_mail.notificacion_modificacion_tesina_tesista.ToString()
                                     };
 
                                     correos_por_enviar.envios_por_realizar.Add(registro_envio_mail_tesista);

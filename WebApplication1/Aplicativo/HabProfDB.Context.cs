@@ -54,7 +54,7 @@ public partial class HabProfDBContainer : DbContext
 
     public virtual DbSet<Tesista> Tesistas { get; set; }
 
-    public virtual DbSet<Tipo_mail> Tipos_de_mail { get; set; }
+    public virtual DbSet<Mesa> Mesas { get; set; }
 
 }
 

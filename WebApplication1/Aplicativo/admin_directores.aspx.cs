@@ -45,10 +45,8 @@ namespace WebApplication1.Aplicativo
                                                          director_calificacion = d.Calificacion_general
                                                      }).ToList();
 
-
                 if (directores_con_tesina_a_cargo.Count() > 0)
                 {
-
                     gv_directores.DataSource = directores_con_tesina_a_cargo;
                     gv_directores.DataBind();
                     lbl_sin_directores.Visible = false;
@@ -59,7 +57,6 @@ namespace WebApplication1.Aplicativo
                     gv_directores.DataSource = null;
                     gv_directores.DataBind();
                 }
-
             }
         }
 
@@ -113,6 +110,7 @@ namespace WebApplication1.Aplicativo
         {
             if (this.IsValid)
             {
+                bool director_nuevo = false;
                 Persona usuario = Session["UsuarioLogueado"] as Persona;
                 int id_director = Convert.ToInt32(hidden_id_director_editar.Value);
 
@@ -179,6 +177,8 @@ namespace WebApplication1.Aplicativo
                         };
 
                         cxt.Directores.Add(director);
+
+                        director_nuevo = true;
                     }
 
 
@@ -195,6 +195,25 @@ namespace WebApplication1.Aplicativo
                         tb_usuario.Value = string.Empty;
                         tb_contraseña.Value = string.Empty;
                         hidden_id_director_editar.Value = "0";
+
+                        if (director_nuevo)
+                        {
+                            Envio_mail registro_envio_mail = new Envio_mail()
+                            {
+                                persona_id = p_director.persona_id,
+                                envio_fecha_hora = DateTime.Now,
+                                envio_email_destino = p_director.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
+                                envio_respuesta_clave = Guid.NewGuid().ToString(),
+                                envio_tipo = MiEmail.tipo_mail.alta_director.ToString()
+                            };
+
+                            cxt.Envio_mails.Add(registro_envio_mail);
+                            cxt.SaveChanges();
+
+                            MiEmail mail = new MiEmail(registro_envio_mail);
+
+                            mail.Enviar_mail();
+                        }
 
                         MessageBox.Show(this, "Se guardó correctamente el director!", MessageBox.Tipo_MessageBox.Success, "Exito!");
                     }

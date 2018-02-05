@@ -15,35 +15,33 @@ namespace WebApplication1.Aplicativo
 using System;
     using System.Collections.Generic;
     
-public partial class Juez
+public partial class Mesa
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public Juez()
+    public Mesa()
     {
 
-        this.Tesinas = new HashSet<Tesina>();
+        this.Jueces = new HashSet<Juez>();
 
-        this.Mesas = new HashSet<Mesa>();
+        this.Tesinas = new HashSet<Tesina>();
 
     }
 
 
-    public int juez_id { get; set; }
+    public int mesa_id { get; set; }
 
-    public Nullable<System.DateTime> juez_fecha_baja { get; set; }
+    public System.DateTime mesa_fecha { get; set; }
 
 
 
-    public virtual Persona Persona { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Juez> Jueces { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<Tesina> Tesinas { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<Mesa> Mesas { get; set; }
 
 }
 

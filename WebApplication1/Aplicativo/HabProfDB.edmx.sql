@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/31/2018 18:35:11
+-- Date Created: 02/04/2018 12:24:08
 -- Generated from EDMX file: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
 -- --------------------------------------------------
 
@@ -59,6 +59,18 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_JuezTesina_Tesina]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[JuezTesina] DROP CONSTRAINT [FK_JuezTesina_Tesina];
 GO
+IF OBJECT_ID(N'[dbo].[FK_JuezMesa_Juez]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[JuezMesa] DROP CONSTRAINT [FK_JuezMesa_Juez];
+GO
+IF OBJECT_ID(N'[dbo].[FK_JuezMesa_Mesa]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[JuezMesa] DROP CONSTRAINT [FK_JuezMesa_Mesa];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MesaTesina_Mesa]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MesaTesina] DROP CONSTRAINT [FK_MesaTesina_Mesa];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MesaTesina_Tesina]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MesaTesina] DROP CONSTRAINT [FK_MesaTesina_Tesina];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -97,8 +109,17 @@ GO
 IF OBJECT_ID(N'[dbo].[Tesistas]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Tesistas];
 GO
+IF OBJECT_ID(N'[dbo].[Mesas]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Mesas];
+GO
 IF OBJECT_ID(N'[dbo].[JuezTesina]', 'U') IS NOT NULL
     DROP TABLE [dbo].[JuezTesina];
+GO
+IF OBJECT_ID(N'[dbo].[JuezMesa]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[JuezMesa];
+GO
+IF OBJECT_ID(N'[dbo].[MesaTesina]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MesaTesina];
 GO
 
 -- --------------------------------------------------
@@ -127,7 +148,6 @@ CREATE TABLE [dbo].[Tesinas] (
     [estado_tesis_id] int  NOT NULL,
     [tesina_tema] nvarchar(max)  NOT NULL,
     [tesina_descripcion] nvarchar(max)  NOT NULL,
-    [tesina_borrador] nvarchar(max)  NULL,
     [tesina_plan_fch_presentacion] datetime  NOT NULL,
     [tesina_plan_duracion_meses] smallint  NOT NULL,
     [tesina_plan_aviso_meses] smallint  NOT NULL,
@@ -186,8 +206,7 @@ CREATE TABLE [dbo].[Envio_mails] (
     [envio_tipo] nvarchar(max)  NOT NULL,
     [envio_email_destino] nvarchar(max)  NOT NULL,
     [envio_respuesta_clave] nvarchar(max)  NOT NULL,
-    [envio_respuesta_recibida] datetime  NULL,
-    [tipo_mail_id] int  NOT NULL
+    [envio_respuesta_recibida] datetime  NULL
 );
 GO
 
@@ -225,17 +244,30 @@ CREATE TABLE [dbo].[Tesistas] (
 );
 GO
 
--- Creating table 'Tipos_de_mail'
-CREATE TABLE [dbo].[Tipos_de_mail] (
-    [tipo_mail_id] int IDENTITY(1,1) NOT NULL,
-    [tipo_mail_tipo] nvarchar(max)  NOT NULL,
-    [tipo_mail_html] nvarchar(max)  NOT NULL
+-- Creating table 'Mesas'
+CREATE TABLE [dbo].[Mesas] (
+    [mesa_id] int IDENTITY(1,1) NOT NULL,
+    [mesa_fecha] datetime  NOT NULL
 );
 GO
 
 -- Creating table 'JuezTesina'
 CREATE TABLE [dbo].[JuezTesina] (
     [Jueces_juez_id] int  NOT NULL,
+    [Tesinas_tesina_id] int  NOT NULL
+);
+GO
+
+-- Creating table 'JuezMesa'
+CREATE TABLE [dbo].[JuezMesa] (
+    [Jueces_juez_id] int  NOT NULL,
+    [Mesas_mesa_id] int  NOT NULL
+);
+GO
+
+-- Creating table 'MesaTesina'
+CREATE TABLE [dbo].[MesaTesina] (
+    [Mesa_mesa_id] int  NOT NULL,
     [Tesinas_tesina_id] int  NOT NULL
 );
 GO
@@ -310,16 +342,28 @@ ADD CONSTRAINT [PK_Tesistas]
     PRIMARY KEY CLUSTERED ([tesista_id] ASC);
 GO
 
--- Creating primary key on [tipo_mail_id] in table 'Tipos_de_mail'
-ALTER TABLE [dbo].[Tipos_de_mail]
-ADD CONSTRAINT [PK_Tipos_de_mail]
-    PRIMARY KEY CLUSTERED ([tipo_mail_id] ASC);
+-- Creating primary key on [mesa_id] in table 'Mesas'
+ALTER TABLE [dbo].[Mesas]
+ADD CONSTRAINT [PK_Mesas]
+    PRIMARY KEY CLUSTERED ([mesa_id] ASC);
 GO
 
 -- Creating primary key on [Jueces_juez_id], [Tesinas_tesina_id] in table 'JuezTesina'
 ALTER TABLE [dbo].[JuezTesina]
 ADD CONSTRAINT [PK_JuezTesina]
     PRIMARY KEY CLUSTERED ([Jueces_juez_id], [Tesinas_tesina_id] ASC);
+GO
+
+-- Creating primary key on [Jueces_juez_id], [Mesas_mesa_id] in table 'JuezMesa'
+ALTER TABLE [dbo].[JuezMesa]
+ADD CONSTRAINT [PK_JuezMesa]
+    PRIMARY KEY CLUSTERED ([Jueces_juez_id], [Mesas_mesa_id] ASC);
+GO
+
+-- Creating primary key on [Mesa_mesa_id], [Tesinas_tesina_id] in table 'MesaTesina'
+ALTER TABLE [dbo].[MesaTesina]
+ADD CONSTRAINT [PK_MesaTesina]
+    PRIMARY KEY CLUSTERED ([Mesa_mesa_id], [Tesinas_tesina_id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -530,19 +574,52 @@ ON [dbo].[JuezTesina]
     ([Tesinas_tesina_id]);
 GO
 
--- Creating foreign key on [tipo_mail_id] in table 'Envio_mails'
-ALTER TABLE [dbo].[Envio_mails]
-ADD CONSTRAINT [FK_Tipo_mailEnvio_mail]
-    FOREIGN KEY ([tipo_mail_id])
-    REFERENCES [dbo].[Tipos_de_mail]
-        ([tipo_mail_id])
+-- Creating foreign key on [Jueces_juez_id] in table 'JuezMesa'
+ALTER TABLE [dbo].[JuezMesa]
+ADD CONSTRAINT [FK_JuezMesa_Juez]
+    FOREIGN KEY ([Jueces_juez_id])
+    REFERENCES [dbo].[Jueces]
+        ([juez_id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_Tipo_mailEnvio_mail'
-CREATE INDEX [IX_FK_Tipo_mailEnvio_mail]
-ON [dbo].[Envio_mails]
-    ([tipo_mail_id]);
+-- Creating foreign key on [Mesas_mesa_id] in table 'JuezMesa'
+ALTER TABLE [dbo].[JuezMesa]
+ADD CONSTRAINT [FK_JuezMesa_Mesa]
+    FOREIGN KEY ([Mesas_mesa_id])
+    REFERENCES [dbo].[Mesas]
+        ([mesa_id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_JuezMesa_Mesa'
+CREATE INDEX [IX_FK_JuezMesa_Mesa]
+ON [dbo].[JuezMesa]
+    ([Mesas_mesa_id]);
+GO
+
+-- Creating foreign key on [Mesa_mesa_id] in table 'MesaTesina'
+ALTER TABLE [dbo].[MesaTesina]
+ADD CONSTRAINT [FK_MesaTesina_Mesa]
+    FOREIGN KEY ([Mesa_mesa_id])
+    REFERENCES [dbo].[Mesas]
+        ([mesa_id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Tesinas_tesina_id] in table 'MesaTesina'
+ALTER TABLE [dbo].[MesaTesina]
+ADD CONSTRAINT [FK_MesaTesina_Tesina]
+    FOREIGN KEY ([Tesinas_tesina_id])
+    REFERENCES [dbo].[Tesinas]
+        ([tesina_id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MesaTesina_Tesina'
+CREATE INDEX [IX_FK_MesaTesina_Tesina]
+ON [dbo].[MesaTesina]
+    ([Tesinas_tesina_id]);
 GO
 
 -- --------------------------------------------------

@@ -67,6 +67,42 @@ namespace WebApplication1 {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor btn_redireccionar;
         
         /// <summary>
+        /// div_validar_correo_alta_director control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_validar_correo_alta_director;
+        
+        /// <summary>
+        /// lbl_titulo_alta_director control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_titulo_alta_director;
+        
+        /// <summary>
+        /// texto_director control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl texto_director;
+        
+        /// <summary>
+        /// btn_redireccionar_alta_director control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btn_redireccionar_alta_director;
+        
+        /// <summary>
         /// div_recuperar_contraseña control.
         /// </summary>
         /// <remarks>

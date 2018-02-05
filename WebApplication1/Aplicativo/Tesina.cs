@@ -26,6 +26,8 @@ public partial class Tesina
 
         this.Jueces = new HashSet<Juez>();
 
+        this.Mesa = new HashSet<Mesa>();
+
     }
 
 
@@ -36,8 +38,6 @@ public partial class Tesina
     public string tesina_tema { get; set; }
 
     public string tesina_descripcion { get; set; }
-
-    public string tesina_borrador { get; set; }
 
     public System.DateTime tesina_plan_fch_presentacion { get; set; }
 
@@ -70,6 +70,10 @@ public partial class Tesina
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<Juez> Jueces { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Mesa> Mesa { get; set; }
 
 }
 

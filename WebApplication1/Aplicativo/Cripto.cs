@@ -29,18 +29,18 @@ namespace WebApplication1.Aplicativo
             return ret;
         }
 
-        //public static string Desencriptar(string valor)
-        //{
-        //    string ret = string.Empty;
+        public static string Desencriptar(string valor)
+        {
+            string ret = string.Empty;
 
-        //    encriptador.Contenido = valor;
+            encriptador.Contenido = valor;
 
-        //    encriptador.Desencriptar();
+            encriptador.Desencriptar();
 
-        //    ret = encriptador.Resultado;
+            ret = encriptador.Resultado;
 
-        //    return ret;
-        //}
+            return ret;
+        }
 
     }
 }

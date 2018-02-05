@@ -17,8 +17,10 @@
     <EntitySet Name="Administradores" EntityType="HabProfDB.Store.Administradores" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Directores" EntityType="HabProfDB.Store.Directores" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Tesistas" EntityType="HabProfDB.Store.Tesistas" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Tipos_de_mail" EntityType="HabProfDB.Store.Tipos_de_mail" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Mesas" EntityType="HabProfDB.Store.Mesas" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="JuezTesina" EntityType="HabProfDB.Store.JuezTesina" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="JuezMesa" EntityType="HabProfDB.Store.JuezMesa" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MesaTesina" EntityType="HabProfDB.Store.MesaTesina" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="Estado_tesisTesis" Association="HabProfDB.Store.Estado_tesisTesis">
       <End Role="Estado_tesis" EntitySet="Estados_tesinas" />
       <End Role="Tesis" EntitySet="Tesinas" />
@@ -75,9 +77,21 @@
       <End Role="Tesina" EntitySet="Tesinas" />
       <End Role="JuezTesina" EntitySet="JuezTesina" />
     </AssociationSet>
-    <AssociationSet Name="Tipo_mailEnvio_mail" Association="HabProfDB.Store.Tipo_mailEnvio_mail">
-      <End Role="Tipo_mail" EntitySet="Tipos_de_mail" />
-      <End Role="Envio_mail" EntitySet="Envio_mails" />
+    <AssociationSet Name="FK_JuezMesa_Juez" Association="HabProfDB.Store.FK_JuezMesa_Juez">
+      <End Role="Juez" EntitySet="Jueces" />
+      <End Role="JuezMesa" EntitySet="JuezMesa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_JuezMesa_Mesa" Association="HabProfDB.Store.FK_JuezMesa_Mesa">
+      <End Role="Mesa" EntitySet="Mesas" />
+      <End Role="JuezMesa" EntitySet="JuezMesa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MesaTesina_Mesa" Association="HabProfDB.Store.FK_MesaTesina_Mesa">
+      <End Role="Mesa" EntitySet="Mesas" />
+      <End Role="MesaTesina" EntitySet="MesaTesina" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MesaTesina_Tesina" Association="HabProfDB.Store.FK_MesaTesina_Tesina">
+      <End Role="Tesina" EntitySet="Tesinas" />
+      <End Role="MesaTesina" EntitySet="MesaTesina" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Personas">
@@ -104,7 +118,6 @@
     <Property Name="estado_tesis_id" Type="int" Nullable="false" />
     <Property Name="tesina_tema" Type="nvarchar(max)" Nullable="false" />
     <Property Name="tesina_descripcion" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="tesina_borrador" Type="nvarchar(max)" Nullable="true" />
     <Property Name="tesina_plan_fch_presentacion" Type="datetime" Nullable="false" />
     <Property Name="tesina_plan_duracion_meses" Type="smallint" Nullable="false" />
     <Property Name="tesina_plan_aviso_meses" Type="smallint" Nullable="false" />
@@ -164,7 +177,6 @@
     <Property Name="envio_email_destino" Type="nvarchar(max)" Nullable="false" />
     <Property Name="envio_respuesta_clave" Type="nvarchar(max)" Nullable="false" />
     <Property Name="envio_respuesta_recibida" Type="datetime" Nullable="true" />
-    <Property Name="tipo_mail_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Jueces">
     <Key>
@@ -200,13 +212,12 @@
     <Property Name="tesista_fecha_baja" Type="datetime" Nullable="true" />
     <Property Name="Persona_persona_id" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Tipos_de_mail">
+  <EntityType Name="Mesas">
     <Key>
-      <PropertyRef Name="tipo_mail_id" />
+      <PropertyRef Name="mesa_id" />
     </Key>
-    <Property Name="tipo_mail_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="tipo_mail_tipo" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="tipo_mail_html" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="mesa_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="mesa_fecha" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="JuezTesina">
     <Key>
@@ -214,6 +225,22 @@
       <PropertyRef Name="Tesinas_tesina_id" />
     </Key>
     <Property Name="Jueces_juez_id" Type="int" Nullable="false" />
+    <Property Name="Tesinas_tesina_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JuezMesa">
+    <Key>
+      <PropertyRef Name="Jueces_juez_id" />
+      <PropertyRef Name="Mesas_mesa_id" />
+    </Key>
+    <Property Name="Jueces_juez_id" Type="int" Nullable="false" />
+    <Property Name="Mesas_mesa_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MesaTesina">
+    <Key>
+      <PropertyRef Name="Mesa_mesa_id" />
+      <PropertyRef Name="Tesinas_tesina_id" />
+    </Key>
+    <Property Name="Mesa_mesa_id" Type="int" Nullable="false" />
     <Property Name="Tesinas_tesina_id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="Estado_tesisTesis">
@@ -360,18 +387,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="Tipo_mailEnvio_mail">
-    <End Role="Tipo_mail" Type="HabProfDB.Store.Tipos_de_mail" Multiplicity="1" />
-    <End Role="Envio_mail" Type="HabProfDB.Store.Envio_mails" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tipo_mail">
-        <PropertyRef Name="tipo_mail_id" />
-      </Principal>
-      <Dependent Role="Envio_mail">
-        <PropertyRef Name="tipo_mail_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_JuezTesina_Juez">
     <End Role="Juez" Type="HabProfDB.Store.Jueces" Multiplicity="1" />
     <End Role="JuezTesina" Type="HabProfDB.Store.JuezTesina" Multiplicity="*" />
@@ -392,6 +407,54 @@
         <PropertyRef Name="tesina_id" />
       </Principal>
       <Dependent Role="JuezTesina">
+        <PropertyRef Name="Tesinas_tesina_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JuezMesa_Juez">
+    <End Role="Juez" Type="HabProfDB.Store.Jueces" Multiplicity="1" />
+    <End Role="JuezMesa" Type="HabProfDB.Store.JuezMesa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Juez">
+        <PropertyRef Name="juez_id" />
+      </Principal>
+      <Dependent Role="JuezMesa">
+        <PropertyRef Name="Jueces_juez_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_JuezMesa_Mesa">
+    <End Role="JuezMesa" Type="HabProfDB.Store.JuezMesa" Multiplicity="*" />
+    <End Role="Mesa" Type="HabProfDB.Store.Mesas" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Mesa">
+        <PropertyRef Name="mesa_id" />
+      </Principal>
+      <Dependent Role="JuezMesa">
+        <PropertyRef Name="Mesas_mesa_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MesaTesina_Mesa">
+    <End Role="Mesa" Type="HabProfDB.Store.Mesas" Multiplicity="1" />
+    <End Role="MesaTesina" Type="HabProfDB.Store.MesaTesina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mesa">
+        <PropertyRef Name="mesa_id" />
+      </Principal>
+      <Dependent Role="MesaTesina">
+        <PropertyRef Name="Mesa_mesa_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MesaTesina_Tesina">
+    <End Role="MesaTesina" Type="HabProfDB.Store.MesaTesina" Multiplicity="*" />
+    <End Role="Tesina" Type="HabProfDB.Store.Tesinas" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Tesina">
+        <PropertyRef Name="tesina_id" />
+      </Principal>
+      <Dependent Role="MesaTesina">
         <PropertyRef Name="Tesinas_tesina_id" />
       </Dependent>
     </ReferentialConstraint>
@@ -464,10 +527,14 @@
             <End Role="Juez" EntitySet="Jueces" />
             <End Role="Tesina" EntitySet="Tesinas" />
           </AssociationSet>
-          <EntitySet Name="Tipos_de_mail" EntityType="HabProfDB.Tipo_mail" />
-          <AssociationSet Name="Tipo_mailEnvio_mail" Association="HabProfDB.Tipo_mailEnvio_mail">
-            <End Role="Tipo_mail" EntitySet="Tipos_de_mail" />
-            <End Role="Envio_mail" EntitySet="Envio_mails" />
+          <EntitySet Name="Mesas" EntityType="HabProfDB.Mesa" />
+          <AssociationSet Name="JuezMesa" Association="HabProfDB.JuezMesa">
+            <End Role="Juez" EntitySet="Jueces" />
+            <End Role="Mesa" EntitySet="Mesas" />
+          </AssociationSet>
+          <AssociationSet Name="MesaTesina" Association="HabProfDB.MesaTesina">
+            <End Role="Mesa" EntitySet="Mesas" />
+            <End Role="Tesina" EntitySet="Tesinas" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Persona">
@@ -528,6 +595,7 @@
           <NavigationProperty Name="Persona" Relationship="HabProfDB.PersonaJuez" FromRole="Juez" ToRole="Persona" />
           <Property Name="juez_fecha_baja" Type="DateTime" Nullable="true" />
           <NavigationProperty Name="Tesinas" Relationship="HabProfDB.JuezTesina" FromRole="Juez" ToRole="Tesina" />
+          <NavigationProperty Name="Mesas" Relationship="HabProfDB.JuezMesa" FromRole="Juez" ToRole="Mesa" />
         </EntityType>
         <EntityType Name="Tesina">
           <Key>
@@ -538,7 +606,6 @@
           <Property Name="estado_tesis_id" Type="Int32" Nullable="false" />
           <Property Name="tesina_tema" Type="String" Nullable="false" />
           <Property Name="tesina_descripcion" Nullable="false" Type="String" />
-          <Property Name="tesina_borrador" Type="String" Nullable="true" />
           <Property Name="tesina_plan_fch_presentacion" Type="DateTime" Nullable="false" />
           <Property Name="tesina_plan_duracion_meses" Type="Int16" Nullable="false" />
           <Property Name="tesina_plan_aviso_meses" Type="Int16" Nullable="false" />
@@ -551,6 +618,7 @@
           <NavigationProperty Name="Director" Relationship="HabProfDB.DirectorTesina" FromRole="Tesina" ToRole="Director" />
           <Property Name="director_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Jueces" Relationship="HabProfDB.JuezTesina" FromRole="Tesina" ToRole="Juez" />
+          <NavigationProperty Name="Mesa" Relationship="HabProfDB.MesaTesina" FromRole="Tesina" ToRole="Mesa" />
         </EntityType>
         <EntityType Name="Licenciatura">
           <Key>
@@ -668,8 +736,6 @@
           <Property Name="envio_respuesta_clave" Type="String" Nullable="false" />
           <NavigationProperty Name="Persona" Relationship="HabProfDB.PersonaEnvio_mail" FromRole="Envio_mail" ToRole="Persona" />
           <Property Name="envio_respuesta_recibida" Type="DateTime" Nullable="true" />
-          <NavigationProperty Name="Tipo_mail" Relationship="HabProfDB.Tipo_mailEnvio_mail" FromRole="Envio_mail" ToRole="Tipo_mail" />
-          <Property Name="tipo_mail_id" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="PersonaEnvio_mail">
           <End Type="HabProfDB.Persona" Role="Persona" Multiplicity="1" />
@@ -727,25 +793,22 @@
           <End Type="HabProfDB.Juez" Role="Juez" Multiplicity="*" />
           <End Type="HabProfDB.Tesina" Role="Tesina" Multiplicity="*" />
         </Association>
-        <EntityType Name="Tipo_mail">
+        <EntityType Name="Mesa">
           <Key>
-            <PropertyRef Name="tipo_mail_id" />
+            <PropertyRef Name="mesa_id" />
           </Key>
-          <Property Name="tipo_mail_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tipo_mail_tipo" Type="String" Nullable="false" />
-          <Property Name="tipo_mail_html" Type="String" Nullable="false" />
+          <Property Name="mesa_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Jueces" Relationship="HabProfDB.JuezMesa" FromRole="Mesa" ToRole="Juez" />
+          <Property Name="mesa_fecha" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Tesinas" Relationship="HabProfDB.MesaTesina" FromRole="Mesa" ToRole="Tesina" />
         </EntityType>
-        <Association Name="Tipo_mailEnvio_mail">
-          <End Type="HabProfDB.Tipo_mail" Role="Tipo_mail" Multiplicity="1" />
-          <End Type="HabProfDB.Envio_mail" Role="Envio_mail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tipo_mail">
-              <PropertyRef Name="tipo_mail_id" />
-            </Principal>
-            <Dependent Role="Envio_mail">
-              <PropertyRef Name="tipo_mail_id" />
-            </Dependent>
-          </ReferentialConstraint>
+        <Association Name="JuezMesa">
+          <End Type="HabProfDB.Juez" Role="Juez" Multiplicity="*" />
+          <End Type="HabProfDB.Mesa" Role="Mesa" Multiplicity="*" />
+        </Association>
+        <Association Name="MesaTesina">
+          <End Type="HabProfDB.Mesa" Role="Mesa" Multiplicity="*" />
+          <End Type="HabProfDB.Tesina" Role="Tesina" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -777,7 +840,6 @@
           <ScalarProperty Name="estado_tesis_id" ColumnName="estado_tesis_id" />
           <ScalarProperty Name="tesina_tema" ColumnName="tesina_tema" />
           <ScalarProperty Name="tesina_descripcion" ColumnName="tesina_descripcion" />
-          <ScalarProperty Name="tesina_borrador" ColumnName="tesina_borrador" />
           <ScalarProperty Name="tesina_plan_fch_presentacion" ColumnName="tesina_plan_fch_presentacion" />
           <ScalarProperty Name="tesina_plan_duracion_meses" ColumnName="tesina_plan_duracion_meses" />
           <ScalarProperty Name="tesina_plan_aviso_meses" ColumnName="tesina_plan_aviso_meses" />
@@ -842,7 +904,6 @@
           <ScalarProperty Name="envio_email_destino" ColumnName="envio_email_destino" />
           <ScalarProperty Name="envio_respuesta_clave" ColumnName="envio_respuesta_clave" />
           <ScalarProperty Name="envio_respuesta_recibida" ColumnName="envio_respuesta_recibida" />
-          <ScalarProperty Name="tipo_mail_id" ColumnName="tipo_mail_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -880,12 +941,11 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Tipos_de_mail">
-      <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Tipo_mail)">
-        <MappingFragment StoreEntitySet="Tipos_de_mail">
-          <ScalarProperty Name="tipo_mail_id" ColumnName="tipo_mail_id" />
-          <ScalarProperty Name="tipo_mail_tipo" ColumnName="tipo_mail_tipo" />
-          <ScalarProperty Name="tipo_mail_html" ColumnName="tipo_mail_html" />
+    <EntitySetMapping Name="Mesas">
+      <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Mesa)">
+        <MappingFragment StoreEntitySet="Mesas">
+          <ScalarProperty Name="mesa_id" ColumnName="mesa_id" />
+          <ScalarProperty Name="mesa_fecha" ColumnName="mesa_fecha" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -924,6 +984,22 @@
     <AssociationSetMapping Name="JuezTesina" TypeName="HabProfDB.JuezTesina" StoreEntitySet="JuezTesina">
       <EndProperty Name="Juez">
         <ScalarProperty Name="juez_id" ColumnName="Jueces_juez_id" />
+      </EndProperty>
+      <EndProperty Name="Tesina">
+        <ScalarProperty Name="tesina_id" ColumnName="Tesinas_tesina_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="JuezMesa" TypeName="HabProfDB.JuezMesa" StoreEntitySet="JuezMesa">
+      <EndProperty Name="Juez">
+        <ScalarProperty Name="juez_id" ColumnName="Jueces_juez_id" />
+      </EndProperty>
+      <EndProperty Name="Mesa">
+        <ScalarProperty Name="mesa_id" ColumnName="Mesas_mesa_id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="MesaTesina" TypeName="HabProfDB.MesaTesina" StoreEntitySet="MesaTesina">
+      <EndProperty Name="Mesa">
+        <ScalarProperty Name="mesa_id" ColumnName="Mesa_mesa_id" />
       </EndProperty>
       <EndProperty Name="Tesina">
         <ScalarProperty Name="tesina_id" ColumnName="Tesinas_tesina_id" />

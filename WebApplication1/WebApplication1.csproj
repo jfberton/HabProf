@@ -100,6 +100,20 @@
       <LastGenOutput>HabProfDB.cs</LastGenOutput>
       <DependentUpon>HabProfDB.edmx</DependentUpon>
     </Content>
+    <Content Include="Aplicativo\Mails\alta_director.html" />
+    <Content Include="Aplicativo\Mails\notificacion_asignacion_tesina_director.html" />
+    <Content Include="Aplicativo\Mails\notificacion_correcciones_tesina.html" />
+    <Content Include="Aplicativo\Mails\notificacion_eliminacion_tesina_director.html" />
+    <Content Include="Aplicativo\Mails\notificacion_eliminacion_tesina_tesista.html" />
+    <Content Include="Aplicativo\Mails\notificacion_entrega_archivo_tesina.html" />
+    <Content Include="Aplicativo\Mails\notificacion_inicio_tesina_tesista.html" />
+    <Content Include="Aplicativo\Mails\notificacion_modificacion_tesina_director.html" />
+    <Content Include="Aplicativo\Mails\notificacion_modificacion_tesina_tesista.html" />
+    <Content Include="Aplicativo\Mails\notificacion_tesina_lista_para_presentar.html" />
+    <Content Include="Aplicativo\Mails\notificacion_tesina_prorrogada.html" />
+    <Content Include="Aplicativo\Mails\notificacion_tesina_vencida.html" />
+    <Content Include="Aplicativo\Mails\recupero_contraseña.html" />
+    <Content Include="Aplicativo\Mails\validacion.html" />
     <Content Include="Aplicativo\Menues\MenuDemo.ascx" />
     <Content Include="Aplicativo\Menues\menu_admin.ascx" />
     <Content Include="Aplicativo\prueba.aspx" />
@@ -735,6 +749,9 @@
     <Compile Include="Aplicativo\Menues\menu_admin.ascx.designer.cs">
       <DependentUpon>menu_admin.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Aplicativo\Mesa.cs">
+      <DependentUpon>HabProfDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Aplicativo\MiEmail.cs" />
     <Compile Include="Aplicativo\partial_director.cs" />
     <Compile Include="Aplicativo\Persona.cs">
@@ -781,9 +798,6 @@
     </Compile>
     <Compile Include="Aplicativo\tesista_home.aspx.designer.cs">
       <DependentUpon>tesista_home.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Aplicativo\Tipo_mail.cs">
-      <DependentUpon>HabProfDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\usuario_preferencias.aspx.cs">
       <DependentUpon>usuario_preferencias.aspx</DependentUpon>

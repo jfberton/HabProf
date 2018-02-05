@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -21,7 +22,13 @@ namespace WebApplication1.Aplicativo
             notificacion_modificacion_tesina_tesista,
             notificacion_modificacion_tesina_director,
             notificacion_eliminacion_tesina_tesista,
-            notificacion_eliminacion_tesina_director
+            notificacion_eliminacion_tesina_director,
+            notificacion_entrega_archivo_tesina,
+            notificacion_correcciones_tesina,
+            notificacion_tesina_lista_para_presentar,
+            notificacion_tesina_vencida,
+            notificacion_tesina_prorrogada,
+            alta_director
         }
 
         public MiEmail(Envio_mail mail)
@@ -34,6 +41,7 @@ namespace WebApplication1.Aplicativo
                 Smtp_puerto = p.Licenciatura.Servidor.servidor_smtp_port;
                 Persona_nombre = p.persona_nomyap;
                 Persona_usuario = p.persona_usuario;
+                Persona_pass = Cripto.Desencriptar(p.persona_clave);
                 Url_respuesta = ConfigurationManager.AppSettings["direccion_localhost_raiz"] + "landing_mail.aspx?tipo_mail=" + mail.envio_tipo + "&clave=" + mail.envio_respuesta_clave;
                 Credenciales_mail = p.Licenciatura.licenciatura_email;
                 Credenciales_contraseña = p.Licenciatura.licenciatura_email_clave;
@@ -51,6 +59,7 @@ namespace WebApplication1.Aplicativo
                 Smtp_puerto = p.Licenciatura.Servidor.servidor_smtp_port;
                 Persona_nombre = p.persona_nomyap;
                 Persona_usuario = p.persona_usuario;
+                Persona_pass = Cripto.Desencriptar(p.persona_clave);
                 Url_respuesta = ConfigurationManager.AppSettings["direccion_localhost_raiz"] + "landing_mail.aspx?tipo_mail=" + mail.envio_tipo + "&clave=" + mail.envio_respuesta_clave;
                 Credenciales_mail = p.Licenciatura.licenciatura_email;
                 Credenciales_contraseña = p.Licenciatura.licenciatura_email_clave;
@@ -86,6 +95,8 @@ namespace WebApplication1.Aplicativo
 
         public string Persona_usuario { get; set; }
 
+        public string Persona_pass { get; set; }
+
         public string Director_nombre { get; set; }
 
         public string Director_mail { get; set; }
@@ -104,32 +115,32 @@ namespace WebApplication1.Aplicativo
 
         public bool Enviar_mail()
         {
+
+
             try
             {
-
-
                 using (HabProfDBContainer cxt = new HabProfDBContainer())
                 {
                     switch (Tipo_mail)
                     {
                         case tipo_mail.validacion:
                             Asunto = "Sistema de administración de Tesina - Validación de correo";
-                            cuerpo = cxt.Tipos_de_mail.FirstOrDefault(ttmm => ttmm.tipo_mail_tipo == Tipo_mail.ToString()).tipo_mail_html.
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
                                                                                                                             Replace("Username", Persona_nombre).
                                                                                                                             Replace("TestUser", Persona_usuario).
                                                                                                                             Replace("url_respuesta", Url_respuesta);
                             break;
                         case tipo_mail.recupero_contraseña:
                             Asunto = "Sistema de administración de Tesina - Recuperar contraseña";
-                            cuerpo = cxt.Tipos_de_mail.FirstOrDefault(ttmm => ttmm.tipo_mail_tipo == Tipo_mail.ToString()).tipo_mail_html.
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
                                                                                                                            Replace("UserName", Persona_nombre).
                                                                                                                            Replace("TestUser", Persona_usuario).
                                                                                                                            Replace("url_respuesta", Url_respuesta);
                             break;
                         case tipo_mail.notificacion_asignacion_tesina_director:
                             Asunto = "Sistema de administración de Tesina - Asignación de Tesina";
-                            cuerpo = cxt.Tipos_de_mail.FirstOrDefault(ttmm => ttmm.tipo_mail_tipo == Tipo_mail.ToString()).tipo_mail_html.
-                                                                                                                           Replace("Username", Persona_nombre).
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
+                                                                                                                            Replace("Username", Persona_nombre).
                                                                                                                            Replace("nombre_tesista", Tesista_nombre).
                                                                                                                            Replace("fecha_limite_tesina", Tesis_fecha_limite).
                                                                                                                            Replace("correo_tesista", Tesista_mail).
@@ -137,8 +148,8 @@ namespace WebApplication1.Aplicativo
                             break;
                         case tipo_mail.notificacion_inicio_tesina_tesista:
                             Asunto = "Sistema de administración de Tesina - Inicio de Tesina";
-                            cuerpo = cxt.Tipos_de_mail.FirstOrDefault(ttmm => ttmm.tipo_mail_tipo == Tipo_mail.ToString()).tipo_mail_html.
-                                                                                               Replace("Username", Persona_nombre).
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
+                                                                                                Replace("Username", Persona_nombre).
                                                                                                Replace("tesis_fecha_limite", Tesis_fecha_limite).
                                                                                                Replace("nombre_director", Director_nombre).
                                                                                                Replace("correo_director", Director_mail).
@@ -146,15 +157,15 @@ namespace WebApplication1.Aplicativo
                             break;
                         case tipo_mail.notificacion_modificacion_tesina_director:
                             Asunto = "Sistema de administración de Tesina - Modificación de Tesina";
-                            cuerpo = cxt.Tipos_de_mail.FirstOrDefault(ttmm => ttmm.tipo_mail_tipo == Tipo_mail.ToString()).tipo_mail_html.
-                                                                                                                           Replace("Username", Persona_nombre).
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
+                                                                                                                            Replace("Username", Persona_nombre).
                                                                                                                            Replace("tesista_nombre", Tesista_nombre).
                                                                                                                            Replace("fecha_limite", Tesis_fecha_limite).
                                                                                                                            Replace("tema_tesina", Tesis_tema);
                             break;
                         case tipo_mail.notificacion_modificacion_tesina_tesista:
                             Asunto = "Sistema de administración de Tesina - Modificación de Tesina";
-                            cuerpo = cxt.Tipos_de_mail.FirstOrDefault(ttmm => ttmm.tipo_mail_tipo == Tipo_mail.ToString()).tipo_mail_html.
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
                                                                                               Replace("Username", Persona_nombre).
                                                                                               Replace("tema_tesina", Tesis_tema).
                                                                                               Replace("fecha_limite", Tesis_fecha_limite).
@@ -164,17 +175,63 @@ namespace WebApplication1.Aplicativo
                             break;
                         case tipo_mail.notificacion_eliminacion_tesina_director:
                             Asunto = "Sistema de administración de Tesina - Eliminación de Tesina";
-                            cuerpo = cxt.Tipos_de_mail.FirstOrDefault(ttmm => ttmm.tipo_mail_tipo == Tipo_mail.ToString()).tipo_mail_html.
-                                                                                             Replace("Username", Persona_nombre).
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
+                                                                                              Replace("Username", Persona_nombre).
                                                                                              Replace("tesista_nombre", Tesista_nombre);
 
                             break;
                         case tipo_mail.notificacion_eliminacion_tesina_tesista:
                             Asunto = "Sistema de administración de Tesina - Eliminación de Tesina";
-                            cuerpo = cxt.Tipos_de_mail.FirstOrDefault(ttmm => ttmm.tipo_mail_tipo == Tipo_mail.ToString()).tipo_mail_html.
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
                                                                                              Replace("Username", Persona_nombre);
                             break;
-                        default:
+
+                        case tipo_mail.alta_director:
+                            Asunto = "Sistema de administración de Tesina - Alta Director";
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
+                                                                                             Replace("Username", Persona_nombre).
+                                                                                             Replace("TestUser", Persona_usuario).
+                                                                                             Replace("UserPass", Persona_pass).
+                                                                                             Replace("url_respuesta", Url_respuesta);
+                            break;
+
+                        case tipo_mail.notificacion_entrega_archivo_tesina:
+                            Asunto = "Sistema de administración de Tesina - Entrega archivo Tesina";
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
+                                                                                              Replace("Username", Persona_nombre).
+                                                                                              Replace("tema_tesina", Tesis_tema);
+                            break;
+
+                        case tipo_mail.notificacion_correcciones_tesina:
+                            Asunto = "Sistema de administración de Tesina - Corregir Tesina";
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
+                                                                                               Replace("Username", Persona_nombre).
+                                                                                               Replace("tema_tesina", Tesis_tema);
+                            break;
+
+                        case tipo_mail.notificacion_tesina_lista_para_presentar:
+                            Asunto = "Sistema de administración de Tesina - Tesina lista para evaluar";
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
+                                                                                               Replace("Username", Persona_nombre).
+                                                                                               Replace("tema_tesina", Tesis_tema);
+                            break;
+
+                        case tipo_mail.notificacion_tesina_vencida:
+                            Asunto = "Sistema de administración de Tesina - Tesina Vencida";
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
+                                                                                               Replace("Username", Persona_nombre).
+                                                                                               Replace("tema_tesina", Tesis_tema);
+                            break;
+
+                        case tipo_mail.notificacion_tesina_prorrogada:
+                            Asunto = "Sistema de administración de Tesina - Tesina Prorrogada";
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
+                                                                                               Replace("Username", Persona_nombre).
+                                                                                               Replace("tema_tesina", Tesis_tema).
+                                                                                               Replace("fecha_limite", Tesis_fecha_limite);
+                            break;
+
+                        default: 
                             break;
                     }
                 }
@@ -196,9 +253,6 @@ namespace WebApplication1.Aplicativo
                 return false;
             }
         }
-
-            
-        
 
     }
 

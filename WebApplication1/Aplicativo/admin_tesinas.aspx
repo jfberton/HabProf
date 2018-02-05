@@ -240,16 +240,19 @@
                                 </div>
                             </div>
                             <p>El archivo de tesina que subio el tesista no esta apto para su presentación.</p>
-                            <p>Ingrese unas observaciones sobre las correcciones que debe realizar</p>
+                            <p>Seleccione cual de las opciones se ajusta al rechazo</p>
                             <div class="row" runat="server" id="div_descripcion">
                                 <div class="col-md-11">
-                                    <textarea runat="server" id="tb_descripcion_rechazo" rows="2" class="form-control" placeholder="Ingrese las observaciones del cambio de estado.-"></textarea>
+                                    <%--<textarea runat="server" id="tb_descripcion_rechazo" rows="2" class="form-control" placeholder="Ingrese las observaciones del cambio de estado.-"></textarea>--%>
+                                    <asp:RadioButton Text="Opcion 1" GroupName="opciones_rechazo" runat="server" ID="opcion_1" CssClass="form-control" Checked="true" />
+                                    <asp:RadioButton Text="Opcion 2" GroupName="opciones_rechazo" runat="server" ID="opcion_2" CssClass="form-control" />
+                                    <asp:RadioButton Text="Opcion 3" GroupName="opciones_rechazo" runat="server" ID="opcion_3" CssClass="form-control" />
                                 </div>
-                                <div class="col-md-1">
+                                <%--<div class="col-md-1">
                                     <asp:RequiredFieldValidator ControlToValidate="tb_descripcion_rechazo" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                         ID="RequiredFieldValidator3" runat="server" ErrorMessage="Debe ingresar las observaciones para poder continuar" ValidationGroup="rechazar">
                                     </asp:RequiredFieldValidator>
-                                </div>
+                                </div>--%>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -278,17 +281,20 @@
                             <p>Ingrese unas observaciones </p>
                             <div class="row" runat="server" id="div1">
                                 <div class="col-md-11">
-                                    <textarea runat="server" id="tb_descripcion_lista_para_presentar" rows="2" class="form-control" placeholder="Ingrese las observaciones del cambio de estado.-"></textarea>
+                                    <asp:RadioButton Text="Opcion 1" GroupName="opciones_lista_presentar" runat="server" ID="rb_opcion_1_lista_presentar" CssClass="form-control" Checked="true" />
+                                    <asp:RadioButton Text="Opcion 2" GroupName="opciones_lista_presentar" runat="server" ID="rb_opcion_2_lista_presentar" CssClass="form-control" />
+                                    <asp:RadioButton Text="Opcion 3" GroupName="opciones_lista_presentar" runat="server" ID="rb_opcion_3_lista_presentar" CssClass="form-control" />
+                                    <%--<textarea runat="server" id="tb_descripcion_lista_para_presentar" rows="2" class="form-control" placeholder="Ingrese las observaciones del cambio de estado.-"></textarea>--%>
                                 </div>
                                 <div class="col-md-1">
-                                    <asp:RequiredFieldValidator ControlToValidate="tb_descripcion_lista_para_presentar" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                    <%--<asp:RequiredFieldValidator ControlToValidate="tb_descripcion_lista_para_presentar" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                         ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe ingresar las observaciones para poder continuar" ValidationGroup="lista_par_presentar">
-                                    </asp:RequiredFieldValidator>
+                                    </asp:RequiredFieldValidator>--%>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <asp:Button Text="Enviar a corregir!" CssClass="btn btn-success" ID="btn_pasar_a_lista_para_presentar" OnClick="btn_pasar_a_lista_para_presentar_Click" ValidationGroup="lista_par_presentar" runat="server" />
+                            <asp:Button Text="Lista para evaluar!" CssClass="btn btn-success" ID="btn_pasar_a_lista_para_presentar" OnClick="btn_pasar_a_lista_para_presentar_Click" ValidationGroup="lista_par_presentar" runat="server" />
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                         </div>
                     </div>

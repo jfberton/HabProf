@@ -328,22 +328,31 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_descripcion;
         
         /// <summary>
-        /// tb_descripcion_rechazo control.
+        /// opcion_1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea tb_descripcion_rechazo;
+        protected global::System.Web.UI.WebControls.RadioButton opcion_1;
         
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// opcion_2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.RadioButton opcion_2;
+        
+        /// <summary>
+        /// opcion_3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton opcion_3;
         
         /// <summary>
         /// btn_enviar_a_corregir control.
@@ -373,22 +382,31 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div1;
         
         /// <summary>
-        /// tb_descripcion_lista_para_presentar control.
+        /// rb_opcion_1_lista_presentar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea tb_descripcion_lista_para_presentar;
+        protected global::System.Web.UI.WebControls.RadioButton rb_opcion_1_lista_presentar;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// rb_opcion_2_lista_presentar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RadioButton rb_opcion_2_lista_presentar;
+        
+        /// <summary>
+        /// rb_opcion_3_lista_presentar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rb_opcion_3_lista_presentar;
         
         /// <summary>
         /// btn_pasar_a_lista_para_presentar control.

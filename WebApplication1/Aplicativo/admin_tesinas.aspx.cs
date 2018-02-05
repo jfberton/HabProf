@@ -16,12 +16,6 @@ namespace WebApplication1.Aplicativo
         {
             if (!IsPostBack)
             {
-                if (Session["Perfil"].ToString() != "Administrador" &&
-                    Session["Perfil"].ToString() != "Director")
-                {
-                    MessageBox.Show(this, "Usted no tiene permiso para acceder a esta página", MessageBox.Tipo_MessageBox.Danger, "Acceso restringido", "../default.aspx");
-                }
-
                 ObtenerTesinas();
             }
         }
@@ -77,7 +71,7 @@ namespace WebApplication1.Aplicativo
                                    ).ToList();
 
                         btn_agregar_tesina.Visible = false;
-                        lbl_small_titulo.Text = "Listado de Tesinas bajo su supervición";
+                        lbl_small_titulo.Text = "Tesina presentada";
                     }
 
                 }
@@ -139,6 +133,32 @@ namespace WebApplication1.Aplicativo
                     {
                         tesina.Historial_estados.Add(new Historial_estado() { estado_tesina_id = et_vencida.estado_tesina_id, historial_tesina_fecha = fecha_vencimiento, historial_tesina_descripcion = "Se venció el plazo para presentar una tesina lista para evaluar" });
                         tesina.estado_tesis_id = et_vencida.estado_tesina_id;
+
+                        Envio_mail em_director = new Envio_mail()
+                        {
+                            persona_id = tesina.Director.Persona.persona_id,
+                            envio_email_destino = tesina.Director.Persona.persona_email,
+                            envio_fecha_hora = DateTime.Now,
+                            envio_respuesta_clave = "no se usa",
+                            envio_tipo = MiEmail.tipo_mail.notificacion_tesina_prorrogada.ToString()
+                        };
+
+                        Envio_mail em_tesista = new Envio_mail()
+                        {
+                            persona_id = tesina.Tesista.Persona.persona_id,
+                            envio_email_destino = tesina.Tesista.Persona.persona_email,
+                            envio_fecha_hora = DateTime.Now,
+                            envio_respuesta_clave = "no se usa",
+                            envio_tipo = MiEmail.tipo_mail.notificacion_tesina_prorrogada.ToString()
+                        };
+
+                        MiEmail me_director = new MiEmail(em_director, tesina);
+                        MiEmail me_tesista = new MiEmail(em_tesista, tesina);
+
+                        me_director.Enviar_mail();
+                        me_tesista.Enviar_mail();
+
+
                         cxt.SaveChanges();
                     }
                 }
@@ -322,11 +342,17 @@ namespace WebApplication1.Aplicativo
                         btn_realizar_entrega.Visible = true;
                         break;
                     case "Entregada":
-                        btn_devolver_para_corregir.Visible = true;
-                        btn_lista_para_presentar.Visible = true;
+                        if (Session["Perfil"].ToString() != "Tesista")
+                        {
+                            btn_devolver_para_corregir.Visible = true;
+                            btn_lista_para_presentar.Visible = true;
+                        }
                         break;
                     case "A corregir":
-                        btn_realizar_entrega.Visible = true;
+                        if (Session["Perfil"].ToString() != "Tesista")
+                        {
+                            btn_realizar_entrega.Visible = true;
+                        }
                         break;
                     case "Lista para presentar":
                         if (Session["Perfil"].ToString() == "Administrador")
@@ -389,8 +415,8 @@ namespace WebApplication1.Aplicativo
         {
             btn_guardar_realizar_entrega.Enabled = false;
             btn_subir_archivo.Enabled = true;
-            status_label.Text = "";
-            status_label.Attributes.Add("class", "");
+            status_label.Visible = false;
+            file_tesis.Enabled = true;
 
             string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#panel_ver_tesina').modal('show'); $('#realizar_entrega').modal('show')});</script>";
             ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
@@ -454,6 +480,31 @@ namespace WebApplication1.Aplicativo
 
                 t.estado_tesis_id = et.estado_tesina_id;
                 cxt.Historial_estados.Add(he);
+
+                Envio_mail em_director = new Envio_mail()
+                {
+                    persona_id = t.Director.Persona.persona_id,
+                    envio_email_destino = t.Director.Persona.persona_email,
+                    envio_fecha_hora = DateTime.Now,
+                    envio_respuesta_clave = "no se usa",
+                    envio_tipo = MiEmail.tipo_mail.notificacion_entrega_archivo_tesina.ToString()
+                };
+
+                Envio_mail em_tesista = new Envio_mail()
+                {
+                    persona_id = t.Tesista.Persona.persona_id,
+                    envio_email_destino = t.Tesista.Persona.persona_email,
+                    envio_fecha_hora = DateTime.Now,
+                    envio_respuesta_clave = "no se usa",
+                    envio_tipo = MiEmail.tipo_mail.notificacion_entrega_archivo_tesina.ToString()
+                };
+
+                MiEmail me_director = new MiEmail(em_director, t);
+                MiEmail me_tesista = new MiEmail(em_tesista, t);
+
+                me_director.Enviar_mail();
+                me_tesista.Enviar_mail();
+
                 cxt.SaveChanges();
 
                 ObtenerTesinas();
@@ -469,19 +520,49 @@ namespace WebApplication1.Aplicativo
 
                 Estado_tesina et = cxt.Estados_tesinas.FirstOrDefault(ee => ee.estado_tesina_estado == "A corregir");
 
+                string descripcion = string.Empty;
+                descripcion = descripcion + (opcion_1.Checked ? opcion_1.Text : "");
+                descripcion = descripcion + (opcion_2.Checked ? opcion_2.Text : "");
+                descripcion = descripcion + (opcion_3.Checked ? opcion_3.Text : "");
+
                 Historial_estado he = new Historial_estado()
                 {
                     estado_tesina_id = et.estado_tesina_id,
                     tesina_id = tesina_id,
                     historial_tesina_fecha = DateTime.Now,
-                    historial_tesina_descripcion = tb_descripcion_rechazo.Value
+                    historial_tesina_descripcion = descripcion//tb_descripcion_rechazo.Value
                 };
 
                 t.estado_tesis_id = et.estado_tesina_id;
                 cxt.Historial_estados.Add(he);
+
+                Envio_mail em_director = new Envio_mail()
+                {
+                    persona_id = t.Director.Persona.persona_id,
+                    envio_email_destino = t.Director.Persona.persona_email,
+                    envio_fecha_hora = DateTime.Now,
+                    envio_respuesta_clave = "no se usa",
+                    envio_tipo = MiEmail.tipo_mail.notificacion_correcciones_tesina.ToString()
+                };
+
+                Envio_mail em_tesista = new Envio_mail()
+                {
+                    persona_id = t.Tesista.Persona.persona_id,
+                    envio_email_destino = t.Tesista.Persona.persona_email,
+                    envio_fecha_hora = DateTime.Now,
+                    envio_respuesta_clave = "no se usa",
+                    envio_tipo = MiEmail.tipo_mail.notificacion_correcciones_tesina.ToString()
+                };
+
+                MiEmail me_director = new MiEmail(em_director, t);
+                MiEmail me_tesista = new MiEmail(em_tesista, t);
+
+                me_director.Enviar_mail();
+                me_tesista.Enviar_mail();
+
                 cxt.SaveChanges();
 
-                tb_descripcion_rechazo.Value = "";
+                //tb_descripcion_rechazo.Value = "";
 
                 ObtenerTesinas();
             }
@@ -496,19 +577,50 @@ namespace WebApplication1.Aplicativo
 
                 Estado_tesina et = cxt.Estados_tesinas.FirstOrDefault(ee => ee.estado_tesina_estado == "Lista para presentar");
 
+                string descripcion = string.Empty;
+                descripcion = descripcion + (rb_opcion_1_lista_presentar.Checked ? rb_opcion_1_lista_presentar.Text : "");
+                descripcion = descripcion + (rb_opcion_2_lista_presentar.Checked ? rb_opcion_2_lista_presentar.Text : "");
+                descripcion = descripcion + (rb_opcion_3_lista_presentar.Checked ? rb_opcion_3_lista_presentar.Text : "");
+
                 Historial_estado he = new Historial_estado()
                 {
                     estado_tesina_id = et.estado_tesina_id,
                     tesina_id = tesina_id,
                     historial_tesina_fecha = DateTime.Now,
-                    historial_tesina_descripcion = tb_descripcion_lista_para_presentar.Value
+                    historial_tesina_descripcion = descripcion//tb_descripcion_lista_para_presentar.Value
                 };
 
                 t.estado_tesis_id = et.estado_tesina_id;
                 cxt.Historial_estados.Add(he);
+
+                Envio_mail em_director = new Envio_mail()
+                {
+                    persona_id = t.Director.Persona.persona_id,
+                    envio_email_destino = t.Director.Persona.persona_email,
+                    envio_fecha_hora = DateTime.Now,
+                    envio_respuesta_clave = "no se usa",
+                    envio_tipo = MiEmail.tipo_mail.notificacion_tesina_lista_para_presentar.ToString()
+                };
+
+                Envio_mail em_tesista = new Envio_mail()
+                {
+                    persona_id = t.Tesista.Persona.persona_id,
+                    envio_email_destino = t.Tesista.Persona.persona_email,
+                    envio_fecha_hora = DateTime.Now,
+                    envio_respuesta_clave = "no se usa",
+                    envio_tipo = MiEmail.tipo_mail.notificacion_tesina_lista_para_presentar.ToString()
+                };
+
+                MiEmail me_director = new MiEmail(em_director, t);
+                MiEmail me_tesista = new MiEmail(em_tesista, t);
+
+                me_director.Enviar_mail();
+                me_tesista.Enviar_mail();
+
+
                 cxt.SaveChanges();
 
-                tb_descripcion_lista_para_presentar.Value = "";
+                //tb_descripcion_lista_para_presentar.Value = "";
 
                 ObtenerTesinas();
             }
@@ -536,6 +648,32 @@ namespace WebApplication1.Aplicativo
                 t.tesina_plan_duracion_meses = Convert.ToInt16(tb_duracion.Value);
                 t.tesina_plan_aviso_meses = Convert.ToInt16(tb_notificacion.Value);
                 cxt.Historial_estados.Add(he);
+
+                Envio_mail em_director = new Envio_mail()
+                {
+                    persona_id = t.Director.Persona.persona_id,
+                    envio_email_destino = t.Director.Persona.persona_email,
+                    envio_fecha_hora = DateTime.Now,
+                    envio_respuesta_clave = "no se usa",
+                    envio_tipo = MiEmail.tipo_mail.notificacion_tesina_prorrogada.ToString()
+                };
+
+                Envio_mail em_tesista = new Envio_mail()
+                {
+                    persona_id = t.Tesista.Persona.persona_id,
+                    envio_email_destino = t.Tesista.Persona.persona_email,
+                    envio_fecha_hora = DateTime.Now,
+                    envio_respuesta_clave = "no se usa",
+                    envio_tipo = MiEmail.tipo_mail.notificacion_tesina_prorrogada.ToString()
+                };
+
+                MiEmail me_director = new MiEmail(em_director, t);
+                MiEmail me_tesista = new MiEmail(em_tesista, t);
+
+                me_director.Enviar_mail();
+                me_tesista.Enviar_mail();
+
+
                 cxt.SaveChanges();
 
                 tb_fecha_inicio.Value = "";
