@@ -24,7 +24,7 @@
     </div>
     <%--TEMA--%>
     <div class="row" runat="server" id="div_tema">
-        <div class="col-md-2">Tema</div>
+        <div class="col-md-2">Título</div>
         <div class="col-md-9">
             <input type="text" runat="server" id="tb_tema" class="form-control" />
         </div>
@@ -45,6 +45,42 @@
             <asp:RequiredFieldValidator ControlToValidate="tb_descripcion" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                 ID="RequiredFieldValidator3" runat="server" ErrorMessage="Debe ingresar la descripción de la tesina" ValidationGroup="tesina">
             </asp:RequiredFieldValidator>
+        </div>
+    </div>
+        <br />
+    <%--FECHA INICIO--%>
+    <div class="row">
+        <div class="col-md-2">Fecha inicio</div>
+        <div class="col-md-3">
+            <div class='input-group date' id='datetimepicker1'>
+                <input type='text' runat="server" id="tb_fecha_inicio" class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <asp:RequiredFieldValidator ControlToValidate="tb_fecha_inicio" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                ID="RequiredFieldValidator2" runat="server" ErrorMessage="Debe ingresar la fecha de inicio de la tesina" ValidationGroup="tesina">
+            </asp:RequiredFieldValidator>
+            <asp:CustomValidator ControlToValidate="tb_fecha_inicio" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                ID="cv_fecha_inicio" runat="server" ErrorMessage="Debe ingresar una fecha válida" OnServerValidate="cv_fecha_inicio_ServerValidate" ValidationGroup="tesina" />
+        </div>
+
+        <div class="col-md-2">
+            Categoría
+        </div>
+         <div class="col-md-3">
+             <asp:DropDownList runat="server" ID="ddl_categoria" CssClass="form-control">
+                 <asp:ListItem Text="Categoria 1" />
+                 <asp:ListItem Text="Categoria 2" />
+                 <asp:ListItem Text="Categoria 3" />
+                 <asp:ListItem Text="Categoria 4" />
+                 <asp:ListItem Text="Categoria 5" />
+             </asp:DropDownList>
+        </div>
+         <div class="col-md-1">
+
         </div>
     </div>
 
@@ -155,34 +191,16 @@
 
     </div>
 
-    <br />
-    <%--FECHA INICIO--%>
-    <div class="row" runat="server" id="div_fecha_inicio">
-        <div class="col-md-2">Fecha inicio</div>
-        <div class="col-md-9">
-            <div class='input-group date' id='datetimepicker1'>
-                <input type='text' runat="server" id="tb_fecha_inicio" class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar"></span>
-                </span>
-            </div>
-        </div>
-        <div class="col-md-1">
-            <asp:RequiredFieldValidator ControlToValidate="tb_fecha_inicio" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                ID="RequiredFieldValidator2" runat="server" ErrorMessage="Debe ingresar la fecha de inicio de la tesina" ValidationGroup="tesina">
-            </asp:RequiredFieldValidator>
-            <asp:CustomValidator ControlToValidate="tb_fecha_inicio" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                ID="cv_fecha_inicio" runat="server" ErrorMessage="Debe ingresar una fecha válida" OnServerValidate="cv_fecha_inicio_ServerValidate" ValidationGroup="tesina" />
-        </div>
-    </div>
 
+    
+   
     <br />
     <%--DURACION MESES PERIODO ENTRE NOTIFICACIONES--%>
     <div class="row" runat="server" id="div_duracion_y_notificaciones">
         <div class="col-md-3">Plazo hasta la entrega final</div>
         <div class="col-md-2">
             <div class="input-group">
-                <input type="text" class="form-control" runat="server" id="tb_duracion" />
+                <input type="text" class="form-control" value="12" disabled="disabled" runat="server" id="tb_duracion" />
                 <span class="input-group-addon">meses</span>
             </div>
         </div>
@@ -214,94 +232,10 @@
     </div>
     <br />
 
-    <%--ARCHIVO Y ESTADO--%>
-    <%--    <div class="row">
-        <div class="col-md-4">
-            <div class="row" runat="server" id="div_archivo">
-                <div class="col-md-2">
-                    Tesina
-                </div>
-                <div class="col-md-10">
-                    <a href="#" runat="server" id="descargar_archivo_tesina">No existe archivo.-</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-8">
-            <div class="row" runat="server" id="div_estado">
-                <div class="col-md-12">
-                    <table style="width: 100%">
-                        <tr>
-                            <td>Estado tesina
-                            </td>
-                            <td>
-                                <asp:TextBox runat="server" ID="tb_estado" CssClass="form-control" Enabled="false" Text="estado de la tesina" />
-                            </td>
-                            <td>
-                                <div class="btn-group" role="group" aria-label="...">
-                                    <button class="btn btn-default" title="Ver historial de estados" onserverclick="btn_tesina_ver_historial_ServerClick" runat="server" id="btn_tesina_ver_historial"><span class="glyphicon glyphicon-calendar"></span></button>
-                                </div>
-
-                                <div class="modal fade" id="ver_historial_de_estados" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title">Historial de estados tesina</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <asp:GridView ID="gv_historial" runat="server" OnPreRender="gv_PreRender"
-                                                    AutoGenerateColumns="False" GridLines="None" CssClass="display">
-                                                    <Columns>
-                                                        <asp:BoundField DataField="fecha" HeaderText="Fecha" DataFormatString="{0:d}" ReadOnly="true" />
-                                                        <asp:BoundField DataField="estado" HeaderText="Estado" ReadOnly="true" />
-                                                        <asp:TemplateField HeaderText="Observaciones">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="Label1" runat="server"
-                                                                    ToolTip='<%# Eval("observacion_completa") %>'
-                                                                    Text='<%# Eval("observacion_recortada") %>'>
-                                                                </asp:Label>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                    </Columns>
-                                                </asp:GridView>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br />--%>
-
-    <%--COINCIDENCIAS EN EL TEMA O DESCRIPCION--%>
-    <div class="modal fade" id="mostrar_coincidencias" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">Listado de tesinas similares</h4>
-                </div>
-                <div class="modal-body" runat="server" id="div_coincidencias">
-                </div>
-                <div class="modal-footer">
-                    <asp:Button Text="Habilitar guardado de todas maneras!" runat="server" ID="btn_habilitar_guardar" CssClass="btn btn-success" OnClick="btn_habilitar_guardar_Click" />
-                    <asp:Button Text="Cancelar" runat="server" ID="btn_cancelar_envio_mail" CssClass="btn btn-default" OnClick="btn_cancelar_envio_mail_Click" />
-                </div>
-            </div>
-        </div>
-    </div>
-
     <%--VERIFICAR GUARDAR, CANCELAR--%>
     <div class="row">
         <div class="col-md-12 text-right">
-            <asp:Button Text="Verificar" ID="btn_verificar_tesina" OnClick="btn_verificar_tesina_Click" ValidationGroup="tesina" CausesValidation="true" CssClass="btn btn-success" runat="server" />
-            <asp:Button Text="Guardar" OnClick="btn_guardar_tesina_ServerClick" ID="btn_guardar_tesina" CssClass="btn btn-primary" Enabled="false" runat="server" />
+            <asp:Button Text="Guardar" OnClick="btn_guardar_tesina_ServerClick" ID="btn_guardar_tesina" CssClass="btn btn-primary" Enabled="true" runat="server" />
             <asp:Button Text="Enviar correos" OnClick="btn_enviar_correos_Click" ID="btn_enviar_correos" CssClass="btn btn-primary" Enabled="false" runat="server" />
             <button type="button" class="btn btn-default" runat="server" id="btn_cancelar" onserverclick="btn_cancelar_ServerClick">Cancelar</button>
         </div>
@@ -395,8 +329,8 @@
             table.draw();
         })
 
-        $('#buscar_director').on('shown.bs.modal', function () {
-            var table = $('#<%= gv_directores.ClientID %>').DataTable();
+            $('#buscar_director').on('shown.bs.modal', function () {
+                var table = $('#<%= gv_directores.ClientID %>').DataTable();
             table.draw();
         })
     </script>

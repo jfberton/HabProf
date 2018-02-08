@@ -19,6 +19,13 @@ namespace WebApplication1.Aplicativo.Menues
 
                 string perfil = Session["Perfil"].ToString();
 
+                li_admin_tesinas.Visible = false;
+                li_admin_directores.Visible = false;
+                li_admin_jueces.Visible = false;
+                li_admin_tesistas.Visible = false;
+                li_comprobar_tema.Visible = false;
+                li_admin_mesa.Visible = false;
+
                 switch (perfil)
                 {
                     case "Administrador":
@@ -27,27 +34,15 @@ namespace WebApplication1.Aplicativo.Menues
                         li_admin_jueces.Visible = true;
                         li_admin_tesistas.Visible = true;
                         li_comprobar_tema.Visible = true;
+                        li_admin_mesa.Visible = true;
                         break;
                     case "Director":
-                        li_admin_directores.Visible = false;
-                        li_admin_jueces.Visible = false;
-                        li_admin_tesistas.Visible = false;
-                        li_comprobar_tema.Visible = false;
                         li_admin_tesinas.Visible = true;
                         break;
                     case "Tesista":
-                        li_admin_directores.Visible = false;
-                        li_admin_jueces.Visible = false;
-                        li_admin_tesistas.Visible = false;
-                        li_comprobar_tema.Visible = false;
                         li_admin_tesinas.Visible = true;
                         break;
                     default:
-                        li_admin_tesinas.Visible = false;
-                        li_admin_directores.Visible = false;
-                        li_admin_jueces.Visible = false;
-                        li_admin_tesistas.Visible = false;
-                        li_comprobar_tema.Visible = false;
                         break;
                 }
             }

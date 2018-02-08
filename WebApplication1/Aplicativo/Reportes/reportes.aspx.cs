@@ -11,6 +11,19 @@ namespace WebApplication1.Aplicativo.Reportes
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Page.IsPostBack)
+            {
+                byte[] bytes = Session["Reporte"] as byte[];
+                Session["Reporte"] = null;
+                if (bytes != null)
+                {
+                    Response.ClearContent();
+                    Response.ClearHeaders();
+                    Response.ContentType = "application/pdf";
+                    Response.BinaryWrite(bytes);
+                    Response.End();
+                }
+            }
 
         }
     }

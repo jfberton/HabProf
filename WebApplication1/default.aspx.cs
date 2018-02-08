@@ -311,8 +311,9 @@ namespace WebApplication1
                         tesina_descripcion = "politica, importacion, electronico",
                         tesina_tema = "Impacto de las politicas de importación sobre la producción de artículos electronicónicos en la región",
                         tesina_plan_fch_presentacion = Convert.ToDateTime("01/06/2017"),
-                        tesina_plan_duracion_meses = 18,
-                        tesina_plan_aviso_meses = 3
+                        tesina_plan_duracion_meses = 12,
+                        tesina_plan_aviso_meses = 3,
+                        tesina_categoria = ""
                     };
 
                     cxt.Tesinas.Add(tesis);

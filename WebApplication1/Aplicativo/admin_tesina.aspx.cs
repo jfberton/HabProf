@@ -99,10 +99,10 @@ namespace WebApplication1.Aplicativo
                 tb_fecha_inicio.Value = "";
                 tb_tesista.Value = "";
                 tb_director.Value = "";
-                tb_duracion.Value = "";
+                tb_duracion.Value = "12";
                 tb_notificacion.Value = "";
+                ddl_categoria.SelectedValue = "Categoria 4";
             }
-
             else
             {
                 using (HabProfDBContainer cxt = new HabProfDBContainer())
@@ -121,6 +121,7 @@ namespace WebApplication1.Aplicativo
                         hidden_director_id.Value = t.director_id.ToString();
                         tb_duracion.Value = t.tesina_plan_duracion_meses.ToString();
                         tb_notificacion.Value = t.tesina_plan_aviso_meses.ToString();
+                        ddl_categoria.SelectedValue = t.tesina_categoria;
                         btn_buscar_tesista.Visible = false;
                     }
                 }
@@ -287,294 +288,79 @@ namespace WebApplication1.Aplicativo
             public string html_descripcion { get; set; }
         }
 
-        protected void btn_verificar_tesina_Click(object sender, EventArgs e)
-        {
-            if (IsValid)//revisa que se cumplan todos las validaciones de ingreso
-            {
-                #region controlo tema y descripción
-
-                List<resultado_coincidencias> resultados = new List<resultado_coincidencias>();
-                Buscar buscar;
-                using (HabProfDBContainer cxt = new HabProfDBContainer())
-                {
-                    string str_tesina_id = Request.QueryString["t"];
-                    int tesina_id = 0;
-                    List<Tesina> tesinas = new List<Aplicativo.Tesina>();
-                    if (int.TryParse(str_tesina_id, out tesina_id))
-                    {
-                        tesinas = cxt.Tesinas.Include("Tesista").Include("Tesista.Persona").Where(tt => tt.tesina_id != tesina_id).ToList();
-                    }
-                    else
-                    {
-                        tesinas = cxt.Tesinas.Include("Tesista").Include("Tesista.Persona").ToList();
-                    }
-
-                    string html_tema = string.Empty;
-                    string html_descripcion = string.Empty;
-
-                    foreach (Tesina tesina in tesinas)
-                    {
-                        int coincidencias = 0;
-                        buscar = new Buscar(tb_tema.Value, tesina.tesina_tema);
-                        if (buscar.Hubo_coincidencia)
-                        {
-                            coincidencias++;
-                            html_tema = buscar.Texto_con_palabras_resaltadas;
-                        }
-
-                        buscar = new Buscar(tb_descripcion.Value, tesina.tesina_descripcion);
-                        if (buscar.Hubo_coincidencia)
-                        {
-                            coincidencias++;
-                            html_descripcion = buscar.Texto_con_palabras_resaltadas;
-                        }
-
-                        if (coincidencias > 0)
-                        {
-                            resultados.Add(new resultado_coincidencias()
-                            {
-                                tesina = tesina,
-                                html_tema = html_tema,
-                                html_descripcion = html_descripcion
-                            });
-                        }
-
-                    }
-                }
-
-                if (resultados.Count > 0)
-                {
-                    foreach (resultado_coincidencias item in resultados)
-                    {
-                        HtmlGenericControl div_panel_cascara = new HtmlGenericControl("div");
-                        div_panel_cascara.Attributes["class"] = "panel panel-default";
-
-                        HtmlGenericControl div_panel_heading = new HtmlGenericControl("div");
-                        div_panel_heading.Attributes["class"] = "panel-heading";
-                        div_panel_heading.InnerHtml = "Presentada por: " + item.tesina.Tesista.Persona.persona_nomyap;
-
-                        HtmlGenericControl div_panel_body = new HtmlGenericControl("div");
-                        div_panel_body.Attributes["class"] = "panel-body";
-                        div_panel_body.InnerHtml = "<p>" + "Tema: " + item.html_tema + "</p> <p>Descripción: " + item.html_descripcion + "</p>";
-
-
-                        div_panel_cascara.Controls.Add(div_panel_heading);
-                        div_panel_cascara.Controls.Add(div_panel_body);
-                        div_coincidencias.Controls.Add(div_panel_cascara);
-                    }
-
-                    string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#mostrar_coincidencias').modal('show')});</script>";
-                    ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
-                }
-                else
-                {
-                    btn_guardar_tesina.Enabled = true;
-                    btn_verificar_tesina.Enabled = false;
-                }
-
-                #endregion
-            }
-        }
-
-        protected void btn_habilitar_guardar_Click(object sender, EventArgs e)
-        {
-            btn_guardar_tesina.Enabled = true;
-            btn_verificar_tesina.Enabled = false;
-        }
-
         protected void btn_guardar_tesina_ServerClick(object sender, EventArgs e)
         {
             //se supone que ingreso aca porque esta todo bien, sino corregir en el boton verificar
-            string str_tesina_id = Request.QueryString["t"];
-            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            Validate();
+            if (IsValid)
             {
-                if (str_tesina_id == null)
+                string str_tesina_id = Request.QueryString["t"];
+                using (HabProfDBContainer cxt = new HabProfDBContainer())
                 {
-                    #region tesina nueva
-                    try
+                    if (str_tesina_id == null)
                     {
-                        //tesina nueva (la mas facil)
-                        Tesina t = new Tesina();
-                        t.director_id = Convert.ToInt32(hidden_director_id.Value);
-                        t.tesista_id = Convert.ToInt32(hidden_tesista_id.Value);
-                        t.tesina_tema = tb_tema.Value;
-                        t.tesina_descripcion = tb_descripcion.Value;
-                        t.tesina_plan_fch_presentacion = Convert.ToDateTime(tb_fecha_inicio.Value);
-                        t.tesina_plan_duracion_meses = Convert.ToInt16(tb_duracion.Value);
-                        t.tesina_plan_aviso_meses = Convert.ToInt16(tb_notificacion.Value);
-                        t.estado_tesis_id = cxt.Estados_tesinas.FirstOrDefault(ee => ee.estado_tesina_estado == "Iniciada").estado_tesina_id;
-                        Historial_estado he = new Historial_estado()
-                        {
-                            estado_tesina_id = t.estado_tesis_id,
-                            historial_tesina_fecha = DateTime.Today,
-                            Tesina = t,
-                            historial_tesina_descripcion = "Se inicia el seguimiento de la tesina"
-                        };
-
-                        cxt.Tesinas.Add(t);
-                        cxt.Historial_estados.Add(he);
-                        cxt.SaveChanges();
-
-                        #region genero los correos a enviar
-
-                        Correos_por_enviar correos_por_enviar = ((Correos_por_enviar)Session["Correos_por_enviar"]);
-                        correos_por_enviar.tesina_id = t.tesina_id;
-
-                        int director_id = Convert.ToInt32(hidden_director_id.Value);
-                        int tesista_id = Convert.ToInt32(hidden_tesista_id.Value);
-
-                        Persona director_asignado = cxt.Directores.First(dd => dd.director_id == director_id).Persona;
-                        Persona tesista_asignado = cxt.Tesistas.First(tt => tt.tesista_id == tesista_id).Persona;
-
-
-                        Envio_mail registro_envio_mail_director = new Envio_mail()
-                        {
-                            persona_id = director_asignado.persona_id,
-                            envio_fecha_hora = DateTime.Now,
-                            envio_email_destino = director_asignado.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
-                            envio_respuesta_clave = "no se usa",
-                            envio_tipo = MiEmail.tipo_mail.notificacion_asignacion_tesina_director.ToString()
-                        };
-
-                        Envio_mail registro_envio_mail_tesista = new Envio_mail()
-                        {
-                            persona_id = tesista_asignado.persona_id,
-                            envio_fecha_hora = DateTime.Now,
-                            envio_email_destino = tesista_asignado.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
-                            envio_respuesta_clave = "no se usa",
-                            envio_tipo = MiEmail.tipo_mail.notificacion_inicio_tesina_tesista.ToString()
-                        };
-
-                        correos_por_enviar.envios_por_realizar.Add(registro_envio_mail_director);
-                        correos_por_enviar.envios_por_realizar.Add(registro_envio_mail_tesista);
-
-                        Session["Correos_por_enviar"] = correos_por_enviar;
-
-                        #endregion
-
-                        btn_guardar_tesina.Enabled = false;
-                        btn_enviar_correos.Enabled = true;
-
-                        MessageBox.Show(this, "Se guardaron correctamente los cambios, puede informar de los mismos al tesista y director desde el botón Enviar correos", MessageBox.Tipo_MessageBox.Success, "Tesina guardada");
-                    }
-                    catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
-                    {
-                        Exception raise = dbEx;
-                        foreach (var validationErrors in dbEx.EntityValidationErrors)
-                        {
-                            foreach (var validationError in validationErrors.ValidationErrors)
-                            {
-                                string message = string.Format("{0}:{1}",
-                                    validationErrors.Entry.Entity.ToString(),
-                                    validationError.ErrorMessage);
-                                // raise a new exception nesting
-                                // the current instance as InnerException
-                                raise = new InvalidOperationException(message, raise);
-                            }
-                        }
-
-                        MessageBox.Show(this, raise.Message, MessageBox.Tipo_MessageBox.Danger, "Ups! ocurrio un error al guardar los cambios");
-                    }
-
-                    #endregion
-                }
-                else
-                {
-                    //tesina existente, editar
-                    int tesina_id = 0;
-                    if (int.TryParse(str_tesina_id, out tesina_id))
-                    {
+                        #region tesina nueva
                         try
                         {
-                            //aca verificar los datos y los cambios que tiene que hacer dependiendo del mismo.
-                            Tesina t = cxt.Tesinas.FirstOrDefault(tt => tt.tesina_id == tesina_id);
-                            string perfil = Session["Perfil"].ToString();
-                            if (perfil == "Administrador")
+                            //tesina nueva (la mas facil)
+                            Tesina t = new Tesina();
+                            t.director_id = Convert.ToInt32(hidden_director_id.Value);
+                            t.tesista_id = Convert.ToInt32(hidden_tesista_id.Value);
+                            t.tesina_tema = tb_tema.Value;
+                            t.tesina_descripcion = tb_descripcion.Value;
+                            t.tesina_plan_fch_presentacion = Convert.ToDateTime(tb_fecha_inicio.Value);
+                            t.tesina_plan_duracion_meses = Convert.ToInt16(tb_duracion.Value);
+                            t.tesina_plan_aviso_meses = Convert.ToInt16(tb_notificacion.Value);
+                            t.estado_tesis_id = cxt.Estados_tesinas.FirstOrDefault(ee => ee.estado_tesina_estado == "Iniciada").estado_tesina_id;
+                            t.tesina_categoria = ddl_categoria.SelectedValue;
+                            Historial_estado he = new Historial_estado()
                             {
-                                #region genero correos de y guardo modificaciones del administrador sin que tenga que ver con el estado de la tesis
+                                estado_tesina_id = t.estado_tesis_id,
+                                historial_tesina_fecha = DateTime.Today,
+                                Tesina = t,
+                                historial_tesina_descripcion = "Se inicia el seguimiento de la tesina"
+                            };
 
-                                //guardo posibles cambios en director, tema, descripcion
-                                if (t.tesina_tema != tb_tema.Value ||
-                                    t.tesina_descripcion != tb_descripcion.Value ||
-                                    t.tesina_plan_fch_presentacion != Convert.ToDateTime(tb_fecha_inicio.Value) ||
-                                    t.tesina_plan_duracion_meses != Convert.ToInt16(tb_duracion.Value) ||
-                                    t.tesina_plan_aviso_meses != Convert.ToInt16(tb_notificacion.Value) ||
-                                    t.director_id.ToString() != hidden_director_id.Value
-                                    )
-                                {
-                                    Correos_por_enviar correos_por_enviar = ((Correos_por_enviar)Session["Correos_por_enviar"]);
-                                    correos_por_enviar.tesina_id = t.tesina_id;
-
-                                    //modifico director u otro parametro hay que mandar correos
-                                    //mandar correo tesista modificacion de tesis
-                                    if (t.director_id.ToString() != hidden_director_id.Value)
-                                    {
-                                        int nuevo_director_id = Convert.ToInt32(hidden_director_id.Value);
-                                        Persona nuevo_director = cxt.Directores.First(pp => pp.director_id == nuevo_director_id).Persona;
-
-                                        //cambio de director, mandar correo de asignacion de tesis al nuevo director y de eliminacion de tesis al viejo
-                                        Envio_mail registro_envio_mail_director_aisgnacion = new Envio_mail()
-                                        {
-                                            persona_id = nuevo_director.persona_id,
-                                            envio_fecha_hora = DateTime.Now,
-                                            envio_email_destino = nuevo_director.persona_email,
-                                            envio_respuesta_clave = "no se usa",
-                                            envio_tipo = MiEmail.tipo_mail.notificacion_asignacion_tesina_director.ToString()
-                                        };
-
-                                        Envio_mail registro_envio_mail_director_eliminacion = new Envio_mail()
-                                        {
-                                            persona_id = t.Director.Persona.persona_id,
-                                            envio_fecha_hora = DateTime.Now,
-                                            envio_email_destino = t.Director.Persona.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
-                                            envio_respuesta_clave = "no se usa",
-                                            envio_tipo = MiEmail.tipo_mail.notificacion_eliminacion_tesina_director.ToString()
-                                        };
-
-                                        correos_por_enviar.envios_por_realizar.Add(registro_envio_mail_director_aisgnacion);
-                                        correos_por_enviar.envios_por_realizar.Add(registro_envio_mail_director_eliminacion);
-                                    }
-                                    else
-                                    {
-                                        //mantuvo director, mandar correo de modificacion de tesis director
-                                        Envio_mail registro_envio_mail_director_modificacion = new Envio_mail()
-                                        {
-                                            persona_id = t.Director.Persona.persona_id,
-                                            envio_fecha_hora = DateTime.Now,
-                                            envio_email_destino = t.Director.Persona.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
-                                            envio_respuesta_clave = "no se usa",
-                                            envio_tipo = MiEmail.tipo_mail.notificacion_modificacion_tesina_director.ToString()
-                                        };
-
-                                        correos_por_enviar.envios_por_realizar.Add(registro_envio_mail_director_modificacion);
-                                    }
-
-                                    //mandar correo de modificacion de tesina al tesista Envio_mail registro_envio_mail_director = new Envio_mail()
-                                    Envio_mail registro_envio_mail_tesista = new Envio_mail()
-                                    {
-                                        persona_id = t.Tesista.Persona.persona_id,
-                                        envio_fecha_hora = DateTime.Now,
-                                        envio_email_destino = t.Tesista.Persona.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
-                                        envio_respuesta_clave = "no se usa",
-                                        envio_tipo = MiEmail.tipo_mail.notificacion_modificacion_tesina_tesista.ToString()
-                                    };
-
-                                    correos_por_enviar.envios_por_realizar.Add(registro_envio_mail_tesista);
-
-                                    Session["Correos_por_enviar"] = correos_por_enviar;
-                                }
-
-                                t.tesina_tema = tb_tema.Value;
-                                t.tesina_descripcion = tb_descripcion.Value;
-                                t.tesina_plan_fch_presentacion = Convert.ToDateTime(tb_fecha_inicio.Value);
-                                t.tesina_plan_duracion_meses = Convert.ToInt16(tb_duracion.Value);
-                                t.tesina_plan_aviso_meses = Convert.ToInt16(tb_notificacion.Value);
-                                t.director_id = Convert.ToInt32(hidden_director_id.Value);
-
-                                #endregion
-                            }
-
+                            cxt.Tesinas.Add(t);
+                            cxt.Historial_estados.Add(he);
                             cxt.SaveChanges();
+
+                            #region genero los correos a enviar
+
+                            Correos_por_enviar correos_por_enviar = ((Correos_por_enviar)Session["Correos_por_enviar"]);
+                            correos_por_enviar.tesina_id = t.tesina_id;
+
+                            int director_id = Convert.ToInt32(hidden_director_id.Value);
+                            int tesista_id = Convert.ToInt32(hidden_tesista_id.Value);
+
+                            Persona director_asignado = cxt.Directores.First(dd => dd.director_id == director_id).Persona;
+                            Persona tesista_asignado = cxt.Tesistas.First(tt => tt.tesista_id == tesista_id).Persona;
+
+
+                            Envio_mail registro_envio_mail_director = new Envio_mail()
+                            {
+                                persona_id = director_asignado.persona_id,
+                                envio_fecha_hora = DateTime.Now,
+                                envio_email_destino = director_asignado.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
+                                envio_respuesta_clave = "no se usa",
+                                envio_tipo = MiEmail.tipo_mail.notificacion_asignacion_tesina_director.ToString()
+                            };
+
+                            Envio_mail registro_envio_mail_tesista = new Envio_mail()
+                            {
+                                persona_id = tesista_asignado.persona_id,
+                                envio_fecha_hora = DateTime.Now,
+                                envio_email_destino = tesista_asignado.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
+                                envio_respuesta_clave = "no se usa",
+                                envio_tipo = MiEmail.tipo_mail.notificacion_inicio_tesina_tesista.ToString()
+                            };
+
+                            correos_por_enviar.envios_por_realizar.Add(registro_envio_mail_director);
+                            correos_por_enviar.envios_por_realizar.Add(registro_envio_mail_tesista);
+
+                            Session["Correos_por_enviar"] = correos_por_enviar;
+
+                            #endregion
 
                             btn_guardar_tesina.Enabled = false;
                             btn_enviar_correos.Enabled = true;
@@ -599,10 +385,136 @@ namespace WebApplication1.Aplicativo
 
                             MessageBox.Show(this, raise.Message, MessageBox.Tipo_MessageBox.Danger, "Ups! ocurrio un error al guardar los cambios");
                         }
+
+                        #endregion
                     }
                     else
                     {
-                        MessageBox.Show(this, "Error en el identificador de la tesina", MessageBox.Tipo_MessageBox.Danger, "Error general", "../default.aspx");
+                        //tesina existente, editar
+                        int tesina_id = 0;
+                        if (int.TryParse(str_tesina_id, out tesina_id))
+                        {
+                            try
+                            {
+                                //aca verificar los datos y los cambios que tiene que hacer dependiendo del mismo.
+                                Tesina t = cxt.Tesinas.FirstOrDefault(tt => tt.tesina_id == tesina_id);
+                                string perfil = Session["Perfil"].ToString();
+                                if (perfil == "Administrador")
+                                {
+                                    #region genero correos de y guardo modificaciones del administrador sin que tenga que ver con el estado de la tesis
+
+                                    //guardo posibles cambios en director, tema, descripcion
+                                    if (t.tesina_tema != tb_tema.Value ||
+                                        t.tesina_descripcion != tb_descripcion.Value ||
+                                        t.tesina_plan_fch_presentacion != Convert.ToDateTime(tb_fecha_inicio.Value) ||
+                                        t.tesina_plan_duracion_meses != Convert.ToInt16(tb_duracion.Value) ||
+                                        t.tesina_plan_aviso_meses != Convert.ToInt16(tb_notificacion.Value) ||
+                                        t.director_id.ToString() != hidden_director_id.Value
+                                        )
+                                    {
+                                        Correos_por_enviar correos_por_enviar = ((Correos_por_enviar)Session["Correos_por_enviar"]);
+                                        correos_por_enviar.tesina_id = t.tesina_id;
+
+                                        //modifico director u otro parametro hay que mandar correos
+                                        //mandar correo tesista modificacion de tesis
+                                        if (t.director_id.ToString() != hidden_director_id.Value)
+                                        {
+                                            int nuevo_director_id = Convert.ToInt32(hidden_director_id.Value);
+                                            Persona nuevo_director = cxt.Directores.First(pp => pp.director_id == nuevo_director_id).Persona;
+
+                                            //cambio de director, mandar correo de asignacion de tesis al nuevo director y de eliminacion de tesis al viejo
+                                            Envio_mail registro_envio_mail_director_aisgnacion = new Envio_mail()
+                                            {
+                                                persona_id = nuevo_director.persona_id,
+                                                envio_fecha_hora = DateTime.Now,
+                                                envio_email_destino = nuevo_director.persona_email,
+                                                envio_respuesta_clave = "no se usa",
+                                                envio_tipo = MiEmail.tipo_mail.notificacion_asignacion_tesina_director.ToString()
+                                            };
+
+                                            Envio_mail registro_envio_mail_director_eliminacion = new Envio_mail()
+                                            {
+                                                persona_id = t.Director.Persona.persona_id,
+                                                envio_fecha_hora = DateTime.Now,
+                                                envio_email_destino = t.Director.Persona.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
+                                                envio_respuesta_clave = "no se usa",
+                                                envio_tipo = MiEmail.tipo_mail.notificacion_eliminacion_tesina_director.ToString()
+                                            };
+
+                                            correos_por_enviar.envios_por_realizar.Add(registro_envio_mail_director_aisgnacion);
+                                            correos_por_enviar.envios_por_realizar.Add(registro_envio_mail_director_eliminacion);
+                                        }
+                                        else
+                                        {
+                                            //mantuvo director, mandar correo de modificacion de tesis director
+                                            Envio_mail registro_envio_mail_director_modificacion = new Envio_mail()
+                                            {
+                                                persona_id = t.Director.Persona.persona_id,
+                                                envio_fecha_hora = DateTime.Now,
+                                                envio_email_destino = t.Director.Persona.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
+                                                envio_respuesta_clave = "no se usa",
+                                                envio_tipo = MiEmail.tipo_mail.notificacion_modificacion_tesina_director.ToString()
+                                            };
+
+                                            correos_por_enviar.envios_por_realizar.Add(registro_envio_mail_director_modificacion);
+                                        }
+
+                                        //mandar correo de modificacion de tesina al tesista Envio_mail registro_envio_mail_director = new Envio_mail()
+                                        Envio_mail registro_envio_mail_tesista = new Envio_mail()
+                                        {
+                                            persona_id = t.Tesista.Persona.persona_id,
+                                            envio_fecha_hora = DateTime.Now,
+                                            envio_email_destino = t.Tesista.Persona.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
+                                            envio_respuesta_clave = "no se usa",
+                                            envio_tipo = MiEmail.tipo_mail.notificacion_modificacion_tesina_tesista.ToString()
+                                        };
+
+                                        correos_por_enviar.envios_por_realizar.Add(registro_envio_mail_tesista);
+
+                                        Session["Correos_por_enviar"] = correos_por_enviar;
+                                    }
+
+                                    t.tesina_tema = tb_tema.Value;
+                                    t.tesina_descripcion = tb_descripcion.Value;
+                                    t.tesina_plan_fch_presentacion = Convert.ToDateTime(tb_fecha_inicio.Value);
+                                    t.tesina_plan_duracion_meses = Convert.ToInt16(tb_duracion.Value);
+                                    t.tesina_plan_aviso_meses = Convert.ToInt16(tb_notificacion.Value);
+                                    t.director_id = Convert.ToInt32(hidden_director_id.Value);
+                                    t.tesina_categoria = ddl_categoria.SelectedValue;
+
+                                    #endregion
+                                }
+
+                                cxt.SaveChanges();
+
+                                btn_guardar_tesina.Enabled = false;
+                                btn_enviar_correos.Enabled = true;
+
+                                MessageBox.Show(this, "Se guardaron correctamente los cambios, puede informar de los mismos al tesista y director desde el botón Enviar correos", MessageBox.Tipo_MessageBox.Success, "Tesina guardada");
+                            }
+                            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                            {
+                                Exception raise = dbEx;
+                                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                                {
+                                    foreach (var validationError in validationErrors.ValidationErrors)
+                                    {
+                                        string message = string.Format("{0}:{1}",
+                                            validationErrors.Entry.Entity.ToString(),
+                                            validationError.ErrorMessage);
+                                        // raise a new exception nesting
+                                        // the current instance as InnerException
+                                        raise = new InvalidOperationException(message, raise);
+                                    }
+                                }
+
+                                MessageBox.Show(this, raise.Message, MessageBox.Tipo_MessageBox.Danger, "Ups! ocurrio un error al guardar los cambios");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, "Error en el identificador de la tesina", MessageBox.Tipo_MessageBox.Danger, "Error general", "../default.aspx");
+                        }
                     }
                 }
             }

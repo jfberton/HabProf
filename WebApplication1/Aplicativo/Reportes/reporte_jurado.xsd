@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporte_jurado" targetNamespace="http://tempuri.org/reporte_jurado.xsd" xmlns:mstns="http://tempuri.org/reporte_jurado.xsd" xmlns="http://tempuri.org/reporte_jurado.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="reporte_jurado" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="reporte_jurado" msprop:Generator_UserDSName="reporte_jurado">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="t_jurado" msprop:Generator_TableClassName="t_juradoDataTable" msprop:Generator_TableVarName="tablet_jurado" msprop:Generator_TablePropName="t_jurado" msprop:Generator_RowDeletingName="t_juradoRowDeleting" msprop:Generator_RowChangingName="t_juradoRowChanging" msprop:Generator_RowEvHandlerName="t_juradoRowChangeEventHandler" msprop:Generator_RowDeletedName="t_juradoRowDeleted" msprop:Generator_UserTableName="t_jurado" msprop:Generator_RowChangedName="t_juradoRowChanged" msprop:Generator_RowEvArgName="t_juradoRowChangeEvent" msprop:Generator_RowClassName="t_juradoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="jurado_id" msprop:Generator_ColumnVarNameInTable="columnjurado_id" msprop:Generator_ColumnPropNameInRow="jurado_id" msprop:Generator_ColumnPropNameInTable="jurado_idColumn" msprop:Generator_UserColumnName="jurado_id" type="xs:int" minOccurs="0" />
+              <xs:element name="jurado_nombre" msprop:Generator_ColumnVarNameInTable="columnjurado_nombre" msprop:Generator_ColumnPropNameInRow="jurado_nombre" msprop:Generator_ColumnPropNameInTable="jurado_nombreColumn" msprop:Generator_UserColumnName="jurado_nombre" type="xs:string" minOccurs="0" />
+              <xs:element name="jurado_dni" msprop:Generator_ColumnVarNameInTable="columnjurado_dni" msprop:Generator_ColumnPropNameInRow="jurado_dni" msprop:Generator_ColumnPropNameInTable="jurado_dniColumn" msprop:Generator_UserColumnName="jurado_dni" type="xs:string" minOccurs="0" />
+              <xs:element name="jurado_licenciatura_nombre" msprop:Generator_ColumnVarNameInTable="columnjurado_licenciatura_nombre" msprop:Generator_ColumnPropNameInRow="jurado_licenciatura_nombre" msprop:Generator_ColumnPropNameInTable="jurado_licenciatura_nombreColumn" msprop:Generator_UserColumnName="jurado_licenciatura_nombre" type="xs:string" minOccurs="0" />
+              <xs:element name="jurado_mesa_fecha" msprop:Generator_ColumnVarNameInTable="columnjurado_mesa_fecha" msprop:Generator_ColumnPropNameInRow="jurado_mesa_fecha" msprop:Generator_ColumnPropNameInTable="jurado_mesa_fechaColumn" msprop:Generator_UserColumnName="jurado_mesa_fecha" type="xs:string" minOccurs="0" />
+              <xs:element name="jurado_tesina_tema" msprop:Generator_ColumnVarNameInTable="columnjurado_tesina_tema" msprop:Generator_ColumnPropNameInRow="jurado_tesina_tema" msprop:Generator_ColumnPropNameInTable="jurado_tesina_temaColumn" msprop:Generator_UserColumnName="jurado_tesina_tema" type="xs:string" minOccurs="0" />
+              <xs:element name="jurado_tesina_tesista" msprop:Generator_ColumnVarNameInTable="columnjurado_tesina_tesista" msprop:Generator_ColumnPropNameInRow="jurado_tesina_tesista" msprop:Generator_ColumnPropNameInTable="jurado_tesina_tesistaColumn" msprop:Generator_UserColumnName="jurado_tesina_tesista" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

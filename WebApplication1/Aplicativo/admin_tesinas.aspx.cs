@@ -46,6 +46,7 @@ namespace WebApplication1.Aplicativo
                     tesinas = (from t in cxt.Tesinas
                                select t
                                ).ToList();
+                    lbl_no_existe_tesina.InnerHtml = "<strong> No existen Tesinas!</strong> Pruebe agregar algunos para comenzar.";
                 }
                 else
                 {
@@ -60,6 +61,7 @@ namespace WebApplication1.Aplicativo
 
                         btn_agregar_tesina.Visible = false;
                         lbl_small_titulo.Text = "Listado de Tesinas bajo su supervisión";
+                        lbl_no_existe_tesina.InnerHtml = "<strong> No existen Tesinas!</strong> Aún no tiene tesinas asignadas.";
                     }
                     else
                     {
@@ -72,6 +74,7 @@ namespace WebApplication1.Aplicativo
 
                         btn_agregar_tesina.Visible = false;
                         lbl_small_titulo.Text = "Tesina presentada";
+                        lbl_no_existe_tesina.InnerHtml = "<strong> No existe Tesina!</strong> Aún no se cargo su tesina.";
                     }
 
                 }
@@ -280,11 +283,13 @@ namespace WebApplication1.Aplicativo
                     {
                         lbl_archivo_subido.HRef = "~/Archivos/Tesinas/" + hidden_tesina_id.Value + "/presentado.pdf";
                         lbl_archivo_subido.InnerText = "Archivo presentado";
+                        lbl_archivo_subido.Target = "_blank";
                     }
                     else
                     {
                         lbl_archivo_subido.HRef = "#";
                         lbl_archivo_subido.InnerText = "Sin presentaciones";
+                        lbl_archivo_subido.Target = "_self";
                     }
 
                     foreach (Juez juez in tesina.Jueces)
@@ -339,7 +344,10 @@ namespace WebApplication1.Aplicativo
                 switch (t.Estado.estado_tesina_estado)
                 {
                     case "Iniciada":
-                        btn_realizar_entrega.Visible = true;
+                        if (Session["Perfil"].ToString() != "Director")
+                        {
+                            btn_realizar_entrega.Visible = true;
+                        }
                         break;
                     case "Entregada":
                         if (Session["Perfil"].ToString() != "Tesista")
@@ -349,17 +357,17 @@ namespace WebApplication1.Aplicativo
                         }
                         break;
                     case "A corregir":
-                        if (Session["Perfil"].ToString() != "Tesista")
+                        if (Session["Perfil"].ToString() != "Director")
                         {
                             btn_realizar_entrega.Visible = true;
                         }
                         break;
                     case "Lista para presentar":
-                        if (Session["Perfil"].ToString() == "Administrador")
-                        {
-                            btn_aprobar.Visible = true;
-                            btn_desaprobar.Visible = true;
-                        }
+                        //if (Session["Perfil"].ToString() == "Administrador")
+                        //{
+                        //    btn_aprobar.Visible = true;
+                        //    btn_desaprobar.Visible = true;
+                        //}
                         break;
                     case "Vencida":
                         if (Session["Perfil"].ToString() == "Administrador")
@@ -368,7 +376,10 @@ namespace WebApplication1.Aplicativo
                         }
                         break;
                     case "Prorrogar":
-                        btn_realizar_entrega.Visible = true;
+                        if (Session["Perfil"].ToString() != "Director")
+                        {
+                            btn_realizar_entrega.Visible = true;
+                        }
                         break;
                     case "Aprobada":
                         break;
@@ -577,17 +588,14 @@ namespace WebApplication1.Aplicativo
 
                 Estado_tesina et = cxt.Estados_tesinas.FirstOrDefault(ee => ee.estado_tesina_estado == "Lista para presentar");
 
-                string descripcion = string.Empty;
-                descripcion = descripcion + (rb_opcion_1_lista_presentar.Checked ? rb_opcion_1_lista_presentar.Text : "");
-                descripcion = descripcion + (rb_opcion_2_lista_presentar.Checked ? rb_opcion_2_lista_presentar.Text : "");
-                descripcion = descripcion + (rb_opcion_3_lista_presentar.Checked ? rb_opcion_3_lista_presentar.Text : "");
+                string descripcion = "Esta lista para presentar";
 
                 Historial_estado he = new Historial_estado()
                 {
                     estado_tesina_id = et.estado_tesina_id,
                     tesina_id = tesina_id,
                     historial_tesina_fecha = DateTime.Now,
-                    historial_tesina_descripcion = descripcion//tb_descripcion_lista_para_presentar.Value
+                    historial_tesina_descripcion = descripcion
                 };
 
                 t.estado_tesis_id = et.estado_tesina_id;

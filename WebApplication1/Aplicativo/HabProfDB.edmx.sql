@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/04/2018 12:24:08
+-- Date Created: 02/07/2018 10:11:10
 -- Generated from EDMX file: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
 -- --------------------------------------------------
 
@@ -59,18 +59,6 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_JuezTesina_Tesina]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[JuezTesina] DROP CONSTRAINT [FK_JuezTesina_Tesina];
 GO
-IF OBJECT_ID(N'[dbo].[FK_JuezMesa_Juez]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[JuezMesa] DROP CONSTRAINT [FK_JuezMesa_Juez];
-GO
-IF OBJECT_ID(N'[dbo].[FK_JuezMesa_Mesa]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[JuezMesa] DROP CONSTRAINT [FK_JuezMesa_Mesa];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MesaTesina_Mesa]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[MesaTesina] DROP CONSTRAINT [FK_MesaTesina_Mesa];
-GO
-IF OBJECT_ID(N'[dbo].[FK_MesaTesina_Tesina]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[MesaTesina] DROP CONSTRAINT [FK_MesaTesina_Tesina];
-GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -115,12 +103,6 @@ GO
 IF OBJECT_ID(N'[dbo].[JuezTesina]', 'U') IS NOT NULL
     DROP TABLE [dbo].[JuezTesina];
 GO
-IF OBJECT_ID(N'[dbo].[JuezMesa]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[JuezMesa];
-GO
-IF OBJECT_ID(N'[dbo].[MesaTesina]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[MesaTesina];
-GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -155,7 +137,8 @@ CREATE TABLE [dbo].[Tesinas] (
     [tesina_fecha_cierre] datetime  NULL,
     [tesina_calificacion_director] smallint  NULL,
     [tesista_id] int  NOT NULL,
-    [director_id] int  NOT NULL
+    [director_id] int  NOT NULL,
+    [tesina_categoria] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -247,7 +230,8 @@ GO
 -- Creating table 'Mesas'
 CREATE TABLE [dbo].[Mesas] (
     [mesa_id] int IDENTITY(1,1) NOT NULL,
-    [mesa_fecha] datetime  NOT NULL
+    [mesa_fecha] datetime  NOT NULL,
+    [mesa_estado] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -258,17 +242,17 @@ CREATE TABLE [dbo].[JuezTesina] (
 );
 GO
 
--- Creating table 'JuezMesa'
-CREATE TABLE [dbo].[JuezMesa] (
-    [Jueces_juez_id] int  NOT NULL,
-    [Mesas_mesa_id] int  NOT NULL
+-- Creating table 'MesaTesina'
+CREATE TABLE [dbo].[MesaTesina] (
+    [Mesas_mesa_id] int  NOT NULL,
+    [Tesinas_tesina_id] int  NOT NULL
 );
 GO
 
--- Creating table 'MesaTesina'
-CREATE TABLE [dbo].[MesaTesina] (
+-- Creating table 'MesaJuez'
+CREATE TABLE [dbo].[MesaJuez] (
     [Mesa_mesa_id] int  NOT NULL,
-    [Tesinas_tesina_id] int  NOT NULL
+    [Jueces_juez_id] int  NOT NULL
 );
 GO
 
@@ -354,16 +338,16 @@ ADD CONSTRAINT [PK_JuezTesina]
     PRIMARY KEY CLUSTERED ([Jueces_juez_id], [Tesinas_tesina_id] ASC);
 GO
 
--- Creating primary key on [Jueces_juez_id], [Mesas_mesa_id] in table 'JuezMesa'
-ALTER TABLE [dbo].[JuezMesa]
-ADD CONSTRAINT [PK_JuezMesa]
-    PRIMARY KEY CLUSTERED ([Jueces_juez_id], [Mesas_mesa_id] ASC);
-GO
-
--- Creating primary key on [Mesa_mesa_id], [Tesinas_tesina_id] in table 'MesaTesina'
+-- Creating primary key on [Mesas_mesa_id], [Tesinas_tesina_id] in table 'MesaTesina'
 ALTER TABLE [dbo].[MesaTesina]
 ADD CONSTRAINT [PK_MesaTesina]
-    PRIMARY KEY CLUSTERED ([Mesa_mesa_id], [Tesinas_tesina_id] ASC);
+    PRIMARY KEY CLUSTERED ([Mesas_mesa_id], [Tesinas_tesina_id] ASC);
+GO
+
+-- Creating primary key on [Mesa_mesa_id], [Jueces_juez_id] in table 'MesaJuez'
+ALTER TABLE [dbo].[MesaJuez]
+ADD CONSTRAINT [PK_MesaJuez]
+    PRIMARY KEY CLUSTERED ([Mesa_mesa_id], [Jueces_juez_id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -574,34 +558,10 @@ ON [dbo].[JuezTesina]
     ([Tesinas_tesina_id]);
 GO
 
--- Creating foreign key on [Jueces_juez_id] in table 'JuezMesa'
-ALTER TABLE [dbo].[JuezMesa]
-ADD CONSTRAINT [FK_JuezMesa_Juez]
-    FOREIGN KEY ([Jueces_juez_id])
-    REFERENCES [dbo].[Jueces]
-        ([juez_id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Mesas_mesa_id] in table 'JuezMesa'
-ALTER TABLE [dbo].[JuezMesa]
-ADD CONSTRAINT [FK_JuezMesa_Mesa]
-    FOREIGN KEY ([Mesas_mesa_id])
-    REFERENCES [dbo].[Mesas]
-        ([mesa_id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_JuezMesa_Mesa'
-CREATE INDEX [IX_FK_JuezMesa_Mesa]
-ON [dbo].[JuezMesa]
-    ([Mesas_mesa_id]);
-GO
-
--- Creating foreign key on [Mesa_mesa_id] in table 'MesaTesina'
+-- Creating foreign key on [Mesas_mesa_id] in table 'MesaTesina'
 ALTER TABLE [dbo].[MesaTesina]
 ADD CONSTRAINT [FK_MesaTesina_Mesa]
-    FOREIGN KEY ([Mesa_mesa_id])
+    FOREIGN KEY ([Mesas_mesa_id])
     REFERENCES [dbo].[Mesas]
         ([mesa_id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -620,6 +580,30 @@ GO
 CREATE INDEX [IX_FK_MesaTesina_Tesina]
 ON [dbo].[MesaTesina]
     ([Tesinas_tesina_id]);
+GO
+
+-- Creating foreign key on [Mesa_mesa_id] in table 'MesaJuez'
+ALTER TABLE [dbo].[MesaJuez]
+ADD CONSTRAINT [FK_MesaJuez_Mesa]
+    FOREIGN KEY ([Mesa_mesa_id])
+    REFERENCES [dbo].[Mesas]
+        ([mesa_id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Jueces_juez_id] in table 'MesaJuez'
+ALTER TABLE [dbo].[MesaJuez]
+ADD CONSTRAINT [FK_MesaJuez_Juez]
+    FOREIGN KEY ([Jueces_juez_id])
+    REFERENCES [dbo].[Jueces]
+        ([juez_id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MesaJuez_Juez'
+CREATE INDEX [IX_FK_MesaJuez_Juez]
+ON [dbo].[MesaJuez]
+    ([Jueces_juez_id]);
 GO
 
 -- --------------------------------------------------

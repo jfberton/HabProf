@@ -80,7 +80,7 @@ namespace WebApplication1.Aplicativo
                 }
 
                 cxt.SaveChanges();
-                MessageBox.Show(this, "Se ha eliminado correctamente al juez " + juez.Persona.persona_nomyap, MessageBox.Tipo_MessageBox.Success);
+                MessageBox.Show(this, "Se ha eliminado correctamente al jurado " + juez.Persona.persona_nomyap, MessageBox.Tipo_MessageBox.Success);
             }
 
             ObtenerJueces();
@@ -91,6 +91,7 @@ namespace WebApplication1.Aplicativo
             if (gv_jueces.Rows.Count > 0)
             {
                 gv_jueces.HeaderRow.TableSection = TableRowSection.TableHeader;
+                gv_jueces.FooterRow.TableSection = TableRowSection.TableFooter;
             }
         }
 
@@ -174,7 +175,7 @@ namespace WebApplication1.Aplicativo
                         tb_telefono.Value = string.Empty;
                         hidden_id_juez_editar.Value = "0";
 
-                        MessageBox.Show(this, "Se guardó correctamente el juez!", MessageBox.Tipo_MessageBox.Success, "Exito!");
+                        MessageBox.Show(this, "Se guardó correctamente el jurado!", MessageBox.Tipo_MessageBox.Success, "Exito!");
                     }
                     catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
                     {

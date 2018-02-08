@@ -22,6 +22,7 @@
               <xs:element name="tema_tesina" msprop:Generator_ColumnVarNameInTable="columntema_tesina" msprop:Generator_ColumnPropNameInRow="tema_tesina" msprop:Generator_ColumnPropNameInTable="tema_tesinaColumn" msprop:Generator_UserColumnName="tema_tesina" type="xs:string" minOccurs="0" />
               <xs:element name="tesina_calificacion" msprop:Generator_ColumnVarNameInTable="columntesina_calificacion" msprop:Generator_ColumnPropNameInRow="tesina_calificacion" msprop:Generator_ColumnPropNameInTable="tesina_calificacionColumn" msprop:Generator_UserColumnName="tesina_calificacion" type="xs:string" minOccurs="0" />
               <xs:element name="tesina_calificacion_letra" msprop:Generator_ColumnVarNameInTable="columntesina_calificacion_letra" msprop:Generator_ColumnPropNameInRow="tesina_calificacion_letra" msprop:Generator_ColumnPropNameInTable="tesina_calificacion_letraColumn" msprop:Generator_UserColumnName="tesina_calificacion_letra" type="xs:string" minOccurs="0" />
+              <xs:element name="tesina_fecha_evaluacion" msprop:Generator_ColumnVarNameInTable="columntesina_fecha_evaluacion" msprop:Generator_ColumnPropNameInRow="tesina_fecha_evaluacion" msprop:Generator_ColumnPropNameInTable="tesina_fecha_evaluacionColumn" msprop:Generator_UserColumnName="tesina_fecha_evaluacion" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

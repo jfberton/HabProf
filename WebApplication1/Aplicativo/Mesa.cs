@@ -22,9 +22,9 @@ public partial class Mesa
     public Mesa()
     {
 
-        this.Jueces = new HashSet<Juez>();
-
         this.Tesinas = new HashSet<Tesina>();
+
+        this.Jueces = new HashSet<Juez>();
 
     }
 
@@ -33,15 +33,17 @@ public partial class Mesa
 
     public System.DateTime mesa_fecha { get; set; }
 
+    public string mesa_estado { get; set; }
 
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<Juez> Jueces { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<Tesina> Tesinas { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Juez> Jueces { get; set; }
 
 }
 

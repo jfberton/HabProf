@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6963da6c1f92482f83a2c7f54c0e46c5" Name="Diagram1" DisplayType="true" ZoomLevel="71" >
+      <Diagram DiagramId="6963da6c1f92482f83a2c7f54c0e46c5" Name="Diagram1" DisplayType="true" ZoomLevel="93" >
         <EntityTypeShape EntityType="HabProfDB.Persona" Width="2.75" PointX="3.875" PointY="0.5" />
         <EntityTypeShape EntityType="HabProfDB.Tesista" Width="2" PointX="0.5" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="HabProfDB.Director" Width="2" PointX="2.875" PointY="6" />
         <EntityTypeShape EntityType="HabProfDB.Administrador" Width="2" PointX="5.375" PointY="6" />
-        <EntityTypeShape EntityType="HabProfDB.Juez" Width="2.125" PointX="7.875" PointY="6" />
+        <EntityTypeShape EntityType="HabProfDB.Juez" Width="2.125" PointX="7.5" PointY="6" />
         <EntityTypeShape EntityType="HabProfDB.Tesina" Width="3" PointX="0.5" PointY="8.875" />
         <EntityTypeShape EntityType="HabProfDB.Licenciatura" Width="2.625" PointX="0.5" PointY="0.5" />
         <EntityTypeShape EntityType="HabProfDB.Estado_tesina" Width="2.625" PointX="0.625" PointY="14.375" />
@@ -29,9 +29,9 @@
         <AssociationConnector Association="HabProfDB.PersonaJuez" />
         <AssociationConnector Association="HabProfDB.PersonaAdministrador" />
         <AssociationConnector Association="HabProfDB.JuezTesina" />
-        <EntityTypeShape EntityType="HabProfDB.Mesa" Width="2.125" PointX="11" PointY="9" />
-        <AssociationConnector Association="HabProfDB.JuezMesa" />
+        <EntityTypeShape EntityType="HabProfDB.Mesa" Width="2.125" PointX="5.375" PointY="9" />
         <AssociationConnector Association="HabProfDB.MesaTesina" />
+        <AssociationConnector Association="HabProfDB.MesaJuez" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -2,36 +2,16 @@
 
 <%@ Register Src="~/Aplicativo/Menues/menu_admin.ascx" TagPrefix="uc1" TagName="menu_admin" %>
 
+<%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH_Menues" runat="server">
     <uc1:menu_admin runat="server" ID="menu_admin" />
+    <rsweb:ReportViewer ID="ReportViewer1" runat="server"><LocalReport ReportPath=' "~/Reportes/reporte_mesa.rdlc"' EnableExternalImages="True"></LocalReport></rsweb:ReportViewer>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="CPH_Body" runat="server">
 
-    <h1>Buscar en el texto</h1>
-
-    <div class="row">
-        <div class="col-md-12">
-            <input type="text" runat="server" class="form-control" id="tb_palabras_buscadas" />
-        </div>
-    </div>
-   <div class="row">
-        <div class="col-md-12">
-             <textarea runat="server" class="form-control" id="tb_texto_descripcion" cols="40" rows="5"></textarea>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <asp:Button Text="Buscar en el texto" class="btn btn-default" runat="server"  ID="btn_buscar_en_el_texto" OnClick="btn_buscar_en_el_texto_Click"/>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-             <p runat="server" id="p_resultado"></p>
-        </div>
-    </div>
-
-</asp:Content>
+    </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="CPH_Scripts" runat="server">
 </asp:Content>

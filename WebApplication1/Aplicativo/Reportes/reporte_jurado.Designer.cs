@@ -20,17 +20,17 @@ namespace WebApplication1.Aplicativo.Reportes {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("reporte_director")]
+    [global::System.Xml.Serialization.XmlRootAttribute("reporte_jurado")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class reporte_director : global::System.Data.DataSet {
+    public partial class reporte_jurado : global::System.Data.DataSet {
         
-        private DetalleDataTable tableDetalle;
+        private t_juradoDataTable tablet_jurado;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public reporte_director() {
+        public reporte_jurado() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace WebApplication1.Aplicativo.Reportes {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected reporte_director(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected reporte_jurado(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace WebApplication1.Aplicativo.Reportes {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["Detalle"] != null)) {
-                    base.Tables.Add(new DetalleDataTable(ds.Tables["Detalle"]));
+                if ((ds.Tables["t_jurado"] != null)) {
+                    base.Tables.Add(new t_juradoDataTable(ds.Tables["t_jurado"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace WebApplication1.Aplicativo.Reportes {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public DetalleDataTable Detalle {
+        public t_juradoDataTable t_jurado {
             get {
-                return this.tableDetalle;
+                return this.tablet_jurado;
             }
         }
         
@@ -127,7 +127,7 @@ namespace WebApplication1.Aplicativo.Reportes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            reporte_director cln = ((reporte_director)(base.Clone()));
+            reporte_jurado cln = ((reporte_jurado)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace WebApplication1.Aplicativo.Reportes {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["Detalle"] != null)) {
-                    base.Tables.Add(new DetalleDataTable(ds.Tables["Detalle"]));
+                if ((ds.Tables["t_jurado"] != null)) {
+                    base.Tables.Add(new t_juradoDataTable(ds.Tables["t_jurado"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace WebApplication1.Aplicativo.Reportes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableDetalle = ((DetalleDataTable)(base.Tables["Detalle"]));
+            this.tablet_jurado = ((t_juradoDataTable)(base.Tables["t_jurado"]));
             if ((initTable == true)) {
-                if ((this.tableDetalle != null)) {
-                    this.tableDetalle.InitVars();
+                if ((this.tablet_jurado != null)) {
+                    this.tablet_jurado.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace WebApplication1.Aplicativo.Reportes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "reporte_director";
+            this.DataSetName = "reporte_jurado";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/reporte_director.xsd";
+            this.Namespace = "http://tempuri.org/reporte_jurado.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableDetalle = new DetalleDataTable();
-            base.Tables.Add(this.tableDetalle);
+            this.tablet_jurado = new t_juradoDataTable();
+            base.Tables.Add(this.tablet_jurado);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeDetalle() {
+        private bool ShouldSerializet_jurado() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace WebApplication1.Aplicativo.Reportes {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            reporte_director ds = new reporte_director();
+            reporte_jurado ds = new reporte_jurado();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,35 +270,33 @@ namespace WebApplication1.Aplicativo.Reportes {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void DetalleRowChangeEventHandler(object sender, DetalleRowChangeEvent e);
+        public delegate void t_juradoRowChangeEventHandler(object sender, t_juradoRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class DetalleDataTable : global::System.Data.TypedTableBase<DetalleRow> {
+        public partial class t_juradoDataTable : global::System.Data.TypedTableBase<t_juradoRow> {
             
-            private global::System.Data.DataColumn columndirector_nombre;
+            private global::System.Data.DataColumn columnjurado_id;
             
-            private global::System.Data.DataColumn columndirector_dni;
+            private global::System.Data.DataColumn columnjurado_nombre;
             
-            private global::System.Data.DataColumn columntesista_nombre;
+            private global::System.Data.DataColumn columnjurado_dni;
             
-            private global::System.Data.DataColumn columnlicenciatura_nombre;
+            private global::System.Data.DataColumn columnjurado_licenciatura_nombre;
             
-            private global::System.Data.DataColumn columntema_tesina;
+            private global::System.Data.DataColumn columnjurado_mesa_fecha;
             
-            private global::System.Data.DataColumn columntesina_calificacion;
+            private global::System.Data.DataColumn columnjurado_tesina_tema;
             
-            private global::System.Data.DataColumn columntesina_calificacion_letra;
-            
-            private global::System.Data.DataColumn columntesina_fecha_evaluacion;
+            private global::System.Data.DataColumn columnjurado_tesina_tesista;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DetalleDataTable() {
-                this.TableName = "Detalle";
+            public t_juradoDataTable() {
+                this.TableName = "t_jurado";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -306,7 +304,7 @@ namespace WebApplication1.Aplicativo.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal DetalleDataTable(global::System.Data.DataTable table) {
+            internal t_juradoDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -323,72 +321,64 @@ namespace WebApplication1.Aplicativo.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected DetalleDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected t_juradoDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn director_nombreColumn {
+            public global::System.Data.DataColumn jurado_idColumn {
                 get {
-                    return this.columndirector_nombre;
+                    return this.columnjurado_id;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn director_dniColumn {
+            public global::System.Data.DataColumn jurado_nombreColumn {
                 get {
-                    return this.columndirector_dni;
+                    return this.columnjurado_nombre;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn tesista_nombreColumn {
+            public global::System.Data.DataColumn jurado_dniColumn {
                 get {
-                    return this.columntesista_nombre;
+                    return this.columnjurado_dni;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn licenciatura_nombreColumn {
+            public global::System.Data.DataColumn jurado_licenciatura_nombreColumn {
                 get {
-                    return this.columnlicenciatura_nombre;
+                    return this.columnjurado_licenciatura_nombre;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn tema_tesinaColumn {
+            public global::System.Data.DataColumn jurado_mesa_fechaColumn {
                 get {
-                    return this.columntema_tesina;
+                    return this.columnjurado_mesa_fecha;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn tesina_calificacionColumn {
+            public global::System.Data.DataColumn jurado_tesina_temaColumn {
                 get {
-                    return this.columntesina_calificacion;
+                    return this.columnjurado_tesina_tema;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn tesina_calificacion_letraColumn {
+            public global::System.Data.DataColumn jurado_tesina_tesistaColumn {
                 get {
-                    return this.columntesina_calificacion_letra;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn tesina_fecha_evaluacionColumn {
-                get {
-                    return this.columntesina_fecha_evaluacion;
+                    return this.columnjurado_tesina_tesista;
                 }
             }
             
@@ -403,52 +393,51 @@ namespace WebApplication1.Aplicativo.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DetalleRow this[int index] {
+            public t_juradoRow this[int index] {
                 get {
-                    return ((DetalleRow)(this.Rows[index]));
+                    return ((t_juradoRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DetalleRowChangeEventHandler DetalleRowChanging;
+            public event t_juradoRowChangeEventHandler t_juradoRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DetalleRowChangeEventHandler DetalleRowChanged;
+            public event t_juradoRowChangeEventHandler t_juradoRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DetalleRowChangeEventHandler DetalleRowDeleting;
+            public event t_juradoRowChangeEventHandler t_juradoRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event DetalleRowChangeEventHandler DetalleRowDeleted;
+            public event t_juradoRowChangeEventHandler t_juradoRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddDetalleRow(DetalleRow row) {
+            public void Addt_juradoRow(t_juradoRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DetalleRow AddDetalleRow(string director_nombre, string director_dni, string tesista_nombre, string licenciatura_nombre, string tema_tesina, string tesina_calificacion, string tesina_calificacion_letra, string tesina_fecha_evaluacion) {
-                DetalleRow rowDetalleRow = ((DetalleRow)(this.NewRow()));
+            public t_juradoRow Addt_juradoRow(int jurado_id, string jurado_nombre, string jurado_dni, string jurado_licenciatura_nombre, string jurado_mesa_fecha, string jurado_tesina_tema, string jurado_tesina_tesista) {
+                t_juradoRow rowt_juradoRow = ((t_juradoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        director_nombre,
-                        director_dni,
-                        tesista_nombre,
-                        licenciatura_nombre,
-                        tema_tesina,
-                        tesina_calificacion,
-                        tesina_calificacion_letra,
-                        tesina_fecha_evaluacion};
-                rowDetalleRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowDetalleRow);
-                return rowDetalleRow;
+                        jurado_id,
+                        jurado_nombre,
+                        jurado_dni,
+                        jurado_licenciatura_nombre,
+                        jurado_mesa_fecha,
+                        jurado_tesina_tema,
+                        jurado_tesina_tesista};
+                rowt_juradoRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowt_juradoRow);
+                return rowt_juradoRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                DetalleDataTable cln = ((DetalleDataTable)(base.Clone()));
+                t_juradoDataTable cln = ((t_juradoDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -456,67 +445,64 @@ namespace WebApplication1.Aplicativo.Reportes {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new DetalleDataTable();
+                return new t_juradoDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columndirector_nombre = base.Columns["director_nombre"];
-                this.columndirector_dni = base.Columns["director_dni"];
-                this.columntesista_nombre = base.Columns["tesista_nombre"];
-                this.columnlicenciatura_nombre = base.Columns["licenciatura_nombre"];
-                this.columntema_tesina = base.Columns["tema_tesina"];
-                this.columntesina_calificacion = base.Columns["tesina_calificacion"];
-                this.columntesina_calificacion_letra = base.Columns["tesina_calificacion_letra"];
-                this.columntesina_fecha_evaluacion = base.Columns["tesina_fecha_evaluacion"];
+                this.columnjurado_id = base.Columns["jurado_id"];
+                this.columnjurado_nombre = base.Columns["jurado_nombre"];
+                this.columnjurado_dni = base.Columns["jurado_dni"];
+                this.columnjurado_licenciatura_nombre = base.Columns["jurado_licenciatura_nombre"];
+                this.columnjurado_mesa_fecha = base.Columns["jurado_mesa_fecha"];
+                this.columnjurado_tesina_tema = base.Columns["jurado_tesina_tema"];
+                this.columnjurado_tesina_tesista = base.Columns["jurado_tesina_tesista"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columndirector_nombre = new global::System.Data.DataColumn("director_nombre", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndirector_nombre);
-                this.columndirector_dni = new global::System.Data.DataColumn("director_dni", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndirector_dni);
-                this.columntesista_nombre = new global::System.Data.DataColumn("tesista_nombre", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columntesista_nombre);
-                this.columnlicenciatura_nombre = new global::System.Data.DataColumn("licenciatura_nombre", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnlicenciatura_nombre);
-                this.columntema_tesina = new global::System.Data.DataColumn("tema_tesina", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columntema_tesina);
-                this.columntesina_calificacion = new global::System.Data.DataColumn("tesina_calificacion", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columntesina_calificacion);
-                this.columntesina_calificacion_letra = new global::System.Data.DataColumn("tesina_calificacion_letra", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columntesina_calificacion_letra);
-                this.columntesina_fecha_evaluacion = new global::System.Data.DataColumn("tesina_fecha_evaluacion", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columntesina_fecha_evaluacion);
+                this.columnjurado_id = new global::System.Data.DataColumn("jurado_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnjurado_id);
+                this.columnjurado_nombre = new global::System.Data.DataColumn("jurado_nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnjurado_nombre);
+                this.columnjurado_dni = new global::System.Data.DataColumn("jurado_dni", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnjurado_dni);
+                this.columnjurado_licenciatura_nombre = new global::System.Data.DataColumn("jurado_licenciatura_nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnjurado_licenciatura_nombre);
+                this.columnjurado_mesa_fecha = new global::System.Data.DataColumn("jurado_mesa_fecha", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnjurado_mesa_fecha);
+                this.columnjurado_tesina_tema = new global::System.Data.DataColumn("jurado_tesina_tema", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnjurado_tesina_tema);
+                this.columnjurado_tesina_tesista = new global::System.Data.DataColumn("jurado_tesina_tesista", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnjurado_tesina_tesista);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DetalleRow NewDetalleRow() {
-                return ((DetalleRow)(this.NewRow()));
+            public t_juradoRow Newt_juradoRow() {
+                return ((t_juradoRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new DetalleRow(builder);
+                return new t_juradoRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(DetalleRow);
+                return typeof(t_juradoRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.DetalleRowChanged != null)) {
-                    this.DetalleRowChanged(this, new DetalleRowChangeEvent(((DetalleRow)(e.Row)), e.Action));
+                if ((this.t_juradoRowChanged != null)) {
+                    this.t_juradoRowChanged(this, new t_juradoRowChangeEvent(((t_juradoRow)(e.Row)), e.Action));
                 }
             }
             
@@ -524,8 +510,8 @@ namespace WebApplication1.Aplicativo.Reportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.DetalleRowChanging != null)) {
-                    this.DetalleRowChanging(this, new DetalleRowChangeEvent(((DetalleRow)(e.Row)), e.Action));
+                if ((this.t_juradoRowChanging != null)) {
+                    this.t_juradoRowChanging(this, new t_juradoRowChangeEvent(((t_juradoRow)(e.Row)), e.Action));
                 }
             }
             
@@ -533,8 +519,8 @@ namespace WebApplication1.Aplicativo.Reportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.DetalleRowDeleted != null)) {
-                    this.DetalleRowDeleted(this, new DetalleRowChangeEvent(((DetalleRow)(e.Row)), e.Action));
+                if ((this.t_juradoRowDeleted != null)) {
+                    this.t_juradoRowDeleted(this, new t_juradoRowChangeEvent(((t_juradoRow)(e.Row)), e.Action));
                 }
             }
             
@@ -542,14 +528,14 @@ namespace WebApplication1.Aplicativo.Reportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.DetalleRowDeleting != null)) {
-                    this.DetalleRowDeleting(this, new DetalleRowChangeEvent(((DetalleRow)(e.Row)), e.Action));
+                if ((this.t_juradoRowDeleting != null)) {
+                    this.t_juradoRowDeleting(this, new t_juradoRowChangeEvent(((t_juradoRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveDetalleRow(DetalleRow row) {
+            public void Removet_juradoRow(t_juradoRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -558,7 +544,7 @@ namespace WebApplication1.Aplicativo.Reportes {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                reporte_director ds = new reporte_director();
+                reporte_jurado ds = new reporte_jurado();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -576,7 +562,7 @@ namespace WebApplication1.Aplicativo.Reportes {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "DetalleDataTable";
+                attribute2.FixedValue = "t_juradoDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -620,239 +606,211 @@ namespace WebApplication1.Aplicativo.Reportes {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class DetalleRow : global::System.Data.DataRow {
+        public partial class t_juradoRow : global::System.Data.DataRow {
             
-            private DetalleDataTable tableDetalle;
+            private t_juradoDataTable tablet_jurado;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal DetalleRow(global::System.Data.DataRowBuilder rb) : 
+            internal t_juradoRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableDetalle = ((DetalleDataTable)(this.Table));
+                this.tablet_jurado = ((t_juradoDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string director_nombre {
+            public int jurado_id {
                 get {
                     try {
-                        return ((string)(this[this.tableDetalle.director_nombreColumn]));
+                        return ((int)(this[this.tablet_jurado.jurado_idColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'director_nombre\' in table \'Detalle\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'jurado_id\' in table \'t_jurado\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDetalle.director_nombreColumn] = value;
+                    this[this.tablet_jurado.jurado_idColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string director_dni {
+            public string jurado_nombre {
                 get {
                     try {
-                        return ((string)(this[this.tableDetalle.director_dniColumn]));
+                        return ((string)(this[this.tablet_jurado.jurado_nombreColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'director_dni\' in table \'Detalle\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'jurado_nombre\' in table \'t_jurado\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDetalle.director_dniColumn] = value;
+                    this[this.tablet_jurado.jurado_nombreColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string tesista_nombre {
+            public string jurado_dni {
                 get {
                     try {
-                        return ((string)(this[this.tableDetalle.tesista_nombreColumn]));
+                        return ((string)(this[this.tablet_jurado.jurado_dniColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'tesista_nombre\' in table \'Detalle\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'jurado_dni\' in table \'t_jurado\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDetalle.tesista_nombreColumn] = value;
+                    this[this.tablet_jurado.jurado_dniColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string licenciatura_nombre {
+            public string jurado_licenciatura_nombre {
                 get {
                     try {
-                        return ((string)(this[this.tableDetalle.licenciatura_nombreColumn]));
+                        return ((string)(this[this.tablet_jurado.jurado_licenciatura_nombreColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'licenciatura_nombre\' in table \'Detalle\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'jurado_licenciatura_nombre\' in table \'t_jurado\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDetalle.licenciatura_nombreColumn] = value;
+                    this[this.tablet_jurado.jurado_licenciatura_nombreColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string tema_tesina {
+            public string jurado_mesa_fecha {
                 get {
                     try {
-                        return ((string)(this[this.tableDetalle.tema_tesinaColumn]));
+                        return ((string)(this[this.tablet_jurado.jurado_mesa_fechaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'tema_tesina\' in table \'Detalle\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'jurado_mesa_fecha\' in table \'t_jurado\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDetalle.tema_tesinaColumn] = value;
+                    this[this.tablet_jurado.jurado_mesa_fechaColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string tesina_calificacion {
+            public string jurado_tesina_tema {
                 get {
                     try {
-                        return ((string)(this[this.tableDetalle.tesina_calificacionColumn]));
+                        return ((string)(this[this.tablet_jurado.jurado_tesina_temaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'tesina_calificacion\' in table \'Detalle\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'jurado_tesina_tema\' in table \'t_jurado\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDetalle.tesina_calificacionColumn] = value;
+                    this[this.tablet_jurado.jurado_tesina_temaColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string tesina_calificacion_letra {
+            public string jurado_tesina_tesista {
                 get {
                     try {
-                        return ((string)(this[this.tableDetalle.tesina_calificacion_letraColumn]));
+                        return ((string)(this[this.tablet_jurado.jurado_tesina_tesistaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'tesina_calificacion_letra\' in table \'Detalle\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'jurado_tesina_tesista\' in table \'t_jurado\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDetalle.tesina_calificacion_letraColumn] = value;
+                    this[this.tablet_jurado.jurado_tesina_tesistaColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string tesina_fecha_evaluacion {
-                get {
-                    try {
-                        return ((string)(this[this.tableDetalle.tesina_fecha_evaluacionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'tesina_fecha_evaluacion\' in table \'Detalle\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableDetalle.tesina_fecha_evaluacionColumn] = value;
-                }
+            public bool Isjurado_idNull() {
+                return this.IsNull(this.tablet_jurado.jurado_idColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Isdirector_nombreNull() {
-                return this.IsNull(this.tableDetalle.director_nombreColumn);
+            public void Setjurado_idNull() {
+                this[this.tablet_jurado.jurado_idColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setdirector_nombreNull() {
-                this[this.tableDetalle.director_nombreColumn] = global::System.Convert.DBNull;
+            public bool Isjurado_nombreNull() {
+                return this.IsNull(this.tablet_jurado.jurado_nombreColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Isdirector_dniNull() {
-                return this.IsNull(this.tableDetalle.director_dniColumn);
+            public void Setjurado_nombreNull() {
+                this[this.tablet_jurado.jurado_nombreColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setdirector_dniNull() {
-                this[this.tableDetalle.director_dniColumn] = global::System.Convert.DBNull;
+            public bool Isjurado_dniNull() {
+                return this.IsNull(this.tablet_jurado.jurado_dniColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Istesista_nombreNull() {
-                return this.IsNull(this.tableDetalle.tesista_nombreColumn);
+            public void Setjurado_dniNull() {
+                this[this.tablet_jurado.jurado_dniColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Settesista_nombreNull() {
-                this[this.tableDetalle.tesista_nombreColumn] = global::System.Convert.DBNull;
+            public bool Isjurado_licenciatura_nombreNull() {
+                return this.IsNull(this.tablet_jurado.jurado_licenciatura_nombreColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Islicenciatura_nombreNull() {
-                return this.IsNull(this.tableDetalle.licenciatura_nombreColumn);
+            public void Setjurado_licenciatura_nombreNull() {
+                this[this.tablet_jurado.jurado_licenciatura_nombreColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setlicenciatura_nombreNull() {
-                this[this.tableDetalle.licenciatura_nombreColumn] = global::System.Convert.DBNull;
+            public bool Isjurado_mesa_fechaNull() {
+                return this.IsNull(this.tablet_jurado.jurado_mesa_fechaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Istema_tesinaNull() {
-                return this.IsNull(this.tableDetalle.tema_tesinaColumn);
+            public void Setjurado_mesa_fechaNull() {
+                this[this.tablet_jurado.jurado_mesa_fechaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Settema_tesinaNull() {
-                this[this.tableDetalle.tema_tesinaColumn] = global::System.Convert.DBNull;
+            public bool Isjurado_tesina_temaNull() {
+                return this.IsNull(this.tablet_jurado.jurado_tesina_temaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Istesina_calificacionNull() {
-                return this.IsNull(this.tableDetalle.tesina_calificacionColumn);
+            public void Setjurado_tesina_temaNull() {
+                this[this.tablet_jurado.jurado_tesina_temaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Settesina_calificacionNull() {
-                this[this.tableDetalle.tesina_calificacionColumn] = global::System.Convert.DBNull;
+            public bool Isjurado_tesina_tesistaNull() {
+                return this.IsNull(this.tablet_jurado.jurado_tesina_tesistaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Istesina_calificacion_letraNull() {
-                return this.IsNull(this.tableDetalle.tesina_calificacion_letraColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Settesina_calificacion_letraNull() {
-                this[this.tableDetalle.tesina_calificacion_letraColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Istesina_fecha_evaluacionNull() {
-                return this.IsNull(this.tableDetalle.tesina_fecha_evaluacionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Settesina_fecha_evaluacionNull() {
-                this[this.tableDetalle.tesina_fecha_evaluacionColumn] = global::System.Convert.DBNull;
+            public void Setjurado_tesina_tesistaNull() {
+                this[this.tablet_jurado.jurado_tesina_tesistaColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -860,22 +818,22 @@ namespace WebApplication1.Aplicativo.Reportes {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class DetalleRowChangeEvent : global::System.EventArgs {
+        public class t_juradoRowChangeEvent : global::System.EventArgs {
             
-            private DetalleRow eventRow;
+            private t_juradoRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DetalleRowChangeEvent(DetalleRow row, global::System.Data.DataRowAction action) {
+            public t_juradoRowChangeEvent(t_juradoRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DetalleRow Row {
+            public t_juradoRow Row {
                 get {
                     return this.eventRow;
                 }

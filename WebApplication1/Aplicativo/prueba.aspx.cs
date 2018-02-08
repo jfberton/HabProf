@@ -15,18 +15,6 @@ namespace WebApplication1.Aplicativo
 
         }
 
-        protected void btn_buscar_en_el_texto_Click(object sender, EventArgs e)
-        {
-            Buscar buscar = new Buscar(tb_palabras_buscadas.Value, tb_texto_descripcion.Value);
-            if (buscar.Hubo_coincidencia)
-            {
-                p_resultado.InnerHtml = buscar.Texto_con_palabras_resaltadas;
-                MessageBox.Show(this, "Se encontraron coincidencias", MessageBox.Tipo_MessageBox.Success);
-            }
-            else
-            {
-                MessageBox.Show(this, "No se encontraron coincidencias", MessageBox.Tipo_MessageBox.Danger);
-            }
-        }
+        
     }
 }

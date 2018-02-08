@@ -8,17 +8,17 @@
     <uc1:menu_admin runat="server" ID="menu_admin" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="CPH_Body" runat="server">
-        <ol class="breadcrumb">
+    <ol class="breadcrumb">
         <li><a href="admin_home.aspx">Inicio</a></li>
         <li>Personas</li>
         <li>Administrar jueces</li>
     </ol>
 
-    <h1>Jueces <small>Listado de Jueces de la Licenciatura</small></h1>
+    <h1>Jurados <small>Listado de Jurados de la Licenciatura</small></h1>
     <div class="row">
         <div class="col-md-10">
             <div class="alert alert-warning" role="alert" runat="server" id="lbl_sin_jueces">
-                <strong>No existen Jueces!</strong> Pruebe agregar algunos para comenzar.
+                <strong>No existen Jurados!</strong> Pruebe agregar algunos para comenzar.
                
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -135,7 +135,6 @@
         </div>
     </div>
 
-
     <asp:GridView ID="gv_jueces" runat="server" OnPreRender="gv_jueces_PreRender"
         AutoGenerateColumns="False" GridLines="None" CssClass="display">
         <Columns>
@@ -162,10 +161,13 @@
                         <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>&nbsp;Eliminar
                    
                     </button>
-
                 </ItemTemplate>
+                <FooterTemplate>
+                    asdas
+                </FooterTemplate>
             </asp:TemplateField>
         </Columns>
+        
     </asp:GridView>
 
     <div class="modal fade" id="advertencia_eliminacion" role="dialog" aria-hidden="true">
@@ -246,7 +248,7 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="CPH_Scripts" runat="server">
-        <script>
+    <script>
         $('#advertencia_eliminacion').on('show.bs.modal', function (event) {
             // Button that triggered the modal
             var button = $(event.relatedTarget)
@@ -281,7 +283,6 @@
                     }
                 }
             });
-
         });
 
     </script>

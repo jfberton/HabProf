@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-md-10">
             <div class="alert alert-warning" role="alert" runat="server" id="lbl_sin_tesinas">
-                <strong>No existen Tesinas!</strong> Pruebe agregar algunos para comenzar.
+               <p runat="server" id="lbl_no_existe_tesina"></p>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -38,7 +38,7 @@
                     <asp:BoundField DataField="prioridad_orden" HeaderText="Orden" ReadOnly="true" />
                     <asp:BoundField DataField="tesista" HeaderText="Tesista" ReadOnly="true" />
                     <asp:BoundField DataField="director" HeaderText="Director" ReadOnly="true" />
-                    <asp:TemplateField HeaderText="Tema">
+                    <asp:TemplateField HeaderText="Título">
                         <ItemTemplate>
                             <asp:Label ID="Label1" runat="server"
                                 ToolTip='<%# Eval("tema_completo") %>'
@@ -187,7 +187,7 @@
                                         <button type="button" class="btn btn-default" data-toggle="modal" runat="server" id="btn_prorroga" data-target="#generar_prorroga" title="Modifica los valores de la tesina y la deja con estado prorroga.">Prorroga</button>
 
                                         <button type="button" class="btn btn-default" runat="server" id="btn_aprobar" onserverclick="btn_aprobar_ServerClick" title="Finaliza la tesina con estado aprobada, guarda calificaciones de tesina y director.">Aprobar</button>
-                                        <button type="button" class="btn btn-default" runat="server" id="btn_desaprobar" onserverclick="btn_desaprobar_ServerClick" itle="Finaliza la tesina con estado desaprobada, guarda calificaciones de tesina y director.">Desaprobar</button>
+                                        <button type="button" class="btn btn-default" runat="server" id="btn_desaprobar" onserverclick="btn_desaprobar_ServerClick" title="Finaliza la tesina con estado desaprobada, guarda calificaciones de tesina y director.">Desaprobar</button>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -244,9 +244,9 @@
                             <div class="row" runat="server" id="div_descripcion">
                                 <div class="col-md-11">
                                     <%--<textarea runat="server" id="tb_descripcion_rechazo" rows="2" class="form-control" placeholder="Ingrese las observaciones del cambio de estado.-"></textarea>--%>
-                                    <asp:RadioButton Text="Opcion 1" GroupName="opciones_rechazo" runat="server" ID="opcion_1" CssClass="form-control" Checked="true" />
-                                    <asp:RadioButton Text="Opcion 2" GroupName="opciones_rechazo" runat="server" ID="opcion_2" CssClass="form-control" />
-                                    <asp:RadioButton Text="Opcion 3" GroupName="opciones_rechazo" runat="server" ID="opcion_3" CssClass="form-control" />
+                                    <asp:RadioButton Text="Esta correcto, continuar" GroupName="opciones_rechazo" runat="server" ID="opcion_1" CssClass="form-control" Checked="true" />
+                                    <asp:RadioButton Text="Tiene errores, se envian las correcciones por mail" GroupName="opciones_rechazo" runat="server" ID="opcion_2" CssClass="form-control" />
+                                    <asp:RadioButton Text="Tiene errores, rehacer" GroupName="opciones_rechazo" runat="server" ID="opcion_3" CssClass="form-control" />
                                 </div>
                                 <%--<div class="col-md-1">
                                     <asp:RequiredFieldValidator ControlToValidate="tb_descripcion_rechazo" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
@@ -278,20 +278,6 @@
                                 </div>
                             </div>
                             <p>El archivo de tesina que subio el tesista esta apto para su presentación.</p>
-                            <p>Ingrese unas observaciones </p>
-                            <div class="row" runat="server" id="div1">
-                                <div class="col-md-11">
-                                    <asp:RadioButton Text="Opcion 1" GroupName="opciones_lista_presentar" runat="server" ID="rb_opcion_1_lista_presentar" CssClass="form-control" Checked="true" />
-                                    <asp:RadioButton Text="Opcion 2" GroupName="opciones_lista_presentar" runat="server" ID="rb_opcion_2_lista_presentar" CssClass="form-control" />
-                                    <asp:RadioButton Text="Opcion 3" GroupName="opciones_lista_presentar" runat="server" ID="rb_opcion_3_lista_presentar" CssClass="form-control" />
-                                    <%--<textarea runat="server" id="tb_descripcion_lista_para_presentar" rows="2" class="form-control" placeholder="Ingrese las observaciones del cambio de estado.-"></textarea>--%>
-                                </div>
-                                <div class="col-md-1">
-                                    <%--<asp:RequiredFieldValidator ControlToValidate="tb_descripcion_lista_para_presentar" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                        ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe ingresar las observaciones para poder continuar" ValidationGroup="lista_par_presentar">
-                                    </asp:RequiredFieldValidator>--%>
-                                </div>
-                            </div>
                         </div>
                         <div class="modal-footer">
                             <asp:Button Text="Lista para evaluar!" CssClass="btn btn-success" ID="btn_pasar_a_lista_para_presentar" OnClick="btn_pasar_a_lista_para_presentar_Click" ValidationGroup="lista_par_presentar" runat="server" />

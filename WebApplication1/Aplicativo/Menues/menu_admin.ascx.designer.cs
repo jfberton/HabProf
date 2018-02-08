@@ -74,5 +74,14 @@ namespace WebApplication1.Aplicativo.Menues {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor li_comprobar_tema;
+        
+        /// <summary>
+        /// li_admin_mesa control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor li_admin_mesa;
     }
 }

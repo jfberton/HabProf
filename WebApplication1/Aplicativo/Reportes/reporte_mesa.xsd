@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="reporte_mesa" targetNamespace="http://tempuri.org/reporte_mesa.xsd" xmlns:mstns="http://tempuri.org/reporte_mesa.xsd" xmlns="http://tempuri.org/reporte_mesa.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="reporte_mesa" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="reporte_mesa" msprop:Generator_UserDSName="reporte_mesa">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="t_mesa" msprop:Generator_TableClassName="t_mesaDataTable" msprop:Generator_TableVarName="tablet_mesa" msprop:Generator_TablePropName="t_mesa" msprop:Generator_RowDeletingName="t_mesaRowDeleting" msprop:Generator_RowChangingName="t_mesaRowChanging" msprop:Generator_RowEvHandlerName="t_mesaRowChangeEventHandler" msprop:Generator_RowDeletedName="t_mesaRowDeleted" msprop:Generator_UserTableName="t_mesa" msprop:Generator_RowChangedName="t_mesaRowChanged" msprop:Generator_RowEvArgName="t_mesaRowChangeEvent" msprop:Generator_RowClassName="t_mesaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="mesa_fecha" msprop:Generator_ColumnVarNameInTable="columnmesa_fecha" msprop:Generator_ColumnPropNameInRow="mesa_fecha" msprop:Generator_ColumnPropNameInTable="mesa_fechaColumn" msprop:Generator_UserColumnName="mesa_fecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="mesa_estado" msprop:Generator_ColumnVarNameInTable="columnmesa_estado" msprop:Generator_ColumnPropNameInRow="mesa_estado" msprop:Generator_ColumnPropNameInTable="mesa_estadoColumn" msprop:Generator_UserColumnName="mesa_estado" type="xs:string" minOccurs="0" />
+              <xs:element name="mesa_licenciatura" msprop:Generator_ColumnVarNameInTable="columnmesa_licenciatura" msprop:Generator_ColumnPropNameInRow="mesa_licenciatura" msprop:Generator_ColumnPropNameInTable="mesa_licenciaturaColumn" msprop:Generator_UserColumnName="mesa_licenciatura" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="t_jurados" msprop:Generator_TableClassName="t_juradosDataTable" msprop:Generator_TableVarName="tablet_jurados" msprop:Generator_TablePropName="t_jurados" msprop:Generator_RowDeletingName="t_juradosRowDeleting" msprop:Generator_RowChangingName="t_juradosRowChanging" msprop:Generator_RowEvHandlerName="t_juradosRowChangeEventHandler" msprop:Generator_RowDeletedName="t_juradosRowDeleted" msprop:Generator_UserTableName="t_jurados" msprop:Generator_RowChangedName="t_juradosRowChanged" msprop:Generator_RowEvArgName="t_juradosRowChangeEvent" msprop:Generator_RowClassName="t_juradosRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="jurado_nombre" msprop:Generator_ColumnVarNameInTable="columnjurado_nombre" msprop:Generator_ColumnPropNameInRow="jurado_nombre" msprop:Generator_ColumnPropNameInTable="jurado_nombreColumn" msprop:Generator_UserColumnName="jurado_nombre" type="xs:string" minOccurs="0" />
+              <xs:element name="jurado_dni" msprop:Generator_ColumnVarNameInTable="columnjurado_dni" msprop:Generator_ColumnPropNameInRow="jurado_dni" msprop:Generator_ColumnPropNameInTable="jurado_dniColumn" msprop:Generator_UserColumnName="jurado_dni" type="xs:string" minOccurs="0" />
+              <xs:element name="jurado_mail" msprop:Generator_ColumnVarNameInTable="columnjurado_mail" msprop:Generator_ColumnPropNameInRow="jurado_mail" msprop:Generator_ColumnPropNameInTable="jurado_mailColumn" msprop:Generator_UserColumnName="jurado_mail" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="t_tesinas" msprop:Generator_TableClassName="t_tesinasDataTable" msprop:Generator_TableVarName="tablet_tesinas" msprop:Generator_TablePropName="t_tesinas" msprop:Generator_RowDeletingName="t_tesinasRowDeleting" msprop:Generator_RowChangingName="t_tesinasRowChanging" msprop:Generator_RowEvHandlerName="t_tesinasRowChangeEventHandler" msprop:Generator_RowDeletedName="t_tesinasRowDeleted" msprop:Generator_UserTableName="t_tesinas" msprop:Generator_RowChangedName="t_tesinasRowChanged" msprop:Generator_RowEvArgName="t_tesinasRowChangeEvent" msprop:Generator_RowClassName="t_tesinasRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="tesina_titulo" msprop:Generator_ColumnVarNameInTable="columntesina_titulo" msprop:Generator_ColumnPropNameInRow="tesina_titulo" msprop:Generator_ColumnPropNameInTable="tesina_tituloColumn" msprop:Generator_UserColumnName="tesina_titulo" type="xs:string" minOccurs="0" />
+              <xs:element name="tesina_tesista" msprop:Generator_ColumnVarNameInTable="columntesina_tesista" msprop:Generator_ColumnPropNameInRow="tesina_tesista" msprop:Generator_ColumnPropNameInTable="tesina_tesistaColumn" msprop:Generator_UserColumnName="tesina_tesista" type="xs:string" minOccurs="0" />
+              <xs:element name="tesina_director" msprop:Generator_ColumnVarNameInTable="columntesina_director" msprop:Generator_ColumnPropNameInRow="tesina_director" msprop:Generator_ColumnPropNameInTable="tesina_directorColumn" msprop:Generator_UserColumnName="tesina_director" type="xs:string" minOccurs="0" />
+              <xs:element name="tesina_calificacion" msprop:Generator_ColumnVarNameInTable="columntesina_calificacion" msprop:Generator_ColumnPropNameInRow="tesina_calificacion" msprop:Generator_ColumnPropNameInTable="tesina_calificacionColumn" msprop:Generator_UserColumnName="tesina_calificacion" type="xs:string" minOccurs="0" />
+              <xs:element name="tesina_calificacion_director" msprop:Generator_ColumnVarNameInTable="columntesina_calificacion_director" msprop:Generator_ColumnPropNameInRow="tesina_calificacion_director" msprop:Generator_ColumnPropNameInTable="tesina_calificacion_directorColumn" msprop:Generator_UserColumnName="tesina_calificacion_director" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
