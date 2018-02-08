@@ -254,7 +254,6 @@ namespace WebApplication1.Aplicativo
                     lbl_ver_juez_email.Text = juez.Persona.persona_email;
                     lbl_ver_juez_nomyap.Text = juez.Persona.persona_nomyap;
                     lbl_ver_juez_telefono.Text = juez.Persona.persona_telefono;
-                    lbl_ver_juez_usuario.Text = juez.Persona.persona_usuario;
 
                     string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#panel_ver_juez').modal('show')});</script>";
                     ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);

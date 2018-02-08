@@ -230,12 +230,6 @@
                                         <asp:Label Text="" ID="lbl_ver_juez_telefono" runat="server" />
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Usuario</td>
-                                    <td style="width: auto">
-                                        <asp:Label Text="" ID="lbl_ver_juez_usuario" runat="server" />
-                                    </td>
-                                </tr>
                             </table>
                         </div>
                     </div>
