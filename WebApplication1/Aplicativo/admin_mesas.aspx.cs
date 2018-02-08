@@ -188,6 +188,8 @@ namespace WebApplication1.Aplicativo
                         jurados = jurados + jurado.Persona.persona_nomyap + ",";
                     }
 
+                    lbl_cerrar_mesa_jurado.Text = jurados;
+
                     var tesinas = (from t in mesa.Tesinas
                                    select new
                                    {
@@ -224,6 +226,10 @@ namespace WebApplication1.Aplicativo
             {
                 using (HabProfDBContainer cxt = new HabProfDBContainer())
                 {
+                    int mesa_id = Convert.ToInt32(hidden_cerrar_mesa_id.Value);
+                    Mesa mesa = cxt.Mesas.FirstOrDefault(mm => mm.mesa_id == mesa_id);
+                    mesa.mesa_estado = "Cerrada";
+
                     foreach (GridViewRow fila in gv_cerrar_mesa_tesinas.Rows)
                     {
                         TextBox calificacion_tesina = ((TextBox)fila.Cells[3].Controls[1]);
@@ -238,6 +244,11 @@ namespace WebApplication1.Aplicativo
                         Estado_tesina et = cxt.Estados_tesinas.FirstOrDefault(eett => eett.estado_tesina_estado == estado_final_tesina.SelectedValue);
                         t.estado_tesis_id = et.estado_tesina_id;
 
+                        foreach (Juez juez in mesa.Jueces)
+                        {
+                            t.Jueces.Add(juez);
+                        }
+                      
                         Historial_estado he = new Historial_estado()
                         {
                             estado_tesina_id = et.estado_tesina_id,
@@ -249,9 +260,7 @@ namespace WebApplication1.Aplicativo
                         cxt.Historial_estados.Add(he);
                     }
 
-                    int mesa_id = Convert.ToInt32(hidden_cerrar_mesa_id.Value);
-                    Mesa mesa = cxt.Mesas.FirstOrDefault(mm => mm.mesa_id == mesa_id);
-                    mesa.mesa_estado = "Cerrada";
+                    
 
                     cxt.SaveChanges();
 

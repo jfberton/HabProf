@@ -155,7 +155,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <strong>Jueces: </strong><asp:Label Text="" ID="lbl_jueces_tesina_visualizacion" runat="server" />
+                                    <strong>Jurado: </strong><asp:Label Text="" ID="lbl_jueces_tesina_visualizacion" runat="server" />
                                 </div>
                             </div>
                             <div class="row">

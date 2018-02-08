@@ -174,7 +174,7 @@
                                             <table>
                                                 <tr>
                                                     <td>
-                                                        <asp:TextBox runat="server" ID="tb_calificacion_tesina" AccessKey='<%#Eval("tesina_id")%>' />
+                                                        <asp:TextBox runat="server" Columns="3" ID="tb_calificacion_tesina" AccessKey='<%#Eval("tesina_id")%>' />
                                                     </td>
                                                     <td>
                                                         <asp:RequiredFieldValidator ControlToValidate="tb_calificacion_tesina" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
@@ -192,7 +192,7 @@
                                             <table>
                                                 <tr>
                                                     <td>
-                                                        <asp:TextBox runat="server" ID="tb_calificacion_director_tesina" AccessKey='<%#Eval("tesina_id")%>' />
+                                                        <asp:TextBox runat="server" Columns="3" ID="tb_calificacion_director_tesina" AccessKey='<%#Eval("tesina_id")%>' />
                                                     </td>
                                                     <td>
                                                         <asp:RequiredFieldValidator ControlToValidate="tb_calificacion_director_tesina" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
@@ -221,7 +221,7 @@
                 </div>
                 <div class="modal-footer">
                     <asp:Button Text="Cerrar Mesa" ID="btn_guardar_cerrar_mesa" OnClick="btn_guardar_cerrar_mesa_Click" CssClass="btn btn-primary" runat="server" />
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
                 </div>
             </div>
         </div>
