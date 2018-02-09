@@ -2,13 +2,13 @@
 
 ******************************************************************
 
-ERRORID: 636536352801649840
+ERRORID: 636537098080073409
 
-DATE: 07/02/2018 21:21:20
+DATE: 08/02/2018 18:03:28
 
 AGENTE: admin
 
-MESSAGE: C:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\c7437ddd\f9455565\App_Web_prueba.aspx.dec3422.fg-tx5qz.0.cs(298): error CS0433: The type 'LocalReport' exists in both 'Microsoft.ReportViewer.WebForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' and 'Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91'
+MESSAGE: El archivo '/importar_tesistas.aspx' no existe.
 
 SOURCE: System.Web
 
@@ -16,13 +16,11 @@ INSTANCE:
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/Aplicativo/prueba.aspx
+URL: http://localhost:60142/importar_tesistas.aspx
 
-TARGETSITE: System.CodeDom.Compiler.CompilerResults Compile()
+TARGETSITE: Void CheckVirtualFileExists(System.Web.VirtualPath)
 
-STACKTRACE:    en System.Web.Compilation.AssemblyBuilder.Compile()
-   en System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
-   en System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+STACKTRACE:    en System.Web.UI.Util.CheckVirtualFileExists(VirtualPath virtualPath)
    en System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
    en System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
    en System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
@@ -39,83 +37,32 @@ STACKTRACE:    en System.Web.Compilation.AssemblyBuilder.Compile()
 
 ******************************************************************
 
-ERRORID: 636536354984856224
+ERRORID: 636537115851356689
 
-DATE: 07/02/2018 21:24:58
+DATE: 08/02/2018 18:33:05
 
 AGENTE: admin
 
-MESSAGE: La definición del informe no es válida. Detalles: La definición de informe tiene un espacio de nombres de destino no válido 'http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition' que no se puede actualizar.
+MESSAGE: La propiedad ControlToValidate de 'RegularExpressionValidator3' no puede estar en blanco.
 
-SOURCE: Microsoft.ReportViewer.Common
+SOURCE: System.Web
 
 INSTANCE: 
 
 DATA: System.Collections.ListDictionaryInternal
 
-URL: http://localhost:60142/Aplicativo/admin_mesas.aspx
+URL: http://localhost:60142/Aplicativo/importar_tesistas.aspx
 
-TARGETSITE: Void Phase1(Microsoft.ReportingServices.Diagnostics.CatalogItemContext, Byte[], CreateReportChunk, CheckSharedDataSource, System.String ByRef, System.String ByRef, Microsoft.ReportingServices.DataExtensions.DataSourceInfoCollection ByRef, Microsoft.ReportingServices.ReportProcessing.UserLocationFlags ByRef, Boolean ByRef, Boolean ByRef)
+TARGETSITE: Boolean ControlPropertiesValid()
 
-STACKTRACE:    en Microsoft.ReportingServices.ReportProcessing.ReportPublishing.Phase1(CatalogItemContext reportContext, Byte[] definition, CreateReportChunk createChunkCallback, CheckSharedDataSource checkDataSourceCallback, String& description, String& language, DataSourceInfoCollection& dataSources, UserLocationFlags& userReferenceLocation, Boolean& hasExternalImages, Boolean& hasHyperlinks)
-   en Microsoft.ReportingServices.ReportProcessing.ReportPublishing.CreateIntermediateFormat(CatalogItemContext reportContext, Byte[] definition, CreateReportChunk createChunkCallback, CheckSharedDataSource checkDataSourceCallback, PublishingErrorContext errorContext, AppDomain compilationTempAppDomain, Boolean generateExpressionHostWithRefusedPermissions, String& description, String& language, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks)
-   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CompileReport(CatalogItemContext reportContext, Byte[] reportDefinition, CreateReportChunk createChunkCallback, CheckSharedDataSource checkDataSourceCallback, PublishingErrorContext errorContext, AppDomain compilationTempAppDomain, Boolean generateExpressionHostWithRefusedPermissions, String& reportDescription, String& reportLanguage, ParameterInfoCollection& parameters, DataSourceInfoCollection& dataSources, UserLocationFlags& userReferenceLocation, ArrayList& dataSetsName, Boolean& hasExternalImages, Boolean& hasHyperlinks)
-   en Microsoft.ReportingServices.ReportProcessing.ReportProcessing.CreateIntermediateFormat(CatalogItemContext reportContext, Byte[] reportDefinition, CreateReportChunk createChunkCallback, CheckSharedDataSource checkDataSourceCallback, AppDomain compilationTempAppDomain, Boolean generateExpressionHostWithRefusedPermissions)
-   en Microsoft.Reporting.ReportCompiler.CompileReport(CatalogItemContext context, Byte[] reportDefinition, Boolean generateExpressionHostWithRefusedPermissions, ReportSnapshotBase& snapshot)
-
-
-******************************************************************
- 
-
-******************************************************************
-
-ERRORID: 636536355104415735
-
-DATE: 07/02/2018 21:25:10
-
-AGENTE: admin
-
-MESSAGE: El controlador HTTP de controles Web del visor de informes no está registrado en el archivo web.config de la aplicación. Agregue <add verb="*" path="Reserved.ReportViewerWebControl.axd" type = "Microsoft.Reporting.WebForms.HttpHandler, Microsoft.ReportViewer.WebForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" /> a la sección system.web/httpHandlers del archivo web.config.
-
-SOURCE: Microsoft.ReportViewer.WebForms
-
-INSTANCE: 
-
-DATA: System.Collections.ListDictionaryInternal
-
-URL: http://localhost:60142/Aplicativo/prueba.aspx
-
-TARGETSITE: Void OnInit(System.EventArgs)
-
-STACKTRACE:    en Microsoft.Reporting.WebForms.ReportViewer.OnInit(EventArgs e)
-   en System.Web.UI.Control.InitRecursive(Control namingContainer)
-   en System.Web.UI.Control.InitRecursive(Control namingContainer)
-   en System.Web.UI.Control.InitRecursive(Control namingContainer)
-   en System.Web.UI.Control.InitRecursive(Control namingContainer)
-   en System.Web.UI.Control.<InitRecursiveAsync>d__225.MoveNext()
---- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
-   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
-   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   en System.Web.Util.WithinCancellableCallbackTaskAwaitable.WithinCancellableCallbackTaskAwaiter.GetResult()
-   en System.Web.UI.Page.<ProcessRequestMainAsync>d__523.MoveNext()
---- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
-   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
-   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   en System.Web.Util.WithinCancellableCallbackTaskAwaitable.WithinCancellableCallbackTaskAwaiter.GetResult()
-   en System.Web.UI.Page.<ProcessRequestAsync>d__515.MoveNext()
---- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
-   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
-   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   en System.Web.UI.Page.<ProcessRequestAsync>d__554.MoveNext()
---- Fin del seguimiento de la pila de la ubicación anterior donde se produjo la excepción ---
-   en System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
-   en System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
-   en System.Web.TaskAsyncHelper.EndTask(IAsyncResult ar)
-   en System.Web.UI.Page.AsyncPageEndProcessRequest(IAsyncResult result)
-   en ASP.aplicativo_prueba_aspx.EndProcessRequest(IAsyncResult ar) en C:\Windows\Microsoft.NET\Framework\v4.0.30319\Temporary ASP.NET Files\root\c7437ddd\f9455565\App_Web_prueba.aspx.dec3422.hvqtvwtj.0.cs:línea 0
-   en System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
-   en System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
-   en System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+STACKTRACE:    en System.Web.UI.WebControls.BaseValidator.ControlPropertiesValid()
+   en System.Web.UI.WebControls.BaseValidator.OnPreRender(EventArgs e)
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Control.PreRenderRecursiveInternal()
+   en System.Web.UI.Page.ProcessRequestMain(Boolean includeStagesBeforeAsyncPoint, Boolean includeStagesAfterAsyncPoint)
 
 
 ******************************************************************

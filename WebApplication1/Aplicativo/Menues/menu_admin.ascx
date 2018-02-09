@@ -34,6 +34,12 @@
                 <li><a href="../admin_tesinas.aspx" runat="server" id="li_admin_tesinas">Tesinas</a></li>
                 <li><a href="../verificar_coincidencias.aspx" runat="server" id="li_comprobar_tema">Comprobar tema tesina</a></li>
                 <li><a href="../admin_mesas.aspx" runat="server" id="li_admin_mesa">Mesas</a></li>
+                <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Importar <b class="caret"></b></a>
+                    <ul class="dropdown-menu multi-level">
+                        <li><a href="../Aplicativo/importar_tesistas.aspx">Tesistas</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <!--/.nav-collapse -->

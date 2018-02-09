@@ -766,23 +766,10 @@
   <Width>7.358in</Width>
   <Page>
     <PageHeader>
-      <Height>3.29599cm</Height>
+      <Height>3.4812cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
-        <Image Name="Image1">
-          <Source>Embedded</Source>
-          <Value>ID240pxUTN_logo</Value>
-          <Sizing>FitProportional</Sizing>
-          <Top>0.60537cm</Top>
-          <Height>1.5cm</Height>
-          <Width>1.5cm</Width>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-          </Style>
-        </Image>
         <Textbox Name="Textbox1">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
@@ -791,9 +778,52 @@
               <TextRuns>
                 <TextRun>
                   <Label>Nombre de la Licenciatura</Label>
-                  <Value>=First(Fields!mesa_licenciatura.Value, "t_mesa")</Value>
+                  <Value>Universidad Tecnológica Nacional</Value>
                   <Style>
                     <FontSize>16pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Facultad Regional Resistencia</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Label>Nombre de la Licenciatura</Label>
+                  <Value>=First(Fields!mesa_licenciatura.Value, "t_mesa")</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value />
+                  <Style>
+                    <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -808,6 +838,7 @@
                   <Value>Mesa evaluativa</Value>
                   <Style>
                     <FontSize>12pt</FontSize>
+                    <TextDecoration>Underline</TextDecoration>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -817,11 +848,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Top>0.83467cm</Top>
-          <Left>1.64111cm</Left>
-          <Height>1.5cm</Height>
-          <Width>15.44779cm</Width>
-          <ZIndex>1</ZIndex>
+          <Top>0.51717cm</Top>
+          <Left>0.01099cm</Left>
+          <Height>2.8582cm</Height>
+          <Width>18.51958cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -861,7 +891,7 @@
           <Left>14.02384cm</Left>
           <Height>0.4833cm</Height>
           <Width>4.66549cm</Width>
-          <ZIndex>2</ZIndex>
+          <ZIndex>1</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -872,6 +902,21 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
+        <Image Name="Image1">
+          <Source>Embedded</Source>
+          <Value>ID240pxUTN_logo</Value>
+          <Sizing>FitProportional</Sizing>
+          <Top>0.54081cm</Top>
+          <Left>0.01099cm</Left>
+          <Height>2.39958cm</Height>
+          <Width>2.00271cm</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
       </ReportItems>
       <Style>
         <Border>

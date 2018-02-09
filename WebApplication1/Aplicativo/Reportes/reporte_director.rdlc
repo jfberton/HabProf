@@ -11,7 +11,7 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>20.09069cm</Height>
+              <Height>20.81829cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -677,8 +677,7 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox1</rd:DefaultName>
-                          <Top>3.38225cm</Top>
-                          <Left>0cm</Left>
+                          <Top>4.33475cm</Top>
                           <Height>16.48354cm</Height>
                           <Width>18.39341cm</Width>
                           <Style>
@@ -691,21 +690,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <Image Name="Image1">
-                          <Source>Embedded</Source>
-                          <Value>ID240pxUTN_logo</Value>
-                          <Sizing>FitProportional</Sizing>
-                          <Top>1.00595cm</Top>
-                          <Left>0cm</Left>
-                          <Height>1.5cm</Height>
-                          <Width>1.5cm</Width>
-                          <ZIndex>1</ZIndex>
-                          <Style>
-                            <Border>
-                              <Style>None</Style>
-                            </Border>
-                          </Style>
-                        </Image>
                         <Textbox Name="Textbox2">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -714,7 +698,7 @@
                               <TextRuns>
                                 <TextRun>
                                   <Label>Nombre de la Licenciatura</Label>
-                                  <Value>=Fields!licenciatura_nombre.Value</Value>
+                                  <Value>Universidad Tecnológica Nacional</Value>
                                   <Style>
                                     <FontSize>16pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -728,7 +712,50 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Certificado - Director</Value>
+                                  <Value>Facultad Regional Resistencia</Value>
+                                  <Style>
+                                    <FontSize>12pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Label>Nombre de la Licenciatura</Label>
+                                  <Value>=Fields!licenciatura_nombre.Value</Value>
+                                  <Style>
+                                    <FontSize>12pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontSize>12pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Certificado</Value>
                                   <Style>
                                     <FontSize>16pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
@@ -743,9 +770,9 @@
                           <rd:DefaultName>Textbox1</rd:DefaultName>
                           <Top>1.013cm</Top>
                           <Left>1.64111cm</Left>
-                          <Height>1.5cm</Height>
+                          <Height>3.11396cm</Height>
                           <Width>15.44779cm</Width>
-                          <ZIndex>2</ZIndex>
+                          <ZIndex>1</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -785,7 +812,7 @@
                           <Left>14.02384cm</Left>
                           <Height>0.4833cm</Height>
                           <Width>4.66549cm</Width>
-                          <ZIndex>3</ZIndex>
+                          <ZIndex>2</ZIndex>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -796,6 +823,20 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <Image Name="Image1">
+                          <Source>Embedded</Source>
+                          <Value>ID240pxUTN_logo</Value>
+                          <Sizing>FitProportional</Sizing>
+                          <Top>1.013cm</Top>
+                          <Height>2.39958cm</Height>
+                          <Width>2.00271cm</Width>
+                          <ZIndex>3</ZIndex>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Image>
                       </ReportItems>
                       <KeepTogether>true</KeepTogether>
                       <Style>
@@ -823,7 +864,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>Detalle</DataSetName>
-        <Height>20.09069cm</Height>
+        <Height>20.81829cm</Height>
         <Width>18.68933cm</Width>
         <Style>
           <Border>
@@ -832,7 +873,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>7.90972in</Height>
+    <Height>8.22743in</Height>
     <Style />
   </Body>
   <Width>7.358in</Width>
