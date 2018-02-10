@@ -118,6 +118,7 @@
       <LastGenOutput>HabProfDB.cs</LastGenOutput>
       <DependentUpon>HabProfDB.edmx</DependentUpon>
     </Content>
+    <Content Include="Aplicativo\importar_directores.aspx" />
     <Content Include="Aplicativo\importar_tesistas.aspx" />
     <Content Include="Aplicativo\Mails\alta_director.html" />
     <Content Include="Aplicativo\Mails\notificacion_asignacion_tesina_director.html" />
@@ -783,6 +784,13 @@
     </Compile>
     <Compile Include="Aplicativo\Historial_estado.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Aplicativo\importar_directores.aspx.cs">
+      <DependentUpon>importar_directores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicativo\importar_directores.aspx.designer.cs">
+      <DependentUpon>importar_directores.aspx</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\importar_tesistas.aspx.cs">
       <DependentUpon>importar_tesistas.aspx</DependentUpon>

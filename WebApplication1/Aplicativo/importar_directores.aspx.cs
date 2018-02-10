@@ -1,18 +1,18 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
-using System.IO;
 using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
 using WebApplication1.Aplicativo.ControlesDeUsuario;
 
 namespace WebApplication1.Aplicativo
 {
-    public partial class importar_tesistas : System.Web.UI.Page
+    public partial class importar_directores : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,44 +29,41 @@ namespace WebApplication1.Aplicativo
 
         protected void gv_tesinas_PreRender(object sender, EventArgs e)
         {
-            if (gv_tesistas.Rows.Count > 0)
+            if (gv_directores.Rows.Count > 0)
             {
-                gv_tesistas.HeaderRow.TableSection = TableRowSection.TableHeader;
+                gv_directores.HeaderRow.TableSection = TableRowSection.TableHeader;
             }
         }
 
-        struct item_tesista
+        struct item_director
         {
             public string DNI { get; set; }
             public string nomyap { get; set; }
             public string email { get; set; }
             public string domicilio { get; set; }
             public string telefono { get; set; }
-            public string legajo { get; set; }
-            public string sede { get; set; }
         }
 
         protected void btn_procesar_Click(object sender, EventArgs e)
         {
             if (IsValid)
             {
-                if (archivo_tesistas.HasFile)
+                if (archivo_directores.HasFile)
                 {
                     try
                     {
-                        string directorio = Server.MapPath("~/Archivos/Importaciones/Tesistas/");
+                        string directorio = Server.MapPath("~/Archivos/Importaciones/Directores/");
 
                         if (!Directory.Exists(directorio))
                         {
                             Directory.CreateDirectory(directorio);
                         }
 
-                        string filename = Path.GetFileName(archivo_tesistas.FileName);
+                        string filename = Path.GetFileName(archivo_directores.FileName);
                         string path_final = directorio + DateTime.Now.ToString("ddMMyyyy hhmmss") + " " + filename;
-                        archivo_tesistas.SaveAs(path_final);
+                        archivo_directores.SaveAs(path_final);
 
                         Cargar_valores_en_grilla(path_final);
-
                         btn_importar.Visible = true;
                     }
                     catch (Exception ex)
@@ -80,7 +77,7 @@ namespace WebApplication1.Aplicativo
 
         private void Cargar_valores_en_grilla(string path)
         {
-            List<item_tesista> tesistas = new List<Aplicativo.importar_tesistas.item_tesista>();
+            List<item_director> directores = new List<Aplicativo.importar_directores.item_director>();
             using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 using (SpreadsheetDocument doc = SpreadsheetDocument.Open(fs, false))
@@ -97,7 +94,7 @@ namespace WebApplication1.Aplicativo
 
                     foreach (Row row in rows)
                     {
-                        item_tesista item = new item_tesista();
+                        item_director item = new item_director();
 
                         #region DNI
                         Cell DNI = row.Elements<Cell>().ElementAt(0);
@@ -169,49 +166,21 @@ namespace WebApplication1.Aplicativo
                         }
                         #endregion
 
-                        #region legajo
-                        Cell legajo = row.Elements<Cell>().ElementAt(5);
-                        if ((legajo.DataType != null) && (legajo.DataType == CellValues.SharedString))
-                        {
-                            int ssid = int.Parse(legajo.CellValue.Text);
-                            string str = sst.ChildElements[ssid].InnerText;
-                            item.legajo = str;
-                        }
-                        else if (legajo.CellValue != null)
-                        {
-                            item.legajo = legajo.CellValue.Text;
-                        }
-                        #endregion
-
-                        #region sede
-                        Cell sede = row.Elements<Cell>().ElementAt(6);
-                        if ((sede.DataType != null) && (sede.DataType == CellValues.SharedString))
-                        {
-                            int ssid = int.Parse(sede.CellValue.Text);
-                            string str = sst.ChildElements[ssid].InnerText;
-                            item.sede = str;
-                        }
-                        else if (sede.CellValue != null)
-                        {
-                            item.sede = sede.CellValue.Text;
-                        }
-                        #endregion
-
-                        tesistas.Add(item);
+                        directores.Add(item);
                     }
                 }
             }
 
-            gv_tesistas.DataSource = tesistas;
-            gv_tesistas.DataBind();
+            gv_directores.DataSource = directores;
+            gv_directores.DataBind();
         }
 
         protected void cv_correo_duplicado_ServerValidate(object source, ServerValidateEventArgs args)
         {
             string[] nombre_cv = ((CustomValidator)source).ClientID.Split('_');
             int rowNumber = Convert.ToInt32(nombre_cv[nombre_cv.Count() - 1]);
-            int dni = Convert.ToInt32(((HtmlInputText)gv_tesistas.Rows[rowNumber].Cells[0].Controls[1]).Value);
-            string mail = ((HtmlInputText)gv_tesistas.Rows[rowNumber].Cells[2].Controls[1]).Value;
+            int dni = Convert.ToInt32(((HtmlInputText)gv_directores.Rows[rowNumber].Cells[0].Controls[1]).Value);
+            string mail = ((HtmlInputText)gv_directores.Rows[rowNumber].Cells[2].Controls[1]).Value;
 
             bool correcto = true;
 
@@ -227,16 +196,16 @@ namespace WebApplication1.Aplicativo
         {
             string[] nombre_cv = ((CustomValidator)source).ClientID.Split('_');
             int rowNumber = Convert.ToInt32(nombre_cv[nombre_cv.Count() - 1]);
-            int dni = Convert.ToInt32(((HtmlInputText)gv_tesistas.Rows[rowNumber].Cells[0].Controls[1]).Value);
-            string mail = ((HtmlInputText)gv_tesistas.Rows[rowNumber].Cells[2].Controls[1]).Value;
+            int dni = Convert.ToInt32(((HtmlInputText)gv_directores.Rows[rowNumber].Cells[0].Controls[1]).Value);
+            string mail = ((HtmlInputText)gv_directores.Rows[rowNumber].Cells[2].Controls[1]).Value;
 
             int repetido_en_grilla = 0;
             //reviso que no se repita el correo en ninguna otra fila
-            for (int i = rowNumber; i < gv_tesistas.Rows.Count; i++)
+            for (int i = rowNumber; i < gv_directores.Rows.Count; i++)
             {
                 if (i != rowNumber)
                 {
-                    string mail_fila = ((HtmlInputText)gv_tesistas.Rows[i].Cells[2].Controls[1]).Value;
+                    string mail_fila = ((HtmlInputText)gv_directores.Rows[i].Cells[2].Controls[1]).Value;
                     repetido_en_grilla = mail == mail_fila ? repetido_en_grilla + 1 : repetido_en_grilla;
                 }
             }
@@ -248,13 +217,13 @@ namespace WebApplication1.Aplicativo
         {
             string[] nombre_cv = ((CustomValidator)source).ClientID.Split('_');
             int rowNumber = Convert.ToInt32(nombre_cv[nombre_cv.Count() - 1]);
-            int dni = Convert.ToInt32(((HtmlInputText)gv_tesistas.Rows[rowNumber].Cells[0].Controls[1]).Value);
+            int dni = Convert.ToInt32(((HtmlInputText)gv_directores.Rows[rowNumber].Cells[0].Controls[1]).Value);
 
             bool correcto = true;
 
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
-                correcto = cxt.Tesistas.FirstOrDefault(tt => tt.Persona.persona_dni == dni) == null;
+                correcto = cxt.Directores.FirstOrDefault(tt => tt.Persona.persona_dni == dni) == null;
             }
 
             args.IsValid = correcto;
@@ -264,15 +233,15 @@ namespace WebApplication1.Aplicativo
         {
             string[] nombre_cv = ((CustomValidator)source).ClientID.Split('_');
             int rowNumber = Convert.ToInt32(nombre_cv[nombre_cv.Count() - 1]);
-            int dni = Convert.ToInt32(((HtmlInputText)gv_tesistas.Rows[rowNumber].Cells[0].Controls[1]).Value);
+            int dni = Convert.ToInt32(((HtmlInputText)gv_directores.Rows[rowNumber].Cells[0].Controls[1]).Value);
 
             int repetido_en_grilla = 0;
             //reviso que no se repita el correo en ninguna otra fila
-            for (int i = rowNumber; i < gv_tesistas.Rows.Count; i++)
+            for (int i = rowNumber; i < gv_directores.Rows.Count; i++)
             {
                 if (i != rowNumber)
                 {
-                    int dni_fila = Convert.ToInt32(((HtmlInputText)gv_tesistas.Rows[i].Cells[0].Controls[1]).Value);
+                    int dni_fila = Convert.ToInt32(((HtmlInputText)gv_directores.Rows[i].Cells[0].Controls[1]).Value);
                     repetido_en_grilla = dni == dni_fila ? repetido_en_grilla + 1 : repetido_en_grilla;
                 }
             }
@@ -282,31 +251,31 @@ namespace WebApplication1.Aplicativo
 
         protected void btn_importar_Click(object sender, EventArgs e)
         {
-            this.Validate("tesista");
+            this.Validate("director");
             if (this.IsValid)
             {
                 Persona usuario = Session["UsuarioLogueado"] as Persona;
 
-                foreach (GridViewRow fila in gv_tesistas.Rows)
+                foreach (GridViewRow fila in gv_directores.Rows)
                 {
                     int dni = Convert.ToInt32(((HtmlInputText)fila.Cells[0].Controls[1]).Value);
 
-                    Persona p_tesista = null;
-                    Tesista tesista = null;
+                    Persona p_director = null;
+                    Director director = null;
 
                     using (HabProfDBContainer cxt = new HabProfDBContainer())
                     {
-                        p_tesista = cxt.Personas.FirstOrDefault(pp => pp.persona_dni == dni);
+                        p_director = cxt.Personas.FirstOrDefault(pp => pp.persona_dni == dni);
 
-                        if (p_tesista != null)
+                        if (p_director != null)
                         {
-                            tesista = p_tesista.Tesista;
+                            director = p_director.Director;
                         }
 
                         //Agrego o actualizo la persona
-                        if (p_tesista == null)
+                        if (p_director == null)
                         {
-                            p_tesista = new Persona()
+                            p_director = new Persona()
                             {
                                 licenciatura_id = usuario.licenciatura_id,
                                 persona_nomyap = ((HtmlInputText)fila.Cells[1].Controls[1]).Value,
@@ -319,52 +288,43 @@ namespace WebApplication1.Aplicativo
                                 persona_clave = Cripto.Encriptar(dni.ToString()),
                                 persona_estilo = "Sandstone"
                             };
-                            cxt.Personas.Add(p_tesista);
+                            cxt.Personas.Add(p_director);
                         }
                         else
                         {
-                            p_tesista.licenciatura_id = usuario.licenciatura_id;
-                            p_tesista.persona_nomyap = ((HtmlInputText)fila.Cells[1].Controls[1]).Value;
-                            p_tesista.persona_dni = dni;
-                            p_tesista.licenciatura_id = usuario.licenciatura_id;
-                            p_tesista.persona_email = ((HtmlInputText)fila.Cells[2].Controls[1]).Value;
-                            p_tesista.persona_email_validado = false;
-                            p_tesista.persona_domicilio = ((HtmlInputText)fila.Cells[3].Controls[1]).Value;
-                            p_tesista.persona_telefono = ((HtmlInputText)fila.Cells[4].Controls[1]).Value;
-                            p_tesista.persona_usuario = dni.ToString();
-                            p_tesista.persona_clave = Cripto.Encriptar(dni.ToString());
+                            p_director.licenciatura_id = usuario.licenciatura_id;
+                            p_director.persona_nomyap = ((HtmlInputText)fila.Cells[1].Controls[1]).Value;
+                            p_director.persona_dni = dni;
+                            p_director.licenciatura_id = usuario.licenciatura_id;
+                            p_director.persona_email = ((HtmlInputText)fila.Cells[2].Controls[1]).Value;
+                            p_director.persona_email_validado = false;
+                            p_director.persona_domicilio = ((HtmlInputText)fila.Cells[3].Controls[1]).Value;
+                            p_director.persona_telefono = ((HtmlInputText)fila.Cells[4].Controls[1]).Value;
+                            p_director.persona_usuario = dni.ToString();
+                            p_director.persona_clave = Cripto.Encriptar(dni.ToString());
                         }
 
-                        //agrego o actualizo el tesista
-                        if (tesista == null)
+                        //agrego o actualizo el director
+                        if (director == null)
                         {
                             //no existe hago un insert
-                            tesista = new Tesista()
+                            director = new Director()
                             {
-                                Persona = p_tesista,
-                                tesista_legajo = ((HtmlInputText)fila.Cells[5].Controls[1]).Value,
-                                tesista_sede = ((HtmlInputText)fila.Cells[6].Controls[1]).Value
+                                Persona = p_director,
                             };
 
-                            cxt.Tesistas.Add(tesista);
+                            cxt.Directores.Add(director);
                         }
-                        else
-                        {
-                            //existe el tesista por lo tanto tambien la persona y ya fue editada
-                            tesista.tesista_legajo = ((HtmlInputText)fila.Cells[5].Controls[1]).Value;
-                            tesista.tesista_sede = ((HtmlInputText)fila.Cells[6].Controls[1]).Value;
-                        }
-
 
                         try
                         {
 
                             cxt.SaveChanges();
 
-                            gv_tesistas.DataSource = null;
-                            gv_tesistas.DataBind();
+                            gv_directores.DataSource = null;
+                            gv_directores.DataBind();
 
-                            MessageBox.Show(this, "Se guardaron correctamente los tesistas!", MessageBox.Tipo_MessageBox.Success, "Exito!", "admin_tesistas.aspx");
+                            MessageBox.Show(this, "Se guardaron correctamente los directores!", MessageBox.Tipo_MessageBox.Success, "Exito!", "admin_directores.aspx");
                         }
                         catch (Exception ex)
                         {

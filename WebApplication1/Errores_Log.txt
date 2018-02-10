@@ -102,3 +102,31 @@ STACKTRACE:    en System.Web.Compilation.AssemblyBuilder.Compile()
 
 
 ******************************************************************
+ 
+
+******************************************************************
+
+ERRORID: 636538528094647682
+
+DATE: 10/02/2018 9:46:49
+
+AGENTE: admin
+
+MESSAGE: Etiqueta de servidor 'uc1:menu_admin' desconocida.
+
+SOURCE: System.Web
+
+INSTANCE: 
+
+DATA: System.Collections.ListDictionaryInternal
+
+URL: http://localhost:60142/Aplicativo/importar_directores.aspx
+
+TARGETSITE: Void ProcessError(System.String)
+
+STACKTRACE:    en System.Web.UI.TemplateParser.ProcessError(String message)
+   en System.Web.UI.TemplateParser.ProcessBeginTag(Match match, String inputText)
+   en System.Web.UI.TemplateParser.ParseStringInternal(String text, Encoding fileEncoding)
+
+
+******************************************************************

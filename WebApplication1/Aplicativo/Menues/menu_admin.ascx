@@ -38,6 +38,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Importar <b class="caret"></b></a>
                     <ul class="dropdown-menu multi-level">
                         <li><a href="../Aplicativo/importar_tesistas.aspx">Tesistas</a></li>
+                        <li><a href="../Aplicativo/importar_directores.aspx">Directores</a></li>
                     </ul>
                 </li>
             </ul>
