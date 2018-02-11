@@ -15,6 +15,10 @@ namespace WebApplication1.Aplicativo
 
         }
 
-        
+        protected void btn_verificar_correos_Click(object sender, EventArgs e)
+        {
+            Automatizacion auto = new Aplicativo.Automatizacion();
+            auto.Enviar_correos_notificacion_automatica();
+        }
     }
 }

@@ -28,7 +28,8 @@ namespace WebApplication1.Aplicativo
             notificacion_tesina_lista_para_presentar,
             notificacion_tesina_vencida,
             notificacion_tesina_prorrogada,
-            alta_director
+            alta_director,
+            notificacion_recordatorio_automatico
         }
 
         public MiEmail(Envio_mail mail)
@@ -72,6 +73,7 @@ namespace WebApplication1.Aplicativo
                 Tesis_fecha_limite = t.tesina_plan_fch_presentacion.AddMonths(t.tesina_plan_duracion_meses).ToShortDateString();
                 Tesis_periodo_notificaciones = t.tesina_plan_aviso_meses.ToString();
                 Tesis_tema = t.tesina_tema;
+                Tesis_meses_restantes = Math.Abs((t.tesina_plan_fch_presentacion.AddMonths(t.tesina_plan_duracion_meses).Month - DateTime.Today.Month) + 12 * (t.tesina_plan_fch_presentacion.AddMonths(t.tesina_plan_duracion_meses).Year - DateTime.Today.Year));
             }
         }
 
@@ -111,12 +113,12 @@ namespace WebApplication1.Aplicativo
 
         public string Tesis_tema { get; set; }
 
+        public int Tesis_meses_restantes { get; set; }
+
         public string Url_respuesta { get; set; }
 
         public bool Enviar_mail()
         {
-
-
             try
             {
                 using (HabProfDBContainer cxt = new HabProfDBContainer())
@@ -229,6 +231,15 @@ namespace WebApplication1.Aplicativo
                                                                                                Replace("Username", Persona_nombre).
                                                                                                Replace("tema_tesina", Tesis_tema).
                                                                                                Replace("fecha_limite", Tesis_fecha_limite);
+                            break;
+
+                        case tipo_mail.notificacion_recordatorio_automatico:
+                            Asunto = "Sistema de administración de Tesina - Recordatorio Tesina";
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
+                                                                                               Replace("Username", Persona_nombre).
+                                                                                               Replace("meses_para_fin ", Tesis_meses_restantes.ToString()).
+                                                                                               Replace("nombre_director", Director_nombre).
+                                                                                               Replace("correo_director", Director_mail);
                             break;
 
                         default: 

@@ -2,16 +2,15 @@
 
 <%@ Register Src="~/Aplicativo/Menues/menu_admin.ascx" TagPrefix="uc1" TagName="menu_admin" %>
 
-<%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH_Menues" runat="server">
     <uc1:menu_admin runat="server" ID="menu_admin" />
-    <rsweb:ReportViewer ID="ReportViewer1" runat="server"><LocalReport ReportPath=' "~/Reportes/reporte_mesa.rdlc"' EnableExternalImages="True"></LocalReport></rsweb:ReportViewer>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="CPH_Body" runat="server">
-
-    </asp:Content>
+    <asp:Button Text="Verificar correos automáticos" ID="btn_verificar_correos" OnClick="btn_verificar_correos_Click" runat="server" />
+</asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="CPH_Scripts" runat="server">
 </asp:Content>

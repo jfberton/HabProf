@@ -129,6 +129,7 @@
     <Content Include="Aplicativo\Mails\notificacion_inicio_tesina_tesista.html" />
     <Content Include="Aplicativo\Mails\notificacion_modificacion_tesina_director.html" />
     <Content Include="Aplicativo\Mails\notificacion_modificacion_tesina_tesista.html" />
+    <Content Include="Aplicativo\Mails\notificacion_recordatorio_automatico.html" />
     <Content Include="Aplicativo\Mails\notificacion_tesina_lista_para_presentar.html" />
     <Content Include="Aplicativo\Mails\notificacion_tesina_prorrogada.html" />
     <Content Include="Aplicativo\Mails\notificacion_tesina_vencida.html" />
@@ -748,6 +749,7 @@
     <Compile Include="Aplicativo\admin_tesistas.aspx.designer.cs">
       <DependentUpon>admin_tesistas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Aplicativo\Automatizacion.cs" />
     <Compile Include="Aplicativo\Buscar.cs" />
     <Compile Include="Aplicativo\ControlesDeUsuario\MessageBox.cs" />
     <Compile Include="Aplicativo\Cripto.cs" />

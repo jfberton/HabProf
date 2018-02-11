@@ -38,7 +38,8 @@ namespace WebApplication1.Aplicativo
                 Persona usuario_logueado = Session["UsuarioLogueado"] as Persona;
                 List<Tesina> tesinas = new List<Tesina>();
 
-                Verificar_y_marcar_tesinas_vencidas();
+                Automatizacion auto = new Aplicativo.Automatizacion();
+                auto.Verificar_y_marcar_tesinas_vencidas();
 
                 if (Session["Perfil"].ToString() == "Administrador")
                 {//administrador: obtengo todas las tesinas
@@ -113,62 +114,6 @@ namespace WebApplication1.Aplicativo
             }
         }
 
-        private void Verificar_y_marcar_tesinas_vencidas()
-        {
-            using (HabProfDBContainer cxt = new Aplicativo.HabProfDBContainer())
-            {
-                Estado_tesina et_vencida = cxt.Estados_tesinas.FirstOrDefault(eett => eett.estado_tesina_estado == "Vencida");
-                Estado_tesina et_lista = cxt.Estados_tesinas.FirstOrDefault(eett => eett.estado_tesina_estado == "Lista para presentar");
-                Estado_tesina et_aprobada = cxt.Estados_tesinas.FirstOrDefault(eett => eett.estado_tesina_estado == "Aprobada");
-                Estado_tesina et_desaprobada = cxt.Estados_tesinas.FirstOrDefault(eett => eett.estado_tesina_estado == "Desaprobada");
-
-                List<Tesina> tesinas = cxt.Tesinas.Where(tt =>
-                                                            tt.estado_tesis_id != et_vencida.estado_tesina_id &&
-                                                            tt.estado_tesis_id != et_lista.estado_tesina_id &&
-                                                            tt.estado_tesis_id != et_aprobada.estado_tesina_id &&
-                                                            tt.estado_tesis_id != et_desaprobada.estado_tesina_id
-                                                            ).ToList();
-
-                foreach (Tesina tesina in tesinas)
-                {
-                    DateTime fecha_vencimiento = tesina.tesina_plan_fch_presentacion.AddMonths(tesina.tesina_plan_duracion_meses);
-                    if (fecha_vencimiento < DateTime.Today)
-                    {
-                        tesina.Historial_estados.Add(new Historial_estado() { estado_tesina_id = et_vencida.estado_tesina_id, historial_tesina_fecha = fecha_vencimiento, historial_tesina_descripcion = "Se venció el plazo para presentar una tesina lista para evaluar" });
-                        tesina.estado_tesis_id = et_vencida.estado_tesina_id;
-
-                        Envio_mail em_director = new Envio_mail()
-                        {
-                            persona_id = tesina.Director.Persona.persona_id,
-                            envio_email_destino = tesina.Director.Persona.persona_email,
-                            envio_fecha_hora = DateTime.Now,
-                            envio_respuesta_clave = "no se usa",
-                            envio_tipo = MiEmail.tipo_mail.notificacion_tesina_prorrogada.ToString()
-                        };
-
-                        Envio_mail em_tesista = new Envio_mail()
-                        {
-                            persona_id = tesina.Tesista.Persona.persona_id,
-                            envio_email_destino = tesina.Tesista.Persona.persona_email,
-                            envio_fecha_hora = DateTime.Now,
-                            envio_respuesta_clave = "no se usa",
-                            envio_tipo = MiEmail.tipo_mail.notificacion_tesina_prorrogada.ToString()
-                        };
-
-                        MiEmail me_director = new MiEmail(em_director, tesina);
-                        MiEmail me_tesista = new MiEmail(em_tesista, tesina);
-
-                        me_director.Enviar_mail();
-                        me_tesista.Enviar_mail();
-
-
-                        cxt.SaveChanges();
-                    }
-                }
-
-            }
-        }
-
         private int Obtener_prioridad(string estado)
         {
             int ret = 99;
@@ -225,6 +170,7 @@ namespace WebApplication1.Aplicativo
                         envio_tipo = MiEmail.tipo_mail.notificacion_eliminacion_tesina_director.ToString(),
                         persona_id = tesina.Director.Persona.persona_id
                     };
+                    cxt.Envio_mails.Add(em_director);
 
                     Envio_mail em_tesista = new Envio_mail()
                     {
@@ -234,6 +180,7 @@ namespace WebApplication1.Aplicativo
                         envio_tipo = MiEmail.tipo_mail.notificacion_eliminacion_tesina_tesista.ToString(),
                         persona_id = tesina.Tesista.Persona.persona_id
                     };
+                    cxt.Envio_mails.Add(em_tesista);
 
                     MiEmail mail_director = new MiEmail(em_director, tesina);
                     MiEmail mail_tesista = new MiEmail(em_tesista, tesina);
@@ -500,6 +447,7 @@ namespace WebApplication1.Aplicativo
                     envio_respuesta_clave = "no se usa",
                     envio_tipo = MiEmail.tipo_mail.notificacion_entrega_archivo_tesina.ToString()
                 };
+                cxt.Envio_mails.Add(em_director);
 
                 Envio_mail em_tesista = new Envio_mail()
                 {
@@ -509,6 +457,7 @@ namespace WebApplication1.Aplicativo
                     envio_respuesta_clave = "no se usa",
                     envio_tipo = MiEmail.tipo_mail.notificacion_entrega_archivo_tesina.ToString()
                 };
+                cxt.Envio_mails.Add(em_tesista);
 
                 MiEmail me_director = new MiEmail(em_director, t);
                 MiEmail me_tesista = new MiEmail(em_tesista, t);
@@ -555,6 +504,7 @@ namespace WebApplication1.Aplicativo
                     envio_respuesta_clave = "no se usa",
                     envio_tipo = MiEmail.tipo_mail.notificacion_correcciones_tesina.ToString()
                 };
+                cxt.Envio_mails.Add(em_director);
 
                 Envio_mail em_tesista = new Envio_mail()
                 {
@@ -564,6 +514,7 @@ namespace WebApplication1.Aplicativo
                     envio_respuesta_clave = "no se usa",
                     envio_tipo = MiEmail.tipo_mail.notificacion_correcciones_tesina.ToString()
                 };
+                cxt.Envio_mails.Add(em_tesista);
 
                 MiEmail me_director = new MiEmail(em_director, t);
                 MiEmail me_tesista = new MiEmail(em_tesista, t);
@@ -609,6 +560,7 @@ namespace WebApplication1.Aplicativo
                     envio_respuesta_clave = "no se usa",
                     envio_tipo = MiEmail.tipo_mail.notificacion_tesina_lista_para_presentar.ToString()
                 };
+                cxt.Envio_mails.Add(em_director);
 
                 Envio_mail em_tesista = new Envio_mail()
                 {
@@ -618,6 +570,7 @@ namespace WebApplication1.Aplicativo
                     envio_respuesta_clave = "no se usa",
                     envio_tipo = MiEmail.tipo_mail.notificacion_tesina_lista_para_presentar.ToString()
                 };
+                cxt.Envio_mails.Add(em_tesista);
 
                 MiEmail me_director = new MiEmail(em_director, t);
                 MiEmail me_tesista = new MiEmail(em_tesista, t);
@@ -625,10 +578,7 @@ namespace WebApplication1.Aplicativo
                 me_director.Enviar_mail();
                 me_tesista.Enviar_mail();
 
-
                 cxt.SaveChanges();
-
-                //tb_descripcion_lista_para_presentar.Value = "";
 
                 ObtenerTesinas();
             }
@@ -665,6 +615,7 @@ namespace WebApplication1.Aplicativo
                     envio_respuesta_clave = "no se usa",
                     envio_tipo = MiEmail.tipo_mail.notificacion_tesina_prorrogada.ToString()
                 };
+                cxt.Envio_mails.Add(em_director);
 
                 Envio_mail em_tesista = new Envio_mail()
                 {
@@ -674,13 +625,13 @@ namespace WebApplication1.Aplicativo
                     envio_respuesta_clave = "no se usa",
                     envio_tipo = MiEmail.tipo_mail.notificacion_tesina_prorrogada.ToString()
                 };
+                cxt.Envio_mails.Add(em_tesista);
 
                 MiEmail me_director = new MiEmail(em_director, t);
                 MiEmail me_tesista = new MiEmail(em_tesista, t);
 
                 me_director.Enviar_mail();
                 me_tesista.Enviar_mail();
-
 
                 cxt.SaveChanges();
 
