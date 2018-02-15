@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/07/2018 10:11:10
+-- Date Created: 02/15/2018 09:17:30
 -- Generated from EDMX file: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
 -- --------------------------------------------------
 
@@ -59,6 +59,21 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_JuezTesina_Tesina]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[JuezTesina] DROP CONSTRAINT [FK_JuezTesina_Tesina];
 GO
+IF OBJECT_ID(N'[dbo].[FK_MesaTesina_Mesa]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MesaTesina] DROP CONSTRAINT [FK_MesaTesina_Mesa];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MesaTesina_Tesina]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MesaTesina] DROP CONSTRAINT [FK_MesaTesina_Tesina];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MesaJuez_Mesa]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MesaJuez] DROP CONSTRAINT [FK_MesaJuez_Mesa];
+GO
+IF OBJECT_ID(N'[dbo].[FK_MesaJuez_Juez]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[MesaJuez] DROP CONSTRAINT [FK_MesaJuez_Juez];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DirectorTesina1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Tesinas] DROP CONSTRAINT [FK_DirectorTesina1];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -103,6 +118,12 @@ GO
 IF OBJECT_ID(N'[dbo].[JuezTesina]', 'U') IS NOT NULL
     DROP TABLE [dbo].[JuezTesina];
 GO
+IF OBJECT_ID(N'[dbo].[MesaTesina]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MesaTesina];
+GO
+IF OBJECT_ID(N'[dbo].[MesaJuez]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MesaJuez];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -136,9 +157,11 @@ CREATE TABLE [dbo].[Tesinas] (
     [tesina_calificacion] smallint  NULL,
     [tesina_fecha_cierre] datetime  NULL,
     [tesina_calificacion_director] smallint  NULL,
+    [tesina_calificacion_codirector] smallint  NULL,
     [tesista_id] int  NOT NULL,
     [director_id] int  NOT NULL,
-    [tesina_categoria] nvarchar(max)  NOT NULL
+    [tesina_categoria] nvarchar(max)  NOT NULL,
+    [codirector_id] int  NULL
 );
 GO
 
@@ -604,6 +627,21 @@ GO
 CREATE INDEX [IX_FK_MesaJuez_Juez]
 ON [dbo].[MesaJuez]
     ([Jueces_juez_id]);
+GO
+
+-- Creating foreign key on [codirector_id] in table 'Tesinas'
+ALTER TABLE [dbo].[Tesinas]
+ADD CONSTRAINT [FK_DirectorTesina1]
+    FOREIGN KEY ([codirector_id])
+    REFERENCES [dbo].[Directores]
+        ([director_id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DirectorTesina1'
+CREATE INDEX [IX_FK_DirectorTesina1]
+ON [dbo].[Tesinas]
+    ([codirector_id]);
 GO
 
 -- --------------------------------------------------

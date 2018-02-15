@@ -123,7 +123,6 @@ namespace WebApplication1.Aplicativo
             }
         }
 
-
         protected void btn_editar_ServerClick(object sender, EventArgs e)
         {
             Response.Redirect("~/Aplicativo/admin_mesa.aspx?m=" + ((Button)sender).CommandArgument);
@@ -234,14 +233,20 @@ namespace WebApplication1.Aplicativo
                     {
                         TextBox calificacion_tesina = ((TextBox)fila.Cells[3].Controls[1]);
                         TextBox calificacion_director_tesina = ((TextBox)fila.Cells[4].Controls[1]);
-                        DropDownList estado_final_tesina = ((DropDownList)fila.Cells[5].Controls[1]);
+                        TextBox calificacion_codirector_tesina = ((TextBox)fila.Cells[5].Controls[1]);
+                        //DropDownList estado_final_tesina = ((DropDownList)fila.Cells[5].Controls[1]);
 
                         int tesina_id = Convert.ToInt32(calificacion_tesina.AccessKey);
 
                         Tesina t = cxt.Tesinas.FirstOrDefault(tt => tt.tesina_id == tesina_id);
                         t.tesina_calificacion = Convert.ToInt16(calificacion_tesina.Text);
                         t.tesina_calificacion_director = Convert.ToInt16(calificacion_director_tesina.Text);
-                        Estado_tesina et = cxt.Estados_tesinas.FirstOrDefault(eett => eett.estado_tesina_estado == estado_final_tesina.SelectedValue);
+                        if (t.Codirector != null)
+                        {
+                            t.tesina_calificacion_codirector = Convert.ToInt16(calificacion_codirector_tesina.Text);
+                        }
+                        string estado_final = t.tesina_calificacion >= 6 ? "Aprobada" : "Desaprobada";
+                        Estado_tesina et = cxt.Estados_tesinas.FirstOrDefault(eett => eett.estado_tesina_estado == estado_final);
                         t.estado_tesis_id = et.estado_tesina_id;
 
                         foreach (Juez juez in mesa.Jueces)
@@ -312,6 +317,8 @@ namespace WebApplication1.Aplicativo
                     tr.tesina_director = tesina.Director.Persona.persona_nomyap;
                     tr.tesina_calificacion = tesina.tesina_calificacion.ToString();
                     tr.tesina_calificacion_director = tesina.tesina_calificacion_director.ToString();
+                    tr.tesina_calificacion_codirector = tesina.Codirector != null ? tesina.tesina_calificacion_codirector.ToString() : "0";
+                    tr.tesista_legajo = tesina.Tesista.tesista_legajo;
                     ds.t_tesinas.Addt_tesinasRow(tr);
                 }
 
@@ -364,23 +371,45 @@ namespace WebApplication1.Aplicativo
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
                 Mesa mesa = cxt.Mesas.FirstOrDefault(pp => pp.mesa_id == id_mesa);
+                Estado_tesina aprobada = cxt.Estados_tesinas.FirstOrDefault(eett => eett.estado_tesina_estado == "Aprobada");
 
                 Reportes.reporte_director ds = new Reportes.reporte_director();
 
                 foreach (Tesina tesina in mesa.Tesinas)
                 {
-                    Reportes.reporte_director.DetalleRow md = ds.Detalle.NewDetalleRow();
+                    if (tesina.estado_tesis_id == aprobada.estado_tesina_id)
+                    {
+                        Reportes.reporte_director.DetalleRow md = ds.Detalle.NewDetalleRow();
 
-                    md.director_nombre = tesina.Director.Persona.persona_nomyap;
-                    md.director_dni = tesina.Director.Persona.persona_dni.ToString();
-                    md.tema_tesina = tesina.tesina_tema;
-                    md.tesina_calificacion = tesina.tesina_calificacion.ToString();
-                    md.tesina_calificacion_letra = Calificacion_a_texto(tesina.tesina_calificacion ?? 0);
-                    md.tesista_nombre = tesina.Tesista.Persona.persona_nomyap;
-                    md.tesina_fecha_evaluacion = mesa.mesa_fecha.ToShortDateString();
-                    md.licenciatura_nombre = tesina.Tesista.Persona.Licenciatura.licenciatura_nombre;
+                        md.director_nombre = tesina.Director.Persona.persona_nomyap;
+                        md.director_dni = tesina.Director.Persona.persona_dni.ToString();
+                        md.tema_tesina = tesina.tesina_tema;
+                        md.tesina_calificacion = tesina.tesina_calificacion_director.ToString();
+                        md.tesina_calificacion_letra = Calificacion_a_texto(tesina.tesina_calificacion ?? 0);
+                        md.tesista_nombre = tesina.Tesista.Persona.persona_nomyap;
+                        md.tesina_fecha_evaluacion = mesa.mesa_fecha.ToShortDateString();
+                        md.licenciatura_nombre = tesina.Tesista.Persona.Licenciatura.licenciatura_nombre;
+                        md.anteco = "";
 
-                    ds.Detalle.Rows.Add(md);
+                        ds.Detalle.Rows.Add(md);
+
+                        if (tesina.Codirector != null)
+                        {
+                            Reportes.reporte_director.DetalleRow md_co = ds.Detalle.NewDetalleRow();
+
+                            md_co.director_nombre = tesina.Codirector.Persona.persona_nomyap;
+                            md_co.director_dni = tesina.Codirector.Persona.persona_dni.ToString();
+                            md_co.tema_tesina = tesina.tesina_tema;
+                            md_co.tesina_calificacion = tesina.tesina_calificacion_codirector.ToString();
+                            md_co.tesina_calificacion_letra = Calificacion_a_texto(tesina.tesina_calificacion_codirector ?? 0);
+                            md_co.tesista_nombre = tesina.Tesista.Persona.persona_nomyap;
+                            md_co.tesina_fecha_evaluacion = mesa.mesa_fecha.ToShortDateString();
+                            md_co.licenciatura_nombre = tesina.Tesista.Persona.Licenciatura.licenciatura_nombre;
+                            md_co.anteco = "co-";
+
+                            ds.Detalle.Rows.Add(md_co);
+                        }
+                    }
                 }
 
                 Session["ds_directores"] = ds;
@@ -506,6 +535,32 @@ namespace WebApplication1.Aplicativo
 
             string script = "<script type='text/javascript'>window.open('Reportes/reportes.aspx');</script>";
             Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "VentanaPadre", script);
+        }
+
+        protected void cv_calificacion_codirector_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            string[] nombre_cv = ((CustomValidator)source).ClientID.Split('_');
+            int rowNumber = Convert.ToInt32(nombre_cv[nombre_cv.Count() - 1]);
+            TextBox tb_nota_codirector = ((TextBox)gv_cerrar_mesa_tesinas.Rows[rowNumber].Cells[0].Controls[1]);
+            int tesina_id = Convert.ToInt32(tb_nota_codirector.AccessKey);
+
+            bool correcto = true;
+
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                bool hay_codirector = cxt.Tesinas.FirstOrDefault(tt => tt.tesina_id == tesina_id).Codirector != null;
+                int nota = 0;
+
+                if (hay_codirector)
+                {
+                    correcto = tb_nota_codirector.Text.Length > 0;
+                    correcto = correcto && int.TryParse(tb_nota_codirector.Text, out nota);
+                    correcto = correcto && nota > 0 && nota <= 10;
+                }
+                
+            }
+
+            args.IsValid = correcto;
         }
     }
 }

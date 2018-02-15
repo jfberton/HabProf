@@ -68,12 +68,15 @@ namespace WebApplication1.Aplicativo
                 //datos extra para el envio de mails
                 Director_mail = t.Director.Persona.persona_email;
                 Director_nombre = t.Director.Persona.persona_nomyap;
+                Codirector_mail = t.Codirector != null ? t.Codirector.Persona.persona_email : "-";
+                Codirector_nombre = t.Codirector != null ? t.Codirector.Persona.persona_nomyap : "-";
                 Tesista_mail = t.Tesista.Persona.persona_email;
                 Tesista_nombre = t.Tesista.Persona.persona_nomyap;
-                Tesis_fecha_limite = t.tesina_plan_fch_presentacion.AddMonths(t.tesina_plan_duracion_meses).ToShortDateString();
+                Tesis_fecha_limite = t.tesina_plan_fch_presentacion.AddMonths(t.tesina_plan_duracion_meses -1).ToShortDateString();
                 Tesis_periodo_notificaciones = t.tesina_plan_aviso_meses.ToString();
                 Tesis_tema = t.tesina_tema;
-                Tesis_meses_restantes = Math.Abs((t.tesina_plan_fch_presentacion.AddMonths(t.tesina_plan_duracion_meses).Month - DateTime.Today.Month) + 12 * (t.tesina_plan_fch_presentacion.AddMonths(t.tesina_plan_duracion_meses).Year - DateTime.Today.Year));
+                Tesis_Url_archivo = ConfigurationManager.AppSettings["direccion_localhost_raiz"] + "Archivos/Tesinas/" + t.tesina_id + "/presentado.pdf";
+                Tesis_meses_restantes = Math.Abs((t.tesina_plan_fch_presentacion.AddMonths(t.tesina_plan_duracion_meses).Month - DateTime.Today.Month) + 12 * (t.tesina_plan_fch_presentacion.AddMonths(t.tesina_plan_duracion_meses).Year - DateTime.Today.Year))-1;
             }
         }
 
@@ -103,6 +106,10 @@ namespace WebApplication1.Aplicativo
 
         public string Director_mail { get; set; }
 
+        public string Codirector_nombre { get; set; }
+
+        public string Codirector_mail { get; set; }
+
         public string Tesista_nombre { get; set; }
 
         public string Tesista_mail { get; set; }
@@ -112,6 +119,8 @@ namespace WebApplication1.Aplicativo
         public string Tesis_periodo_notificaciones { get; set; }
 
         public string Tesis_tema { get; set; }
+
+        public string Tesis_Url_archivo { get; set; }
 
         public int Tesis_meses_restantes { get; set; }
 
@@ -155,6 +164,8 @@ namespace WebApplication1.Aplicativo
                                                                                                Replace("tesis_fecha_limite", Tesis_fecha_limite).
                                                                                                Replace("nombre_director", Director_nombre).
                                                                                                Replace("correo_director", Director_mail).
+                                                                                               Replace("nombre_codirector", Codirector_nombre).
+                                                                                               Replace("correo_codirector", Codirector_mail).
                                                                                                Replace("periodo_notificaciones ", Tesis_periodo_notificaciones);
                             break;
                         case tipo_mail.notificacion_modificacion_tesina_director:
@@ -172,13 +183,15 @@ namespace WebApplication1.Aplicativo
                                                                                               Replace("tema_tesina", Tesis_tema).
                                                                                               Replace("fecha_limite", Tesis_fecha_limite).
                                                                                               Replace("director_tesina", Director_nombre).
-                                                                                              Replace("correo_director", Director_mail);
+                                                                                              Replace("correo_director", Director_mail).
+                                                                                              Replace("codirector_tesina", Codirector_nombre).
+                                                                                              Replace("correo_codirector", Codirector_mail);
 
                             break;
                         case tipo_mail.notificacion_eliminacion_tesina_director:
                             Asunto = "Sistema de administración de Tesina - Eliminación de Tesina";
                             cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
-                                                                                              Replace("Username", Persona_nombre).
+                                                                                             Replace("Username", Persona_nombre).
                                                                                              Replace("tesista_nombre", Tesista_nombre);
 
                             break;
@@ -201,6 +214,7 @@ namespace WebApplication1.Aplicativo
                             Asunto = "Sistema de administración de Tesina - Entrega archivo Tesina";
                             cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
                                                                                               Replace("Username", Persona_nombre).
+                                                                                              Replace("url_archivo", Tesis_Url_archivo).
                                                                                               Replace("tema_tesina", Tesis_tema);
                             break;
 
@@ -239,10 +253,12 @@ namespace WebApplication1.Aplicativo
                                                                                                Replace("Username", Persona_nombre).
                                                                                                Replace("meses_para_fin ", Tesis_meses_restantes.ToString()).
                                                                                                Replace("nombre_director", Director_nombre).
-                                                                                               Replace("correo_director", Director_mail);
+                                                                                               Replace("correo_director", Director_mail).
+                                                                                               Replace("codirector_tesina", Codirector_nombre).
+                                                                                               Replace("correo_codirector", Codirector_mail);
                             break;
 
-                        default: 
+                        default:
                             break;
                     }
                 }

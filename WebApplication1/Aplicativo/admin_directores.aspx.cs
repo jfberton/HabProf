@@ -148,7 +148,7 @@ namespace WebApplication1.Aplicativo
                         p_director.persona_domicilio = tb_domicilio.Value;
                         p_director.persona_telefono = tb_telefono.Value;
                         p_director.persona_usuario = tb_usuario.Value;
-                        p_director.persona_clave = Cripto.Encriptar(tb_pass_alta.Value);
+                        p_director.persona_clave = Cripto.Encriptar(tb_dni_director.Value);
                         p_director.persona_estilo = "Sandstone";
 
                         cxt.Personas.Add(p_director);
@@ -373,6 +373,7 @@ namespace WebApplication1.Aplicativo
                         }
                         else
                         {
+                            tb_usuario.Value = tb_dni_director.Value;
                             tr_pass_edit.Visible = false;
                             tr_pass_alta.Visible = true;
                         }
@@ -410,7 +411,6 @@ namespace WebApplication1.Aplicativo
             tb_telefono.Value = string.Empty;
             tb_usuario.Value = string.Empty;
             tb_contraseña.Value = string.Empty;
-            tb_pass_alta.Value = string.Empty;
             hidden_id_director_editar.Value = "0";
 
             string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_director').modal('show')});</script>";

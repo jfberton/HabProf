@@ -123,7 +123,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button id="btn_guardar" runat="server" onserverclick="btn_guardar_ServerClick" visible="false" class="btn btn-success" validationgroup="juez">
+                            <button id="btn_guardar" runat="server" onserverclick="btn_guardar_ServerClick" visible="false" class="btn btn-primary" validationgroup="juez">
                                 <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Guardar!
                            
                             </button>
@@ -186,7 +186,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button Text="Aceptar" CssClass="btn btn-success" CausesValidation="false" ID="btn_aceptar_eliminacion" OnClick="btn_aceptar_eliminacion_Click" runat="server" />
+                    <asp:Button Text="Aceptar" CssClass="btn btn-primary" CausesValidation="false" ID="btn_aceptar_eliminacion" OnClick="btn_aceptar_eliminacion_Click" runat="server" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>

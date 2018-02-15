@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-md-10">
             <div class="alert alert-warning" role="alert" runat="server" id="lbl_sin_tesinas">
-               <p runat="server" id="lbl_no_existe_tesina"></p>
+                <p runat="server" id="lbl_no_existe_tesina"></p>
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -90,7 +90,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <asp:Button Text="Aceptar" CssClass="btn btn-success" CausesValidation="false" ID="btn_aceptar_eliminacion" OnClick="btn_aceptar_eliminacion_Click" runat="server" />
+                            <asp:Button Text="Aceptar" CssClass="btn btn-primary" CausesValidation="false" ID="btn_aceptar_eliminacion" OnClick="btn_aceptar_eliminacion_Click" runat="server" />
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                         </div>
                     </div>
@@ -109,13 +109,17 @@
                         <div class="modal-body">
                             <asp:HiddenField runat="server" ID="hidden_tesina_id" />
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <strong>Tesista:</strong>
                                     <asp:Label Text="" ID="lbl_tesista" runat="server" />
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <strong>Director:</strong>
                                     <asp:Label Text="" ID="lbl_director" runat="server" />
+                                </div>
+                                <div class="col-md-4">
+                                    <strong>Co-Director:</strong>
+                                    <asp:Label Text="" ID="lbl_codirector" runat="server" />
                                 </div>
                             </div>
 
@@ -135,10 +139,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-4">
-                                    <strong>Estado:</strong>
-                                    <asp:Label Text="" ID="lbl_estado" runat="server" />
-                                </div>
+
                                 <div class="col-md-4">
                                     <strong>Calificación final Tesina:</strong>
                                     <asp:Label Text="" ID="lbl_calificacion" runat="server" />
@@ -146,6 +147,20 @@
                                 <div class="col-md-4">
                                     <strong>Calificación Director:</strong>
                                     <asp:Label Text="" ID="lbl_calificacion_director" runat="server" />
+                                </div>
+                                 <div class="col-md-4">
+                                    <strong>Calificación Co-Director:</strong>
+                                    <asp:Label Text="" ID="lbl_calificacion_codirector" runat="server" />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <strong>Estado:</strong>
+                                    <asp:Label Text="" ID="lbl_estado" runat="server" />
+                                </div>
+                                <div class="col-md-8">
+                                    <strong>Observaciones:</strong>
+                                    <asp:Label Text="" ID="lbl_observaciones_estado" runat="server" />
                                 </div>
                             </div>
                             <div class="row">
@@ -155,7 +170,8 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <strong>Jurado: </strong><asp:Label Text="" ID="lbl_jueces_tesina_visualizacion" runat="server" />
+                                    <strong>Jurado: </strong>
+                                    <asp:Label Text="" ID="lbl_jueces_tesina_visualizacion" runat="server" />
                                 </div>
                             </div>
                             <div class="row">
@@ -185,9 +201,6 @@
                                         <button type="button" class="btn btn-default" data-toggle="modal" runat="server" id="btn_lista_para_presentar" data-target="#lista_para_presentar" title="Pasa al estado lista para presentar, no se puede editar más.">Lista para presentar</button>
                                         <button type="button" class="btn btn-default" data-toggle="modal" runat="server" id="btn_devolver_para_corregir" data-target="#devolver_a_corregir" title="Rechaza la entrega y para al estado A Corregir.">Devolver a corregir</button>
                                         <button type="button" class="btn btn-default" data-toggle="modal" runat="server" id="btn_prorroga" data-target="#generar_prorroga" title="Modifica los valores de la tesina y la deja con estado prorroga.">Prorroga</button>
-
-                                        <button type="button" class="btn btn-default" runat="server" id="btn_aprobar" onserverclick="btn_aprobar_ServerClick" title="Finaliza la tesina con estado aprobada, guarda calificaciones de tesina y director.">Aprobar</button>
-                                        <button type="button" class="btn btn-default" runat="server" id="btn_desaprobar" onserverclick="btn_desaprobar_ServerClick" title="Finaliza la tesina con estado desaprobada, guarda calificaciones de tesina y director.">Desaprobar</button>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -218,7 +231,6 @@
                         </div>
                         <div class="modal-footer">
                             <asp:Button Text="Subir archivo" runat="server" ID="btn_subir_archivo" CssClass="btn btn-success" OnClick="btn_subir_archivo_Click" />
-                            <asp:Button Text="Realizar entrega" runat="server" Enabled="false" CssClass="btn btn-primary" ID="btn_guardar_realizar_entrega" OnClick="btn_guardar_realizar_entrega_Click" />
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                         </div>
                     </div>
@@ -364,99 +376,7 @@
                     </div>
                 </div>
             </div>
-
-            <div class="modal fade" id="aprobar_tesina" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content panel-success">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title">
-                                <asp:Label Text="" ID="lbl_aprobar_desaprobar_tesina" runat="server" /></h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <asp:ValidationSummary ID="ValidationSummary3" runat="server" DisplayMode="BulletList" ValidationGroup="aprobar"
-                                        CssClass="validationsummary panel panel-danger" HeaderText="<div class='panel-heading'>&nbsp;Corrija los siguientes errores antes de continuar:</div>" />
-                                </div>
-                            </div>
-                            <p>Guardar aprobación de tesina.</p>
-                            <p>Ingrese unas observaciones sobre la finalización de la tesina</p>
-                            <div class="row">
-                                <div class="col-md-11">
-                                    <textarea runat="server" id="tb_descripcion_aprobar_tesina" rows="2" class="form-control" placeholder="Ingrese las observaciones del cambio de estado.-"></textarea>
-                                </div>
-                                <div class="col-md-1">
-                                    <asp:RequiredFieldValidator ControlToValidate="tb_descripcion_aprobar_tesina" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                        ID="RequiredFieldValidator6" runat="server" ErrorMessage="Debe ingresar las observaciones para poder continuar" ValidationGroup="aprobar">
-                                    </asp:RequiredFieldValidator>
-                                </div>
-                            </div>
-                            <br />
-                            <div class="row">
-                                <div class="col-md-3">Calificación Tesina</div>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control" runat="server" id="tb_calificacion_tesina_aprobada" />
-                                </div>
-                                <div class="col-md-1">
-                                    <asp:RequiredFieldValidator ControlToValidate="tb_calificacion_tesina_aprobada" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                        ID="RequiredFieldValidator7" runat="server" ErrorMessage="Debe ingresar la calificación final de la tesina" ValidationGroup="aprobar">
-                                    </asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ValidationExpression="^([0-9]|10)$" ControlToValidate="tb_calificacion_tesina_aprobada" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                        ID="RegularExpressionValidator4" runat="server" ErrorMessage="Debe ingresar un número entero del 0 al 10" ValidationGroup="aprobar" />
-                                </div>
-                                <div class="col-md-3">
-                                    Calificación Director
-                                </div>
-                                <div class="col-md-2">
-                                    <input type="text" class="form-control" runat="server" id="tb_calificacion_director_aprobada" />
-                                </div>
-                                <div class="col-md-1">
-                                    <asp:RequiredFieldValidator ControlToValidate="tb_calificacion_director_aprobada" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                        ID="RequiredFieldValidator8" runat="server" ErrorMessage="Debe ingresar la calificación para el desempeño del Director en la Tesina" ValidationGroup="aprobar">
-                                    </asp:RequiredFieldValidator>
-                                    <asp:RegularExpressionValidator ValidationExpression="^([0-9]|10)$" ControlToValidate="tb_calificacion_director_aprobada" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                        ID="RegularExpressionValidator5" runat="server" ErrorMessage="Debe ingresar un número entero del 0 al 10" ValidationGroup="aprobar" />
-                                </div>
-                            </div>
-                            <br />
-                            <div class="row">
-                                <div class="col-md-11">
-                                    <asp:HiddenField runat="server" ID="hidden_ids_jueces" />
-                                    <strong>Jueces que participaron:</strong>
-                                    <asp:Label Text="Seleccione los jueces que participaron de la grilla desplegada aquí debajo" ID="lbl_jueces" runat="server" />
-                                </div>
-                                <div class="col-md-1">
-                                    <asp:CustomValidator ControlToValidate="tb_calificacion_director_aprobada" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                        ID="cv_jueces" runat="server" ErrorMessage="Debe seleccionar al menos un juez" OnServerValidate="cv_jueces_ServerValidate" ValidationGroup="aprobar" />
-                                </div>
-                            </div>
-                            <br />
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <asp:GridView ID="gv_jueces" runat="server" OnPreRender="gv_tesinas_PreRender"
-                                        AutoGenerateColumns="False" GridLines="None" CssClass="display">
-                                        <Columns>
-                                            <asp:BoundField DataField="juez_persona_nomyap" HeaderText="Nombre" ReadOnly="true" />
-                                            <asp:BoundField DataField="juez_persona_dni" HeaderText="DNI" ReadOnly="true" />
-                                            <asp:BoundField DataField="juez_persona_email" HeaderText="E-mail" ReadOnly="true" />
-                                            <asp:TemplateField HeaderText="Seleccionar juez">
-                                                <ItemTemplate>
-                                                    <asp:CheckBox Text="" AccessKey='<%#Eval("juez_id")%>' Checked="false" OnCheckedChanged="chk_seleccion_juez_CheckedChanged" AutoPostBack="true" ID="chk_seleccion_juez" runat="server" />
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                        </Columns>
-                                    </asp:GridView>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <asp:Button Text="Aprobar Tesina" CssClass="btn btn-success" ID="btn_guardar_aprobar_tesina" OnClick="btn_guardar_aprobar_tesina_Click" ValidationGroup="aprobar" runat="server" />
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+           
         </div>
     </div>
 </asp:Content>
@@ -476,45 +396,21 @@
 
         $(":file").filestyle({ buttonBefore: false, buttonText: "Seleccionar archivo" });
 
-        $(document).ready(function () {
-            $('#<%= gv_jueces.ClientID %>').DataTable({
-               "scrollY": "400px",
-               "scrollCollapse": true,
-               "paging": true,
-               "language": {
-                   "search": "Buscar:",
-                   "emptyTable": "Sin registros",
-                   "lengthMenu": "Mostrando _MENU_ registros",
-                   "zeroRecords": "No se encontraron registros",
-                   "info": "Mostrando _START_ de _END_ de _TOTAL_ registros",
-                   "infoEmpty": "No hay registros disponibles",
-                   "infoFiltered": "(filtrado de _MAX_ registros totales)",
-                   "paginate": {
-                       "first": "primero",
-                       "last": "último",
-                       "next": "próximo",
-                       "previous": "anterior"
-                   }
-               }
-           });
+        $('#advertencia_eliminacion').on('show.bs.modal', function (event) {
+            // Button that triggered the modal
+            var button = $(event.relatedTarget)
+            // Extract info from data-* attributes
+            var id = button.data('id')
+            var introduccion = button.data('introduccion')
+            var nombre = button.data('nombre')
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-body #' + '<%= id_item_por_eliminar.ClientID %>').val(id)
+           modal.find('.modal-body #texto_a_mostrar').text('Esta por eliminar ' + introduccion + ' ' + nombre + '. Esta acción enviará correos de notificación al tesista y su director. Desea continuar?')
+       })
 
-       });
-
-       $('#advertencia_eliminacion').on('show.bs.modal', function (event) {
-           // Button that triggered the modal
-           var button = $(event.relatedTarget)
-           // Extract info from data-* attributes
-           var id = button.data('id')
-           var introduccion = button.data('introduccion')
-           var nombre = button.data('nombre')
-           // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-           var modal = $(this)
-           modal.find('.modal-body #' + '<%= id_item_por_eliminar.ClientID %>').val(id)
-            modal.find('.modal-body #texto_a_mostrar').text('Esta por eliminar ' + introduccion + ' ' + nombre + '. Esta acción enviará correos de notificación al tesista y su director. Desea continuar?')
-        })
-
-        $(document).ready(function () {
-            $('#<%= gv_tesinas.ClientID %>').DataTable({
+       $(document).ready(function () {
+           $('#<%= gv_tesinas.ClientID %>').DataTable({
                 "scrollY": "400px",
                 "scrollCollapse": true,
                 "language": {
@@ -556,11 +452,6 @@
 
         $('#panel_ver_tesina').on('shown.bs.modal', function () {
             var table = $('#<%= gv_historial.ClientID %>').DataTable();
-            table.draw();
-        });
-
-        $('#aprobar_tesina').on('shown.bs.modal', function () {
-            var table = $('#<%= gv_jueces.ClientID %>').DataTable();
             table.draw();
         });
 

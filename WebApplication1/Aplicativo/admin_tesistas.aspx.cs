@@ -151,7 +151,7 @@ namespace WebApplication1.Aplicativo
                             persona_domicilio = tb_domicilio.Value,
                             persona_telefono = tb_telefono.Value,
                             persona_usuario = tb_usuario.Value,
-                            persona_clave = Cripto.Encriptar(tb_pass_alta.Value),
+                            persona_clave = Cripto.Encriptar(tb_dni_tesista.Value),
                             persona_estilo = "Sandstone"
                         };
                         cxt.Personas.Add(p_tesista);
@@ -347,6 +347,7 @@ namespace WebApplication1.Aplicativo
                         }
                         else
                         {
+                            tb_usuario.Value = tb_dni_tesista.Value;
                             tr_pass_edit.Visible = false;
                             tr_pass_alta.Visible = true;
                         }
@@ -381,7 +382,6 @@ namespace WebApplication1.Aplicativo
             tb_tabla_resto_campos.Visible = false;
             tb_usuario.Value = string.Empty;
             tb_contraseña.Value = string.Empty;
-            tb_pass_alta.Value = string.Empty;
             hidden_id_tesista_editar.Value = "0";
 
             string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_tesista').modal('show')});</script>";

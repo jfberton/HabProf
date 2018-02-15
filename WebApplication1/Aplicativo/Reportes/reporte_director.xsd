@@ -12,7 +12,7 @@
   <xs:element name="reporte_director" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="reporte_director" msprop:Generator_UserDSName="reporte_director">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Detalle" msprop:Generator_TableClassName="DetalleDataTable" msprop:Generator_TableVarName="tableDetalle" msprop:Generator_TablePropName="Detalle" msprop:Generator_RowDeletingName="DetalleRowDeleting" msprop:Generator_RowChangingName="DetalleRowChanging" msprop:Generator_RowEvHandlerName="DetalleRowChangeEventHandler" msprop:Generator_RowDeletedName="DetalleRowDeleted" msprop:Generator_UserTableName="Detalle" msprop:Generator_RowChangedName="DetalleRowChanged" msprop:Generator_RowEvArgName="DetalleRowChangeEvent" msprop:Generator_RowClassName="DetalleRow">
+        <xs:element name="Detalle" msprop:Generator_TableClassName="DetalleDataTable" msprop:Generator_TableVarName="tableDetalle" msprop:Generator_RowChangedName="DetalleRowChanged" msprop:Generator_TablePropName="Detalle" msprop:Generator_RowDeletingName="DetalleRowDeleting" msprop:Generator_RowChangingName="DetalleRowChanging" msprop:Generator_RowEvHandlerName="DetalleRowChangeEventHandler" msprop:Generator_RowDeletedName="DetalleRowDeleted" msprop:Generator_RowClassName="DetalleRow" msprop:Generator_UserTableName="Detalle" msprop:Generator_RowEvArgName="DetalleRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="director_nombre" msprop:Generator_ColumnVarNameInTable="columndirector_nombre" msprop:Generator_ColumnPropNameInRow="director_nombre" msprop:Generator_ColumnPropNameInTable="director_nombreColumn" msprop:Generator_UserColumnName="director_nombre" type="xs:string" minOccurs="0" />
@@ -23,6 +23,7 @@
               <xs:element name="tesina_calificacion" msprop:Generator_ColumnVarNameInTable="columntesina_calificacion" msprop:Generator_ColumnPropNameInRow="tesina_calificacion" msprop:Generator_ColumnPropNameInTable="tesina_calificacionColumn" msprop:Generator_UserColumnName="tesina_calificacion" type="xs:string" minOccurs="0" />
               <xs:element name="tesina_calificacion_letra" msprop:Generator_ColumnVarNameInTable="columntesina_calificacion_letra" msprop:Generator_ColumnPropNameInRow="tesina_calificacion_letra" msprop:Generator_ColumnPropNameInTable="tesina_calificacion_letraColumn" msprop:Generator_UserColumnName="tesina_calificacion_letra" type="xs:string" minOccurs="0" />
               <xs:element name="tesina_fecha_evaluacion" msprop:Generator_ColumnVarNameInTable="columntesina_fecha_evaluacion" msprop:Generator_ColumnPropNameInRow="tesina_fecha_evaluacion" msprop:Generator_ColumnPropNameInTable="tesina_fecha_evaluacionColumn" msprop:Generator_UserColumnName="tesina_fecha_evaluacion" type="xs:string" minOccurs="0" />
+              <xs:element name="anteco" msprop:Generator_ColumnVarNameInTable="columnanteco" msprop:Generator_ColumnPropNameInRow="anteco" msprop:Generator_ColumnPropNameInTable="antecoColumn" msprop:Generator_UserColumnName="anteco" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

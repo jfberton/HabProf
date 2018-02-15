@@ -440,7 +440,20 @@ namespace WebApplication1.Aplicativo
 
         protected void cv_jurados_ServerValidate(object source, ServerValidateEventArgs args)
         {
-            args.IsValid = hidden_ids_jueces.Value.Length > 1;
+            string[] ids_jueces = hidden_ids_jueces.Value.Split(',');
+
+            int id_jurado = 0;
+            int jurados = 0;
+
+            foreach (string id_jurado_str in ids_jueces)
+            {
+                if (int.TryParse(id_jurado_str, out id_jurado))
+                {
+                    jurados++;
+                }
+            }
+
+            args.IsValid = jurados >= 1 && jurados <= 3;
         }
 
         protected void cv_tesinas_ServerValidate(object source, ServerValidateEventArgs args)

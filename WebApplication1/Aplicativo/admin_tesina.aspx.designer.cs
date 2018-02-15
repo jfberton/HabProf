@@ -238,6 +238,69 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.WebControls.GridView gv_directores;
         
         /// <summary>
+        /// hidden_codirector_id control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidden_codirector_id;
+        
+        /// <summary>
+        /// tb_codirector control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText tb_codirector;
+        
+        /// <summary>
+        /// btn_buscar_codirector control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_buscar_codirector;
+        
+        /// <summary>
+        /// btn_eliminar_codirector control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_eliminar_codirector;
+        
+        /// <summary>
+        /// cv_codirector control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cv_codirector;
+        
+        /// <summary>
+        /// lbl_sin_codirectores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_sin_codirectores;
+        
+        /// <summary>
+        /// gv_codirectores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_codirectores;
+        
+        /// <summary>
         /// div_duracion_y_notificaciones control.
         /// </summary>
         /// <remarks>
@@ -317,15 +380,6 @@ namespace WebApplication1.Aplicativo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btn_guardar_tesina;
-        
-        /// <summary>
-        /// btn_enviar_correos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_enviar_correos;
         
         /// <summary>
         /// btn_cancelar control.

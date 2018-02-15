@@ -85,7 +85,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button Text="Aceptar" CssClass="btn btn-success" CausesValidation="false" ID="btn_aceptar_eliminacion" OnClick="btn_aceptar_eliminacion_Click" runat="server" />
+                    <asp:Button Text="Aceptar" CssClass="btn btn-primary" CausesValidation="false" ID="btn_aceptar_eliminacion" OnClick="btn_aceptar_eliminacion_Click" runat="server" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
@@ -206,12 +206,20 @@
 
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Estado final">
+                                    <asp:TemplateField HeaderText="Calificación Co-Director">
                                         <ItemTemplate>
-                                            <asp:DropDownList runat="server" AccessKey='<%#Eval("tesina_id")%>'>
-                                                <asp:ListItem Text="Aprobada" />
-                                                <asp:ListItem Text="Desaprobada" />
-                                            </asp:DropDownList>
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <asp:TextBox runat="server" Columns="3" ID="tb_calificacion_codirector_tesina" AccessKey='<%#Eval("tesina_id")%>' />
+                                                    </td>
+                                                    <td>
+                                                        <asp:CustomValidator ControlToValidate="tb_calificacion_codirector_tesina" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                            ID="cv_calificacion_codirector" runat="server" ErrorMessage="Debe ingresar una calificacion entre 1 y 10" OnServerValidate="cv_calificacion_codirector_ServerValidate" ValidationGroup="cerrar" />
+                                                    </td>
+                                                </tr>
+                                            </table>
+
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>

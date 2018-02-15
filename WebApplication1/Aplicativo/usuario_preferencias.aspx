@@ -160,7 +160,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button id="btn_guardar_nuevo_mail" runat="server" onserverclick="btn_guardar_nuevo_mail_ServerClick" class="btn btn-success" validationgroup="director">
+                    <button id="btn_guardar_nuevo_mail" runat="server" onserverclick="btn_guardar_nuevo_mail_ServerClick" class="btn btn-primary" validationgroup="director">
                         <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Guardar!
                            
                     </button>

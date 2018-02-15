@@ -32,6 +32,7 @@
         <EntityTypeShape EntityType="HabProfDB.Mesa" Width="2.125" PointX="5.375" PointY="9" />
         <AssociationConnector Association="HabProfDB.MesaTesina" />
         <AssociationConnector Association="HabProfDB.MesaJuez" />
+        <AssociationConnector Association="HabProfDB.DirectorTesina1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -24,6 +24,8 @@ public partial class Director
 
         this.Tesinas = new HashSet<Tesina>();
 
+        this.TesinasCodirigidas = new HashSet<Tesina>();
+
     }
 
 
@@ -38,6 +40,10 @@ public partial class Director
     public virtual ICollection<Tesina> Tesinas { get; set; }
 
     public virtual Persona Persona { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<Tesina> TesinasCodirigidas { get; set; }
 
 }
 

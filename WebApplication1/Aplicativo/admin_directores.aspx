@@ -131,14 +131,10 @@
                                         </tr>
                                         <tr runat="server" id="tr_pass_alta">
                                             <td>Contraseña</td>
-                                            <td style="width: auto">
-                                                <input type="password" id="tb_pass_alta" class="form-control" runat="server" placeholder="Contraseña del director" /></td>
+                                            <td style="width: auto">La contraseña es igual al DNI
+                                                </td>
                                             <td>
-                                                <asp:RequiredFieldValidator ControlToValidate="tb_pass_alta" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="RequiredFieldValidator6" runat="server" ErrorMessage="Debe asignar una contraseña" ValidationGroup="director">
-                                                </asp:RequiredFieldValidator>
-                                                <%--<asp:RegularExpressionValidator ValidationExpression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$" ControlToValidate="tb_pass_alta" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="regx_pass" runat="server" ErrorMessage="La contraseña debe tener entre 4 y 8 caracteres, al menos una mayúscula, una minúscula y un número" ValidationGroup="director" />--%>
+                                               
                                             </td>
                                         </tr>
                                         <tr runat="server" id="tr_pass_edit">
@@ -166,7 +162,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button id="btn_guardar" runat="server" onserverclick="btn_guardar_ServerClick" visible="false" class="btn btn-success" validationgroup="director">
+                            <button id="btn_guardar" runat="server" onserverclick="btn_guardar_ServerClick" visible="false" class="btn btn-primary" validationgroup="director">
                                 <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Guardar!
                            
                             </button>
@@ -229,7 +225,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button Text="Aceptar" CssClass="btn btn-success" CausesValidation="false" ID="btn_aceptar_eliminacion" OnClick="btn_aceptar_eliminacion_Click" runat="server" />
+                    <asp:Button Text="Aceptar" CssClass="btn btn-primary" CausesValidation="false" ID="btn_aceptar_eliminacion" OnClick="btn_aceptar_eliminacion_Click" runat="server" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>

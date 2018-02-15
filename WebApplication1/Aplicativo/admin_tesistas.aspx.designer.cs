@@ -301,24 +301,6 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.HtmlControls.HtmlTableRow tr_pass_alta;
         
         /// <summary>
-        /// tb_pass_alta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword tb_pass_alta;
-        
-        /// <summary>
-        /// RequiredFieldValidator8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator8;
-        
-        /// <summary>
         /// tr_pass_edit control.
         /// </summary>
         /// <remarks>

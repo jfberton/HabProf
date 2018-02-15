@@ -57,7 +57,7 @@
         </div>
         <div class="col-md-1">
             <asp:CustomValidator Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                ID="cv_jurados" runat="server" ErrorMessage="Debe ingresar los jurados evaluadores" OnServerValidate="cv_jurados_ServerValidate" ValidationGroup="mesa" />
+                ID="cv_jurados" runat="server" ErrorMessage="Debe ingresar los jurados evaluadores, uno como mínimo 3 como máximo" OnServerValidate="cv_jurados_ServerValidate" ValidationGroup="mesa" />
         </div>
     </div>
 
@@ -96,7 +96,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button Text="Aceptar" CssClass="btn btn-success" ID="btn_aceptar_seleccion_jurado" OnClick="btn_aceptar_seleccion_jurado_Click" runat="server" />
+                    <asp:Button Text="Aceptar" CssClass="btn btn-primary" ID="btn_aceptar_seleccion_jurado" OnClick="btn_aceptar_seleccion_jurado_Click" runat="server" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
@@ -165,7 +165,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <asp:Button Text="Aceptar" CssClass="btn btn-success" ID="btn_aceptar_seleccion_tesina" OnClick="btn_aceptar_seleccion_tesina_Click" runat="server" />
+                    <asp:Button Text="Aceptar" CssClass="btn btn-primary" ID="btn_aceptar_seleccion_tesina" OnClick="btn_aceptar_seleccion_tesina_Click" runat="server" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>
@@ -285,10 +285,14 @@
 
         });
 
+        var d = new Date();
+        d.setDate(d.getDate() + 7)
+        
         $(function () {
             $('#datetimepicker1').datetimepicker({
                 locale: 'es',
-                format: 'L'
+                format: 'L',
+                minDate: d
             });
         });
 

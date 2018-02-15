@@ -295,6 +295,8 @@ namespace WebApplication1.Aplicativo.Reportes {
             
             private global::System.Data.DataColumn columntesina_fecha_evaluacion;
             
+            private global::System.Data.DataColumn columnanteco;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public DetalleDataTable() {
@@ -394,6 +396,14 @@ namespace WebApplication1.Aplicativo.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn antecoColumn {
+                get {
+                    return this.columnanteco;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -429,7 +439,7 @@ namespace WebApplication1.Aplicativo.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DetalleRow AddDetalleRow(string director_nombre, string director_dni, string tesista_nombre, string licenciatura_nombre, string tema_tesina, string tesina_calificacion, string tesina_calificacion_letra, string tesina_fecha_evaluacion) {
+            public DetalleRow AddDetalleRow(string director_nombre, string director_dni, string tesista_nombre, string licenciatura_nombre, string tema_tesina, string tesina_calificacion, string tesina_calificacion_letra, string tesina_fecha_evaluacion, string anteco) {
                 DetalleRow rowDetalleRow = ((DetalleRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         director_nombre,
@@ -439,7 +449,8 @@ namespace WebApplication1.Aplicativo.Reportes {
                         tema_tesina,
                         tesina_calificacion,
                         tesina_calificacion_letra,
-                        tesina_fecha_evaluacion};
+                        tesina_fecha_evaluacion,
+                        anteco};
                 rowDetalleRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDetalleRow);
                 return rowDetalleRow;
@@ -470,6 +481,7 @@ namespace WebApplication1.Aplicativo.Reportes {
                 this.columntesina_calificacion = base.Columns["tesina_calificacion"];
                 this.columntesina_calificacion_letra = base.Columns["tesina_calificacion_letra"];
                 this.columntesina_fecha_evaluacion = base.Columns["tesina_fecha_evaluacion"];
+                this.columnanteco = base.Columns["anteco"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -491,6 +503,8 @@ namespace WebApplication1.Aplicativo.Reportes {
                 base.Columns.Add(this.columntesina_calificacion_letra);
                 this.columntesina_fecha_evaluacion = new global::System.Data.DataColumn("tesina_fecha_evaluacion", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntesina_fecha_evaluacion);
+                this.columnanteco = new global::System.Data.DataColumn("anteco", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnanteco);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -761,6 +775,22 @@ namespace WebApplication1.Aplicativo.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string anteco {
+                get {
+                    try {
+                        return ((string)(this[this.tableDetalle.antecoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'anteco\' in table \'Detalle\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDetalle.antecoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Isdirector_nombreNull() {
                 return this.IsNull(this.tableDetalle.director_nombreColumn);
             }
@@ -853,6 +883,18 @@ namespace WebApplication1.Aplicativo.Reportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Settesina_fecha_evaluacionNull() {
                 this[this.tableDetalle.tesina_fecha_evaluacionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsantecoNull() {
+                return this.IsNull(this.tableDetalle.antecoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetantecoNull() {
+                this[this.tableDetalle.antecoColumn] = global::System.Convert.DBNull;
             }
         }
         

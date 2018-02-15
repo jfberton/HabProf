@@ -51,11 +51,15 @@ public partial class Tesina
 
     public Nullable<short> tesina_calificacion_director { get; set; }
 
+    public Nullable<short> tesina_calificacion_codirector { get; set; }
+
     public int tesista_id { get; set; }
 
     public int director_id { get; set; }
 
     public string tesina_categoria { get; set; }
+
+    public Nullable<int> codirector_id { get; set; }
 
 
 
@@ -76,6 +80,8 @@ public partial class Tesina
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<Mesa> Mesas { get; set; }
+
+    public virtual Director Codirector { get; set; }
 
 }
 

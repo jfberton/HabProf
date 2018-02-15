@@ -14,7 +14,12 @@ namespace WebApplication1.Aplicativo
         {
             get
             {
-                double? promedio = this.Tesinas.Average(tt => tt.tesina_calificacion_director);
+                double? promedio = (
+                                    this.Tesinas.Average(tt => tt.tesina_calificacion_director) +
+                                    this.TesinasCodirigidas.Average(tt => tt.tesina_calificacion_codirector)
+                                    ) / Convert.ToDouble(2);
+
+
                 return Convert.ToDecimal(promedio ?? 0);
             }
         }
@@ -22,6 +27,6 @@ namespace WebApplication1.Aplicativo
         /// <summary>
         /// Tesinas a cargo: las tesinas en las cuales esta trabajando con los tesistas
         /// </summary>
-        public int Tesinas_a_cargo { get { return this.Tesinas.Count(tt => tt.tesina_fecha_cierre == null); } }
+        public int Tesinas_a_cargo { get { return this.Tesinas.Count(tt => tt.tesina_fecha_cierre == null) + this.TesinasCodirigidas.Count(tt => tt.tesina_fecha_cierre == null); } }
     }
 }

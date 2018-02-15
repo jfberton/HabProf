@@ -44,7 +44,7 @@ namespace WebApplication1.Aplicativo
                             envio_email_destino = tesina.Director.Persona.persona_email,
                             envio_fecha_hora = DateTime.Now,
                             envio_respuesta_clave = "no se usa",
-                            envio_tipo = MiEmail.tipo_mail.notificacion_tesina_prorrogada.ToString()
+                            envio_tipo = MiEmail.tipo_mail.notificacion_tesina_vencida.ToString()
                         };
                         cxt.Envio_mails.Add(em_director);
 
@@ -54,7 +54,7 @@ namespace WebApplication1.Aplicativo
                             envio_email_destino = tesina.Tesista.Persona.persona_email,
                             envio_fecha_hora = DateTime.Now,
                             envio_respuesta_clave = "no se usa",
-                            envio_tipo = MiEmail.tipo_mail.notificacion_tesina_prorrogada.ToString()
+                            envio_tipo = MiEmail.tipo_mail.notificacion_tesina_vencida.ToString()
                         };
                         cxt.Envio_mails.Add(em_tesista);
 
@@ -64,6 +64,20 @@ namespace WebApplication1.Aplicativo
                         me_director.Enviar_mail();
                         me_tesista.Enviar_mail();
 
+                        if (tesina.Codirector != null)
+                        {
+                            Envio_mail em_codirector = new Envio_mail()
+                            {
+                                persona_id = tesina.Codirector.Persona.persona_id,
+                                envio_email_destino = tesina.Codirector.Persona.persona_email,
+                                envio_fecha_hora = DateTime.Now,
+                                envio_respuesta_clave = "no se usa",
+                                envio_tipo = MiEmail.tipo_mail.notificacion_tesina_vencida.ToString()
+                            };
+                            cxt.Envio_mails.Add(em_codirector);
+                            MiEmail me_codirector = new MiEmail(em_codirector, tesina);
+                            me_codirector.Enviar_mail();
+                        }
 
                         cxt.SaveChanges();
                     }

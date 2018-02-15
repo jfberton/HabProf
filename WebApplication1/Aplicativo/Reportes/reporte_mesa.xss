@@ -8,7 +8,7 @@
   <Shapes>
     <Shape ID="DesignTable:t_mesa" ZOrder="3" X="508" Y="176" Height="86" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="82" />
     <Shape ID="DesignTable:t_jurados" ZOrder="2" X="592" Y="299" Height="86" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="82" />
-    <Shape ID="DesignTable:t_tesinas" ZOrder="1" X="263" Y="235" Height="124" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="120" />
+    <Shape ID="DesignTable:t_tesinas" ZOrder="1" X="263" Y="235" Height="143" Width="187" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="139" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

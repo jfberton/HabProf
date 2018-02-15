@@ -909,6 +909,10 @@ namespace WebApplication1.Aplicativo.Reportes {
             
             private global::System.Data.DataColumn columntesina_calificacion_director;
             
+            private global::System.Data.DataColumn columntesina_calificacion_codirector;
+            
+            private global::System.Data.DataColumn columntesista_legajo;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public t_tesinasDataTable() {
@@ -984,6 +988,22 @@ namespace WebApplication1.Aplicativo.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn tesina_calificacion_codirectorColumn {
+                get {
+                    return this.columntesina_calificacion_codirector;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn tesista_legajoColumn {
+                get {
+                    return this.columntesista_legajo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1019,14 +1039,16 @@ namespace WebApplication1.Aplicativo.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public t_tesinasRow Addt_tesinasRow(string tesina_titulo, string tesina_tesista, string tesina_director, string tesina_calificacion, string tesina_calificacion_director) {
+            public t_tesinasRow Addt_tesinasRow(string tesina_titulo, string tesina_tesista, string tesina_director, string tesina_calificacion, string tesina_calificacion_director, string tesina_calificacion_codirector, string tesista_legajo) {
                 t_tesinasRow rowt_tesinasRow = ((t_tesinasRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         tesina_titulo,
                         tesina_tesista,
                         tesina_director,
                         tesina_calificacion,
-                        tesina_calificacion_director};
+                        tesina_calificacion_director,
+                        tesina_calificacion_codirector,
+                        tesista_legajo};
                 rowt_tesinasRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowt_tesinasRow);
                 return rowt_tesinasRow;
@@ -1054,6 +1076,8 @@ namespace WebApplication1.Aplicativo.Reportes {
                 this.columntesina_director = base.Columns["tesina_director"];
                 this.columntesina_calificacion = base.Columns["tesina_calificacion"];
                 this.columntesina_calificacion_director = base.Columns["tesina_calificacion_director"];
+                this.columntesina_calificacion_codirector = base.Columns["tesina_calificacion_codirector"];
+                this.columntesista_legajo = base.Columns["tesista_legajo"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1069,6 +1093,10 @@ namespace WebApplication1.Aplicativo.Reportes {
                 base.Columns.Add(this.columntesina_calificacion);
                 this.columntesina_calificacion_director = new global::System.Data.DataColumn("tesina_calificacion_director", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntesina_calificacion_director);
+                this.columntesina_calificacion_codirector = new global::System.Data.DataColumn("tesina_calificacion_codirector", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntesina_calificacion_codirector);
+                this.columntesista_legajo = new global::System.Data.DataColumn("tesista_legajo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntesista_legajo);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1490,6 +1518,39 @@ namespace WebApplication1.Aplicativo.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string tesina_calificacion_codirector {
+                get {
+                    try {
+                        return ((string)(this[this.tablet_tesinas.tesina_calificacion_codirectorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'tesina_calificacion_codirector\' in table \'t_tesinas\' is DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_tesinas.tesina_calificacion_codirectorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string tesista_legajo {
+                get {
+                    try {
+                        return ((string)(this[this.tablet_tesinas.tesista_legajoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'tesista_legajo\' in table \'t_tesinas\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_tesinas.tesista_legajoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Istesina_tituloNull() {
                 return this.IsNull(this.tablet_tesinas.tesina_tituloColumn);
             }
@@ -1546,6 +1607,30 @@ namespace WebApplication1.Aplicativo.Reportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Settesina_calificacion_directorNull() {
                 this[this.tablet_tesinas.tesina_calificacion_directorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Istesina_calificacion_codirectorNull() {
+                return this.IsNull(this.tablet_tesinas.tesina_calificacion_codirectorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Settesina_calificacion_codirectorNull() {
+                this[this.tablet_tesinas.tesina_calificacion_codirectorColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Istesista_legajoNull() {
+                return this.IsNull(this.tablet_tesinas.tesista_legajoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Settesista_legajoNull() {
+                this[this.tablet_tesinas.tesista_legajoColumn] = global::System.Convert.DBNull;
             }
         }
         

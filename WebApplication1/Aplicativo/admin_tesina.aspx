@@ -47,7 +47,7 @@
             </asp:RequiredFieldValidator>
         </div>
     </div>
-        <br />
+    <br />
     <%--FECHA INICIO--%>
     <div class="row">
         <div class="col-md-2">Fecha inicio</div>
@@ -70,17 +70,16 @@
         <div class="col-md-2">
             Categoría
         </div>
-         <div class="col-md-3">
-             <asp:DropDownList runat="server" ID="ddl_categoria" CssClass="form-control">
-                 <asp:ListItem Text="Categoria 1" />
-                 <asp:ListItem Text="Categoria 2" />
-                 <asp:ListItem Text="Categoria 3" />
-                 <asp:ListItem Text="Categoria 4" />
-                 <asp:ListItem Text="Categoria 5" />
-             </asp:DropDownList>
+        <div class="col-md-3">
+            <asp:DropDownList runat="server" ID="ddl_categoria" CssClass="form-control">
+                <asp:ListItem Text="Categoria 1" />
+                <asp:ListItem Text="Categoria 2" />
+                <asp:ListItem Text="Categoria 3" />
+                <asp:ListItem Text="Categoria 4" />
+                <asp:ListItem Text="Categoria 5" />
+            </asp:DropDownList>
         </div>
-         <div class="col-md-1">
-
+        <div class="col-md-1">
         </div>
     </div>
 
@@ -191,9 +190,61 @@
 
     </div>
 
+    <div class="row">
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-2">
+            Codirector
+        </div>
+        <div class="col-md-3">
+            <asp:HiddenField runat="server" ID="hidden_codirector_id" />
+            <div class="input-group">
+                <input type="text" class="form-control" readonly="true" runat="server" id="tb_codirector" />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" runat="server" id="btn_buscar_codirector" onserverclick="btn_buscar_codirector_ServerClick"><span class="glyphicon glyphicon-search"></span></button>
+                    <button class="btn btn-danger" type="button" runat="server" id="btn_eliminar_codirector" onserverclick="btn_eliminar_codirector_ServerClick"><span class="glyphicon glyphicon-remove"></span></button>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-1">
+            <asp:CustomValidator ControlToValidate="tb_codirector" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                ID="cv_codirector" runat="server" ErrorMessage="El director y el co-director deben ser personas distintas" OnServerValidate="cv_codirector_ServerValidate" ValidationGroup="tesina" />
+        </div>
 
-    
-   
+        <div class="modal fade" id="buscar_codirector" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Seleccionar codirectors</h4>
+                    </div>
+                    <div class="modal-body">
+                        <asp:Label Text="No existen codirectores disponibles para realizar asesoramiento al tesista." Visible="false" ID="lbl_sin_codirectores" runat="server" />
+                        <asp:GridView ID="gv_codirectores" runat="server" OnPreRender="gv_PreRender"
+                            AutoGenerateColumns="False" GridLines="None" CssClass="display">
+                            <Columns>
+                                <asp:BoundField DataField="persona_nomyap" HeaderText="Nombre" ReadOnly="true" />
+                                <asp:BoundField DataField="persona_dni" HeaderText="DNI" ReadOnly="true" />
+                                <asp:BoundField DataField="persona_email" HeaderText="E-mail" ReadOnly="true" />
+                                <asp:BoundField DataField="codirector_calificacion" HeaderText="Calificación" ReadOnly="true" />
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <button runat="server" class="btn btn-sm btn-default" id="btn_seleccionar_codirector" causesvalidation="false" onserverclick="btn_seleccionar_codirector_ServerClick" data-id='<%#Eval("codirector_id")%>'>
+                                            Seleccionar
+                                        </button>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <br />
     <%--DURACION MESES PERIODO ENTRE NOTIFICACIONES--%>
     <div class="row" runat="server" id="div_duracion_y_notificaciones">
@@ -236,7 +287,6 @@
     <div class="row">
         <div class="col-md-12 text-right">
             <asp:Button Text="Guardar" OnClick="btn_guardar_tesina_ServerClick" ID="btn_guardar_tesina" CssClass="btn btn-primary" Enabled="true" runat="server" />
-            <asp:Button Text="Enviar correos" OnClick="btn_enviar_correos_Click" ID="btn_enviar_correos" CssClass="btn btn-primary" Enabled="false" runat="server" />
             <button type="button" class="btn btn-default" runat="server" id="btn_cancelar" onserverclick="btn_cancelar_ServerClick">Cancelar</button>
         </div>
     </div>
@@ -307,6 +357,25 @@
                     },
                 }
             });
+
+            $('#<%= gv_codirectores.ClientID %>').DataTable({
+                "scrollY": "400px",
+                "scrollCollapse": true,
+                "paging": false,
+                "language": {
+                    "search": "Buscar:",
+                    "zeroRecords": "No se encontraron registros",
+                    "info": "Mostrando _START_ de _END_ de _TOTAL_ registros",
+                    "infoEmpty": "No hay registros disponibles",
+                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                    "paginate": {
+                        "first": "primero",
+                        "last": "último",
+                        "next": "próximo",
+                        "previous": "anterior"
+                    },
+                }
+            });
         });
 
        <%-- $('#ver_historial_de_estados').on('shown.bs.modal', function () {
@@ -327,11 +396,16 @@
         $('#buscar_tesista').on('shown.bs.modal', function () {
             var table = $('#<%= gv_tesistas.ClientID %>').DataTable();
             table.draw();
-        })
+        });
 
-            $('#buscar_director').on('shown.bs.modal', function () {
-                var table = $('#<%= gv_directores.ClientID %>').DataTable();
+        $('#buscar_director').on('shown.bs.modal', function () {
+            var table = $('#<%= gv_directores.ClientID %>').DataTable();
             table.draw();
-        })
+        });
+
+        $('#buscar_codirector').on('shown.bs.modal', function () {
+            var table = $('#<%= gv_codirectores.ClientID %>').DataTable();
+            table.draw();
+        });
     </script>
 </asp:Content>

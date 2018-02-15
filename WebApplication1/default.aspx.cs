@@ -246,7 +246,7 @@ namespace WebApplication1
                     //          * entregada
                     Estado_tesina estado_a_corregir = new Estado_tesina()
                     {
-                        estado_tesina_estado = "A corregir",
+                        estado_tesina_estado = "Observada",
                         estado_tesina_descripcion = "Ocurre cuando el director o administrador informan sobre correcciones a realizar en la tesina presentada"
                     };
 

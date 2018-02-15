@@ -93,6 +93,10 @@
       <End Role="Juez" EntitySet="Jueces" />
       <End Role="MesaJuez" EntitySet="MesaJuez" />
     </AssociationSet>
+    <AssociationSet Name="DirectorTesina1" Association="HabProfDB.Store.DirectorTesina1">
+      <End Role="Director" EntitySet="Directores" />
+      <End Role="Tesina" EntitySet="Tesinas" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Personas">
     <Key>
@@ -124,9 +128,11 @@
     <Property Name="tesina_calificacion" Type="smallint" Nullable="true" />
     <Property Name="tesina_fecha_cierre" Type="datetime" Nullable="true" />
     <Property Name="tesina_calificacion_director" Type="smallint" Nullable="true" />
+    <Property Name="tesina_calificacion_codirector" Type="smallint" Nullable="true" />
     <Property Name="tesista_id" Type="int" Nullable="false" />
     <Property Name="director_id" Type="int" Nullable="false" />
     <Property Name="tesina_categoria" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="codirector_id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Licenciaturas">
     <Key>
@@ -389,6 +395,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="DirectorTesina1">
+    <End Role="Director" Type="HabProfDB.Store.Directores" Multiplicity="0..1" />
+    <End Role="Tesina" Type="HabProfDB.Store.Tesinas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Director">
+        <PropertyRef Name="director_id" />
+      </Principal>
+      <Dependent Role="Tesina">
+        <PropertyRef Name="codirector_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_JuezTesina_Juez">
     <End Role="Juez" Type="HabProfDB.Store.Jueces" Multiplicity="1" />
     <End Role="JuezTesina" Type="HabProfDB.Store.JuezTesina" Multiplicity="*" />
@@ -538,6 +556,10 @@
             <End Role="Mesa" EntitySet="Mesas" />
             <End Role="Juez" EntitySet="Jueces" />
           </AssociationSet>
+          <AssociationSet Name="DirectorTesina1" Association="HabProfDB.DirectorTesina1">
+            <End Role="Director" EntitySet="Directores" />
+            <End Role="Tesina" EntitySet="Tesinas" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Persona">
           <Key>
@@ -580,6 +602,7 @@
           <NavigationProperty Name="Tesinas" Relationship="HabProfDB.DirectorTesina" FromRole="Director" ToRole="Tesina" />
           <NavigationProperty Name="Persona" Relationship="HabProfDB.PersonaDirector" FromRole="Director" ToRole="Persona" />
           <Property Name="director_fecha_baja" Type="DateTime" Nullable="true" />
+          <NavigationProperty Name="TesinasCodirigidas" Relationship="HabProfDB.DirectorTesina1" FromRole="Director" ToRole="Tesina" />
         </EntityType>
         <EntityType Name="Administrador">
           <Key>
@@ -616,12 +639,15 @@
           <Property Name="tesina_fecha_cierre" Type="DateTime" Nullable="true" />
           <Property Name="tesina_calificacion_director" Type="Int16" Nullable="true" />
           <NavigationProperty Name="Tesista" Relationship="HabProfDB.TesistaTesina" FromRole="Tesina" ToRole="Tesista" />
+          <Property Name="tesina_calificacion_codirector" Type="Int16" Nullable="true" />
           <Property Name="tesista_id" Type="Int32" Nullable="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <NavigationProperty Name="Director" Relationship="HabProfDB.DirectorTesina" FromRole="Tesina" ToRole="Director" />
           <Property Name="director_id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Jueces" Relationship="HabProfDB.JuezTesina" FromRole="Tesina" ToRole="Juez" />
           <Property Name="tesina_categoria" Type="String" Nullable="false" />
           <NavigationProperty Name="Mesas" Relationship="HabProfDB.MesaTesina" FromRole="Tesina" ToRole="Mesa" />
+          <NavigationProperty Name="Codirector" Relationship="HabProfDB.DirectorTesina1" FromRole="Tesina" ToRole="Director" />
+          <Property Name="codirector_id" Type="Int32" Nullable="true" />
         </EntityType>
         <EntityType Name="Licenciatura">
           <Key>
@@ -814,6 +840,18 @@
           <End Type="HabProfDB.Mesa" Role="Mesa" Multiplicity="*" />
           <End Type="HabProfDB.Juez" Role="Juez" Multiplicity="*" />
         </Association>
+        <Association Name="DirectorTesina1">
+          <End Type="HabProfDB.Director" Role="Director" Multiplicity="0..1" />
+          <End Type="HabProfDB.Tesina" Role="Tesina" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Director">
+              <PropertyRef Name="director_id" />
+            </Principal>
+            <Dependent Role="Tesina">
+              <PropertyRef Name="codirector_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -850,9 +888,11 @@
           <ScalarProperty Name="tesina_calificacion" ColumnName="tesina_calificacion" />
           <ScalarProperty Name="tesina_fecha_cierre" ColumnName="tesina_fecha_cierre" />
           <ScalarProperty Name="tesina_calificacion_director" ColumnName="tesina_calificacion_director" />
+          <ScalarProperty Name="tesina_calificacion_codirector" ColumnName="tesina_calificacion_codirector" />
           <ScalarProperty Name="tesista_id" ColumnName="tesista_id" />
           <ScalarProperty Name="director_id" ColumnName="director_id" />
           <ScalarProperty Name="tesina_categoria" ColumnName="tesina_categoria" />
+          <ScalarProperty Name="codirector_id" ColumnName="codirector_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
