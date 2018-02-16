@@ -532,11 +532,82 @@ namespace WebApplication1.Aplicativo
 
                         mesa.mesa_estado = "Generada";
 
+                        /*
+                          Envio_mail em_codirector = new Envio_mail()
+                        {
+                            persona_id = tesina.Codirector.Persona.persona_id,
+                            envio_email_destino = tesina.Codirector.Persona.persona_email,
+                            envio_fecha_hora = DateTime.Now,
+                            envio_respuesta_clave = "no se usa",
+                            envio_tipo = MiEmail.tipo_mail.notificacion_eliminacion_tesina_director.ToString()
+                        };
+                        cxt.Envio_mails.Add(em_codirector);
+                        MiEmail me_codirector = new MiEmail(em_codirector, tesina);
+                        me_codirector.Enviar_mail();
+                         */
+
+                        foreach (Juez jurado in mesa.Jueces)
+                        {
+                            Envio_mail em_jurado = new Envio_mail()
+                            {
+                                persona_id = jurado.Persona.persona_id,
+                                envio_email_destino = jurado.Persona.persona_email,
+                                envio_fecha_hora = DateTime.Now,
+                                envio_respuesta_clave = "no se usa",
+                                envio_tipo = MiEmail.tipo_mail.notificacion_alta_mesa.ToString()
+                            };
+                            cxt.Envio_mails.Add(em_jurado);
+                            MiEmail me_jurado = new MiEmail(em_jurado, "Jurado", mesa.mesa_fecha);
+                            me_jurado.Enviar_mail();
+                        }
+
+                        foreach (Tesina tesina in mesa.Tesinas)
+                        {
+                            Envio_mail em_tesista = new Envio_mail()
+                            {
+                                persona_id = tesina.Tesista.Persona.persona_id,
+                                envio_email_destino = tesina.Tesista.Persona.persona_email,
+                                envio_fecha_hora = DateTime.Now,
+                                envio_respuesta_clave = "no se usa",
+                                envio_tipo = MiEmail.tipo_mail.notificacion_alta_mesa.ToString()
+                            };
+                            cxt.Envio_mails.Add(em_tesista);
+                            MiEmail me_tesista = new MiEmail(em_tesista, "Tesista", mesa.mesa_fecha);
+                            me_tesista.Enviar_mail();
+
+                            Envio_mail em_director = new Envio_mail()
+                            {
+                                persona_id = tesina.Director.Persona.persona_id,
+                                envio_email_destino = tesina.Director.Persona.persona_email,
+                                envio_fecha_hora = DateTime.Now,
+                                envio_respuesta_clave = "no se usa",
+                                envio_tipo = MiEmail.tipo_mail.notificacion_alta_mesa.ToString()
+                            };
+                            cxt.Envio_mails.Add(em_director);
+                            MiEmail me_director = new MiEmail(em_director, "Director", mesa.mesa_fecha);
+                            me_director.Enviar_mail();
+
+                            if (tesina.Codirector != null)
+                            {
+                                Envio_mail em_codirector = new Envio_mail()
+                                {
+                                    persona_id = tesina.Codirector.Persona.persona_id,
+                                    envio_email_destino = tesina.Codirector.Persona.persona_email,
+                                    envio_fecha_hora = DateTime.Now,
+                                    envio_respuesta_clave = "no se usa",
+                                    envio_tipo = MiEmail.tipo_mail.notificacion_alta_mesa.ToString()
+                                };
+                                cxt.Envio_mails.Add(em_codirector);
+                                MiEmail me_codirector = new MiEmail(em_codirector, tesina);
+                                me_codirector.Enviar_mail();
+                            }
+
+                        }
+
                         cxt.SaveChanges();
 
                         MessageBox.Show(this, "La mesa se creo correctamente", MessageBox.Tipo_MessageBox.Success, "Exito", "../Aplicativo/admin_mesas.aspx");
                     }
-
                 }
                 else
                 {

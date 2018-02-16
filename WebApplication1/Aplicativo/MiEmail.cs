@@ -29,7 +29,8 @@ namespace WebApplication1.Aplicativo
             notificacion_tesina_vencida,
             notificacion_tesina_prorrogada,
             alta_director,
-            notificacion_recordatorio_automatico
+            notificacion_recordatorio_automatico,
+            notificacion_alta_mesa
         }
 
         public MiEmail(Envio_mail mail)
@@ -80,11 +81,38 @@ namespace WebApplication1.Aplicativo
             }
         }
 
+        /// <summary>
+        /// se utiliza para enviar correos de aviso de alta de mesa
+        /// </summary>
+        public MiEmail(Envio_mail mail, string perfil_persona, DateTime fecha_mesa)
+        {
+            using (HabProfDBContainer cxt = new Aplicativo.HabProfDBContainer())
+            {
+                Persona p = cxt.Personas.FirstOrDefault(pp => pp.persona_id == mail.persona_id);
+                Tipo_mail = (tipo_mail)Enum.Parse(typeof(tipo_mail), mail.envio_tipo);
+                Smtp_client = p.Licenciatura.Servidor.servidor_smtp_host;
+                Smtp_puerto = p.Licenciatura.Servidor.servidor_smtp_port;
+                Persona_nombre = p.persona_nomyap;
+                Persona_usuario = p.persona_usuario;
+                Persona_pass = Cripto.Desencriptar(p.persona_clave);
+                Url_respuesta = ConfigurationManager.AppSettings["direccion_localhost_raiz"] + "landing_mail.aspx?tipo_mail=" + mail.envio_tipo + "&clave=" + mail.envio_respuesta_clave;
+                Credenciales_mail = p.Licenciatura.licenciatura_email;
+                Credenciales_contraseña = p.Licenciatura.licenciatura_email_clave;
+                Destinatarios = new List<string>(mail.envio_email_destino.Replace(" ", "").Split(','));
+                Mesa_perfil_persona = perfil_persona;
+                Mesa_fecha = fecha_mesa.ToShortDateString();
+            }
+        }
+
         public tipo_mail Tipo_mail { get; set; }
 
         private string cuerpo;
 
         public List<string> Destinatarios { get; set; }
+
+        public string Mesa_perfil_persona { get; set; }
+
+        public string Mesa_fecha { get; set; }
 
         public string Credenciales_mail { get; set; }
 
@@ -257,7 +285,13 @@ namespace WebApplication1.Aplicativo
                                                                                                Replace("codirector_tesina", Codirector_nombre).
                                                                                                Replace("correo_codirector", Codirector_mail);
                             break;
-
+                        case tipo_mail.notificacion_alta_mesa:
+                            Asunto = "Sistema de administración de Tesina - Alta Mesa Evaluativa";
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
+                                                                                               Replace("Username", Persona_nombre).
+                                                                                               Replace("fecha_mesa", Mesa_fecha).
+                                                                                               Replace("perfil_persona_mesa", Mesa_perfil_persona);
+                            break;
                         default:
                             break;
                     }

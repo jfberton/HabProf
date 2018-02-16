@@ -121,6 +121,7 @@
     <Content Include="Aplicativo\importar_directores.aspx" />
     <Content Include="Aplicativo\importar_tesistas.aspx" />
     <Content Include="Aplicativo\Mails\alta_director.html" />
+    <Content Include="Aplicativo\Mails\notificacion_alta_mesa.html" />
     <Content Include="Aplicativo\Mails\notificacion_asignacion_tesina_director.html" />
     <Content Include="Aplicativo\Mails\notificacion_correcciones_tesina.html" />
     <Content Include="Aplicativo\Mails\notificacion_eliminacion_tesina_director.html" />

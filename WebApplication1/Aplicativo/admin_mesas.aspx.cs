@@ -541,7 +541,7 @@ namespace WebApplication1.Aplicativo
         {
             string[] nombre_cv = ((CustomValidator)source).ClientID.Split('_');
             int rowNumber = Convert.ToInt32(nombre_cv[nombre_cv.Count() - 1]);
-            TextBox tb_nota_codirector = ((TextBox)gv_cerrar_mesa_tesinas.Rows[rowNumber].Cells[0].Controls[1]);
+            TextBox tb_nota_codirector = ((TextBox)gv_cerrar_mesa_tesinas.Rows[rowNumber].Cells[5].Controls[1]);
             int tesina_id = Convert.ToInt32(tb_nota_codirector.AccessKey);
 
             bool correcto = true;

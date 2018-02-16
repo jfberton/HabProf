@@ -268,7 +268,7 @@ namespace WebApplication1.Aplicativo
                                          fecha = he.historial_tesina_fecha,
                                          estado = he.Estado.estado_tesina_estado,
                                          observacion_completa = he.historial_tesina_descripcion
-                                     }).ToList();
+                                     }).OrderByDescending(hhee=>hhee.fecha).ToList();
 
                     var historial_con_observacion_recortada = (from he in historial
                                                                select new
