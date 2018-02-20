@@ -146,20 +146,23 @@ namespace WebApplication1.Aplicativo
                                        juez_persona_dni = j.Persona.persona_dni,
                                        juez_persona_email = j.Persona.persona_email
                                    }).ToList();
-                    var tesinas = (from t in mesa.Tesinas
-                                   select new
-                                   {
-                                       tesina_tema = t.tesina_tema,
-                                       tesina_director = t.Director.Persona.persona_nomyap,
-                                       tesina_tesista = t.Tesista.Persona.persona_nomyap,
-                                       tesina_nota = t.tesina_calificacion,
-                                       tesina_nota_director = t.tesina_calificacion_director
-                                   });
+                    var tesinas = (from t in mesa.Tesinas select t).ToList();
+                    var tesinas_para_grilla = (from t in tesinas
+                                               select new
+                                               {
+                                                   tesina_tema = t.tesina_tema,
+                                                   tesina_director = t.Director.Persona.persona_nomyap,
+                                                   tesina_tesista = t.Tesista.Persona.persona_nomyap,
+                                                   tesina_codirector = t.Codirector == null ? "-" : t.Codirector.Persona.persona_nomyap,
+                                                   tesina_nota = t.tesina_calificacion,
+                                                   tesina_nota_director = t.tesina_calificacion_director,
+                                                   tesina_nota_codirector = t.tesina_calificacion_codirector == null ? "-" : t.tesina_calificacion_codirector.ToString()
+                                               });
 
                     gv_jurados.DataSource = jurados;
                     gv_jurados.DataBind();
 
-                    gv_tesinas.DataSource = tesinas;
+                    gv_tesinas.DataSource = tesinas_para_grilla;
                     gv_tesinas.DataBind();
 
                     string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#panel_ver_mesa').modal('show')});</script>";
@@ -253,7 +256,7 @@ namespace WebApplication1.Aplicativo
                         {
                             t.Jueces.Add(juez);
                         }
-                      
+
                         Historial_estado he = new Historial_estado()
                         {
                             estado_tesina_id = et.estado_tesina_id,
@@ -265,7 +268,7 @@ namespace WebApplication1.Aplicativo
                         cxt.Historial_estados.Add(he);
                     }
 
-                    
+
 
                     cxt.SaveChanges();
 
@@ -367,55 +370,67 @@ namespace WebApplication1.Aplicativo
         protected void btn_imprimir_directores_Click(object sender, EventArgs e)
         {
             int id_mesa = Convert.ToInt32(((Button)sender).CommandArgument);
-
+            bool mesa_cerrada = false;
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
                 Mesa mesa = cxt.Mesas.FirstOrDefault(pp => pp.mesa_id == id_mesa);
-                Estado_tesina aprobada = cxt.Estados_tesinas.FirstOrDefault(eett => eett.estado_tesina_estado == "Aprobada");
 
-                Reportes.reporte_director ds = new Reportes.reporte_director();
-
-                foreach (Tesina tesina in mesa.Tesinas)
+                if (mesa.mesa_estado == "Cerrada")
                 {
-                    if (tesina.estado_tesis_id == aprobada.estado_tesina_id)
+                    Estado_tesina aprobada = cxt.Estados_tesinas.FirstOrDefault(eett => eett.estado_tesina_estado == "Aprobada");
+
+                    Reportes.reporte_director ds = new Reportes.reporte_director();
+
+                    foreach (Tesina tesina in mesa.Tesinas)
                     {
-                        Reportes.reporte_director.DetalleRow md = ds.Detalle.NewDetalleRow();
-
-                        md.director_nombre = tesina.Director.Persona.persona_nomyap;
-                        md.director_dni = tesina.Director.Persona.persona_dni.ToString();
-                        md.tema_tesina = tesina.tesina_tema;
-                        md.tesina_calificacion = tesina.tesina_calificacion_director.ToString();
-                        md.tesina_calificacion_letra = Calificacion_a_texto(tesina.tesina_calificacion ?? 0);
-                        md.tesista_nombre = tesina.Tesista.Persona.persona_nomyap;
-                        md.tesina_fecha_evaluacion = mesa.mesa_fecha.ToShortDateString();
-                        md.licenciatura_nombre = tesina.Tesista.Persona.Licenciatura.licenciatura_nombre;
-                        md.anteco = "";
-
-                        ds.Detalle.Rows.Add(md);
-
-                        if (tesina.Codirector != null)
+                        if (tesina.estado_tesis_id == aprobada.estado_tesina_id)
                         {
-                            Reportes.reporte_director.DetalleRow md_co = ds.Detalle.NewDetalleRow();
+                            Reportes.reporte_director.DetalleRow md = ds.Detalle.NewDetalleRow();
 
-                            md_co.director_nombre = tesina.Codirector.Persona.persona_nomyap;
-                            md_co.director_dni = tesina.Codirector.Persona.persona_dni.ToString();
-                            md_co.tema_tesina = tesina.tesina_tema;
-                            md_co.tesina_calificacion = tesina.tesina_calificacion_codirector.ToString();
-                            md_co.tesina_calificacion_letra = Calificacion_a_texto(tesina.tesina_calificacion_codirector ?? 0);
-                            md_co.tesista_nombre = tesina.Tesista.Persona.persona_nomyap;
-                            md_co.tesina_fecha_evaluacion = mesa.mesa_fecha.ToShortDateString();
-                            md_co.licenciatura_nombre = tesina.Tesista.Persona.Licenciatura.licenciatura_nombre;
-                            md_co.anteco = "co-";
+                            md.director_nombre = tesina.Director.Persona.persona_nomyap;
+                            md.director_dni = tesina.Director.Persona.persona_dni.ToString();
+                            md.tema_tesina = tesina.tesina_tema;
+                            md.tesina_calificacion = tesina.tesina_calificacion_director.ToString();
+                            md.tesina_calificacion_letra = Calificacion_a_texto(tesina.tesina_calificacion ?? 0);
+                            md.tesista_nombre = tesina.Tesista.Persona.persona_nomyap;
+                            md.tesina_fecha_evaluacion = mesa.mesa_fecha.ToShortDateString();
+                            md.licenciatura_nombre = tesina.Tesista.Persona.Licenciatura.licenciatura_nombre;
+                            md.anteco = "";
 
-                            ds.Detalle.Rows.Add(md_co);
+                            ds.Detalle.Rows.Add(md);
+
+                            if (tesina.Codirector != null)
+                            {
+                                Reportes.reporte_director.DetalleRow md_co = ds.Detalle.NewDetalleRow();
+
+                                md_co.director_nombre = tesina.Codirector.Persona.persona_nomyap;
+                                md_co.director_dni = tesina.Codirector.Persona.persona_dni.ToString();
+                                md_co.tema_tesina = tesina.tesina_tema;
+                                md_co.tesina_calificacion = tesina.tesina_calificacion_codirector.ToString();
+                                md_co.tesina_calificacion_letra = Calificacion_a_texto(tesina.tesina_calificacion_codirector ?? 0);
+                                md_co.tesista_nombre = tesina.Tesista.Persona.persona_nomyap;
+                                md_co.tesina_fecha_evaluacion = mesa.mesa_fecha.ToShortDateString();
+                                md_co.licenciatura_nombre = tesina.Tesista.Persona.Licenciatura.licenciatura_nombre;
+                                md_co.anteco = "co-";
+
+                                ds.Detalle.Rows.Add(md_co);
+                            }
                         }
                     }
-                }
 
-                Session["ds_directores"] = ds;
+                    mesa_cerrada = true;
+                    Session["ds_directores"] = ds;
+                }
             }
 
-            RenderReport_directores();
+            if (mesa_cerrada)
+            {
+                RenderReport_directores();
+            }
+            else
+            {
+                MessageBox.Show(this, "No se pueden imprimir los certificados mientras la mesa no este cerrada.", MessageBox.Tipo_MessageBox.Warning);
+            }
         }
 
         private void RenderReport_directores()
@@ -475,34 +490,46 @@ namespace WebApplication1.Aplicativo
         protected void btn_imprimir_certificado_jurados_Click(object sender, EventArgs e)
         {
             int id_mesa = Convert.ToInt32(((Button)sender).CommandArgument);
+            bool mesa_cerrada = false;
 
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
                 Mesa mesa = cxt.Mesas.FirstOrDefault(pp => pp.mesa_id == id_mesa);
 
-                Reportes.reporte_jurado ds = new Reportes.reporte_jurado();
-
-                foreach (Juez jurado in mesa.Jueces)
+                if (mesa.mesa_estado == "Cerrada")
                 {
-                    foreach (Tesina tesina in mesa.Tesinas)
+                    Reportes.reporte_jurado ds = new Reportes.reporte_jurado();
+
+                    foreach (Juez jurado in mesa.Jueces)
                     {
-                        Reportes.reporte_jurado.t_juradoRow jr = ds.t_jurado.Newt_juradoRow();
-                        jr.jurado_id = jurado.juez_id;
-                        jr.jurado_dni = jurado.Persona.persona_dni.ToString();
-                        jr.jurado_licenciatura_nombre = jurado.Persona.Licenciatura.licenciatura_nombre;
-                        jr.jurado_mesa_fecha = mesa.mesa_fecha.ToShortDateString();
-                        jr.jurado_nombre = jurado.Persona.persona_nomyap;
-                        jr.jurado_tesina_tema = tesina.tesina_tema;
-                        jr.jurado_tesina_tesista = tesina.Tesista.Persona.persona_nomyap;
+                        foreach (Tesina tesina in mesa.Tesinas)
+                        {
+                            Reportes.reporte_jurado.t_juradoRow jr = ds.t_jurado.Newt_juradoRow();
+                            jr.jurado_id = jurado.juez_id;
+                            jr.jurado_dni = jurado.Persona.persona_dni.ToString();
+                            jr.jurado_licenciatura_nombre = jurado.Persona.Licenciatura.licenciatura_nombre;
+                            jr.jurado_mesa_fecha = mesa.mesa_fecha.ToShortDateString();
+                            jr.jurado_nombre = jurado.Persona.persona_nomyap;
+                            jr.jurado_tesina_tema = tesina.tesina_tema;
+                            jr.jurado_tesina_tesista = tesina.Tesista.Persona.persona_nomyap;
 
-                        ds.t_jurado.Rows.Add(jr);
+                            ds.t_jurado.Rows.Add(jr);
+                        }
                     }
-                }
 
-                Session["ds_jurados"] = ds;
+                    mesa_cerrada = true;
+                    Session["ds_jurados"] = ds;
+                }
             }
 
-            RenderReport_jurados();
+            if (mesa_cerrada)
+            {
+                RenderReport_jurados();
+            }
+            else
+            {
+                MessageBox.Show(this, "No se pueden imprimir los certificados mientras la mesa no este cerrada.", MessageBox.Tipo_MessageBox.Warning);
+            }
         }
 
         private void RenderReport_jurados()
@@ -557,7 +584,7 @@ namespace WebApplication1.Aplicativo
                     correcto = correcto && int.TryParse(tb_nota_codirector.Text, out nota);
                     correcto = correcto && nota > 0 && nota <= 10;
                 }
-                
+
             }
 
             args.IsValid = correcto;

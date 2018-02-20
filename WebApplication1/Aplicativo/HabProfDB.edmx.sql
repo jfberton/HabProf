@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/15/2018 09:17:30
--- Generated from EDMX file: D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
+-- Date Created: 02/20/2018 17:52:58
+-- Generated from EDMX file: D:\Desarrollo\Mios\Habilitacion profesional\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -246,6 +246,7 @@ CREATE TABLE [dbo].[Tesistas] (
     [tesista_legajo] nvarchar(max)  NOT NULL,
     [tesista_sede] nvarchar(max)  NOT NULL,
     [tesista_fecha_baja] datetime  NULL,
+    [tesista_baja_definitiva] datetime  NULL,
     [Persona_persona_id] int  NOT NULL
 );
 GO

@@ -16,7 +16,7 @@
 
     <h1>Tesistas <small>Listado de Alumnos de la Licenciatura</small></h1>
     <div class="row">
-        <div class="col-md-10">
+        <div class="col-md-8">
             <div class="alert alert-warning" role="alert" runat="server" id="lbl_sin_tesistas">
                 <strong>No existen tesistas!</strong> Pruebe agregar algunos para comenzar.
                
@@ -25,11 +25,18 @@
                 </button>
             </div>
         </div>
-        <div class="col-md-2">
-            <button type="button" class="btn btn-default pull-right" id="btn_agregar_tesista" runat="server" onserverclick="btn_agregar_tesista_ServerClick">
-                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Agregar nuevo
-           
-            </button>
+        <div class="col-md-4 text-right">
+
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-default" id="btn_agregar_tesista" runat="server" onserverclick="btn_agregar_tesista_ServerClick">
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>&nbsp; Agregar nuevo
+                </button>
+
+                <button type="button" class="btn btn-danger" id="btn_eliminar_tesistas" runat="server" onserverclick="btn_eliminar_tesistas_ServerClick">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Realizar limpieza
+                </button>
+            </div>
+
             <div class="modal fade" id="agregar_tesista" role="dialog" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -73,9 +80,9 @@
 
                                     <table class="table-condensed" runat="server" id="tb_tabla_resto_campos" visible="false" style="width: 100%">
                                         <tr>
-                                            <td>Nombre y apellido</td>
+                                            <td>Nombre y Apellido</td>
                                             <td style="width: auto">
-                                                <input type="text" id="tb_nombre_tesista" class="form-control" runat="server" placeholder="Nombre y apellido del tesista" /></td>
+                                                <input type="text" id="tb_nombre_tesista" class="form-control" runat="server" placeholder="Nombre y Apellido del tesista" /></td>
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_nombre_tesista" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="rv_nombre_tesista" runat="server" ErrorMessage="Debe ingresar el nombre del tesista" ValidationGroup="tesista">
@@ -150,10 +157,8 @@
                                         </tr>
                                         <tr runat="server" id="tr_pass_alta">
                                             <td>Contraseña</td>
-                                            <td style="width: auto">
-                                                La contraseña asignada es el DNI del tesista ingresado </td>
-                                            <td>
-                                            </td>
+                                            <td style="width: auto">La contraseña asignada es el DNI del tesista ingresado </td>
+                                            <td></td>
                                         </tr>
                                         <tr runat="server" id="tr_pass_edit">
                                             <td>
@@ -168,7 +173,7 @@
                                                             <asp:RequiredFieldValidator ControlToValidate="tb_contraseña" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                                 ID="RequiredFieldValidator9" runat="server" ErrorMessage="Debe asignar uan contraseña o destilde la opción de cambiar contraseña" ValidationGroup="tesista">
                                                             </asp:RequiredFieldValidator>
-                                                           <%-- <asp:RegularExpressionValidator ValidationExpression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$" ControlToValidate="tb_contraseña" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                            <%-- <asp:RegularExpressionValidator ValidationExpression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$" ControlToValidate="tb_contraseña" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                                 ID="RegularExpressionValidator3" runat="server" ErrorMessage="La contraseña debe tener entre 4 y 8 caracteres, al menos una mayúscula, una minúscula y un número" ValidationGroup="tesista" />--%>
                                                         </td>
                                                     </tr>
@@ -208,15 +213,15 @@
                     <button runat="server" class="btn btn-sm btn-default" id="btn_ver" causesvalidation="false" onserverclick="btn_ver_ServerClick1" data-id='<%#Eval("tesista_id")%>'>
                         <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp;Ver
                     </button>
-                    
+
                     <button runat="server" class="btn btn-sm btn-warning" id="btn_editar" causesvalidation="false" onserverclick="btn_editar_ServerClick" data-id='<%#Eval("tesista_id")%>'>
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Editar
                     </button>
-                   
-                     <button runat="server" class="btn btn-sm btn-success" id="btn_habilitar_tesista" visible='<%#Eval("mostrar_habilitar")%>' causesvalidation="false" onserverclick="btn_habilitar_tesista_ServerClick" data-id='<%#Eval("tesista_id")%>'>
+
+                    <button runat="server" class="btn btn-sm btn-success" id="btn_habilitar_tesista" visible='<%#Eval("mostrar_habilitar")%>' causesvalidation="false" onserverclick="btn_habilitar_tesista_ServerClick" data-id='<%#Eval("tesista_id")%>'>
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Habilitar
                     </button>
-                    
+
                     <button
                         type="button" class="btn btn-sm btn-danger"
                         data-toggle="modal"
@@ -258,7 +263,7 @@
     </div>
 
     <div class="modal fade" id="panel_ver_tesista" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content panel-default">
                 <div class="modal-header panel-heading">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -309,6 +314,26 @@
                             </table>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Tesina presentada</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <asp:Label Text="Aún no posee tesina presentada" ID="lbl_sin_tesina" runat="server" />
+                            <asp:GridView runat="server" ID="gv_tesina" AutoGenerateColumns="False" GridLines="None" CssClass="display" OnPreRender="gv_tesina_PreRender">
+                                <Columns>
+                                    <asp:BoundField DataField="tesina_tema" HeaderText="Título" ReadOnly="true" />
+                                    <asp:BoundField DataField="tesina_director" HeaderText="Director" ReadOnly="true" />
+                                    <asp:BoundField DataField="tesina_codirector" HeaderText="Co-Director" ReadOnly="true" />
+                                    <asp:BoundField DataField="tesina_nota" HeaderText="Calificación" ReadOnly="true" />
+                                    <asp:BoundField DataField="tesina_nota_director" HeaderText="Calificación Director" ReadOnly="true" />
+                                    <asp:BoundField DataField="tesina_nota_codirector" HeaderText="Calificación Co-Director" ReadOnly="true" />
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -355,6 +380,33 @@
                 }
             });
 
+            $('#<%= gv_tesina.ClientID %>').DataTable({
+                "scrollY": "400px",
+                "scrollCollapse": true,
+                "paging": false,
+                "searching": false,
+                "language": {
+                    "search": "Buscar:",
+                    "emptyTable": "Sin registros",
+                    "lengthMenu": "Mostrando _MENU_ registros",
+                    "zeroRecords": "No se encontraron registros",
+                    "info": "Mostrando _START_ de _END_ de _TOTAL_ registros",
+                    "infoEmpty": "No hay registros disponibles",
+                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                    "paginate": {
+                        "first": "primero",
+                        "last": "último",
+                        "next": "próximo",
+                        "previous": "anterior"
+                    }
+                }
+            });
+
+        });
+
+        $('#panel_ver_tesista').on('shown.bs.modal', function () {
+            var table_tesinas = $('#<%= gv_tesina.ClientID %>').DataTable();
+            table_tesinas.draw();
         });
     </script>
     <script>

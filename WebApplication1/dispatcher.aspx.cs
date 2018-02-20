@@ -27,10 +27,10 @@ namespace WebApplication1
                     Response.Redirect("~/Aplicativo/admin_home.aspx");
                     break;
                 case "Director":
-                    Response.Redirect("~/Aplicativo/director_home.aspx");
+                    Response.Redirect("~/Aplicativo/admin_tesinas.aspx");
                     break;
                 case "Tesista":
-                    Response.Redirect("~/Aplicativo/tesista_home.aspx");
+                    Response.Redirect("~/Aplicativo/admin_tesinas.aspx");
                     break;
                 default:
                     break;

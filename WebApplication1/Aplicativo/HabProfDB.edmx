@@ -217,6 +217,7 @@
     <Property Name="tesista_legajo" Type="nvarchar(max)" Nullable="false" />
     <Property Name="tesista_sede" Type="nvarchar(max)" Nullable="false" />
     <Property Name="tesista_fecha_baja" Type="datetime" Nullable="true" />
+    <Property Name="tesista_baja_definitiva" Type="datetime" Nullable="true" />
     <Property Name="Persona_persona_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Mesas">
@@ -593,6 +594,7 @@
           <NavigationProperty Name="Tesina" Relationship="HabProfDB.TesistaTesina" FromRole="Tesista" ToRole="Tesina" />
           <NavigationProperty Name="Persona" Relationship="HabProfDB.PersonaTesista" FromRole="Tesista" ToRole="Persona" />
           <Property Name="tesista_fecha_baja" Type="DateTime" Nullable="true" />
+          <Property Name="tesista_baja_definitiva" Type="DateTime" Nullable="true" />
         </EntityType>
         <EntityType Name="Director">
           <Key>
@@ -983,6 +985,7 @@
           <ScalarProperty Name="tesista_legajo" ColumnName="tesista_legajo" />
           <ScalarProperty Name="tesista_sede" ColumnName="tesista_sede" />
           <ScalarProperty Name="tesista_fecha_baja" ColumnName="tesista_fecha_baja" />
+          <ScalarProperty Name="tesista_baja_definitiva" ColumnName="tesista_baja_definitiva" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

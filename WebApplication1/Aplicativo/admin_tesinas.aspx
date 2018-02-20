@@ -224,10 +224,7 @@
                             <p>Una vez guardado el cambio no podrá editar el archivo.</p>
                             <h4>Archivo:</h4>
                             <asp:FileUpload runat="server" ID="file_tesis" />
-                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="file_tesis" ErrorMessage="Únicamente archivos .pdf" ValidationExpression="^([a-zA-Z].*|[1-9].*)\.(((p|P)(d|D)(f|F)))$"></asp:RegularExpressionValidator>
-                            <div class="alert" role="alert" runat="server" id="div_status_file">
-                                <asp:Label Text="" ID="status_label" runat="server" />
-                            </div>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="file_tesis" ErrorMessage="Únicamente archivos .pdf, .doc, .docx" ValidationExpression="^.*\.(doc|DOC|pdf|PDF|docx|DOCX)$"></asp:RegularExpressionValidator>
                         </div>
                         <div class="modal-footer">
                             <asp:Button Text="Subir archivo" runat="server" ID="btn_subir_archivo" CssClass="btn btn-success" OnClick="btn_subir_archivo_Click" />

@@ -69,7 +69,7 @@ namespace WebApplication1.Aplicativo
 
                     HtmlGenericControl div_panel_body = new HtmlGenericControl("div");
                     div_panel_body.Attributes["class"] = "panel-body";
-                    div_panel_body.InnerHtml = "<p>" + "Tema: " + item.html_tema + "</p> <p>Descripción: " + item.html_descripcion + "</p>";
+                    div_panel_body.InnerHtml = "<p>" + "Título: " + item.html_tema + "</p> <p>Descripción: " + item.html_descripcion + "</p>";
 
 
                     div_panel_cascara.Controls.Add(div_panel_heading);

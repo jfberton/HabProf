@@ -71,9 +71,9 @@
                                     </table>
                                     <table class="table-condensed" runat="server" id="tb_tabla_resto_campos" visible="false" style="width: 100%">
                                         <tr>
-                                            <td>Nombre y apellido</td>
+                                            <td>Nombre y Apellido</td>
                                             <td style="width: auto">
-                                                <input type="text" id="tb_nombre_juez" class="form-control" runat="server" placeholder="Nombre y apellido del juez" /></td>
+                                                <input type="text" id="tb_nombre_juez" class="form-control" runat="server" placeholder="Nombre y Apellido del juez" /></td>
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_nombre_juez" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="rv_nombre_juez" runat="server" ErrorMessage="Debe ingresar el nombre del juez" ValidationGroup="juez">

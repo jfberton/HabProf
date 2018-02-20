@@ -76,7 +76,7 @@ namespace WebApplication1.Aplicativo
                 Tesis_fecha_limite = t.tesina_plan_fch_presentacion.AddMonths(t.tesina_plan_duracion_meses -1).ToShortDateString();
                 Tesis_periodo_notificaciones = t.tesina_plan_aviso_meses.ToString();
                 Tesis_tema = t.tesina_tema;
-                Tesis_Url_archivo = ConfigurationManager.AppSettings["direccion_localhost_raiz"] + "Archivos/Tesinas/" + t.tesina_id + "/presentado.pdf";
+                Tesis_Url_archivo = ConfigurationManager.AppSettings["direccion_localhost_raiz"] + mail.envio_respuesta_clave;
                 Tesis_meses_restantes = Math.Abs((t.tesina_plan_fch_presentacion.AddMonths(t.tesina_plan_duracion_meses).Month - DateTime.Today.Month) + 12 * (t.tesina_plan_fch_presentacion.AddMonths(t.tesina_plan_duracion_meses).Year - DateTime.Today.Year))-1;
             }
         }

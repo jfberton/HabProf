@@ -383,7 +383,7 @@ namespace WebApplication1.Aplicativo
         protected void btn_realizar_entrega_ServerClick(object sender, EventArgs e)
         {
             btn_subir_archivo.Enabled = true;
-            status_label.Visible = false;
+            //status_label.Visible = false;
             file_tesis.Enabled = true;
 
             string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#panel_ver_tesina').modal('show'); $('#realizar_entrega').modal('show')});</script>";
@@ -403,8 +403,11 @@ namespace WebApplication1.Aplicativo
                         Directory.CreateDirectory(directorio);
                     }
 
-                    string filename = Path.GetFileName(file_tesis.FileName);
-                    file_tesis.SaveAs(directorio + "presentado.pdf");
+                    string extencion_origen = Path.GetExtension(file_tesis.FileName);
+
+                    string path_save_file = directorio + "presentado" + extencion_origen;
+
+                    file_tesis.SaveAs(path_save_file);
 
                     using (HabProfDBContainer cxt = new HabProfDBContainer())
                     {
@@ -428,7 +431,7 @@ namespace WebApplication1.Aplicativo
                             persona_id = t.Director.Persona.persona_id,
                             envio_email_destino = t.Director.Persona.persona_email,
                             envio_fecha_hora = DateTime.Now,
-                            envio_respuesta_clave = tesina_id.ToString(),
+                            envio_respuesta_clave = "Archivos/Tesinas/"+ hidden_tesina_id.Value + "/presentado" + extencion_origen,
                             envio_tipo = MiEmail.tipo_mail.notificacion_entrega_archivo_tesina.ToString()
                         };
                         cxt.Envio_mails.Add(em_director);
@@ -438,7 +441,7 @@ namespace WebApplication1.Aplicativo
                             persona_id = t.Tesista.Persona.persona_id,
                             envio_email_destino = t.Tesista.Persona.persona_email,
                             envio_fecha_hora = DateTime.Now,
-                            envio_respuesta_clave = "no se usa",
+                            envio_respuesta_clave = "Archivos/Tesinas/" + hidden_tesina_id.Value + "/presentado" + extencion_origen,
                             envio_tipo = MiEmail.tipo_mail.notificacion_entrega_archivo_tesina.ToString()
                         };
                         cxt.Envio_mails.Add(em_tesista);
@@ -456,7 +459,7 @@ namespace WebApplication1.Aplicativo
                                 persona_id = t.Codirector.Persona.persona_id,
                                 envio_email_destino = t.Codirector.Persona.persona_email,
                                 envio_fecha_hora = DateTime.Now,
-                                envio_respuesta_clave = "no se usa",
+                                envio_respuesta_clave = "Archivos/Tesinas/" + hidden_tesina_id.Value + "/presentado" + extencion_origen,
                                 envio_tipo = MiEmail.tipo_mail.notificacion_entrega_archivo_tesina.ToString()
                             };
                             cxt.Envio_mails.Add(em_codirector);
@@ -471,15 +474,15 @@ namespace WebApplication1.Aplicativo
                 }
                 catch (Exception ex)
                 {
-                    status_label.Text = "Ocurrio un error y no se pudo subir el archivo. Error: " + ex.Message;
-                    div_status_file.Attributes.Add("class", "alert alert-danger");
+                    //    status_label.Text = "Ocurrio un error y no se pudo subir el archivo. Error: " + ex.Message;
+                    //    div_status_file.Attributes.Add("class", "alert alert-danger");
                 }
 
             }
             else
             {
-                status_label.Text = "Debe seleccionar un archivo!";
-                div_status_file.Attributes.Add("class", "alert alert-danger");
+                //status_label.Text = "Debe seleccionar un archivo!";
+                //div_status_file.Attributes.Add("class", "alert alert-danger");
             }
         }
 

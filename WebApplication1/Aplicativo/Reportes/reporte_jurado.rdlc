@@ -243,7 +243,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>  dni </Value>
+                                  <Value>  DNI </Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>
@@ -264,7 +264,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>  ha sido jurado de evaluación y defensa de Tesinas de la </Value>
+                                  <Value>  ha sido jurado de Evaluación y Defensa de Tesinas de la </Value>
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Times New Roman</FontFamily>

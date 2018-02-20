@@ -25,6 +25,7 @@ namespace WebApplication1.Aplicativo.Menues
                 li_admin_tesistas.Visible = false;
                 li_comprobar_tema.Visible = false;
                 li_admin_mesa.Visible = false;
+                li_importar.Visible = false;
 
                 switch (perfil)
                 {
@@ -35,6 +36,7 @@ namespace WebApplication1.Aplicativo.Menues
                         li_admin_tesistas.Visible = true;
                         li_comprobar_tema.Visible = true;
                         li_admin_mesa.Visible = true;
+                        li_importar.Visible = true;
                         break;
                     case "Director":
                         li_admin_tesinas.Visible = true;

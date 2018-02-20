@@ -122,14 +122,16 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <h4>Tesinas:</h4>
+                            <h4>Tesinas evaluadas:</h4>
                             <asp:GridView runat="server" ID="gv_tesinas" AutoGenerateColumns="False" GridLines="None" CssClass="display" OnPreRender="gv_mesas_PreRender">
                                 <Columns>
-                                    <asp:BoundField DataField="tesina_tema" HeaderText="Tema" ReadOnly="true" />
-                                    <asp:BoundField DataField="tesina_director" HeaderText="Director" ReadOnly="true" />
+                                    <%--<asp:BoundField DataField="tesina_tema" HeaderText="Título" ReadOnly="true" />--%>
                                     <asp:BoundField DataField="tesina_tesista" HeaderText="Tesista" ReadOnly="true" />
+                                    <asp:BoundField DataField="tesina_director" HeaderText="Director" ReadOnly="true" />
+                                    <asp:BoundField DataField="tesina_codirector" HeaderText="Co-Director" ReadOnly="true" />
                                     <asp:BoundField DataField="tesina_nota" HeaderText="Calificación" ReadOnly="true" />
                                     <asp:BoundField DataField="tesina_nota_director" HeaderText="Calificación Director" ReadOnly="true" />
+                                    <asp:BoundField DataField="tesina_nota_codirector" HeaderText="Calificación Co-Director" ReadOnly="true" />
                                 </Columns>
                             </asp:GridView>
                         </div>
@@ -166,7 +168,7 @@
                             <h4>Tesinas:</h4>
                             <asp:GridView runat="server" ID="gv_cerrar_mesa_tesinas" AutoGenerateColumns="False" GridLines="None" CssClass="display" OnPreRender="gv_mesas_PreRender">
                                 <Columns>
-                                    <asp:BoundField DataField="tesina_tema" HeaderText="Tema" ReadOnly="true" />
+                                    <asp:BoundField DataField="tesina_tema" HeaderText="Título" ReadOnly="true" />
                                     <asp:BoundField DataField="tesina_director" HeaderText="Director" ReadOnly="true" />
                                     <asp:BoundField DataField="tesina_tesista" HeaderText="Tesista" ReadOnly="true" />
                                     <asp:TemplateField HeaderText="Calificación">

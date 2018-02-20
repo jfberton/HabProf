@@ -151,7 +151,7 @@
                             <asp:GridView ID="gv_seleccionar_tesinas" runat="server" OnPreRender="gv_jueces_PreRender"
                                 AutoGenerateColumns="False" GridLines="None" CssClass="display">
                                 <Columns>
-                                    <asp:BoundField DataField="tesina_tema" HeaderText="Tema" ReadOnly="true" />
+                                    <asp:BoundField DataField="tesina_tema" HeaderText="Título" ReadOnly="true" />
                                     <asp:BoundField DataField="tesina_director" HeaderText="Director" ReadOnly="true" />
                                     <asp:BoundField DataField="tesina_tesista" HeaderText="Tesista" ReadOnly="true" />
                                     <asp:TemplateField HeaderText="Seleccionar tesina">
@@ -176,7 +176,7 @@
         <div class="col-md-12">
             <asp:GridView runat="server" ID="gv_tesinas_seleccionadas" AutoGenerateColumns="False" GridLines="None" CssClass="display" OnPreRender="gv_jueces_PreRender">
                 <Columns>
-                    <asp:BoundField DataField="tesina_tema" HeaderText="Tema" ReadOnly="true" />
+                    <asp:BoundField DataField="tesina_tema" HeaderText="Título" ReadOnly="true" />
                     <asp:BoundField DataField="tesina_director" HeaderText="Director" ReadOnly="true" />
                     <asp:BoundField DataField="tesina_tesista" HeaderText="Tesista" ReadOnly="true" />
                 </Columns>

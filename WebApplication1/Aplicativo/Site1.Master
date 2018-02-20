@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="../assets-default-login/ico/UTN.ico" />
     <link href="../Content/bootstrap.min.css" rel="stylesheet" />
     <link href="../Content/menuStyle.css" rel="stylesheet" />
-    
+
     <link rel="stylesheet" runat="server" id="bootstrapStyle" type="text/css" href="../Content/bootstrap-theme-Cosmo.min.css" />
 
     <link href="../Content/css/select2.min.css" rel="stylesheet" />
@@ -22,7 +22,11 @@
     <script src="../Scripts/select2.min.js"></script>
     <script src="../Scripts/DataTables/jquery.dataTables.min.js"></script>
     <script src="../Scripts/bootstrap-filestyle.min.js"></script>
-
+    <style>
+        /*body {
+            background-image: url(../images/logo.png);
+        }*/
+    </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>

@@ -32,6 +32,7 @@ namespace WebApplication1.Aplicativo
             {
                 var tesistas = (
                     from t in cxt.Tesistas
+                    where t.tesista_baja_definitiva == null
                     select new
                     {
                         tesista_id = t.tesista_id,
@@ -307,6 +308,7 @@ namespace WebApplication1.Aplicativo
                 Tesista tesista = cxt.Tesistas.FirstOrDefault(pp => pp.tesista_id == id_tesista);
                 if (tesista != null)
                 {
+                    lbl_sin_tesina.Visible = false;
                     lbl_ver_tesista_dni.Text = tesista.Persona.persona_dni.ToString();
                     lbl_ver_tesista_domicilio.Text = tesista.Persona.persona_domicilio;
                     lbl_ver_tesista_email.Text = tesista.Persona.persona_email;
@@ -314,6 +316,30 @@ namespace WebApplication1.Aplicativo
                     lbl_ver_tesista_nomyap.Text = tesista.Persona.persona_nomyap;
                     lbl_ver_tesista_sede.Text = tesista.tesista_sede;
                     lbl_ver_tesista_telefono.Text = tesista.Persona.persona_telefono;
+
+                    var tesinas = (from t in tesista.Tesina select t).ToList();
+                    var tesinas_para_grilla = (from t in tesinas
+                                               select new
+                                               {
+                                                   tesina_tema = t.tesina_tema,
+                                                   tesina_director = t.Director.Persona.persona_nomyap,
+                                                   tesina_tesista = t.Tesista.Persona.persona_nomyap,
+                                                   tesina_codirector = t.Codirector == null ? "-" : t.Codirector.Persona.persona_nomyap,
+                                                   tesina_nota = t.tesina_calificacion,
+                                                   tesina_nota_director = t.tesina_calificacion_director,
+                                                   tesina_nota_codirector = t.tesina_calificacion_codirector == null ? "-" : t.tesina_calificacion_codirector.ToString()
+                                               }).ToList();
+
+                    if (tesinas_para_grilla.Count > 0)
+                    {
+                        gv_tesina.DataSource = tesinas_para_grilla;
+                        gv_tesina.DataBind();
+                    }
+                    else
+                    {
+                        gv_tesina.DataSource = null;
+                        gv_tesina.DataBind();
+                    }
 
                     string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#panel_ver_tesista').modal('show')});</script>";
                     ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
@@ -403,6 +429,19 @@ namespace WebApplication1.Aplicativo
             }
 
             ObtenerTesistas();
+        }
+
+        protected void gv_tesina_PreRender(object sender, EventArgs e)
+        {
+            if (gv_tesina.Rows.Count > 0)
+            {
+                gv_tesina.HeaderRow.TableSection = TableRowSection.TableHeader;
+            }
+        }
+
+        protected void btn_eliminar_tesistas_ServerClick(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Aplicativo/admin_tesistas_eliminar_limpieza.aspx");
         }
     }
 }

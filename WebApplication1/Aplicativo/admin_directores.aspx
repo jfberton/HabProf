@@ -71,9 +71,9 @@
                                     </table>
                                     <table class="table-condensed" runat="server" id="tb_tabla_resto_campos" visible="false" style="width: 100%">
                                         <tr>
-                                            <td>Nombre y apellido</td>
+                                            <td>Nombre y Apellido</td>
                                             <td style="width: auto">
-                                                <input type="text" id="tb_nombre_director" class="form-control" runat="server" placeholder="Nombre y apellido del director" /></td>
+                                                <input type="text" id="tb_nombre_director" class="form-control" runat="server" placeholder="Nombre y Apellido del director" /></td>
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_nombre_director" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                     ID="rv_nombre_director" runat="server" ErrorMessage="Debe ingresar el nombre del director" ValidationGroup="director">
@@ -292,7 +292,7 @@
                                 AutoGenerateColumns="False" GridLines="None" CssClass="display">
                                 <Columns>
                                     <asp:BoundField DataField="tesinata_nombre" HeaderText="Tesista" ReadOnly="true" />
-                                    <asp:TemplateField HeaderText="Tema">
+                                    <asp:TemplateField HeaderText="Título">
                                         <ItemTemplate>
                                             <asp:Label Text='<%#Eval("tesina_tema_recortado")%>' ToolTip='<%#Eval("tesina_tema_completo") %>' runat="server" />
                                         </ItemTemplate>
