@@ -10,7 +10,6 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="CPH_Body" runat="server">
     <ol class="breadcrumb">
         <li><a href="admin_home.aspx">Inicio</a></li>
-        <li>Personas</li>
         <li>Administrar directores</li>
     </ol>
 

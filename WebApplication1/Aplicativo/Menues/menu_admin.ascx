@@ -15,7 +15,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="../Aplicativo/admin_home.aspx">SEGUITES</a>
+            <a class="navbar-brand" >SEGUITES</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -41,6 +41,7 @@
                         <li><a href="../Aplicativo/importar_directores.aspx">Directores</a></li>
                     </ul>
                 </li>
+                <li><a href="../admin_tesistas_eliminar_limpieza.aspx" runat="server" id="li_limpieza">Limpieza</a></li>
             </ul>
         </div>
         <!--/.nav-collapse -->

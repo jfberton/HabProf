@@ -11,7 +11,6 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="CPH_Body" runat="server">
     <ol class="breadcrumb">
         <li><a href="admin_home.aspx">Inicio</a></li>
-        <li><a href="admin_tesistas.aspx">Tesistas</a></li>
         <li>Limpieza</li>
     </ol>
 

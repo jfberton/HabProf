@@ -40,15 +40,6 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.HtmlControls.HtmlButton btn_agregar_tesista;
         
         /// <summary>
-        /// btn_eliminar_tesistas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btn_eliminar_tesistas;
-        
-        /// <summary>
         /// lbl_agregar_actualizar_tesista control.
         /// </summary>
         /// <remarks>

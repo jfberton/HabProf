@@ -23,9 +23,18 @@
     <script src="../Scripts/DataTables/jquery.dataTables.min.js"></script>
     <script src="../Scripts/bootstrap-filestyle.min.js"></script>
     <style>
-        /*body {
-            background-image: url(../images/logo.png);
+        body {
+            background-image: url(../images/background_page.jpg);
+            background-size: cover;
+        }
+
+        /*h1 {
+            color:darkblue; 
         }*/
+        .small {
+            color:whitesmoke;
+        }
+
     </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -37,7 +46,7 @@
             <asp:ContentPlaceHolder ID="CPH_Menues" runat="server">
             </asp:ContentPlaceHolder>
             <br />
-            <div class="container">
+            <div class="container" style="z-index:1">
                 <asp:ContentPlaceHolder ID="CPH_Body" runat="server">
                 </asp:ContentPlaceHolder>
             </div>

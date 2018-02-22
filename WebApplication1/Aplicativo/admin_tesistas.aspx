@@ -10,7 +10,6 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="CPH_Body" runat="server">
     <ol class="breadcrumb">
         <li><a href="admin_home.aspx">Inicio</a></li>
-        <li>Personas</li>
         <li>Administrar Tesistas</li>
     </ol>
 
@@ -32,9 +31,9 @@
                     <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>&nbsp; Agregar nuevo
                 </button>
 
-                <button type="button" class="btn btn-danger" id="btn_eliminar_tesistas" runat="server" onserverclick="btn_eliminar_tesistas_ServerClick">
+               <%-- <button type="button" class="btn btn-danger" id="btn_eliminar_tesistas" runat="server" onserverclick="btn_eliminar_tesistas_ServerClick">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp; Realizar limpieza
-                </button>
+                </button>--%>
             </div>
 
             <div class="modal fade" id="agregar_tesista" role="dialog" aria-hidden="true">
