@@ -137,7 +137,7 @@ namespace WebApplication1.Aplicativo
                         p_juez.persona_telefono = tb_telefono.Value;
                         p_juez.persona_usuario = "";
                         p_juez.persona_clave = "";
-                        p_juez.persona_estilo = "Sandstone";
+                        p_juez.persona_estilo = "Slate";
 
                         cxt.Personas.Add(p_juez);
                     }

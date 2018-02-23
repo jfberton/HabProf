@@ -317,7 +317,7 @@ namespace WebApplication1.Aplicativo
                                 persona_telefono = ((HtmlInputText)fila.Cells[4].Controls[1]).Value,
                                 persona_usuario = dni.ToString(),
                                 persona_clave = Cripto.Encriptar(dni.ToString()),
-                                persona_estilo = "Sandstone"
+                                persona_estilo = "Slate"
                             };
                             cxt.Personas.Add(p_tesista);
                         }

@@ -42,7 +42,7 @@ namespace WebApplication1.Aplicativo
                 case "Superhero": estilo = estilo + persona.persona_estilo + ".min.css"; break;
                 case "United": estilo = estilo + persona.persona_estilo + ".min.css"; break;
                 case "Yeti": estilo = estilo + persona.persona_estilo + ".min.css"; break;
-                default: estilo = "../Content/bootstrap-theme-Sandstone.min.css"; break;
+                default: estilo = "../Content/bootstrap-theme-Slate.min.css"; break;
             }
 
             bootstrapStyle.Href = estilo;

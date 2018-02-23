@@ -171,7 +171,7 @@ namespace WebApplication1
                         persona_telefono = "00000000",
                         persona_usuario = "admin",
                         persona_clave = Cripto.Encriptar("admin"),
-                        persona_estilo = "Sandstone"
+                        persona_estilo = "Slate"
                     };
 
                     Administrador admin = new Administrador()
@@ -192,7 +192,7 @@ namespace WebApplication1
                         persona_telefono = "00000000",
                         persona_usuario = "dire",
                         persona_clave = Cripto.Encriptar("dire"),
-                        persona_estilo = "Sandstone"
+                        persona_estilo = "Slate"
                     };
 
                     Director dire = new Director()
@@ -213,7 +213,7 @@ namespace WebApplication1
                         persona_telefono = "03624716146",
                         persona_usuario = "",
                         persona_clave = "",
-                        persona_estilo = "Sandstone"
+                        persona_estilo = "Slate"
                     };
 
                     Tesista tesista = new Tesista()
@@ -370,7 +370,7 @@ namespace WebApplication1
                 }
                 else
                 {
-                    MessageBox.Show(this, "No existe el usuario o el correo no esta validado", MessageBox.Tipo_MessageBox.Danger, "Oops!!");
+                    MessageBox.Show(this, "No existe el usuario o el correo no está validado", MessageBox.Tipo_MessageBox.Danger, "Oops!!");
                 }
             }
         }

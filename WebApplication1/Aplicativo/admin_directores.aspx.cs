@@ -149,7 +149,7 @@ namespace WebApplication1.Aplicativo
                         p_director.persona_telefono = tb_telefono.Value;
                         p_director.persona_usuario = tb_usuario.Value;
                         p_director.persona_clave = Cripto.Encriptar(tb_dni_director.Value);
-                        p_director.persona_estilo = "Sandstone";
+                        p_director.persona_estilo = "Slate";
 
                         cxt.Personas.Add(p_director);
                     }

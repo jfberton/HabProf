@@ -153,7 +153,7 @@ namespace WebApplication1.Aplicativo
                             persona_telefono = tb_telefono.Value,
                             persona_usuario = tb_usuario.Value,
                             persona_clave = Cripto.Encriptar(tb_dni_tesista.Value),
-                            persona_estilo = "Sandstone"
+                            persona_estilo = "Slate"
                         };
                         cxt.Personas.Add(p_tesista);
                     }
