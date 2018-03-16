@@ -288,7 +288,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <asp:GridView ID="gv_tesinas" runat="server" OnPreRender="gv_directores_PreRender"
-                                AutoGenerateColumns="False" GridLines="None" CssClass="display">
+                                AutoGenerateColumns="False" GridLines="None" CssClass="display black">
                                 <Columns>
                                     <asp:BoundField DataField="tesinata_nombre" HeaderText="Tesista" ReadOnly="true" />
                                     <asp:TemplateField HeaderText="Título">
@@ -326,6 +326,19 @@
             modal.find('.modal-body #' + '<%= id_item_por_eliminar.ClientID %>').val(id)
             modal.find('.modal-body #texto_a_mostrar').text('Esta por eliminar ' + introduccion + ' ' + nombre + '. Desea continuar?')
         })
+
+        function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); };
+        // To disable f5
+        /* jQuery < 1.7 */
+        $(document).bind("keydown", disableF5);
+        /* OR jQuery >= 1.7 */
+        $(document).on("keydown", disableF5);
+
+        // To re-enable f5
+        /* jQuery < 1.7 */
+        $(document).unbind("keydown", disableF5);
+        /* OR jQuery >= 1.7 */
+        $(document).off("keydown", disableF5);
 
         $(document).ready(function () {
             $('#<%= gv_directores.ClientID %>').DataTable({

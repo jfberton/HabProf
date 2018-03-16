@@ -157,6 +157,7 @@
     <Content Include="Aplicativo\Menues\MenuDemo.ascx" />
     <Content Include="Aplicativo\Menues\menu_admin.ascx" />
     <Content Include="Aplicativo\prueba.aspx" />
+    <Content Include="Aplicativo\recordatorios.aspx" />
     <Content Include="Aplicativo\Reportes\prueba_reporte.html" />
     <Content Include="Aplicativo\Reportes\reportes.aspx" />
     <Content Include="Aplicativo\tesista_home.aspx" />
@@ -865,6 +866,13 @@
     <Compile Include="Aplicativo\prueba.aspx.designer.cs">
       <DependentUpon>prueba.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Aplicativo\recordatorios.aspx.cs">
+      <DependentUpon>recordatorios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Aplicativo\recordatorios.aspx.designer.cs">
+      <DependentUpon>recordatorios.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Aplicativo\Reportes\reportes.aspx.cs">
       <DependentUpon>reportes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -972,6 +980,7 @@
     <EmbeddedResource Include="Aplicativo\Reportes\reporte_mesa.rdlc">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Aplicativo\Reportes\reporte_mesa_tesinas_aprobadas_biblioteca.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

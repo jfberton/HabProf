@@ -64,7 +64,16 @@ namespace WebApplication1.Aplicativo.Menues {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor li_admin_tesinas;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl li_admin_tesinas;
+        
+        /// <summary>
+        /// li_generar_recordatorios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor li_generar_recordatorios;
         
         /// <summary>
         /// li_comprobar_tema control.

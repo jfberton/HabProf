@@ -39,7 +39,7 @@ namespace WebApplication1
                     cantidad_perfiles = cantidad_perfiles + (usr.Administrador != null ? 1 : 0);
                     cantidad_perfiles = cantidad_perfiles + (usr.Director != null ? 1 : 0);
                     cantidad_perfiles = cantidad_perfiles + (usr.Tesista != null ? 1 : 0);
-                    cantidad_perfiles = cantidad_perfiles + (usr.Juez != null ? 1 : 0);
+                    cantidad_perfiles = cantidad_perfiles + (usr.Jurado != null ? 1 : 0);
 
                     if (cantidad_perfiles > 1)
                     {
@@ -63,9 +63,9 @@ namespace WebApplication1
                             ddl_perfil.Items.Add(new ListItem() { Text = Perfil_usuario.Tesista.ToString(), Value = Perfil_usuario.Tesista.ToString() });
                         }
 
-                        if (usr.Juez != null)
+                        if (usr.Jurado != null)
                         {
-                            ddl_perfil.Items.Add(new ListItem() { Text = Perfil_usuario.Juez.ToString(), Value = Perfil_usuario.Juez.ToString() });
+                            ddl_perfil.Items.Add(new ListItem() { Text = Perfil_usuario.Jurado.ToString(), Value = Perfil_usuario.Jurado.ToString() });
                         }
 
                         string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#modal_perfil').modal('show')});</script>";
@@ -88,9 +88,9 @@ namespace WebApplication1
                             Ingresar(Perfil_usuario.Tesista, usr);
                         }
 
-                        if (usr.Juez != null)
+                        if (usr.Jurado != null)
                         {
-                            Ingresar(Perfil_usuario.Juez, usr);
+                            Ingresar(Perfil_usuario.Jurado, usr);
                         }
                     }
                 }
@@ -107,7 +107,7 @@ namespace WebApplication1
             Administrador,
             Director,
             Tesista,
-            Juez
+            Jurado
         }
 
         private void Ingresar(Perfil_usuario perfil, Persona usr)
@@ -126,8 +126,8 @@ namespace WebApplication1
                     Session["Perfil"] = perfil.ToString();
                     FormsAuthentication.RedirectFromLoginPage(usr.persona_usuario, false);
                     break;
-                case Perfil_usuario.Juez:
-                    MessageBox.Show(this, "Aún no se definieron funcionalidades para el perfil Juez");
+                case Perfil_usuario.Jurado:
+                    MessageBox.Show(this, "Aún no se definieron funcionalidades para el perfil Jurado");
                     break;
                 default:
                     break;

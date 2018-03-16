@@ -5979,6 +5979,16 @@ button.close {
 .modal-body table tfoot tr td {
     color:lightgray;
 }
+
+.modal-body table.black thead tr th,
+.modal-body table.black tbody tr th,
+.modal-body table.black tfoot tr th,
+.modal-body table.black thead tr td,
+.modal-body table.black tbody tr td,
+.modal-body table.black tfoot tr td {
+    color:black;
+}
+
 @media (min-width: 768px) {
   .modal-dialog {
     width: 600px;

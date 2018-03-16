@@ -24,7 +24,7 @@ public partial class Tesina
 
         this.Historial_estados = new HashSet<Historial_estado>();
 
-        this.Jueces = new HashSet<Juez>();
+        this.Jueces = new HashSet<Jurado>();
 
         this.Mesas = new HashSet<Mesa>();
 
@@ -75,7 +75,7 @@ public partial class Tesina
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<Juez> Jueces { get; set; }
+    public virtual ICollection<Jurado> Jueces { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 

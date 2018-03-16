@@ -31,8 +31,15 @@
                 <li><a href="../admin_tesistas.aspx" runat="server" id="li_admin_tesistas">Tesistas</a></li>
                 <li><a href="../admin_directores.aspx" runat="server" id="li_admin_directores">Directores</a></li>
                 <li><a href="../admin_jueces.aspx" runat="server" id="li_admin_jueces">Jurados</a></li>
-                <li><a href="../admin_tesinas.aspx" runat="server" id="li_admin_tesinas">Tesinas</a></li>
-                <li><a href="../verificar_coincidencias.aspx" runat="server" id="li_comprobar_tema">Comprobar tema tesina</a></li>
+                <li runat="server" id="li_admin_tesinas">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tesinas <b class="caret"></b></a>
+                    <ul class="dropdown-menu multi-level">
+                        <li><a href="../Aplicativo/admin_tesinas.aspx">Listado de Tesinas</a></li>
+                        <li><a href="../Aplicativo/recordatorios.aspx" runat="server" id="li_generar_recordatorios">Generar recordatorios</a></li>
+                    </ul>
+
+                </li>
+                <li><a href="../verificar_coincidencias.aspx" runat="server" id="li_comprobar_tema">Comprobar Título</a></li>
                 <li><a href="../admin_mesas.aspx" runat="server" id="li_admin_mesa">Mesas</a></li>
                 <li runat="server" id="li_importar">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Importar <b class="caret"></b></a>

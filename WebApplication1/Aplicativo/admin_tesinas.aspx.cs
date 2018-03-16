@@ -24,6 +24,7 @@ namespace WebApplication1.Aplicativo
         {
             public int tesis_id { get; set; }
             public string tesista { get; set; }
+            public string categoria { get; set; }
             public string director { get; set; }
             public string tema_recortado { get; set; }
             public string tema_completo { get; set; }
@@ -45,6 +46,7 @@ namespace WebApplication1.Aplicativo
                 {//administrador: obtengo todas las tesinas
 
                     tesinas = (from t in cxt.Tesinas
+                               where t.Tesista.tesista_baja_definitiva == null
                                select t
                                ).ToList();
                     lbl_no_existe_tesina.InnerHtml = "<strong> No existen Tesinas!</strong> Pruebe agregar algunos para comenzar.";
@@ -56,7 +58,7 @@ namespace WebApplication1.Aplicativo
                         //director: obtengo las tesinas asociadas al director
                         Director dire = cxt.Personas.FirstOrDefault(pp => pp.persona_id == usuario_logueado.persona_id).Director;
                         tesinas = (from t in cxt.Tesinas
-                                   where t.director_id == dire.director_id || t.codirector_id == dire.director_id
+                                   where (t.director_id == dire.director_id || t.codirector_id == dire.director_id) && t.Tesista.tesista_baja_definitiva == null
                                    select t
                                    ).ToList();
 
@@ -88,6 +90,7 @@ namespace WebApplication1.Aplicativo
                                                                       director = t.Director.Persona.persona_nomyap,
                                                                       tema_recortado = t.tesina_tema.Length > 20 ? t.tesina_tema.Substring(0, 20) + "..." : t.tesina_tema,
                                                                       tema_completo = t.tesina_tema,
+                                                                      categoria = t.tesina_categoria,
                                                                       estado = t.Estado.estado_tesina_estado,
                                                                       prioridad_orden = Obtener_prioridad(t.Estado.estado_tesina_estado)
                                                                   }).OrderBy(ii => ii.prioridad_orden).ToList();
@@ -244,6 +247,8 @@ namespace WebApplication1.Aplicativo
                     lbl_tema.Text = tesina.tesina_tema;
                     lbl_tesista.Text = tesina.Tesista.Persona.persona_nomyap;
                     string archivo = Server.MapPath("~/Archivos/Tesinas/" + hidden_tesina_id.Value + "/presentado.pdf");
+                    string archivo1 = Server.MapPath("~/Archivos/Tesinas/" + hidden_tesina_id.Value + "/presentado.doc");
+                    string archivo2 = Server.MapPath("~/Archivos/Tesinas/" + hidden_tesina_id.Value + "/presentado.docx");
                     if (File.Exists(archivo))
                     {
                         lbl_archivo_subido.HRef = "~/Archivos/Tesinas/" + hidden_tesina_id.Value + "/presentado.pdf";
@@ -252,14 +257,68 @@ namespace WebApplication1.Aplicativo
                     }
                     else
                     {
-                        lbl_archivo_subido.HRef = "#";
-                        lbl_archivo_subido.InnerText = "Sin presentaciones";
-                        lbl_archivo_subido.Target = "_self";
+                        if (File.Exists(archivo1))
+                        {
+                            lbl_archivo_subido.HRef = "~/Archivos/Tesinas/" + hidden_tesina_id.Value + "/presentado.doc";
+                            lbl_archivo_subido.InnerText = "Archivo presentado";
+                            lbl_archivo_subido.Target = "_blank";
+                        }
+                        else
+                        {
+                            if (File.Exists(archivo2))
+                            {
+                                lbl_archivo_subido.HRef = "~/Archivos/Tesinas/" + hidden_tesina_id.Value + "/presentado.docx";
+                                lbl_archivo_subido.InnerText = "Archivo presentado";
+                                lbl_archivo_subido.Target = "_blank";
+                            }
+                            else
+                            {
+                                lbl_archivo_subido.HRef = "#";
+                                lbl_archivo_subido.InnerText = "Sin presentaciones";
+                                lbl_archivo_subido.Target = "_self";
+                            }
+                        }
                     }
 
-                    foreach (Juez juez in tesina.Jueces)
+                    int id_tesista = tesina.tesista_id;
+
+                    string archivo_plan = Server.MapPath("~/Archivos/Tesistas/" + id_tesista.ToString() + "/plan.pdf");
+                    string archivo1_plan = Server.MapPath("~/Archivos/Tesistas/" + id_tesista.ToString() + "/plan.doc");
+                    string archivo2_plan = Server.MapPath("~/Archivos/Tesistas/" + id_tesista.ToString() + "/plan.docx");
+                    if (File.Exists(archivo_plan))
                     {
-                        lbl_jueces_tesina_visualizacion.Text = lbl_jueces_tesina_visualizacion.Text + juez.Persona.persona_nomyap + "; ";
+                        lbl_plan_tesina.HRef = "~/Archivos/Tesistas/" + id_tesista.ToString() + "/plan.pdf";
+                        lbl_plan_tesina.InnerText = "Archivo presentado";
+                        lbl_plan_tesina.Target = "_blank";
+                    }
+                    else
+                    {
+                        if (File.Exists(archivo1_plan))
+                        {
+                            lbl_plan_tesina.HRef = "~/Archivos/Tesistas/" + id_tesista.ToString() + "/plan.doc";
+                            lbl_plan_tesina.InnerText = "Archivo presentado";
+                            lbl_plan_tesina.Target = "_blank";
+                        }
+                        else
+                        {
+                            if (File.Exists(archivo2_plan))
+                            {
+                                lbl_plan_tesina.HRef = "~/Archivos/Tesistas/" + id_tesista.ToString() + "/plan.docx";
+                                lbl_plan_tesina.InnerText = "Archivo presentado";
+                                lbl_plan_tesina.Target = "_blank";
+                            }
+                            else
+                            {
+                                lbl_plan_tesina.HRef = "#";
+                                lbl_plan_tesina.InnerText = "Sin presentaciones";
+                                lbl_plan_tesina.Target = "_self";
+                            }
+                        }
+                    }
+
+                    foreach (Jurado jurado in tesina.Jueces)
+                    {
+                        lbl_jueces_tesina_visualizacion.Text = lbl_jueces_tesina_visualizacion.Text + jurado.Persona.persona_nomyap + "; ";
                     }
 
                     var historial = (from he in tesina.Historial_estados

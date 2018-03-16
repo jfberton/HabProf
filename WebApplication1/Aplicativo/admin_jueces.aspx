@@ -35,13 +35,13 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                             <h4 class="modal-title">
                                 <asp:Label Text="text" ID="lbl_agregar_actualizar_juez" runat="server" />
-                                Juez</h4>
+                                Jurado</h4>
                         </div>
                         <div class="modal-body">
                             <input type="hidden" runat="server" id="hidden_id_juez_editar" />
                             <div class="row">
                                 <div class="col-md-12">
-                                    <asp:ValidationSummary ID="validation_summary" runat="server" DisplayMode="BulletList" ValidationGroup="juez"
+                                    <asp:ValidationSummary ID="validation_summary" runat="server" DisplayMode="BulletList" ValidationGroup="jurado"
                                         CssClass="validationsummary panel panel-danger" HeaderText="<div class='panel-heading'>&nbsp;Corrija los siguientes errores antes de continuar:</div>" />
                                     <asp:ValidationSummary ID="ValidationSummary1" runat="server" DisplayMode="BulletList" ValidationGroup="dni_persona"
                                         CssClass="validationsummary panel panel-danger" HeaderText="<div class='panel-heading'>&nbsp;Corrija los siguientes errores antes de continuar:</div>" />
@@ -53,10 +53,10 @@
                                         <tr>
                                             <td>DNI</td>
                                             <td style="width: auto">
-                                                <input type="text" id="tb_dni_juez" class="form-control" runat="server" placeholder="DNI del juez" /></td>
+                                                <input type="text" id="tb_dni_juez" class="form-control" runat="server" placeholder="DNI del jurado" /></td>
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_dni_juez" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe ingresar el DNI del juez" ValidationGroup="dni_persona">
+                                                    ID="RequiredFieldValidator1" runat="server" ErrorMessage="Debe ingresar el DNI del jurado" ValidationGroup="dni_persona">
                                                 </asp:RequiredFieldValidator>
 
                                                 <asp:RegularExpressionValidator ValidationExpression="\d{7,8}" ControlToValidate="tb_dni_juez" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
@@ -72,48 +72,48 @@
                                         <tr>
                                             <td>Nombre y Apellido</td>
                                             <td style="width: auto">
-                                                <input type="text" id="tb_nombre_juez" class="form-control" runat="server" placeholder="Nombre y Apellido del juez" /></td>
+                                                <input type="text" id="tb_nombre_juez" class="form-control" runat="server" placeholder="Nombre y Apellido del jurado" /></td>
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_nombre_juez" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="rv_nombre_juez" runat="server" ErrorMessage="Debe ingresar el nombre del juez" ValidationGroup="juez">
+                                                    ID="rv_nombre_juez" runat="server" ErrorMessage="Debe ingresar el nombre del jurado" ValidationGroup="jurado">
                                                 </asp:RequiredFieldValidator>
                                                 <asp:RegularExpressionValidator ControlToValidate="tb_nombre_juez" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="regular_nombre_juez" runat="server" ValidationExpression="^([^0-9]*)$" ErrorMessage="El nombre no debe contener números" ValidationGroup="juez" />
+                                                    ID="regular_nombre_juez" runat="server" ValidationExpression="^([^0-9]*)$" ErrorMessage="El nombre no debe contener números" ValidationGroup="jurado" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>E-mail</td>
                                             <td style="width: auto">
-                                                <input type="text" id="tb_email" class="form-control" runat="server" placeholder="E-mail del juez por agregar" /></td>
+                                                <input type="text" id="tb_email" class="form-control" runat="server" placeholder="E-mail del jurado por agregar" /></td>
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_email" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="RequiredFieldValidator2" runat="server" ErrorMessage="Debe ingresar el e-mail del juez" ValidationGroup="juez">
+                                                    ID="RequiredFieldValidator2" runat="server" ErrorMessage="Debe ingresar el e-mail del jurado" ValidationGroup="jurado">
                                                 </asp:RequiredFieldValidator>
                                                 <asp:RegularExpressionValidator ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="tb_email" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="regex_email" runat="server" ErrorMessage="Debe ingresar un e-mail valido" ValidationGroup="juez" />
+                                                    ID="regex_email" runat="server" ErrorMessage="Debe ingresar un e-mail valido" ValidationGroup="jurado" />
                                                 <asp:CustomValidator ControlToValidate="tb_email" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="cv_correo_duplicado" runat="server" ErrorMessage="Ya existe una persona con ese correo" OnServerValidate="cv_correo_duplicado_ServerValidate" ValidationGroup="juez" />
+                                                    ID="cv_correo_duplicado" runat="server" ErrorMessage="Ya existe una persona con ese correo" OnServerValidate="cv_correo_duplicado_ServerValidate" ValidationGroup="jurado" />
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Domicilio</td>
                                             <td style="width: auto">
-                                                <input type="text" id="tb_domicilio" class="form-control" runat="server" placeholder="Domicilio del juez" /></td>
+                                                <input type="text" id="tb_domicilio" class="form-control" runat="server" placeholder="Domicilio del jurado" /></td>
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_domicilio" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="RequiredFieldValidator3" runat="server" ErrorMessage="Debe ingresar el domicilio del juez" ValidationGroup="juez">
+                                                    ID="RequiredFieldValidator3" runat="server" ErrorMessage="Debe ingresar el domicilio del jurado" ValidationGroup="jurado">
                                                 </asp:RequiredFieldValidator></td>
                                         </tr>
                                         <tr>
                                             <td>Teléfono</td>
                                             <td style="width: auto">
-                                                <input type="text" id="tb_telefono" class="form-control" runat="server" placeholder="Teléfono del juez" /></td>
+                                                <input type="text" id="tb_telefono" class="form-control" runat="server" placeholder="Teléfono del jurado" /></td>
                                             <td>
                                                 <asp:RequiredFieldValidator ControlToValidate="tb_telefono" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="RequiredFieldValidator4" runat="server" ErrorMessage="Debe ingresar el teléfono del juez" ValidationGroup="juez">
+                                                    ID="RequiredFieldValidator4" runat="server" ErrorMessage="Debe ingresar el teléfono del jurado" ValidationGroup="jurado">
                                                 </asp:RequiredFieldValidator>
                                                 <asp:RegularExpressionValidator ValidationExpression="\d{6,11}" ControlToValidate="tb_telefono" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                    ID="RegularExpressionValidator1" runat="server" ErrorMessage="Debe ingresar un teléfono válido (solo números entre 6 y 11 dígitos)" ValidationGroup="juez" />
+                                                    ID="RegularExpressionValidator1" runat="server" ErrorMessage="Debe ingresar un teléfono válido (solo números entre 6 y 11 dígitos)" ValidationGroup="jurado" />
 
                                             </td>
                                         </tr>
@@ -122,7 +122,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button id="btn_guardar" runat="server" onserverclick="btn_guardar_ServerClick" visible="false" class="btn btn-primary" validationgroup="juez">
+                            <button id="btn_guardar" runat="server" onserverclick="btn_guardar_ServerClick" visible="false" class="btn btn-primary" validationgroup="jurado">
                                 <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>Guardar!
                            
                             </button>
@@ -155,7 +155,7 @@
                         data-toggle="modal"
                         data-target="#advertencia_eliminacion"
                         data-id='<%#Eval("juez_id")%>'
-                        data-introduccion="el juez"
+                        data-introduccion="el jurado"
                         data-nombre='<%#Eval("persona_nomyap")%>'>
                         <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>&nbsp;Eliminar
                    
@@ -197,7 +197,7 @@
             <div class="modal-content panel-default">
                 <div class="modal-header panel-heading">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title panel-title">Datos completos del juez</h4>
+                    <h4 class="modal-title panel-title">Datos completos del jurado</h4>
                 </div>
                 <div class="modal-body">
                     <h3>

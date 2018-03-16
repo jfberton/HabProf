@@ -80,12 +80,12 @@
                     <div class="row">
                         <div class="col-md-12">
                             <asp:GridView ID="gv_seleccionar_jurado" runat="server" OnPreRender="gv_jueces_PreRender"
-                                AutoGenerateColumns="False" GridLines="None" CssClass="display">
+                                AutoGenerateColumns="False" GridLines="None" CssClass="display black">
                                 <Columns>
                                     <asp:BoundField DataField="juez_persona_nomyap" HeaderText="Nombre" ReadOnly="true" />
                                     <asp:BoundField DataField="juez_persona_dni" HeaderText="DNI" ReadOnly="true" />
                                     <asp:BoundField DataField="juez_persona_email" HeaderText="E-mail" ReadOnly="true" />
-                                    <asp:TemplateField HeaderText="Seleccionar juez">
+                                    <asp:TemplateField HeaderText="Seleccionar jurado">
                                         <ItemTemplate>
                                             <asp:CheckBox Text="" AccessKey='<%#Eval("juez_id")%>' Checked='<%#Eval("seleccionado")%>' ID="chk_seleccion_juez" runat="server" />
                                         </ItemTemplate>
@@ -149,7 +149,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <asp:GridView ID="gv_seleccionar_tesinas" runat="server" OnPreRender="gv_jueces_PreRender"
-                                AutoGenerateColumns="False" GridLines="None" CssClass="display">
+                                AutoGenerateColumns="False" GridLines="None" CssClass="display black">
                                 <Columns>
                                     <asp:BoundField DataField="tesina_tema" HeaderText="Título" ReadOnly="true" />
                                     <asp:BoundField DataField="tesina_director" HeaderText="Director" ReadOnly="true" />

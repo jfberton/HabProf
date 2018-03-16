@@ -22,6 +22,7 @@
     <script src="../Scripts/select2.min.js"></script>
     <script src="../Scripts/DataTables/jquery.dataTables.min.js"></script>
     <script src="../Scripts/bootstrap-filestyle.min.js"></script>
+
     <style>
         body {
             background-image: url(../images/background_page.jpg);
@@ -32,21 +33,21 @@
             color:darkblue; 
         }*/
         .small {
-            color:whitesmoke;
+            color: whitesmoke;
         }
-
     </style>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
+    
     <form id="form1" runat="server">
         <asp:ScriptManager runat="server" />
         <div>
             <asp:ContentPlaceHolder ID="CPH_Menues" runat="server">
             </asp:ContentPlaceHolder>
             <br />
-            <div class="container" style="z-index:1">
+            <div class="container" style="z-index: 1">
                 <asp:ContentPlaceHolder ID="CPH_Body" runat="server">
                 </asp:ContentPlaceHolder>
             </div>

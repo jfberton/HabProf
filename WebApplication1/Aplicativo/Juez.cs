@@ -15,11 +15,11 @@ namespace WebApplication1.Aplicativo
 using System;
     using System.Collections.Generic;
     
-public partial class Juez
+public partial class Jurado
 {
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public Juez()
+    public Jurado()
     {
 
         this.Tesinas = new HashSet<Tesina>();

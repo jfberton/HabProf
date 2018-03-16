@@ -149,6 +149,20 @@
                                                 ID="RequiredFieldValidator7" runat="server" ErrorMessage="Debe ingresar el usuario del tesista" ValidationGroup="tesista">
                                             </asp:RequiredFieldValidator></td>
                                     </tr>
+                                     <tr>
+                                        <td>Plan de tesina</td>
+                                        <td style="width: auto">
+                                            <asp:FileUpload runat="server" ID="file_tesis" />
+                                        </td>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="file_tesis" ErrorMessage="Únicamente archivos .pdf, .doc, .docx" ValidationExpression="^.*\.(doc|DOC|pdf|PDF|docx|DOCX)$" ValidationGroup="tesista"></asp:RegularExpressionValidator>
+                                        </td>
+                                    </tr>
                                     <tr runat="server" id="tr_pass_alta">
                                         <td>Contraseña</td>
                                         <td style="width: auto">La contraseña asignada es el DNI del tesista ingresado </td>
@@ -190,7 +204,7 @@
     <asp:GridView ID="gv_tesistas" runat="server" OnPreRender="gv_tesistas_PreRender"
         AutoGenerateColumns="False" GridLines="None" CssClass="display">
         <Columns>
-            <asp:BoundField DataField="estado" HeaderText="Estado" ReadOnly="true" />
+            <%--<asp:BoundField DataField="estado" HeaderText="Estado" ReadOnly="true" />--%>
             <asp:BoundField DataField="persona_nomyap" HeaderText="Nombre" ReadOnly="true" />
             <asp:BoundField DataField="persona_dni" HeaderText="DNI" ReadOnly="true" />
             <asp:BoundField DataField="persona_email" HeaderText="E-mail" ReadOnly="true" />
@@ -207,7 +221,7 @@
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Editar
                     </button>
 
-                    <button runat="server" class="btn btn-sm btn-success" id="btn_habilitar_tesista" visible='<%#Eval("mostrar_habilitar")%>' causesvalidation="false" onserverclick="btn_habilitar_tesista_ServerClick" data-id='<%#Eval("tesista_id")%>'>
+                    <%--<button runat="server" class="btn btn-sm btn-success" id="btn_habilitar_tesista" visible='<%#Eval("mostrar_habilitar")%>' causesvalidation="false" onserverclick="btn_habilitar_tesista_ServerClick" data-id='<%#Eval("tesista_id")%>'>
                         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>&nbsp;Habilitar
                     </button>
 
@@ -221,6 +235,17 @@
                         data-introduccion="el tesista"
                         data-nombre='<%#Eval("persona_nomyap")%>'>
                         <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>&nbsp;Inhabilitar
+                    </button>--%>
+
+                    <button
+                        type="button" class="btn btn-sm btn-danger"
+                        data-toggle="modal"
+                        runat="server"
+                        data-target="#advertencia_eliminacion_definitiva"
+                        data-id='<%#Eval("tesista_id")%>'
+                        data-introduccion="el tesista"
+                        data-nombre='<%#Eval("persona_nomyap")%>'>
+                        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>&nbsp;Eliminar
                     </button>
 
                 </ItemTemplate>
@@ -251,18 +276,41 @@
         </div>
     </div>
 
+    <div class="modal fade" id="advertencia_eliminacion_definitiva" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content panel-danger">
+                <div class="modal-header panel-heading">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title panel-title" style="color: white; font-weight: bold;">ATENCIÓN!!</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="hidden" runat="server" id="id_item_por_eliminar_definitiva" />
+                            <p id="texto_a_mostrar_definitiva"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button Text="Aceptar" CssClass="btn btn-primary" CausesValidation="false" ID="btn_eliminacion_definitiva" OnClick="btn_eliminacion_definitiva_Click" runat="server" />
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="panel_ver_tesista" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content panel-default">
                 <div class="modal-header panel-heading">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title panel-title">Datos completos del tesista</h4>
+                    <h3 class="modal-title panel-title">
+                                Tesista: <asp:Label Text="" ID="lbl_ver_tesista_nomyap" runat="server" /></h3>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <h3>
-                                <asp:Label Text="" ID="lbl_ver_tesista_nomyap" runat="server" /></h3>
+                          
                             <table class="table-condensed" style="width: 100%">
                                 <tr>
                                     <td>DNI</td>
@@ -300,6 +348,15 @@
                                         <asp:Label Text="" ID="lbl_ver_tesista_telefono" runat="server" />
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>
+                                        Plan Tesina
+                                    </td>
+                                    <td>
+                                        <a href="#" target="_blank" runat="server" id="lbl_archivo_subido">sin presentaciones</a>
+                                    </td>
+                                </tr>
+
                             </table>
                         </div>
                     </div>
@@ -311,7 +368,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <asp:Label Text="Aún no posee tesina presentada" ID="lbl_sin_tesina" runat="server" />
-                            <asp:GridView runat="server" ID="gv_tesina" AutoGenerateColumns="False" GridLines="None" CssClass="display" OnPreRender="gv_tesina_PreRender">
+                            <asp:GridView runat="server" ID="gv_tesina" AutoGenerateColumns="False" GridLines="None" CssClass="display black" OnPreRender="gv_tesina_PreRender">
                                 <Columns>
                                     <asp:BoundField DataField="tesina_tema" HeaderText="Título" ReadOnly="true" />
                                     <asp:BoundField DataField="tesina_director" HeaderText="Director" ReadOnly="true" />
@@ -335,6 +392,8 @@
 <asp:Content ID="Content4" ContentPlaceHolderID="CPH_Scripts" runat="server">
 
     <script>
+        $(":file").filestyle({ buttonBefore: false, buttonText: "Seleccionar archivo" });
+
         $('#advertencia_eliminacion').on('show.bs.modal', function (event) {
             // Button that triggered the modal
             var button = $(event.relatedTarget)
@@ -347,6 +406,20 @@
             modal.find('.modal-body #' + '<%= id_item_por_eliminar.ClientID %>').val(id)
             modal.find('.modal-body #texto_a_mostrar').text('Esta por pasar a inactivo ' + introduccion + ' ' + nombre + '. Desea continuar?')
         })
+
+        $('#advertencia_eliminacion_definitiva').on('show.bs.modal', function (event) {
+            // Button that triggered the modal
+            var button = $(event.relatedTarget)
+            // Extract info from data-* attributes
+            var id = button.data('id')
+            var introduccion = button.data('introduccion')
+            var nombre = button.data('nombre')
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-body #' + '<%= id_item_por_eliminar_definitiva.ClientID %>').val(id)
+            modal.find('.modal-body #texto_a_mostrar_definitiva').text('Esta por eliminar ' + introduccion + ' ' + nombre + '. Desea continuar?')
+        })
+
         $(document).ready(function () {
             $('#<%= gv_tesistas.ClientID %>').DataTable({
                 "scrollY": "400px",

@@ -24,7 +24,7 @@ public partial class Mesa
 
         this.Tesinas = new HashSet<Tesina>();
 
-        this.Jueces = new HashSet<Juez>();
+        this.Jueces = new HashSet<Jurado>();
 
     }
 
@@ -43,7 +43,7 @@ public partial class Mesa
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<Juez> Jueces { get; set; }
+    public virtual ICollection<Jurado> Jueces { get; set; }
 
 }
 

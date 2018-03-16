@@ -8,7 +8,7 @@
     <uc1:menu_admin runat="server" ID="menu_admin" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="CPH_Body" runat="server">
-     <h1>Buscar en tema y descripción de las tesinas presentadas</h1>
+     <h1>Buscar en Título y Descripción de las Tesinas presentadas</h1>
 
     <div class="row">
         <div class="col-md-12">

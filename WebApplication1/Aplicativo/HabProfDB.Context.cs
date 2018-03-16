@@ -46,7 +46,7 @@ public partial class HabProfDBContainer : DbContext
 
     public virtual DbSet<Envio_mail> Envio_mails { get; set; }
 
-    public virtual DbSet<Juez> Jueces { get; set; }
+    public virtual DbSet<Jurado> Jueces { get; set; }
 
     public virtual DbSet<Administrador> Administradores { get; set; }
 

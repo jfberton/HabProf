@@ -25,7 +25,7 @@ namespace WebApplication1.Aplicativo
             if (str_mesa_id == null)
             {
                 //mesa nueva
-                lbl_titulo.Text = "Nueva mesa evaluadora";
+                lbl_titulo.Text = "Nueva Mesa de Examen";
                 //lbl_small_titulo.Text = 
             }
             else
@@ -41,7 +41,7 @@ namespace WebApplication1.Aplicativo
 
                         List<item_jurado> jurados = new List<Aplicativo.admin_mesa.item_jurado>();
                         string texto_hidden_jueces = string.Empty;
-                        foreach (Juez jurado in mesa.Jueces)
+                        foreach (Jurado jurado in mesa.Jueces)
                         {
                             jurados.Add(new item_jurado()
                             {
@@ -175,12 +175,12 @@ namespace WebApplication1.Aplicativo
 
             if (chk.Checked)
             {
-                //agregar el juez al listado
+                //agregar el jurado al listado
                 ids.Add(chk.AccessKey);
             }
             else
             {
-                //quitar el juez del listado
+                //quitar el jurado del listado
                 if (ids.IndexOf(chk.AccessKey) >= 0)
                 {
                     ids.RemoveAt(ids.IndexOf(chk.AccessKey));
@@ -196,7 +196,7 @@ namespace WebApplication1.Aplicativo
                     int id_juez;
                     if (int.TryParse(str_id_juez, out id_juez))
                     {
-                        texto_para_el_label = texto_para_el_label + cxt.Personas.FirstOrDefault(pp => pp.Juez.juez_id == id_juez).persona_nomyap + "; ";
+                        texto_para_el_label = texto_para_el_label + cxt.Personas.FirstOrDefault(pp => pp.Jurado.juez_id == id_juez).persona_nomyap + "; ";
                         texto_para_el_hidden = texto_para_el_hidden + id_juez.ToString() + ",";
                     }
                 }
@@ -221,7 +221,7 @@ namespace WebApplication1.Aplicativo
                     CheckBox chk = ((CheckBox)fila.Cells[3].Controls[1]);
 
                     int jurado_id = Convert.ToInt32(chk.AccessKey);
-                    Juez jurado = cxt.Jueces.FirstOrDefault(jj => jj.juez_id == jurado_id);
+                    Jurado jurado = cxt.Jueces.FirstOrDefault(jj => jj.juez_id == jurado_id);
                     if (chk.Checked)
                     {
                         items_seleccionados.Add(new item_jurado()
@@ -293,7 +293,7 @@ namespace WebApplication1.Aplicativo
                 Estado_tesina et = cxt.Estados_tesinas.FirstOrDefault(eett => eett.estado_tesina_estado == "Lista para presentar");
 
                 var tesinas = (from t in cxt.Tesinas
-                               where t.estado_tesis_id == et.estado_tesina_id
+                               where t.estado_tesis_id == et.estado_tesina_id && t.Tesista.tesista_baja_definitiva == null
                                select t).ToList();
 
                 var jueces_sin_baja = (from t in tesinas
@@ -490,7 +490,7 @@ namespace WebApplication1.Aplicativo
                             List<int> id_jueces = mesa.Jueces.Select(jj => jj.juez_id).ToList();
                             foreach (int id_juez in id_jueces)
                             {
-                                Juez j = cxt.Jueces.FirstOrDefault(jj => jj.juez_id == id_juez);
+                                Jurado j = cxt.Jueces.FirstOrDefault(jj => jj.juez_id == id_juez);
                                 mesa.Jueces.Remove(j);
                             }
 
@@ -512,8 +512,8 @@ namespace WebApplication1.Aplicativo
                             int jurado_id;
                             if (int.TryParse(str_jurado_id, out jurado_id))
                             {
-                                Juez juez = cxt.Jueces.FirstOrDefault(jj => jj.juez_id == jurado_id);
-                                mesa.Jueces.Add(juez);
+                                Jurado jurado = cxt.Jueces.FirstOrDefault(jj => jj.juez_id == jurado_id);
+                                mesa.Jueces.Add(jurado);
                             }
                         }
 
@@ -546,7 +546,7 @@ namespace WebApplication1.Aplicativo
                         me_codirector.Enviar_mail();
                          */
 
-                        foreach (Juez jurado in mesa.Jueces)
+                        foreach (Jurado jurado in mesa.Jueces)
                         {
                             Envio_mail em_jurado = new Envio_mail()
                             {

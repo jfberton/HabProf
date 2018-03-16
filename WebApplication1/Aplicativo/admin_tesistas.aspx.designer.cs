@@ -292,6 +292,24 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
         
         /// <summary>
+        /// file_tesis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload file_tesis;
+        
+        /// <summary>
+        /// RegularExpressionValidator3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator3;
+        
+        /// <summary>
         /// tr_pass_alta control.
         /// </summary>
         /// <remarks>
@@ -382,6 +400,24 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.WebControls.Button btn_aceptar_eliminacion;
         
         /// <summary>
+        /// id_item_por_eliminar_definitiva control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden id_item_por_eliminar_definitiva;
+        
+        /// <summary>
+        /// btn_eliminacion_definitiva control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_eliminacion_definitiva;
+        
+        /// <summary>
         /// lbl_ver_tesista_nomyap control.
         /// </summary>
         /// <remarks>
@@ -443,6 +479,15 @@ namespace WebApplication1.Aplicativo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbl_ver_tesista_telefono;
+        
+        /// <summary>
+        /// lbl_archivo_subido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lbl_archivo_subido;
         
         /// <summary>
         /// lbl_sin_tesina control.

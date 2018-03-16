@@ -74,7 +74,7 @@ namespace WebApplication1.Aplicativo
                     if (
                         (director.Persona.Administrador == null || director.Persona.Administrador.administrador_fecha_baja != null) && //no tiene el perfil o esta dado de baja
                         (director.Persona.Tesista == null || director.Persona.Tesista.tesista_fecha_baja != null) && //no tiene el perfil o esta dado de baja
-                        (director.Persona.Juez == null || director.Persona.Juez.juez_fecha_baja != null)  //no tiene el perfil o esta dado de baja
+                        (director.Persona.Jurado == null || director.Persona.Jurado.juez_fecha_baja != null)  //no tiene el perfil o esta dado de baja
                         )
                     {
                         director.Persona.persona_usuario = "";

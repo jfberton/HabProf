@@ -75,7 +75,7 @@ namespace WebApplication1.Aplicativo
                     List<int> id_jueces = mesa.Jueces.Select(jj => jj.juez_id).ToList();
                     foreach (int id_juez in id_jueces)
                     {
-                        Juez j = cxt.Jueces.FirstOrDefault(jj => jj.juez_id == id_juez);
+                        Jurado j = cxt.Jueces.FirstOrDefault(jj => jj.juez_id == id_juez);
                         mesa.Jueces.Remove(j);
                     }
 
@@ -185,7 +185,7 @@ namespace WebApplication1.Aplicativo
                     hidden_cerrar_mesa_id.Value = mesa.mesa_id.ToString();
 
                     string jurados = string.Empty;
-                    foreach (Juez jurado in mesa.Jueces)
+                    foreach (Jurado jurado in mesa.Jueces)
                     {
                         jurados = jurados + jurado.Persona.persona_nomyap + ",";
                     }
@@ -252,9 +252,9 @@ namespace WebApplication1.Aplicativo
                         Estado_tesina et = cxt.Estados_tesinas.FirstOrDefault(eett => eett.estado_tesina_estado == estado_final);
                         t.estado_tesis_id = et.estado_tesina_id;
 
-                        foreach (Juez juez in mesa.Jueces)
+                        foreach (Jurado jurado in mesa.Jueces)
                         {
-                            t.Jueces.Add(juez);
+                            t.Jueces.Add(jurado);
                         }
 
                         Historial_estado he = new Historial_estado()
@@ -302,7 +302,7 @@ namespace WebApplication1.Aplicativo
                 mr.mesa_licenciatura = mesa.Tesinas.First().Tesista.Persona.Licenciatura.licenciatura_nombre;
                 ds.t_mesa.Addt_mesaRow(mr);
 
-                foreach (Juez jurado in mesa.Jueces)
+                foreach (Jurado jurado in mesa.Jueces)
                 {
                     Reportes.reporte_mesa.t_juradosRow jr = ds.t_jurados.Newt_juradosRow();
                     jr.jurado_dni = jurado.Persona.persona_dni.ToString();
@@ -500,7 +500,7 @@ namespace WebApplication1.Aplicativo
                 {
                     Reportes.reporte_jurado ds = new Reportes.reporte_jurado();
 
-                    foreach (Juez jurado in mesa.Jueces)
+                    foreach (Jurado jurado in mesa.Jueces)
                     {
                         foreach (Tesina tesina in mesa.Tesinas)
                         {
@@ -588,6 +588,85 @@ namespace WebApplication1.Aplicativo
             }
 
             args.IsValid = correcto;
+        }
+
+        protected void btn_imprimir_derivacion_biblioteca_Click(object sender, EventArgs e)
+        {
+            int id_mesa = Convert.ToInt32(((Button)sender).CommandArgument);
+
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                Mesa mesa = cxt.Mesas.FirstOrDefault(pp => pp.mesa_id == id_mesa);
+
+                if (mesa != null && mesa.mesa_estado != "Cerrada")
+                {
+                    Reportes.reporte_mesa ds = new Reportes.reporte_mesa();
+
+                    Reportes.reporte_mesa.t_mesaRow mr = ds.t_mesa.Newt_mesaRow();
+                    mr.mesa_fecha = mesa.mesa_fecha;
+                    mr.mesa_estado = mesa.mesa_estado;
+                    mr.mesa_licenciatura = mesa.Tesinas.First().Tesista.Persona.Licenciatura.licenciatura_nombre;
+                    ds.t_mesa.Addt_mesaRow(mr);
+
+                    foreach (Tesina tesina in mesa.Tesinas)
+                    {
+                        if (tesina.tesina_calificacion >= 6)
+                        {
+                            Reportes.reporte_mesa.t_tesinasRow tr = ds.t_tesinas.Newt_tesinasRow();
+                            tr.tesina_titulo = tesina.tesina_tema;
+                            tr.tesina_tesista = tesina.Tesista.Persona.persona_nomyap;
+                            tr.tesina_director = tesina.Director.Persona.persona_nomyap;
+                            tr.tesina_calificacion = tesina.tesina_calificacion.ToString();
+                            tr.tesina_calificacion_director = tesina.tesina_calificacion_director.ToString();
+                            tr.tesina_calificacion_codirector = tesina.Codirector != null ? tesina.tesina_calificacion_codirector.ToString() : "0";
+                            tr.tesista_legajo = tesina.Tesista.tesista_legajo;
+                            ds.t_tesinas.Addt_tesinasRow(tr);
+                        }
+                    }
+
+                    Session["ds_mesa"] = ds;
+                }
+                else
+                {
+                    MessageBox.Show(this, "No se puede imprimir derivaciones de mesas que aún no estan cerradas", MessageBox.Tipo_MessageBox.Info);
+                }
+            }
+
+            RenderReport_derivacion_tesinas_aprobadas_a_biblioteca();
+        }
+
+        private void RenderReport_derivacion_tesinas_aprobadas_a_biblioteca()
+        {
+            Reportes.reporte_mesa ds = Session["ds_mesa"] as Reportes.reporte_mesa;
+
+            ReportViewer viewer = new ReportViewer();
+            viewer.ProcessingMode = ProcessingMode.Local;
+            viewer.LocalReport.EnableExternalImages = true;
+
+            viewer.LocalReport.ReportPath = Server.MapPath("~/Aplicativo/Reportes/reporte_mesa_tesinas_aprobadas_biblioteca.rdlc");
+
+            ReportDataSource mesa = new ReportDataSource("t_mesa", ds.t_mesa.Rows);
+            ReportDataSource tesinas = new ReportDataSource("t_tesinas", ds.t_tesinas.Rows);
+
+            viewer.LocalReport.DataSources.Add(mesa);
+            viewer.LocalReport.DataSources.Add(tesinas);
+
+            Microsoft.Reporting.WebForms.Warning[] warnings = null;
+            string[] streamids = null;
+            string mimeType = null;
+            string encoding = null;
+            string extension = null;
+            string deviceInfo = null;
+            byte[] bytes = null;
+
+            deviceInfo = "<DeviceInfo><SimplePageHeaders>True</SimplePageHeaders></DeviceInfo>";
+
+            //Render the report
+            bytes = viewer.LocalReport.Render("PDF", deviceInfo, out mimeType, out encoding, out extension, out streamids, out warnings);
+            Session["Reporte"] = bytes;
+
+            string script = "<script type='text/javascript'>window.open('Reportes/reportes.aspx');</script>";
+            Page.ClientScript.RegisterClientScriptBlock(this.GetType(), "VentanaPadre", script);
         }
     }
 }

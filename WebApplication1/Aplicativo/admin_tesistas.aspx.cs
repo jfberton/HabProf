@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -86,7 +87,7 @@ namespace WebApplication1.Aplicativo
                 if (
                    (tesista.Persona.Administrador == null || tesista.Persona.Administrador.administrador_fecha_baja != null) && //no tiene el perfil o esta dado de baja
                    (tesista.Persona.Director == null || tesista.Persona.Director.director_fecha_baja != null) && //no tiene el perfil o esta dado de baja
-                   (tesista.Persona.Juez == null || tesista.Persona.Juez.juez_fecha_baja != null)  //no tiene el perfil o esta dado de baja
+                   (tesista.Persona.Jurado == null || tesista.Persona.Jurado.juez_fecha_baja != null)  //no tiene el perfil o esta dado de baja
                    )
                 {
                     tesista.Persona.persona_usuario = "";
@@ -199,6 +200,22 @@ namespace WebApplication1.Aplicativo
                     {
 
                         cxt.SaveChanges();
+
+                        if (file_tesis.HasFile)
+                        {
+                            string directorio = Server.MapPath("~/Archivos/Tesistas/" + tesista.tesista_id + "/");
+
+                            if (!Directory.Exists(directorio))
+                            {
+                                Directory.CreateDirectory(directorio);
+                            }
+
+                            string extencion_origen = Path.GetExtension(file_tesis.FileName);
+
+                            string path_save_file = directorio + "plan" + extencion_origen;
+
+                            file_tesis.SaveAs(path_save_file);
+                        }
 
                         tb_dni_tesista.Value = string.Empty;
                         tb_domicilio.Value = string.Empty;
@@ -316,6 +333,40 @@ namespace WebApplication1.Aplicativo
                     lbl_ver_tesista_nomyap.Text = tesista.Persona.persona_nomyap;
                     lbl_ver_tesista_sede.Text = tesista.tesista_sede;
                     lbl_ver_tesista_telefono.Text = tesista.Persona.persona_telefono;
+                    string archivo = Server.MapPath("~/Archivos/Tesistas/" + id_tesista.ToString() + "/plan.pdf");
+                    string archivo1 = Server.MapPath("~/Archivos/Tesistas/" + id_tesista.ToString() + "/plan.doc");
+                    string archivo2 = Server.MapPath("~/Archivos/Tesistas/" + id_tesista.ToString() + "/plan.docx");
+                    if (File.Exists(archivo))
+                    {
+                        lbl_archivo_subido.HRef = "~/Archivos/Tesistas/" + id_tesista.ToString() + "/plan.pdf";
+                        lbl_archivo_subido.InnerText = "Archivo presentado";
+                        lbl_archivo_subido.Target = "_blank";
+                    }
+                    else
+                    {
+                        if (File.Exists(archivo1))
+                        {
+                            lbl_archivo_subido.HRef = "~/Archivos/Tesistas/" + id_tesista.ToString() + "/plan.doc";
+                            lbl_archivo_subido.InnerText = "Archivo presentado";
+                            lbl_archivo_subido.Target = "_blank";
+                        }
+                        else
+                        {
+                            if (File.Exists(archivo2))
+                            {
+                                lbl_archivo_subido.HRef = "~/Archivos/Tesistas/" + id_tesista.ToString() + "/plan.docx";
+                                lbl_archivo_subido.InnerText = "Archivo presentado";
+                                lbl_archivo_subido.Target = "_blank";
+                            }
+                            else
+                            {
+                                lbl_archivo_subido.HRef = "#";
+                                lbl_archivo_subido.InnerText = "Sin presentaciones";
+                                lbl_archivo_subido.Target = "_self";
+                            }
+                        }
+                    }
+
 
                     var tesinas = (from t in tesista.Tesina select t).ToList();
                     var tesinas_para_grilla = (from t in tesinas
@@ -352,6 +403,14 @@ namespace WebApplication1.Aplicativo
             Validate("dni_persona");
             if (IsValid)
             {
+                tb_domicilio.Value = string.Empty;
+                tb_email.Value = string.Empty;
+                tb_legajo.Value = string.Empty;
+                tb_nombre_tesista.Value = string.Empty;
+                tb_sede.Value = string.Empty;
+                tb_telefono.Value = string.Empty;
+                hidden_id_tesista_editar.Value = "0";
+
                 using (HabProfDBContainer cxt = new HabProfDBContainer())
                 {
                     int dni = 0;
@@ -442,6 +501,50 @@ namespace WebApplication1.Aplicativo
         protected void btn_eliminar_tesistas_ServerClick(object sender, EventArgs e)
         {
             Response.Redirect("~/Aplicativo/admin_tesistas_eliminar_limpieza.aspx");
+        }
+
+        protected void btn_eliminacion_definitiva_Click(object sender, EventArgs e)
+        {
+            int id_tesista = Convert.ToInt32(id_item_por_eliminar_definitiva.Value);
+
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                try
+                {
+                    Tesista tesista = cxt.Tesistas.FirstOrDefault(pp => pp.tesista_id == id_tesista);
+
+                    if (tesista.Tesina != null)
+                    {
+                        MessageBox.Show(this, "No se puede eliminar un tesista que posee tesina asociada!");
+                    }
+                    else
+                    {
+                        tesista.tesista_baja_definitiva = DateTime.Today;
+                        cxt.SaveChanges();
+                        MessageBox.Show(this, "Se ha eliminado el tesista", MessageBox.Tipo_MessageBox.Success);
+                    }
+                }
+                catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                {
+                    Exception raise = dbEx;
+                    foreach (var validationErrors in dbEx.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            string message = string.Format("{0}:{1}",
+                                validationErrors.Entry.Entity.ToString(),
+                                validationError.ErrorMessage);
+                            // raise a new exception nesting
+                            // the current instance as InnerException
+                            raise = new InvalidOperationException(message, raise);
+                        }
+                    }
+
+                    MessageBox.Show(this, raise.Message, MessageBox.Tipo_MessageBox.Danger, "Ups! ocurrio un error al guardar los cambios");
+                }
+            }
+
+            ObtenerTesistas();
         }
     }
 }

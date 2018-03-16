@@ -67,7 +67,7 @@ namespace WebApplication1.Aplicativo
 
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
-                Juez juez = cxt.Jueces.FirstOrDefault(pp => pp.juez_id == id_juez);
+                Jurado juez = cxt.Jueces.FirstOrDefault(pp => pp.juez_id == id_juez);
                 juez.juez_fecha_baja = DateTime.Today;
                 if (
                     (juez.Persona.Administrador == null || juez.Persona.Administrador.administrador_fecha_baja != null) && //no tiene el perfil o esta dado de baja
@@ -77,6 +77,7 @@ namespace WebApplication1.Aplicativo
                 {
                     juez.Persona.persona_usuario = "";
                     juez.Persona.persona_clave = "";
+                    juez.Persona.persona_email = "";
                 }
 
                 cxt.SaveChanges();
@@ -103,7 +104,7 @@ namespace WebApplication1.Aplicativo
                 int id_juez = Convert.ToInt32(hidden_id_juez_editar.Value);
 
                 Persona p_juez = null;
-                Juez juez = null;
+                Jurado juez = null;
 
                 using (HabProfDBContainer cxt = new HabProfDBContainer())
                 {
@@ -120,7 +121,8 @@ namespace WebApplication1.Aplicativo
                         p_juez = cxt.Personas.FirstOrDefault(pp => pp.persona_dni == dni);
                         if (p_juez != null)
                         {
-                            juez = p_juez.Juez;
+                            juez = p_juez.Jurado;
+                            juez.juez_fecha_baja = null;
                         }
 
                     }
@@ -154,7 +156,7 @@ namespace WebApplication1.Aplicativo
                     if (juez == null)
                     {
                         //no existe hago un insert
-                        juez = new Juez()
+                        juez = new Jurado()
                         {
                             Persona = p_juez
                         };
@@ -214,7 +216,7 @@ namespace WebApplication1.Aplicativo
             {
                 int id_juez = Convert.ToInt32(((HtmlButton)sender).Attributes["data-id"]);
 
-                Juez juez = cxt.Jueces.FirstOrDefault(pp => pp.juez_id == id_juez);
+                Jurado juez = cxt.Jueces.FirstOrDefault(pp => pp.juez_id == id_juez);
                 if (juez != null)
                 {
                     tb_dni_juez.Value = juez.Persona.persona_dni.ToString();
@@ -222,7 +224,7 @@ namespace WebApplication1.Aplicativo
                     tb_email.Value = juez.Persona.persona_email;
                     tb_nombre_juez.Value = juez.Persona.persona_nomyap;
                     tb_telefono.Value = juez.Persona.persona_telefono;
-                    lbl_agregar_actualizar_juez.Text = "Actualizar ";
+                    lbl_agregar_actualizar_juez.Text = "Editar ";
 
                     tb_dni_juez.Disabled = true;
                     btn_chequear_dni.Visible = false;
@@ -246,7 +248,7 @@ namespace WebApplication1.Aplicativo
 
                 int id_juez = Convert.ToInt32(((HtmlButton)sender).Attributes["data-id"]);
 
-                Juez juez = cxt.Jueces.FirstOrDefault(pp => pp.juez_id == id_juez);
+                Jurado juez = cxt.Jueces.FirstOrDefault(pp => pp.juez_id == id_juez);
                 if (juez != null)
                 {
                     lbl_ver_juez_dni.Text = juez.Persona.persona_dni.ToString();

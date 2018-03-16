@@ -48,6 +48,7 @@
                     <asp:Button Text="Imprimir" ID="btn_imprimir" OnClick="btn_imprimir_Click" CssClass="btn btn-sm btn-default" CommandArgument='<%#Eval("mesa_id")%>' runat="server" />
                     <asp:Button Text="Certif. Direct." ID="btn_imprimir_directores" OnClick="btn_imprimir_directores_Click" CssClass="btn btn-sm btn-default" CommandArgument='<%#Eval("mesa_id")%>' runat="server" />
                     <asp:Button Text="Certif. Jurados" ID="btn_imprimir_certificado_jurados" OnClick="btn_imprimir_certificado_jurados_Click" CssClass="btn btn-sm btn-default" CommandArgument='<%#Eval("mesa_id")%>' runat="server" />
+                    <asp:Button Text="Deriv. Biblio" ID="btn_imprimir_derivacion_biblioteca" OnClick="btn_imprimir_derivacion_biblioteca_Click" CssClass="btn btn-sm btn-default" CommandArgument='<%#Eval("mesa_id")%>' runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField>
@@ -111,7 +112,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h4>Jurados:</h4>
-                            <asp:GridView runat="server" ID="gv_jurados" AutoGenerateColumns="False" GridLines="None" CssClass="display" OnPreRender="gv_mesas_PreRender">
+                            <asp:GridView runat="server" ID="gv_jurados" AutoGenerateColumns="False" GridLines="None" CssClass="display black" OnPreRender="gv_mesas_PreRender">
                                 <Columns>
                                     <asp:BoundField DataField="juez_persona_nomyap" HeaderText="Nombre" ReadOnly="true" />
                                     <asp:BoundField DataField="juez_persona_dni" HeaderText="DNI" ReadOnly="true" />
@@ -123,7 +124,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h4>Tesinas evaluadas:</h4>
-                            <asp:GridView runat="server" ID="gv_tesinas" AutoGenerateColumns="False" GridLines="None" CssClass="display" OnPreRender="gv_mesas_PreRender">
+                            <asp:GridView runat="server" ID="gv_tesinas" AutoGenerateColumns="False" GridLines="None" CssClass="display black" OnPreRender="gv_mesas_PreRender">
                                 <Columns>
                                     <%--<asp:BoundField DataField="tesina_tema" HeaderText="Título" ReadOnly="true" />--%>
                                     <asp:BoundField DataField="tesina_tesista" HeaderText="Tesista" ReadOnly="true" />
@@ -166,7 +167,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h4>Tesinas:</h4>
-                            <asp:GridView runat="server" ID="gv_cerrar_mesa_tesinas" AutoGenerateColumns="False" GridLines="None" CssClass="display" OnPreRender="gv_mesas_PreRender">
+                            <asp:GridView runat="server" ID="gv_cerrar_mesa_tesinas" AutoGenerateColumns="False" GridLines="None" CssClass="display black" OnPreRender="gv_mesas_PreRender">
                                 <Columns>
                                     <asp:BoundField DataField="tesina_tema" HeaderText="Título" ReadOnly="true" />
                                     <asp:BoundField DataField="tesina_director" HeaderText="Director" ReadOnly="true" />

@@ -55,8 +55,6 @@
                         <h1><strong>Sistema de Administración de Tesis</strong></h1>
                         <div class="description">
                             <p>
-                                <%--Gestión y seguimiento del desarrollo de la Tesina Final de la carrera --%><strong>Licenciatura en Tecnología Educativa</strong>
-                                <br />
                                 <a href="http://www.frre.utn.edu.ar" target="_blank"><strong>Universidad Tecnológica Nacional - Facultad Regional Resistencia</strong></a>
                             </p>
                         </div>

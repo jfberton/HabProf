@@ -61,7 +61,7 @@ public partial class Persona
 
     public virtual Director Director { get; set; }
 
-    public virtual Juez Juez { get; set; }
+    public virtual Jurado Jurado { get; set; }
 
     public virtual Administrador Administrador { get; set; }
 

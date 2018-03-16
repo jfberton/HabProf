@@ -63,14 +63,14 @@
     </AssociationSet>
     <AssociationSet Name="PersonaJuez" Association="HabProfDB.Store.PersonaJuez">
       <End Role="Persona" EntitySet="Personas" />
-      <End Role="Juez" EntitySet="Jueces" />
+      <End Role="Jurado" EntitySet="Jueces" />
     </AssociationSet>
     <AssociationSet Name="PersonaAdministrador" Association="HabProfDB.Store.PersonaAdministrador">
       <End Role="Persona" EntitySet="Personas" />
       <End Role="Administrador" EntitySet="Administradores" />
     </AssociationSet>
     <AssociationSet Name="FK_JuezTesina_Juez" Association="HabProfDB.Store.FK_JuezTesina_Juez">
-      <End Role="Juez" EntitySet="Jueces" />
+      <End Role="Jurado" EntitySet="Jueces" />
       <End Role="JuezTesina" EntitySet="JuezTesina" />
     </AssociationSet>
     <AssociationSet Name="FK_JuezTesina_Tesina" Association="HabProfDB.Store.FK_JuezTesina_Tesina">
@@ -90,7 +90,7 @@
       <End Role="MesaJuez" EntitySet="MesaJuez" />
     </AssociationSet>
     <AssociationSet Name="FK_MesaJuez_Juez" Association="HabProfDB.Store.FK_MesaJuez_Juez">
-      <End Role="Juez" EntitySet="Jueces" />
+      <End Role="Jurado" EntitySet="Jueces" />
       <End Role="MesaJuez" EntitySet="MesaJuez" />
     </AssociationSet>
     <AssociationSet Name="DirectorTesina1" Association="HabProfDB.Store.DirectorTesina1">
@@ -374,12 +374,12 @@
   </Association>
   <Association Name="PersonaJuez">
     <End Role="Persona" Type="HabProfDB.Store.Personas" Multiplicity="1" />
-    <End Role="Juez" Type="HabProfDB.Store.Jueces" Multiplicity="*" />
+    <End Role="Jurado" Type="HabProfDB.Store.Jueces" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Persona">
         <PropertyRef Name="persona_id" />
       </Principal>
-      <Dependent Role="Juez">
+      <Dependent Role="Jurado">
         <PropertyRef Name="Persona_persona_id" />
       </Dependent>
     </ReferentialConstraint>
@@ -409,10 +409,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_JuezTesina_Juez">
-    <End Role="Juez" Type="HabProfDB.Store.Jueces" Multiplicity="1" />
+    <End Role="Jurado" Type="HabProfDB.Store.Jueces" Multiplicity="1" />
     <End Role="JuezTesina" Type="HabProfDB.Store.JuezTesina" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Juez">
+      <Principal Role="Jurado">
         <PropertyRef Name="juez_id" />
       </Principal>
       <Dependent Role="JuezTesina">
@@ -470,9 +470,9 @@
   </Association>
   <Association Name="FK_MesaJuez_Juez">
     <End Role="MesaJuez" Type="HabProfDB.Store.MesaJuez" Multiplicity="*" />
-    <End Role="Juez" Type="HabProfDB.Store.Jueces" Multiplicity="1" />
+    <End Role="Jurado" Type="HabProfDB.Store.Jueces" Multiplicity="1" />
     <ReferentialConstraint>
-      <Principal Role="Juez">
+      <Principal Role="Jurado">
         <PropertyRef Name="juez_id" />
       </Principal>
       <Dependent Role="MesaJuez">
@@ -516,7 +516,7 @@
             <End Role="Persona" EntitySet="Personas" />
             <End Role="Envio_mail" EntitySet="Envio_mails" />
           </AssociationSet>
-          <EntitySet Name="Jueces" EntityType="HabProfDB.Juez" />
+          <EntitySet Name="Jueces" EntityType="HabProfDB.Jurado" />
           <EntitySet Name="Administradores" EntityType="HabProfDB.Administrador" />
           <EntitySet Name="Directores" EntityType="HabProfDB.Director" />
           <EntitySet Name="Tesistas" EntityType="HabProfDB.Tesista" />
@@ -538,14 +538,14 @@
           </AssociationSet>
           <AssociationSet Name="PersonaJuez" Association="HabProfDB.PersonaJuez">
             <End Role="Persona" EntitySet="Personas" />
-            <End Role="Juez" EntitySet="Jueces" />
+            <End Role="Jurado" EntitySet="Jueces" />
           </AssociationSet>
           <AssociationSet Name="PersonaAdministrador" Association="HabProfDB.PersonaAdministrador">
             <End Role="Persona" EntitySet="Personas" />
             <End Role="Administrador" EntitySet="Administradores" />
           </AssociationSet>
           <AssociationSet Name="JuezTesina" Association="HabProfDB.JuezTesina">
-            <End Role="Juez" EntitySet="Jueces" />
+            <End Role="Jurado" EntitySet="Jueces" />
             <End Role="Tesina" EntitySet="Tesinas" />
           </AssociationSet>
           <EntitySet Name="Mesas" EntityType="HabProfDB.Mesa" />
@@ -555,7 +555,7 @@
           </AssociationSet>
           <AssociationSet Name="MesaJuez" Association="HabProfDB.MesaJuez">
             <End Role="Mesa" EntitySet="Mesas" />
-            <End Role="Juez" EntitySet="Jueces" />
+            <End Role="Jurado" EntitySet="Jueces" />
           </AssociationSet>
           <AssociationSet Name="DirectorTesina1" Association="HabProfDB.DirectorTesina1">
             <End Role="Director" EntitySet="Directores" />
@@ -581,7 +581,7 @@
           <NavigationProperty Name="Envios_mail" Relationship="HabProfDB.PersonaEnvio_mail" FromRole="Persona" ToRole="Envio_mail" />
           <NavigationProperty Name="Tesista" Relationship="HabProfDB.PersonaTesista" FromRole="Persona" ToRole="Tesista" />
           <NavigationProperty Name="Director" Relationship="HabProfDB.PersonaDirector" FromRole="Persona" ToRole="Director" />
-          <NavigationProperty Name="Juez" Relationship="HabProfDB.PersonaJuez" FromRole="Persona" ToRole="Juez" />
+          <NavigationProperty Name="Jurado" Relationship="HabProfDB.PersonaJuez" FromRole="Persona" ToRole="Jurado" />
           <NavigationProperty Name="Administrador" Relationship="HabProfDB.PersonaAdministrador" FromRole="Persona" ToRole="Administrador" />
         </EntityType>
         <EntityType Name="Tesista">
@@ -614,15 +614,15 @@
           <NavigationProperty Name="Persona" Relationship="HabProfDB.PersonaAdministrador" FromRole="Administrador" ToRole="Persona" />
           <Property Name="administrador_fecha_baja" Type="DateTime" Nullable="true" />
         </EntityType>
-        <EntityType Name="Juez">
+        <EntityType Name="Jurado">
           <Key>
             <PropertyRef Name="juez_id" />
           </Key>
           <Property Name="juez_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Persona" Relationship="HabProfDB.PersonaJuez" FromRole="Juez" ToRole="Persona" />
+          <NavigationProperty Name="Persona" Relationship="HabProfDB.PersonaJuez" FromRole="Jurado" ToRole="Persona" />
           <Property Name="juez_fecha_baja" Type="DateTime" Nullable="true" />
-          <NavigationProperty Name="Tesinas" Relationship="HabProfDB.JuezTesina" FromRole="Juez" ToRole="Tesina" />
-          <NavigationProperty Name="Mesa" Relationship="HabProfDB.MesaJuez" FromRole="Juez" ToRole="Mesa" />
+          <NavigationProperty Name="Tesinas" Relationship="HabProfDB.JuezTesina" FromRole="Jurado" ToRole="Tesina" />
+          <NavigationProperty Name="Mesa" Relationship="HabProfDB.MesaJuez" FromRole="Jurado" ToRole="Mesa" />
         </EntityType>
         <EntityType Name="Tesina">
           <Key>
@@ -645,7 +645,7 @@
           <Property Name="tesista_id" Type="Int32" Nullable="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <NavigationProperty Name="Director" Relationship="HabProfDB.DirectorTesina" FromRole="Tesina" ToRole="Director" />
           <Property Name="director_id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Jueces" Relationship="HabProfDB.JuezTesina" FromRole="Tesina" ToRole="Juez" />
+          <NavigationProperty Name="Jueces" Relationship="HabProfDB.JuezTesina" FromRole="Tesina" ToRole="Jurado" />
           <Property Name="tesina_categoria" Type="String" Nullable="false" />
           <NavigationProperty Name="Mesas" Relationship="HabProfDB.MesaTesina" FromRole="Tesina" ToRole="Mesa" />
           <NavigationProperty Name="Codirector" Relationship="HabProfDB.DirectorTesina1" FromRole="Tesina" ToRole="Director" />
@@ -814,14 +814,14 @@
         </Association>
         <Association Name="PersonaJuez">
           <End Type="HabProfDB.Persona" Role="Persona" Multiplicity="1" />
-          <End Type="HabProfDB.Juez" Role="Juez" Multiplicity="0..1" />
+          <End Type="HabProfDB.Jurado" Role="Jurado" Multiplicity="0..1" />
         </Association>
         <Association Name="PersonaAdministrador">
           <End Type="HabProfDB.Persona" Role="Persona" Multiplicity="1" />
           <End Type="HabProfDB.Administrador" Role="Administrador" Multiplicity="0..1" />
         </Association>
         <Association Name="JuezTesina">
-          <End Type="HabProfDB.Juez" Role="Juez" Multiplicity="*" />
+          <End Type="HabProfDB.Jurado" Role="Jurado" Multiplicity="*" />
           <End Type="HabProfDB.Tesina" Role="Tesina" Multiplicity="*" />
         </Association>
         <EntityType Name="Mesa">
@@ -832,7 +832,7 @@
           <Property Name="mesa_fecha" Type="DateTime" Nullable="false" />
           <Property Name="mesa_estado" Type="String" Nullable="false" />
           <NavigationProperty Name="Tesinas" Relationship="HabProfDB.MesaTesina" FromRole="Mesa" ToRole="Tesina" />
-          <NavigationProperty Name="Jueces" Relationship="HabProfDB.MesaJuez" FromRole="Mesa" ToRole="Juez" />
+          <NavigationProperty Name="Jueces" Relationship="HabProfDB.MesaJuez" FromRole="Mesa" ToRole="Jurado" />
         </EntityType>
         <Association Name="MesaTesina">
           <End Type="HabProfDB.Mesa" Role="Mesa" Multiplicity="*" />
@@ -840,7 +840,7 @@
         </Association>
         <Association Name="MesaJuez">
           <End Type="HabProfDB.Mesa" Role="Mesa" Multiplicity="*" />
-          <End Type="HabProfDB.Juez" Role="Juez" Multiplicity="*" />
+          <End Type="HabProfDB.Jurado" Role="Jurado" Multiplicity="*" />
         </Association>
         <Association Name="DirectorTesina1">
           <End Type="HabProfDB.Director" Role="Director" Multiplicity="0..1" />
@@ -955,7 +955,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Jueces">
-      <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Juez)">
+      <EntityTypeMapping TypeName="IsTypeOf(HabProfDB.Jurado)">
         <MappingFragment StoreEntitySet="Jueces">
           <ScalarProperty Name="juez_id" ColumnName="juez_id" />
           <ScalarProperty Name="juez_fecha_baja" ColumnName="juez_fecha_baja" />
@@ -1018,7 +1018,7 @@
       <EndProperty Name="Persona">
         <ScalarProperty Name="persona_id" ColumnName="Persona_persona_id" />
       </EndProperty>
-      <EndProperty Name="Juez">
+      <EndProperty Name="Jurado">
         <ScalarProperty Name="juez_id" ColumnName="juez_id" />
       </EndProperty>
     </AssociationSetMapping>
@@ -1031,7 +1031,7 @@
       </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="JuezTesina" TypeName="HabProfDB.JuezTesina" StoreEntitySet="JuezTesina">
-      <EndProperty Name="Juez">
+      <EndProperty Name="Jurado">
         <ScalarProperty Name="juez_id" ColumnName="Jueces_juez_id" />
       </EndProperty>
       <EndProperty Name="Tesina">
@@ -1050,7 +1050,7 @@
       <EndProperty Name="Mesa">
         <ScalarProperty Name="mesa_id" ColumnName="Mesa_mesa_id" />
       </EndProperty>
-      <EndProperty Name="Juez">
+      <EndProperty Name="Jurado">
         <ScalarProperty Name="juez_id" ColumnName="Jueces_juez_id" />
       </EndProperty>
     </AssociationSetMapping>

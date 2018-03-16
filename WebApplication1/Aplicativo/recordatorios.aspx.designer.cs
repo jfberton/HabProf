@@ -7,180 +7,207 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication1 {
+namespace WebApplication1.Aplicativo {
     
     
-    public partial class landing_mail {
+    public partial class recordatorios {
         
         /// <summary>
-        /// form1 control.
+        /// menu_admin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::WebApplication1.Aplicativo.Menues.menu_admin menu_admin;
         
         /// <summary>
-        /// div_error_generico control.
+        /// lbl_sin_tesinas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_error_generico;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_sin_tesinas;
         
         /// <summary>
-        /// div_validar_correo control.
+        /// lbl_no_existe_tesina control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_validar_correo;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_no_existe_tesina;
         
         /// <summary>
-        /// lbl_titulo control.
+        /// gv_tesinas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_titulo;
+        protected global::System.Web.UI.WebControls.GridView gv_tesinas;
         
         /// <summary>
-        /// texto control.
+        /// lbl_tema control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl texto;
+        protected global::System.Web.UI.WebControls.Label lbl_tema;
         
         /// <summary>
-        /// btn_redireccionar control.
+        /// lbl_descripcion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btn_redireccionar;
+        protected global::System.Web.UI.WebControls.Label lbl_descripcion;
         
         /// <summary>
-        /// div_validar_correo_alta_director control.
+        /// hidden_tesina_id control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_validar_correo_alta_director;
+        protected global::System.Web.UI.WebControls.HiddenField hidden_tesina_id;
         
         /// <summary>
-        /// lbl_titulo_alta_director control.
+        /// lbl_tesista control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_titulo_alta_director;
+        protected global::System.Web.UI.WebControls.Label lbl_tesista;
         
         /// <summary>
-        /// texto_director control.
+        /// lbl_director control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl texto_director;
+        protected global::System.Web.UI.WebControls.Label lbl_director;
         
         /// <summary>
-        /// btn_redireccionar_alta_director control.
+        /// lbl_codirector control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btn_redireccionar_alta_director;
+        protected global::System.Web.UI.WebControls.Label lbl_codirector;
         
         /// <summary>
-        /// div_recuperar_contraseña control.
+        /// lbl_alta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_recuperar_contraseña;
+        protected global::System.Web.UI.WebControls.Label lbl_alta;
         
         /// <summary>
-        /// lbl_recuperar_contraseña control.
+        /// lbl_duracion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_recuperar_contraseña;
+        protected global::System.Web.UI.WebControls.Label lbl_duracion;
         
         /// <summary>
-        /// textp_recuperar_contraseña control.
+        /// lbl_periodo_notificaciones control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl textp_recuperar_contraseña;
+        protected global::System.Web.UI.WebControls.Label lbl_periodo_notificaciones;
         
         /// <summary>
-        /// validation_summary control.
+        /// lbl_calificacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary validation_summary;
+        protected global::System.Web.UI.WebControls.Label lbl_calificacion;
         
         /// <summary>
-        /// tb_pass control.
+        /// lbl_calificacion_director control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_pass;
+        protected global::System.Web.UI.WebControls.Label lbl_calificacion_director;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// lbl_calificacion_codirector control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.Label lbl_calificacion_codirector;
         
         /// <summary>
-        /// tb_pass1 control.
+        /// lbl_estado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tb_pass1;
+        protected global::System.Web.UI.WebControls.Label lbl_estado;
         
         /// <summary>
-        /// compare_validator control.
+        /// lbl_observaciones_estado control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator compare_validator;
+        protected global::System.Web.UI.WebControls.Label lbl_observaciones_estado;
         
         /// <summary>
-        /// btn_recuperar_contraseña control.
+        /// lbl_archivo_subido control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btn_recuperar_contraseña;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lbl_archivo_subido;
+        
+        /// <summary>
+        /// lbl_jueces_tesina_visualizacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_jueces_tesina_visualizacion;
+        
+        /// <summary>
+        /// gv_historial control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gv_historial;
+        
+        /// <summary>
+        /// btn_enviar_correos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_enviar_correos;
     }
 }

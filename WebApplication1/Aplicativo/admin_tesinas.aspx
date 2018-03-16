@@ -10,7 +10,8 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="CPH_Body" runat="server">
     <ol class="breadcrumb">
         <li><a href="admin_home.aspx">Inicio</a></li>
-        <li>Administrar tesinas</li>
+        <li>Tesinas</li>
+        <li>Listado tesinas</li>
     </ol>
 
     <h1>Tesinas <small>
@@ -37,7 +38,7 @@
                 <Columns>
                     <asp:BoundField DataField="prioridad_orden" HeaderText="Orden" ReadOnly="true" />
                     <asp:BoundField DataField="tesista" HeaderText="Tesista" ReadOnly="true" />
-                    <asp:BoundField DataField="director" HeaderText="Director" ReadOnly="true" />
+                    <asp:BoundField DataField="categoria" HeaderText="Categoria" ReadOnly="true" />
                     <asp:TemplateField HeaderText="Título">
                         <ItemTemplate>
                             <asp:Label ID="Label1" runat="server"
@@ -164,8 +165,11 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <strong>Archivo Tesina:</strong> <a href="#" target="_blank" runat="server" id="lbl_archivo_subido">sin presentaciones</a>
+                                <div class="col-md-6">
+                                    <strong>Plan Tesina:</strong> <a href="#" target="_blank" runat="server" id="lbl_plan_tesina">sin presentar</a>
+                                </div>
+                                <div class="col-md-6">
+                                    <strong>Archivo Tesina:</strong> <a href="#" target="_blank" runat="server" id="lbl_archivo_subido">sin presentar</a>
                                 </div>
                             </div>
                             <div class="row">
@@ -182,7 +186,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <asp:GridView ID="gv_historial" runat="server" OnPreRender="gv_tesinas_PreRender"
-                                        AutoGenerateColumns="False" GridLines="None" CssClass="display compact">
+                                        AutoGenerateColumns="False" GridLines="None" CssClass="display compact black">
                                         <Columns>
                                             <asp:BoundField DataField="fecha" HeaderText="Fecha" DataFormatString="{0:d}" ReadOnly="true" />
                                             <asp:BoundField DataField="estado" HeaderText="Estado" ReadOnly="true" />

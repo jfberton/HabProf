@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -164,7 +165,10 @@ namespace WebApplication1.Aplicativo
             {
                 var tesistas = (
                     from t in cxt.Tesistas
-                    where t.tesista_fecha_baja == null && t.Tesina.Where(tt => tt.tesina_fecha_cierre == null).Count() == 0
+                    where 
+                        t.tesista_fecha_baja == null && 
+                        t.tesista_baja_definitiva == null && 
+                        t.Tesina.Where(tt => tt.tesina_fecha_cierre == null).Count() == 0
                     select new
                     {
                         tesista_id = t.tesista_id,
@@ -323,6 +327,223 @@ namespace WebApplication1.Aplicativo
             btn_eliminar_codirector.Visible = false;
         }
 
+        protected void btn_agregar_tesista_ServerClick(object sender, EventArgs e)
+        {
+
+            lbl_agregar_actualizar_tesista.Text = "Agregar ";
+
+            tb_dni_tesista.Value = "";
+
+            tb_dni_tesista.Disabled = false;
+
+            btn_chequear_dni.Visible = true;
+
+            btn_guardar.Visible = false;
+
+            tb_tabla_resto_campos.Visible = false;
+            tb_usuario.Value = string.Empty;
+            tb_contraseña.Value = string.Empty;
+            hidden_id_tesista_editar.Value = "0";
+
+            string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_tesista').modal('show')});</script>";
+            ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
+        }
+
+        protected void btn_chequear_dni_ServerClick(object sender, EventArgs e)
+        {
+            Validate("dni_persona");
+            if (IsValid)
+            {
+                tb_domicilio.Value = string.Empty;
+                tb_email.Value = string.Empty;
+                tb_legajo.Value = string.Empty;
+                tb_nombre_tesista.Value = string.Empty;
+                tb_sede.Value = string.Empty;
+                tb_telefono.Value = string.Empty;
+                hidden_id_tesista_editar.Value = "0";
+
+                using (HabProfDBContainer cxt = new HabProfDBContainer())
+                {
+                    int dni = 0;
+                    if (Int32.TryParse(tb_dni_tesista.Value, out dni))
+                    {
+                        Persona persona = cxt.Personas.FirstOrDefault(pp => pp.persona_dni == dni);
+                        if (persona != null)
+                        {
+                            tb_dni_tesista.Value = persona.persona_dni.ToString();
+                            tb_domicilio.Value = persona.persona_domicilio;
+                            tb_email.Value = persona.persona_email;
+                            tb_nombre_tesista.Value = persona.persona_nomyap;
+                            tb_telefono.Value = persona.persona_telefono;
+                            tb_usuario.Value = persona.persona_usuario;
+                            tr_pass_edit.Visible = true;
+                            chk_cambiar_clave.Checked = false;
+                            tr_chk_change_pass.Visible = false;
+                            tr_pass_alta.Visible = false;
+                        }
+                        else
+                        {
+                            tb_usuario.Value = tb_dni_tesista.Value;
+                            tr_pass_edit.Visible = false;
+                            tr_pass_alta.Visible = true;
+                        }
+                    }
+                }
+
+                tb_dni_tesista.Disabled = true;
+                btn_chequear_dni.Visible = false;
+
+                btn_guardar.Visible = true;
+
+                tb_tabla_resto_campos.Visible = true;
+            }
+
+            string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_tesista').modal('show')});</script>";
+            ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
+        }
+
+        protected void chk_cambiar_clave_CheckedChanged(object sender, EventArgs e)
+        {
+            tr_chk_change_pass.Visible = chk_cambiar_clave.Checked;
+
+            string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_tesista').modal('show')});</script>";
+            ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
+        }
+
+        protected void btn_guardar_ServerClick(object sender, EventArgs e)
+        {
+            this.Validate("tesista");
+            if (this.IsValid)
+            {
+                Persona usuario = Session["UsuarioLogueado"] as Persona;
+                int id_tesista = Convert.ToInt32(hidden_id_tesista_editar.Value);
+
+                int dni = 0;
+                int.TryParse(tb_dni_tesista.Value, out dni);
+
+                Persona p_tesista = null;
+                Tesista tesista = null;
+
+                using (HabProfDBContainer cxt = new HabProfDBContainer())
+                {
+                    if (id_tesista != 0)
+                    {
+                        //abrio por editar tesista
+                        tesista = cxt.Tesistas.FirstOrDefault(pp => pp.tesista_id == id_tesista);
+                        p_tesista = tesista.Persona;
+                    }
+                    else
+                    {
+                        p_tesista = cxt.Personas.FirstOrDefault(pp => pp.persona_dni == dni);
+                        if (p_tesista != null)
+                        {
+                            tesista = p_tesista.Tesista;
+                        }
+                    }
+
+                    //Agrego o actualizo la persona
+                    if (p_tesista == null)
+                    {
+                        p_tesista = new Persona()
+                        {
+                            licenciatura_id = usuario.licenciatura_id,
+                            persona_nomyap = tb_nombre_tesista.Value,
+                            persona_dni = dni,
+                            persona_email = tb_email.Value,
+                            persona_email_validado = false,
+                            persona_domicilio = tb_domicilio.Value,
+                            persona_telefono = tb_telefono.Value,
+                            persona_usuario = tb_usuario.Value,
+                            persona_clave = Cripto.Encriptar(tb_dni_tesista.Value),
+                            persona_estilo = "Slate"
+                        };
+                        cxt.Personas.Add(p_tesista);
+                    }
+                    else
+                    {
+                        p_tesista.licenciatura_id = usuario.licenciatura_id;
+                        p_tesista.persona_nomyap = tb_nombre_tesista.Value;
+                        p_tesista.persona_dni = dni;
+                        p_tesista.licenciatura_id = usuario.licenciatura_id;
+                        p_tesista.persona_email = tb_email.Value;
+                        p_tesista.persona_email_validado = false;
+                        p_tesista.persona_domicilio = tb_domicilio.Value;
+                        p_tesista.persona_telefono = tb_telefono.Value;
+                        p_tesista.persona_usuario = tb_usuario.Value;
+                        if (chk_cambiar_clave.Checked)
+                        {
+                            p_tesista.persona_clave = Cripto.Encriptar(tb_contraseña.Value);
+                        }
+                    }
+
+                    //agrego o actualizo el tesista
+                    if (tesista == null)
+                    {
+                        //no existe hago un insert
+                        tesista = new Tesista()
+                        {
+                            Persona = p_tesista,
+                            tesista_legajo = tb_legajo.Value,
+                            tesista_sede = tb_sede.Value
+                        };
+
+                        cxt.Tesistas.Add(tesista);
+                    }
+                    else
+                    {
+                        //existe el tesista por lo tanto tambien la persona y ya fue editada
+                        tesista.tesista_legajo = tb_legajo.Value;
+                        tesista.tesista_sede = tb_sede.Value;
+                    }
+
+
+                    try
+                    {
+
+                        cxt.SaveChanges();
+
+                        if (file_tesis.HasFile)
+                        {
+                            string directorio = Server.MapPath("~/Archivos/Tesistas/" + tesista.tesista_id + "/");
+
+                            if (!Directory.Exists(directorio))
+                            {
+                                Directory.CreateDirectory(directorio);
+                            }
+
+                            string extencion_origen = Path.GetExtension(file_tesis.FileName);
+
+                            string path_save_file = directorio + "plan" + extencion_origen;
+
+                            file_tesis.SaveAs(path_save_file);
+                        }
+
+                        tb_dni_tesista.Value = string.Empty;
+                        tb_domicilio.Value = string.Empty;
+                        tb_email.Value = string.Empty;
+                        tb_legajo.Value = string.Empty;
+                        tb_nombre_tesista.Value = string.Empty;
+                        tb_sede.Value = string.Empty;
+                        tb_telefono.Value = string.Empty;
+                        hidden_id_tesista_editar.Value = "0";
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, MessageBox.Tipo_MessageBox.Danger);
+                    }
+                }
+
+                tb_tesista.Value = tesista.Persona.persona_nomyap;
+                hidden_tesista_id.Value = tesista.tesista_id.ToString();
+
+            }
+            else
+            {
+                string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_tesista').modal('show')});</script>";
+                ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
+            }
+        }
+
         protected void cv_fecha_inicio_ServerValidate(object source, ServerValidateEventArgs args)
         {
             DateTime fecha;
@@ -353,6 +574,32 @@ namespace WebApplication1.Aplicativo
             args.IsValid = notificaciones <= duracion;
         }
 
+        protected void cv_usuario_duplicado_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            int dni = Convert.ToInt32(tb_dni_tesista.Value);
+            bool correcto = true;
+
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                correcto = cxt.Personas.FirstOrDefault(pp => pp.persona_usuario == tb_usuario.Value && pp.persona_dni != dni) == null;
+            }
+
+            args.IsValid = correcto;
+        }
+
+        protected void cv_correo_duplicado_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            int dni = Convert.ToInt32(tb_dni_tesista.Value);
+            bool correcto = true;
+
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                correcto = cxt.Personas.FirstOrDefault(pp => pp.persona_email == tb_email.Value && pp.persona_dni != dni) == null;
+            }
+
+            args.IsValid = correcto;
+        }
+
         protected void cv_codirector_ServerValidate(object source, ServerValidateEventArgs args)
         {
             args.IsValid = hidden_director_id.Value != hidden_codirector_id.Value;
@@ -361,7 +608,7 @@ namespace WebApplication1.Aplicativo
         protected void btn_guardar_tesina_ServerClick(object sender, EventArgs e)
         {
             //se supone que ingreso aca porque esta todo bien, sino corregir en el boton verificar
-            Validate();
+            Validate("tesina");
             if (IsValid)
             {
                 int? codirector_id = null;

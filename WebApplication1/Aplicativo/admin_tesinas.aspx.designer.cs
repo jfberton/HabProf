@@ -211,6 +211,15 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.WebControls.Label lbl_observaciones_estado;
         
         /// <summary>
+        /// lbl_plan_tesina control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lbl_plan_tesina;
+        
+        /// <summary>
         /// lbl_archivo_subido control.
         /// </summary>
         /// <remarks>
