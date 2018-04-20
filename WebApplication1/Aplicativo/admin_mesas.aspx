@@ -46,9 +46,9 @@
             <asp:TemplateField>
                 <ItemTemplate>
                     <asp:Button Text="Imprimir" ID="btn_imprimir" OnClick="btn_imprimir_Click" CssClass="btn btn-sm btn-default" CommandArgument='<%#Eval("mesa_id")%>' runat="server" />
-                    <asp:Button Text="Certif. Direct." ID="btn_imprimir_directores" OnClick="btn_imprimir_directores_Click" CssClass="btn btn-sm btn-default" CommandArgument='<%#Eval("mesa_id")%>' runat="server" />
-                    <asp:Button Text="Certif. Jurados" ID="btn_imprimir_certificado_jurados" OnClick="btn_imprimir_certificado_jurados_Click" CssClass="btn btn-sm btn-default" CommandArgument='<%#Eval("mesa_id")%>' runat="server" />
-                    <asp:Button Text="Deriv. Biblio" ID="btn_imprimir_derivacion_biblioteca" OnClick="btn_imprimir_derivacion_biblioteca_Click" CssClass="btn btn-sm btn-default" CommandArgument='<%#Eval("mesa_id")%>' runat="server" />
+                    <asp:Button Text="Certif. Direct." Enabled='<%#Eval("enabled_cerrar")%>' ID="btn_imprimir_directores" OnClick="btn_imprimir_directores_Click" CssClass="btn btn-sm btn-default" CommandArgument='<%#Eval("mesa_id")%>' runat="server" />
+                    <asp:Button Text="Certif. Jurados" Enabled='<%#Eval("enabled_cerrar")%>' ID="btn_imprimir_certificado_jurados" OnClick="btn_imprimir_certificado_jurados_Click" CssClass="btn btn-sm btn-default" CommandArgument='<%#Eval("mesa_id")%>' runat="server" />
+                    <asp:Button Text="Deriv. Biblio" Enabled='<%#Eval("enabled_cerrar")%>' ID="btn_imprimir_derivacion_biblioteca" OnClick="btn_imprimir_derivacion_biblioteca_Click" CssClass="btn btn-sm btn-default" CommandArgument='<%#Eval("mesa_id")%>' runat="server" />
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField>

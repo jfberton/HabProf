@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OptionDropDownList;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -102,7 +103,8 @@ namespace WebApplication1.Aplicativo
                 tb_codirector.Value = "";
                 tb_duracion.Value = "12";
                 tb_notificacion.Value = "";
-                ddl_categoria.SelectedValue = "Categoria 1";
+                string text ="1200 - OTROS CAMPOS (Especificar)";
+                SeleccionarItemDDL(text);
                 hidden_codirector_id.Value = "0";
                 hidden_director_id.Value = "0";
                 btn_eliminar_codirector.Visible = false;
@@ -128,10 +130,26 @@ namespace WebApplication1.Aplicativo
                         btn_eliminar_codirector.Visible = t.Codirector != null;
                         tb_duracion.Value = t.tesina_plan_duracion_meses.ToString();
                         tb_notificacion.Value = t.tesina_plan_aviso_meses.ToString();
-                        ddl_categoria.SelectedValue = t.tesina_categoria;
+                        SeleccionarItemDDL(t.tesina_categoria);
                         btn_buscar_tesista.Visible = false;
                     }
                 }
+            }
+        }
+
+        private void SeleccionarItemDDL(string text)
+        {
+            string valor = "No se encontro valor";
+            foreach (OptionGroupItem item in ddl_categorias.Items)
+            {
+                if (item.Text == text)
+                {
+                    valor = item.Value;
+                }
+            }
+            if (valor != "No se encontro valor")
+            {
+                ddl_categorias.SelectedValue = valor;
             }
         }
 
@@ -235,6 +253,230 @@ namespace WebApplication1.Aplicativo
             string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#buscar_director').modal('show')});</script>";
             ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
         }
+
+        protected void btn_guardar_Director_ServerClick(object sender, EventArgs e)
+        {
+            this.Validate("director");
+            if (this.IsValid)
+            {
+                bool director_nuevo = false;
+                Persona usuario = Session["UsuarioLogueado"] as Persona;
+                int id_director = Convert.ToInt32(hidden_id_director_editar.Value);
+
+                Persona p_director = null;
+                Director director = null;
+
+                using (HabProfDBContainer cxt = new HabProfDBContainer())
+                {
+                    int dni = 0;
+                    int.TryParse(tb_dni_director.Value, out dni);
+                    if (id_director != 0)
+                    {
+                        //abrio por editar director y cambio el DNI, obtengo el director a editar
+                        director = cxt.Directores.Include("Persona").FirstOrDefault(pp => pp.director_id == id_director);
+                        p_director = director.Persona;
+                    }
+                    else
+                    {
+                        p_director = cxt.Personas.FirstOrDefault(pp => pp.persona_dni == dni);
+                        if (p_director != null)
+                        {
+                            director = p_director.Director;
+                        }
+
+                    }
+
+                    //agrego o actualizo el director
+                    if (p_director == null)
+                    {
+                        p_director = new Persona();
+                        p_director.persona_nomyap = tb_nombre_director.Value;
+                        p_director.persona_dni = dni;
+                        p_director.licenciatura_id = usuario.licenciatura_id;
+                        p_director.persona_email = tb_email_director.Value;
+                        p_director.persona_domicilio = tb_domicilio_director.Value;
+                        p_director.persona_telefono = tb_telefono_director.Value;
+                        p_director.persona_usuario = tb_usuario_director.Value;
+                        p_director.persona_clave = Cripto.Encriptar(tb_dni_director.Value);
+                        p_director.persona_estilo = "Slate";
+
+                        cxt.Personas.Add(p_director);
+                    }
+                    else
+                    {
+                        p_director.persona_nomyap = tb_nombre_director.Value;
+                        p_director.persona_dni = dni;
+                        p_director.persona_email = tb_email_director.Value;
+                        p_director.persona_domicilio = tb_domicilio_director.Value;
+                        p_director.persona_telefono = tb_telefono_director.Value;
+                        p_director.persona_usuario = tb_usuario_director.Value;
+                        if (chk_cambiar_clave.Checked)
+                        {
+                            p_director.persona_clave = Cripto.Encriptar(tb_contraseña_director.Value);
+                        }
+                    }
+
+
+                    if (director == null)
+                    {
+                        //no existe hago un insert
+                        director = new Director()
+                        {
+                            Persona = p_director
+                        };
+
+                        cxt.Directores.Add(director);
+
+                        director_nuevo = true;
+                    }
+
+
+                    try
+                    {
+
+                        cxt.SaveChanges();
+
+                        tb_dni_director.Value = string.Empty;
+                        tb_domicilio.Value = string.Empty;
+                        tb_email.Value = string.Empty;
+                        tb_nombre_director.Value = string.Empty;
+                        tb_telefono.Value = string.Empty;
+                        tb_usuario.Value = string.Empty;
+                        tb_contraseña.Value = string.Empty;
+                        hidden_id_director_editar.Value = "0";
+
+                        MessageBox.Show(this, "Se guardó correctamente el director!", MessageBox.Tipo_MessageBox.Success, "Exito!");
+
+                        tb_director.Value = director.Persona.persona_nomyap;
+                        hidden_tesista_id.Value = director.director_id.ToString();
+                    }
+                    catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                    {
+                        Exception raise = dbEx;
+                        foreach (var validationErrors in dbEx.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                string message = string.Format("{0}:{1}",
+                                    validationErrors.Entry.Entity.ToString(),
+                                    validationError.ErrorMessage);
+                                // raise a new exception nesting
+                                // the current instance as InnerException
+                                raise = new InvalidOperationException(message, raise);
+                            }
+                        }
+
+                        MessageBox.Show(this, raise.Message);
+                    }
+                }
+
+            }
+            else
+            {
+                string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_director').modal('show')});</script>";
+                ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
+            }
+
+        }
+
+        protected void btn_agregar_director_ServerClick(object sender, EventArgs e)
+        {
+            lbl_agregar_actualizar_director.Text = "Agregar ";
+
+            tb_dni_director.Value = "";
+
+            tb_dni_director.Disabled = false;
+
+            btn_chequear_dni_Director.Visible = true;
+
+            btn_guardar.Visible = false;
+
+            tb_tabla_resto_campos_Director.Visible = false;
+
+            tb_domicilio_director.Value = string.Empty;
+            tb_email_director.Value = string.Empty;
+            tb_nombre_director.Value = string.Empty;
+            tb_telefono_director.Value = string.Empty;
+            tb_usuario_director.Value = string.Empty;
+            tb_contraseña_director.Value = string.Empty;
+            hidden_id_director_editar.Value = "0";
+
+            string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_director').modal('show')});</script>";
+            ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
+        }
+
+        protected void btn_chequear_dni_Director_ServerClick(object sender, EventArgs e)
+        {
+            Validate("dni_Director_persona");
+            
+            if (IsValid)
+            {
+                using (HabProfDBContainer cxt = new HabProfDBContainer())
+                {
+                    int dni = 0;
+                    if (Int32.TryParse(tb_dni_director.Value, out dni))
+                    {
+                        Persona persona = cxt.Personas.FirstOrDefault(pp => pp.persona_dni == dni);
+                        if (persona != null)
+                        {
+                            tb_dni_director.Value = persona.persona_dni.ToString();
+                            tb_domicilio_director.Value = persona.persona_domicilio;
+                            tb_email_director.Value = persona.persona_email;
+                            tb_nombre_director.Value = persona.persona_nomyap;
+                            tb_telefono_director.Value = persona.persona_telefono;
+                            tb_usuario_director.Value = persona.persona_usuario;
+                            tr_pass_edit_director.Visible = true;
+                            chk_cambiar_clave_director.Checked = false;
+                            tr_chk_change_pass_director.Visible = false;
+                            tr_pass_alta_director.Visible = false;
+                        }
+                        else
+                        {
+                            tb_usuario_director.Value = tb_dni_director.Value;
+                            tr_pass_edit_director.Visible = false;
+                            tr_pass_alta_director.Visible = true;
+                        }
+                    }
+                }
+
+                tb_dni_director.Disabled = true;
+                btn_chequear_dni_Director.Visible = false;
+                btn_guardar_director.Visible = true;
+
+                tb_tabla_resto_campos_Director.Visible = true;
+                
+            }
+
+            string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_director').modal('show')});</script>";
+            ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
+        }
+
+        protected void cv_usuario_director_duplicado_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            int dni = Convert.ToInt32(tb_dni_director.Value);
+            bool correcto = true;
+
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                correcto = cxt.Personas.FirstOrDefault(pp => pp.persona_usuario == tb_usuario_director.Value && pp.persona_dni != dni) == null;
+            }
+
+            args.IsValid = correcto;
+        }
+
+        protected void cv_correo_Director_duplicado_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            int dni = Convert.ToInt32(tb_dni_director.Value);
+            bool correcto = true;
+
+            using (HabProfDBContainer cxt = new HabProfDBContainer())
+            {
+                correcto = cxt.Personas.FirstOrDefault(pp => pp.persona_email == tb_email_director.Value && pp.persona_dni != dni) == null;
+            }
+
+            args.IsValid = correcto;
+        }
+
 
         protected void btn_buscar_codirector_ServerClick(object sender, EventArgs e)
         {
@@ -639,7 +881,7 @@ namespace WebApplication1.Aplicativo
                             t.tesina_plan_duracion_meses = Convert.ToInt16(tb_duracion.Value);
                             t.tesina_plan_aviso_meses = Convert.ToInt16(tb_notificacion.Value);
                             t.estado_tesis_id = cxt.Estados_tesinas.FirstOrDefault(ee => ee.estado_tesina_estado == "Iniciada").estado_tesina_id;
-                            t.tesina_categoria = ddl_categoria.SelectedValue;
+                            t.tesina_categoria = ddl_categorias.SelectedItem.Text;
                             t.codirector_id = codirector_id;
                             Historial_estado he = new Historial_estado()
                             {
@@ -864,16 +1106,19 @@ namespace WebApplication1.Aplicativo
                                                 }
                                                 else
                                                 {
-                                                    //mantuvo codirector, mandar correo de modificacion de tesis codirector
-                                                    Envio_mail registro_envio_mail_codirector_modificacion = new Envio_mail()
+                                                    if (t.Codirector != null)
                                                     {
-                                                        persona_id = t.Codirector.Persona.persona_id,
-                                                        envio_fecha_hora = DateTime.Now,
-                                                        envio_email_destino = t.Codirector.Persona.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
-                                                        envio_respuesta_clave = "no se usa",
-                                                        envio_tipo = MiEmail.tipo_mail.notificacion_modificacion_tesina_director.ToString()
-                                                    };
-                                                    correos_por_enviar.envios_por_realizar.Add(registro_envio_mail_codirector_modificacion);
+                                                        //mantuvo codirector, mandar correo de modificacion de tesis codirector
+                                                        Envio_mail registro_envio_mail_codirector_modificacion = new Envio_mail()
+                                                        {
+                                                            persona_id = t.Codirector.Persona.persona_id,
+                                                            envio_fecha_hora = DateTime.Now,
+                                                            envio_email_destino = t.Codirector.Persona.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
+                                                            envio_respuesta_clave = "no se usa",
+                                                            envio_tipo = MiEmail.tipo_mail.notificacion_modificacion_tesina_director.ToString()
+                                                        };
+                                                        correos_por_enviar.envios_por_realizar.Add(registro_envio_mail_codirector_modificacion);
+                                                    }
                                                 }
                                             }
                                         }
@@ -900,7 +1145,7 @@ namespace WebApplication1.Aplicativo
                                     t.tesina_plan_duracion_meses = Convert.ToInt16(tb_duracion.Value);
                                     t.tesina_plan_aviso_meses = Convert.ToInt16(tb_notificacion.Value);
                                     t.director_id = Convert.ToInt32(hidden_director_id.Value);
-                                    t.tesina_categoria = ddl_categoria.SelectedValue;
+                                    t.tesina_categoria = ddl_categorias.SelectedItem.Text;
                                     t.codirector_id = codirector_id;
 
                                     #endregion

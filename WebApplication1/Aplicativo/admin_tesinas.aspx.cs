@@ -16,6 +16,7 @@ namespace WebApplication1.Aplicativo
         {
             if (!IsPostBack)
             {
+                ddl_categorias.SelectedValue = "Todas las categorias";
                 ObtenerTesinas();
             }
         }
@@ -34,8 +35,13 @@ namespace WebApplication1.Aplicativo
 
         private void ObtenerTesinas()
         {
+            string categoria = ddl_categorias.SelectedItem.Text;
+
+            lbl_categoria_seleccionada.InnerHtml = "Mostrando resultados de filtrar por categoria: <b>" + ddl_categorias.SelectedItem.Text + "</b>.";
+            
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
+                gv_tesinas.Columns[2].Visible = true;
                 Persona usuario_logueado = Session["UsuarioLogueado"] as Persona;
                 List<Tesina> tesinas = new List<Tesina>();
 
@@ -46,7 +52,7 @@ namespace WebApplication1.Aplicativo
                 {//administrador: obtengo todas las tesinas
 
                     tesinas = (from t in cxt.Tesinas
-                               where t.Tesista.tesista_baja_definitiva == null
+                               where t.Tesista.tesista_baja_definitiva == null && (t.tesina_categoria == categoria || categoria == "Todas las categorias")
                                select t
                                ).ToList();
                     lbl_no_existe_tesina.InnerHtml = "<strong> No existen Tesinas!</strong> Pruebe agregar algunos para comenzar.";
@@ -58,7 +64,9 @@ namespace WebApplication1.Aplicativo
                         //director: obtengo las tesinas asociadas al director
                         Director dire = cxt.Personas.FirstOrDefault(pp => pp.persona_id == usuario_logueado.persona_id).Director;
                         tesinas = (from t in cxt.Tesinas
-                                   where (t.director_id == dire.director_id || t.codirector_id == dire.director_id) && t.Tesista.tesista_baja_definitiva == null
+                                   where (t.director_id == dire.director_id || t.codirector_id == dire.director_id)
+                                            && t.Tesista.tesista_baja_definitiva == null
+                                            && (t.tesina_categoria == categoria || categoria == "Todas las categorias")
                                    select t
                                    ).ToList();
 
@@ -100,19 +108,36 @@ namespace WebApplication1.Aplicativo
                     gv_tesinas.DataSource = tesinas_tema_recortado;
                     gv_tesinas.DataBind();
                     lbl_sin_tesinas.Visible = false;
+                    div_filtro_categorias.Visible = true;
+                    lbl_no_existen_tesinas_con_ese_filtro.Visible = false;
+                    if (categoria != "Todas las categorias")
+                    {
+                        gv_tesinas.Columns[2].Visible = false;
+                    }
                 }
                 else
                 {
-                    lbl_sin_tesinas.Visible = true;
+                    gv_tesinas.DataSource = null;
+                    gv_tesinas.DataBind();
+                    if (categoria == "Todas las categorias")
+                    {
+                        lbl_sin_tesinas.Visible = true;
+                        div_filtro_categorias.Visible = false;
+                    }
+                    else
+                    {
+                        lbl_no_existen_tesinas_con_ese_filtro.Visible = true;
+                    }
                 }
 
                 //no muestro la columna prioridad
                 gv_tesinas.Columns[0].Visible = false;
 
-                //si no es administrador escondo la columna para eliminar o editar la tesina
+                //si no es administrador escondo la columna para eliminar o editar la tesina y el baner de que no existen tesinas
                 if (Session["Perfil"].ToString() != "Administrador")
                 {
                     gv_tesinas.Columns[6].Visible = false;
+                    lbl_sin_tesinas.Visible = false;
                 }
             }
         }
@@ -215,7 +240,7 @@ namespace WebApplication1.Aplicativo
                 }
                 else
                 {
-                    MessageBox.Show(this, "No se puede eliminar una tesina cuyo estado sea posterior al de iniciada");
+                    MessageBox.Show(this, "No se puede eliminar una tesina cuyo estado sea posterior al de iniciada", MessageBox.Tipo_MessageBox.Danger);
                 }
             }
 
@@ -430,8 +455,25 @@ namespace WebApplication1.Aplicativo
 
         protected void btn_editar_ServerClick(object sender, EventArgs e)
         {
-            string id_tesina = ((HtmlButton)sender).Attributes["data-id"];
-            Response.Redirect("~/Aplicativo/admin_tesina.aspx?t=" + id_tesina);
+
+
+            using (var cxt = new HabProfDBContainer())
+            {
+
+                string id_tesina = ((HtmlButton)sender).Attributes["data-id"];
+
+                int id_tesina_int = Convert.ToInt32(id_tesina);
+                Tesina t = cxt.Tesinas.FirstOrDefault(tt => tt.tesina_id == id_tesina_int);
+
+                if (t.Estado.estado_tesina_estado == "Iniciada")
+                {
+                    Response.Redirect("~/Aplicativo/admin_tesina.aspx?t=" + id_tesina);
+                }
+                else
+                {
+                    MessageBox.Show(this, "No se puede editar la tesina en un estado distinto a Iniciada", MessageBox.Tipo_MessageBox.Danger);
+                }
+            }
         }
 
         protected void btn_agregar_tesina_ServerClick(object sender, EventArgs e)
@@ -809,5 +851,9 @@ namespace WebApplication1.Aplicativo
             }
         }
 
+        protected void ddl_categorias_ValueChanged(object sender, EventArgs e)
+        {
+            ObtenerTesinas();
+        }
     }
 }

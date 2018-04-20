@@ -594,11 +594,12 @@ namespace WebApplication1.Aplicativo
         {
             int id_mesa = Convert.ToInt32(((Button)sender).CommandArgument);
 
+            bool mesa_cerrada = false;
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
                 Mesa mesa = cxt.Mesas.FirstOrDefault(pp => pp.mesa_id == id_mesa);
 
-                if (mesa != null && mesa.mesa_estado != "Cerrada")
+                if (mesa != null && mesa.mesa_estado == "Cerrada")
                 {
                     Reportes.reporte_mesa ds = new Reportes.reporte_mesa();
 
@@ -623,16 +624,22 @@ namespace WebApplication1.Aplicativo
                             ds.t_tesinas.Addt_tesinasRow(tr);
                         }
                     }
+                    mesa_cerrada = true;
 
                     Session["ds_mesa"] = ds;
                 }
-                else
-                {
-                    MessageBox.Show(this, "No se puede imprimir derivaciones de mesas que aún no estan cerradas", MessageBox.Tipo_MessageBox.Info);
-                }
             }
 
-            RenderReport_derivacion_tesinas_aprobadas_a_biblioteca();
+            if (mesa_cerrada)
+            {
+                RenderReport_derivacion_tesinas_aprobadas_a_biblioteca();
+            }
+            else
+            {
+                MessageBox.Show(this, "No se pueden derivar los las tesinas mientras la mesa no este cerrada.", MessageBox.Tipo_MessageBox.Danger);
+            }
+
+            
         }
 
         private void RenderReport_derivacion_tesinas_aprobadas_a_biblioteca()
