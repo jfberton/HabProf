@@ -3010,6 +3010,15 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary4;
         
         /// <summary>
+        /// hidden_director_codirector control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hidden_director_codirector;
+        
+        /// <summary>
         /// tb_dni_director control.
         /// </summary>
         /// <remarks>
@@ -3296,6 +3305,15 @@ namespace WebApplication1.Aplicativo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CustomValidator cv_codirector;
+        
+        /// <summary>
+        /// btn_agregar_codirector control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_agregar_codirector;
         
         /// <summary>
         /// lbl_sin_codirectores control.

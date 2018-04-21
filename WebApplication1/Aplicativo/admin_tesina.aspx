@@ -660,6 +660,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
+                                <asp:HiddenField runat="server" ID="hidden_director_codirector" Value="director" />
                                 <table class="table-condensed" style="width: 100%">
                                     <tr>
                                         <td>DNI</td>
@@ -776,12 +777,7 @@
             </div>
         </div>
 
-
-
-
     </div>
-
-
 
     <div class="row">
         <div class="col-md-6">
@@ -812,6 +808,9 @@
                         <h4 class="modal-title">Seleccionar codirector</h4>
                     </div>
                     <div class="modal-body">
+                        <button type="button" class="btn btn-default pull-right" id="btn_agregar_codirector" runat="server" onserverclick="btn_agregar_codirector_ServerClick">
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Agregar nuevo
+                        </button>
                         <asp:Label Text="No existen codirectores disponibles para realizar asesoramiento al tesista." Visible="false" ID="lbl_sin_codirectores" runat="server" />
                         <asp:GridView ID="gv_codirectores" runat="server" OnPreRender="gv_PreRender"
                             AutoGenerateColumns="False" GridLines="None" CssClass="display black">

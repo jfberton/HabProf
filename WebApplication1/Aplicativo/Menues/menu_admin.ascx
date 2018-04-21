@@ -35,7 +35,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tesinas <b class="caret"></b></a>
                     <ul class="dropdown-menu multi-level">
                         <li><a href="../Aplicativo/admin_tesinas.aspx">Listado de Tesinas</a></li>
-                        <li><a href="../Aplicativo/recordatorios.aspx" runat="server" id="li_generar_recordatorios">Generar recordatorios</a></li>
+                        <li><a href="../recordatorios.aspx" runat="server" id="li_generar_recordatorios">Generar recordatorios</a></li>
                     </ul>
 
                 </li>

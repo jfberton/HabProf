@@ -346,9 +346,16 @@ namespace WebApplication1.Aplicativo
                         hidden_id_director_editar.Value = "0";
 
                         MessageBox.Show(this, "Se guardó correctamente el director!", MessageBox.Tipo_MessageBox.Success, "Exito!");
-
-                        tb_director.Value = director.Persona.persona_nomyap;
-                        hidden_tesista_id.Value = director.director_id.ToString();
+                        if (hidden_director_codirector.Value == "director")
+                        {
+                            tb_director.Value = director.Persona.persona_nomyap;
+                            hidden_director_id.Value = director.director_id.ToString();
+                        }
+                        else
+                        {
+                            tb_codirector.Value = director.Persona.persona_nomyap;
+                            hidden_codirector_id.Value = director.director_id.ToString();
+                        }
                     }
                     catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
                     {
@@ -382,7 +389,33 @@ namespace WebApplication1.Aplicativo
         protected void btn_agregar_director_ServerClick(object sender, EventArgs e)
         {
             lbl_agregar_actualizar_director.Text = "Agregar ";
+            hidden_director_codirector.Value = "director";
+            tb_dni_director.Value = "";
 
+            tb_dni_director.Disabled = false;
+
+            btn_chequear_dni_Director.Visible = true;
+
+            btn_guardar.Visible = false;
+
+            tb_tabla_resto_campos_Director.Visible = false;
+
+            tb_domicilio_director.Value = string.Empty;
+            tb_email_director.Value = string.Empty;
+            tb_nombre_director.Value = string.Empty;
+            tb_telefono_director.Value = string.Empty;
+            tb_usuario_director.Value = string.Empty;
+            tb_contraseña_director.Value = string.Empty;
+            hidden_id_director_editar.Value = "0";
+
+            string script = "<script language=\"javascript\"  type=\"text/javascript\">$(document).ready(function() { $('#agregar_director').modal('show')});</script>";
+            ScriptManager.RegisterStartupScript(Page, this.GetType(), "ShowPopUp", script, false);
+        }
+
+        protected void btn_agregar_codirector_ServerClick(object sender, EventArgs e)
+        {
+            lbl_agregar_actualizar_director.Text = "Agregar ";
+            hidden_director_codirector.Value = "codirector";
             tb_dni_director.Value = "";
 
             tb_dni_director.Disabled = false;
@@ -1229,6 +1262,7 @@ namespace WebApplication1.Aplicativo
             Response.Redirect("~/Aplicativo/admin_tesinas.aspx");
         }
 
+        
     }
 
 }
