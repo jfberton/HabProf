@@ -49,6 +49,15 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_no_existe_tesina;
         
         /// <summary>
+        /// lbl_titulo_filtro_categoria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lbl_titulo_filtro_categoria;
+        
+        /// <summary>
         /// div_filtro_categorias control.
         /// </summary>
         /// <remarks>
@@ -56,6 +65,159 @@ namespace WebApplication1.Aplicativo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_filtro_categorias;
+        
+        /// <summary>
+        /// rb_grupo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rb_grupo;
+        
+        /// <summary>
+        /// ddl_grupos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::OptionDropDownList.OptionGroupSelect ddl_grupos;
+        
+        /// <summary>
+        /// OptionGroupItem279 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::OptionDropDownList.OptionGroupItem OptionGroupItem279;
+        
+        /// <summary>
+        /// OptionGroupItem266 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::OptionDropDownList.OptionGroupItem OptionGroupItem266;
+        
+        /// <summary>
+        /// OptionGroupItem267 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::OptionDropDownList.OptionGroupItem OptionGroupItem267;
+        
+        /// <summary>
+        /// OptionGroupItem268 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::OptionDropDownList.OptionGroupItem OptionGroupItem268;
+        
+        /// <summary>
+        /// OptionGroupItem269 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::OptionDropDownList.OptionGroupItem OptionGroupItem269;
+        
+        /// <summary>
+        /// OptionGroupItem270 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::OptionDropDownList.OptionGroupItem OptionGroupItem270;
+        
+        /// <summary>
+        /// OptionGroupItem271 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::OptionDropDownList.OptionGroupItem OptionGroupItem271;
+        
+        /// <summary>
+        /// OptionGroupItem272 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::OptionDropDownList.OptionGroupItem OptionGroupItem272;
+        
+        /// <summary>
+        /// OptionGroupItem273 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::OptionDropDownList.OptionGroupItem OptionGroupItem273;
+        
+        /// <summary>
+        /// OptionGroupItem274 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::OptionDropDownList.OptionGroupItem OptionGroupItem274;
+        
+        /// <summary>
+        /// OptionGroupItem275 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::OptionDropDownList.OptionGroupItem OptionGroupItem275;
+        
+        /// <summary>
+        /// OptionGroupItem276 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::OptionDropDownList.OptionGroupItem OptionGroupItem276;
+        
+        /// <summary>
+        /// OptionGroupItem277 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::OptionDropDownList.OptionGroupItem OptionGroupItem277;
+        
+        /// <summary>
+        /// OptionGroupItem278 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::OptionDropDownList.OptionGroupItem OptionGroupItem278;
+        
+        /// <summary>
+        /// rb_categoria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rb_categoria;
         
         /// <summary>
         /// ddl_categorias control.

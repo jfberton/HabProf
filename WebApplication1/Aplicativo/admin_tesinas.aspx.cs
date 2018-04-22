@@ -17,6 +17,8 @@ namespace WebApplication1.Aplicativo
             if (!IsPostBack)
             {
                 ddl_categorias.SelectedValue = "Todas las categorias";
+                ddl_grupos.SelectedValue = "Todos los grupos";
+                rb_grupo.Checked = true;
                 ObtenerTesinas();
             }
         }
@@ -35,10 +37,6 @@ namespace WebApplication1.Aplicativo
 
         private void ObtenerTesinas()
         {
-            string categoria = ddl_categorias.SelectedItem.Text;
-
-            lbl_categoria_seleccionada.InnerHtml = "Mostrando resultados de filtrar por categoria: <b>" + ddl_categorias.SelectedItem.Text + "</b>.";
-            
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
                 gv_tesinas.Columns[2].Visible = true;
@@ -52,7 +50,7 @@ namespace WebApplication1.Aplicativo
                 {//administrador: obtengo todas las tesinas
 
                     tesinas = (from t in cxt.Tesinas
-                               where t.Tesista.tesista_baja_definitiva == null && (t.tesina_categoria == categoria || categoria == "Todas las categorias")
+                               where t.Tesista.tesista_baja_definitiva == null //&& (t.tesina_categoria == categoria || categoria == "Todas las categorias")
                                select t
                                ).ToList();
                     lbl_no_existe_tesina.InnerHtml = "<strong> No existen Tesinas!</strong> Pruebe agregar algunos para comenzar.";
@@ -66,7 +64,7 @@ namespace WebApplication1.Aplicativo
                         tesinas = (from t in cxt.Tesinas
                                    where (t.director_id == dire.director_id || t.codirector_id == dire.director_id)
                                             && t.Tesista.tesista_baja_definitiva == null
-                                            && (t.tesina_categoria == categoria || categoria == "Todas las categorias")
+                                            //&& (t.tesina_categoria == categoria || categoria == "Todas las categorias")
                                    select t
                                    ).ToList();
 
@@ -91,6 +89,7 @@ namespace WebApplication1.Aplicativo
                 }
 
                 List<itemgrilla_tesina> tesinas_tema_recortado = (from t in tesinas
+                                                                  where VerificarTesina(t) == true
                                                                   select new itemgrilla_tesina
                                                                   {
                                                                       tesis_id = t.tesina_id,
@@ -109,8 +108,9 @@ namespace WebApplication1.Aplicativo
                     gv_tesinas.DataBind();
                     lbl_sin_tesinas.Visible = false;
                     div_filtro_categorias.Visible = true;
+                    lbl_titulo_filtro_categoria.Visible = true;
                     lbl_no_existen_tesinas_con_ese_filtro.Visible = false;
-                    if (categoria != "Todas las categorias")
+                    if ((rb_categoria.Checked && ddl_categorias.SelectedItem.Text!= "Todas las categorias"))
                     {
                         gv_tesinas.Columns[2].Visible = false;
                     }
@@ -119,10 +119,11 @@ namespace WebApplication1.Aplicativo
                 {
                     gv_tesinas.DataSource = null;
                     gv_tesinas.DataBind();
-                    if (categoria == "Todas las categorias")
+                    if (tesinas.Count == 0)
                     {
                         lbl_sin_tesinas.Visible = true;
                         div_filtro_categorias.Visible = false;
+                        lbl_titulo_filtro_categoria.Visible = false;
                     }
                     else
                     {
@@ -140,6 +141,56 @@ namespace WebApplication1.Aplicativo
                     lbl_sin_tesinas.Visible = false;
                 }
             }
+
+            if (rb_grupo.Checked)
+            {
+                lbl_categoria_seleccionada.InnerHtml = "Mostrando resultados de filtrar por el grupo: <b>" + ddl_grupos.SelectedItem.Text + "</b>.";
+                rb_grupo.Checked = true;
+            }
+            else
+            {
+                lbl_categoria_seleccionada.InnerHtml = "Mostrando resultados de filtrar por la categoria: <b>" + ddl_categorias.SelectedItem.Text + "</b>.";
+                rb_categoria.Checked = true;
+            }
+        }
+
+        private bool VerificarTesina(Tesina t)
+        {
+            bool ret = false;
+            if (rb_grupo.Checked)
+            {
+                if (ddl_grupos.SelectedValue == "Todos los grupos")
+                {
+                    ret = true;
+                }
+                else
+                {
+                    int grupo = Convert.ToInt32(ddl_grupos.SelectedValue.Substring(0, 2));
+                    int categoria_tesina = Convert.ToInt32(t.tesina_categoria.Substring(0, 4));
+                    if (categoria_tesina >= grupo * 100 && categoria_tesina < (grupo + 1) * 100)
+                    {
+                        ret = true;
+                    }
+                }
+            }
+            else
+            {
+                if (ddl_categorias.SelectedValue == "Todas las categorias")
+                {
+                    ret = true;
+                }
+                else
+                {
+                    if (ddl_categorias.SelectedItem.Text == t.tesina_categoria)
+                    {
+                        ret = true;
+                    }
+                }
+                
+
+            }
+
+            return ret;
         }
 
         private int Obtener_prioridad(string estado)
@@ -853,6 +904,15 @@ namespace WebApplication1.Aplicativo
 
         protected void ddl_categorias_ValueChanged(object sender, EventArgs e)
         {
+            rb_categoria.Checked = true;
+            rb_grupo.Checked = false;
+            ObtenerTesinas();
+        }
+
+        protected void ddl_grupos_ValueChanged(object sender, EventArgs e)
+        {
+            rb_grupo.Checked = true;
+            rb_categoria.Checked = false;
             ObtenerTesinas();
         }
     }

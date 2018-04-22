@@ -4,6 +4,11 @@
 <%@ Register Assembly="OptionDropDownList" Namespace="OptionDropDownList" TagPrefix="cc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .recortado {
+            width: 350px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="CPH_Menues" runat="server">
     <uc1:menu_admin runat="server" ID="menu_admin" />
@@ -17,6 +22,7 @@
 
     <h1>Tesinas <small>
         <asp:Label Text="Listado de Tesinas de la Licenciatura" runat="server" ID="lbl_small_titulo" /></small></h1>
+
     <div class="row">
         <div class="col-md-10">
             <div class="alert alert-warning" role="alert" runat="server" id="lbl_sin_tesinas">
@@ -25,11 +31,48 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="row" runat="server" id="div_filtro_categorias">
-                <div class="col-md-2" style="vertical-align: central">
-                    <label style="color: #333">Filtro categorias</label>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <label style="color: #333" runat="server" id="lbl_titulo_filtro_categoria">Filtro categorias</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-11" runat="server" id="div_filtro_categorias">
+            <div class="col-md-6">
+                <div class="col-md-1">
+                    <asp:RadioButton Text="" GroupName="grupo_categoria" ID="rb_grupo" runat="server" Enabled="false" />
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-11">
+                    <cc1:OptionGroupSelect ID="ddl_grupos" CssClass="form-control recortado" Width="350" runat="server" AutoPostBack="true" OnValueChanged="ddl_grupos_ValueChanged" EnableViewState="False">
+                        <cc1:OptionGroupItem ID="OptionGroupItem279" runat="server" Value="Todos los grupos" Text="Todos los grupos" OptionGroup="" />
+                        <cc1:OptionGroupItem ID="OptionGroupItem266" runat="server" Value="01" Text="01 - ENERGIA (Producción)" OptionGroup="" />
+                        <cc1:OptionGroupItem ID="OptionGroupItem267" runat="server" Value="02" Text="02 - ESPACIO (Exploración y explotación)" OptionGroup="" />
+                        <cc1:OptionGroupItem ID="OptionGroupItem268" runat="server" Value="03" Text="03 - DEFENSA Y SEGURIDAD" OptionGroup="" />
+                        <cc1:OptionGroupItem ID="OptionGroupItem269" runat="server" Value="04" Text="04 - MEDIO TERRESTRE (Exploración y explotación)" OptionGroup="" />
+                        <cc1:OptionGroupItem ID="OptionGroupItem270" runat="server" Value="05" Text="05 - SALUD HUMANA (Desarrollo, protección y mejoramiento)" OptionGroup="" />
+                        <cc1:OptionGroupItem ID="OptionGroupItem271" runat="server" Value="06" Text="06 - ORDENAMIENTO TERRITORIAL" OptionGroup="" />
+                        <cc1:OptionGroupItem ID="OptionGroupItem272" runat="server" Value="07" Text="07 - AGROPECUARIA (Producción y tecnología)" OptionGroup="" />
+                        <cc1:OptionGroupItem ID="OptionGroupItem273" runat="server" Value="08" Text="08 - INDUSTRIAL (Producción y tecnología)" OptionGroup="" />
+                        <cc1:OptionGroupItem ID="OptionGroupItem274" runat="server" Value="09" Text="09 - DESARROLLO SOCIOECONÓMICO Y SERVICIOS" OptionGroup="" />
+                        <cc1:OptionGroupItem ID="OptionGroupItem275" runat="server" Value="10" Text="10 - DESARROLLO DE LA EDUCACIÓN, LA CIENCIA Y LA CULTURA" OptionGroup="" />
+                        <cc1:OptionGroupItem ID="OptionGroupItem276" runat="server" Value="11" Text="11 - PROMOCIÓN GENERAL DEL CONOCIMIENTO" OptionGroup="" />
+                        <cc1:OptionGroupItem ID="OptionGroupItem277" runat="server" Value="12" Text="12 - OTROS CAMPOS (Especificar)" OptionGroup="" />
+                        <cc1:OptionGroupItem ID="OptionGroupItem278" runat="server" Value="13" Text="13 - VARIOS CAMPOS (Especificar)" OptionGroup="" />
+                    </cc1:OptionGroupSelect>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-1">
+                    <asp:RadioButton Text="" GroupName="grupo_categoria" ID="rb_categoria" runat="server" Enabled="false" />
+                </div>
+                <div class="col-md-11">
                     <cc1:OptionGroupSelect ID="ddl_categorias" CssClass="form-control" runat="server" AutoPostBack="true" OnValueChanged="ddl_categorias_ValueChanged" EnableViewState="False">
                         <cc1:OptionGroupItem ID="OptionGroupItem" runat="server" Value="Todas las categorias" Text="Todas las categorias" OptionGroup="" />
                         <cc1:OptionGroupItem ID="OptionGroupItem1" runat="server" Value="100 - Varios –ENERGiA- (Especificar)" Text="100 - Varios –ENERGÍA- (Especificar)" OptionGroup="01 ENERGIA (Producción)" />
@@ -301,12 +344,15 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1 text-right">
             <button type="button" class="btn btn-default pull-right" id="btn_agregar_tesina" runat="server" onserverclick="btn_agregar_tesina_ServerClick">
-                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Nueva Tesina
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>Nueva tesina
             </button>
         </div>
+
     </div>
+
+
     <div class="row">
         <div class="col-md-12">
             <label runat="server" id="lbl_categoria_seleccionada" style="color: #333;"></label>
