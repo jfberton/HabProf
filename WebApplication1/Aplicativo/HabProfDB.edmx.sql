@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 02/20/2018 17:52:58
+-- Date Created: 04/22/2018 19:57:06
 -- Generated from EDMX file: D:\Desarrollo\Mios\Habilitacion profesional\HabProf\WebApplication1\Aplicativo\HabProfDB.edmx
 -- --------------------------------------------------
 
@@ -255,7 +255,10 @@ GO
 CREATE TABLE [dbo].[Mesas] (
     [mesa_id] int IDENTITY(1,1) NOT NULL,
     [mesa_fecha] datetime  NOT NULL,
-    [mesa_estado] nvarchar(max)  NOT NULL
+    [mesa_estado] nvarchar(max)  NOT NULL,
+    [mesa_codigo_carrera] int  NOT NULL,
+    [mesa_codigo_plan] int  NOT NULL,
+    [mesa_codigo_materia] int  NOT NULL
 );
 GO
 
@@ -560,7 +563,7 @@ GO
 
 -- Creating foreign key on [Jueces_juez_id] in table 'JuezTesina'
 ALTER TABLE [dbo].[JuezTesina]
-ADD CONSTRAINT [FK_JuezTesina_Juez]
+ADD CONSTRAINT [FK_JuezTesina_Jurado]
     FOREIGN KEY ([Jueces_juez_id])
     REFERENCES [dbo].[Jueces]
         ([juez_id])
@@ -617,15 +620,15 @@ GO
 
 -- Creating foreign key on [Jueces_juez_id] in table 'MesaJuez'
 ALTER TABLE [dbo].[MesaJuez]
-ADD CONSTRAINT [FK_MesaJuez_Juez]
+ADD CONSTRAINT [FK_MesaJuez_Jurado]
     FOREIGN KEY ([Jueces_juez_id])
     REFERENCES [dbo].[Jueces]
         ([juez_id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_MesaJuez_Juez'
-CREATE INDEX [IX_FK_MesaJuez_Juez]
+-- Creating non-clustered index for FOREIGN KEY 'FK_MesaJuez_Jurado'
+CREATE INDEX [IX_FK_MesaJuez_Jurado]
 ON [dbo].[MesaJuez]
     ([Jueces_juez_id]);
 GO

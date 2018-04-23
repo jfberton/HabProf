@@ -49,6 +49,60 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.WebControls.ValidationSummary validation_summary;
         
         /// <summary>
+        /// tb_cod_carrera control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_cod_carrera;
+        
+        /// <summary>
+        /// rev_tb_cod_carrera control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rev_tb_cod_carrera;
+        
+        /// <summary>
+        /// tb_cod_plan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_cod_plan;
+        
+        /// <summary>
+        /// rev_tb_cod_plan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rev_tb_cod_plan;
+        
+        /// <summary>
+        /// tb_cod_materia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tb_cod_materia;
+        
+        /// <summary>
+        /// rev_tb_cod_materia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator rev_tb_cod_materia;
+        
+        /// <summary>
         /// tb_fecha_mesa control.
         /// </summary>
         /// <remarks>

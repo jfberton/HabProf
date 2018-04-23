@@ -25,10 +25,33 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-2">Código carrera</div>
+        <div class="col-md-2">
+            <asp:TextBox runat="server" ID="tb_cod_carrera" />
+            <asp:RegularExpressionValidator ValidationExpression="^([0-9]{1,3})$" ControlToValidate="tb_cod_carrera" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                ID="rev_tb_cod_carrera" runat="server" ErrorMessage="Debe ingresar un número entero del 1 al 999" ValidationGroup="mesa" />
+        </div>
+        <div class="col-md-2">Código plan</div>
+        <div class="col-md-2">
+            <asp:TextBox runat="server" ID="tb_cod_plan" />
+            <asp:RegularExpressionValidator ValidationExpression="^([0-9]{1,4})$" ControlToValidate="tb_cod_plan" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                ID="rev_tb_cod_plan" runat="server" ErrorMessage="Debe ingresar un número entero del 1 al 9999" ValidationGroup="mesa" />
+        </div>
+        <div class="col-md-2">Código materia</div>
+        <div class="col-md-2">
+            <asp:TextBox runat="server" ID="tb_cod_materia" />
+            <asp:RegularExpressionValidator ValidationExpression="^([0-9]{1,3})$" ControlToValidate="tb_cod_materia" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                ID="rev_tb_cod_materia" runat="server" ErrorMessage="Debe ingresar un número entero del 1 al 999" ValidationGroup="mesa" />
+        </div>
+    </div>
+
     <br />
     <%--FECHA MESA--%>
     <div class="row">
-        <div class="col-md-4"><h3>Fecha mesa</h3></div>
+        <div class="col-md-4">
+            <h3>Fecha mesa</h3>
+        </div>
         <div class="col-md-7">
             <div class='input-group date' id='datetimepicker1'>
                 <input type='text' runat="server" id="tb_fecha_mesa" class="form-control" />
@@ -287,7 +310,7 @@
 
         var d = new Date();
         d.setDate(d.getDate() + 7)
-        
+
         $(function () {
             $('#datetimepicker1').datetimepicker({
                 locale: 'es',

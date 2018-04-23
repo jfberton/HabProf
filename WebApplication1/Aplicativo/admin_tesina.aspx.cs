@@ -751,6 +751,8 @@ namespace WebApplication1.Aplicativo
                         }
                     }
 
+                    bool tesista_nuevo = false;
+
                     //agrego o actualizo el tesista
                     if (tesista == null)
                     {
@@ -762,6 +764,7 @@ namespace WebApplication1.Aplicativo
                             tesista_sede = tb_sede.Value
                         };
 
+                        tesista_nuevo = true;
                         cxt.Tesistas.Add(tesista);
                     }
                     else
@@ -791,6 +794,25 @@ namespace WebApplication1.Aplicativo
                             string path_save_file = directorio + "plan" + extencion_origen;
 
                             file_tesis.SaveAs(path_save_file);
+                        }
+
+                        if (tesista_nuevo)
+                        {
+                            Envio_mail registro_envio_mail = new Envio_mail()
+                            {
+                                persona_id = p_tesista.persona_id,
+                                envio_fecha_hora = DateTime.Now,
+                                envio_email_destino = p_tesista.persona_email, //de haber mas de un destinatario separar por coma Ej: mail + "," + mail2 + "," + mail3
+                                envio_respuesta_clave = Guid.NewGuid().ToString(),
+                                envio_tipo = MiEmail.tipo_mail.alta_tesista.ToString()
+                            };
+
+                            cxt.Envio_mails.Add(registro_envio_mail);
+                            cxt.SaveChanges();
+
+                            MiEmail mail = new MiEmail(registro_envio_mail);
+
+                            mail.Enviar_mail();
                         }
 
                         tb_dni_tesista.Value = string.Empty;

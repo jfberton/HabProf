@@ -22,20 +22,64 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value xml:space="preserve">  </Value>
+                <Value> - </Value>
                 <Style>
                   <FontWeight>Normal</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>Estado de la Mesa: </Value>
+                <Value>Plan: </Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
-                <Label>estado</Label>
-                <Value>=First(Fields!mesa_estado.Value, "t_mesa")</Value>
+                <Label>plan</Label>
+                <Value>=First(Fields!mesa_codigo_plan.Value, "t_mesa")</Value>
+                <Style>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> - </Value>
+                <Style>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Carrera:</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Label>carrera</Label>
+                <Value>=First(Fields!mesa_codigo_carrera.Value, "t_mesa")</Value>
+                <Style>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> - </Value>
+                <Style>
+                  <FontWeight>Normal</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Materia: </Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Label>materia</Label>
+                <Value>=First(Fields!mesa_codigo_materia.Value, "t_mesa")</Value>
                 <Style>
                   <FontWeight>Normal</FontWeight>
                 </Style>
@@ -76,7 +120,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox5</rd:DefaultName>
-        <Top>0.88222cm</Top>
+        <Top>1.07833cm</Top>
         <Left>1.91599cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
@@ -259,10 +303,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>t_jurados</DataSetName>
-        <Top>1.5175cm</Top>
+        <Top>1.71361cm</Top>
         <Left>1.91599cm</Left>
         <Height>1.2cm</Height>
-        <Width>11.17771cm</Width>
+        <Width>11.1777cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -287,7 +331,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox12</rd:DefaultName>
-        <Top>3.2625cm</Top>
+        <Top>3.45861cm</Top>
         <Left>1.91599cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
@@ -538,7 +582,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>t_tesinas</DataSetName>
-        <Top>4.00361cm</Top>
+        <Top>4.19972cm</Top>
         <Left>1.91599cm</Left>
         <Height>1.2cm</Height>
         <Width>14.38854cm</Width>
@@ -550,7 +594,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>2.19792in</Height>
+    <Height>2.3125in</Height>
     <Style />
   </Body>
   <Width>7.53342in</Width>
@@ -812,10 +856,22 @@
           <DataField>mesa_licenciatura</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="mesa_codigo_materia">
+          <DataField>mesa_codigo_materia</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="mesa_codigo_plan">
+          <DataField>mesa_codigo_plan</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="mesa_codigo_carrera">
+          <DataField>mesa_codigo_carrera</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>reporte_mesa</rd:DataSetName>
-        <rd:SchemaPath>D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\Reportes\reporte_mesa.xsd</rd:SchemaPath>
+        <rd:SchemaPath>D:\Desarrollo\Mios\Habilitacion profesional\HabProf\WebApplication1\Aplicativo\Reportes\reporte_mesa.xsd</rd:SchemaPath>
         <rd:TableName>t_mesa</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
@@ -843,7 +899,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>reporte_mesa</rd:DataSetName>
-        <rd:SchemaPath>D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\Reportes\reporte_mesa.xsd</rd:SchemaPath>
+        <rd:SchemaPath>D:\Desarrollo\Mios\Habilitacion profesional\HabProf\WebApplication1\Aplicativo\Reportes\reporte_mesa.xsd</rd:SchemaPath>
         <rd:TableName>t_jurados</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />
@@ -887,7 +943,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>reporte_mesa</rd:DataSetName>
-        <rd:SchemaPath>D:\Desarrollo\Mios\Habilitacion profecional\HabProf\WebApplication1\Aplicativo\Reportes\reporte_mesa.xsd</rd:SchemaPath>
+        <rd:SchemaPath>D:\Desarrollo\Mios\Habilitacion profesional\HabProf\WebApplication1\Aplicativo\Reportes\reporte_mesa.xsd</rd:SchemaPath>
         <rd:TableName>t_tesinas</rd:TableName>
         <rd:TableAdapterFillMethod />
         <rd:TableAdapterGetDataMethod />

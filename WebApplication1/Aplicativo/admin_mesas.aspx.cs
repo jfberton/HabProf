@@ -43,8 +43,9 @@ namespace WebApplication1.Aplicativo
                                              mesa_id = m.mesa_id,
                                              mesa_fecha = m.mesa_fecha,
                                              mesa_estado = m.mesa_estado,
-                                             enabled_cerrar = m.mesa_estado == "Generada",
-                                             enabled_editar = m.mesa_estado == "Generada"
+                                             enabled_cerrar = m.mesa_estado == "Cerrada",
+                                             enabled_editar = m.mesa_estado == "Generada",
+                                             eliminar_mesa = m.mesa_estado == "Generada" ? "":"disabled"
                                          });
 
                 if (mesas.Count() > 0)
@@ -137,6 +138,9 @@ namespace WebApplication1.Aplicativo
                 if (mesa != null)
                 {
                     lbl_estado.Text = mesa.mesa_estado;
+                    lbl_carrera.Text = mesa.mesa_codigo_carrera.ToString();
+                    lbl_plan.Text = mesa.mesa_codigo_plan.ToString();
+                    lbl_materia.Text = mesa.mesa_codigo_materia.ToString();
                     lbl_ver_mesa_fecha.Text = mesa.mesa_fecha.ToShortDateString();
 
                     var jurados = (from j in mesa.Jueces
@@ -147,6 +151,20 @@ namespace WebApplication1.Aplicativo
                                        juez_persona_email = j.Persona.persona_email
                                    }).ToList();
                     var tesinas = (from t in mesa.Tesinas select t).ToList();
+
+                    //si esta en estado generada debo eliminar las notas que pueden llegar a tener las tesinas, no se porque pero pasó
+                    if (mesa.mesa_estado == "Generada")
+                    {
+                        foreach (Tesina t in mesa.Tesinas)
+                        {
+                            t.tesina_calificacion = null;
+                            t.tesina_calificacion_director = null;
+                            t.tesina_calificacion_codirector = null;
+
+                            cxt.SaveChanges();
+                        }
+                    }
+
                     var tesinas_para_grilla = (from t in tesinas
                                                select new
                                                {
@@ -200,7 +218,8 @@ namespace WebApplication1.Aplicativo
                                        tesina_director = t.Director.Persona.persona_nomyap,
                                        tesina_tesista = t.Tesista.Persona.persona_nomyap,
                                        tesina_nota = t.tesina_calificacion,
-                                       tesina_nota_director = t.tesina_calificacion_director
+                                       tesina_nota_director = t.tesina_calificacion_director,
+                                       tiene_codirector = t.codirector_id != null
                                    });
 
                     gv_cerrar_mesa_tesinas.DataSource = tesinas;
@@ -299,6 +318,9 @@ namespace WebApplication1.Aplicativo
                 Reportes.reporte_mesa.t_mesaRow mr = ds.t_mesa.Newt_mesaRow();
                 mr.mesa_fecha = mesa.mesa_fecha;
                 mr.mesa_estado = mesa.mesa_estado;
+                mr.mesa_codigo_carrera = mesa.mesa_codigo_carrera.ToString();
+                mr.mesa_codigo_materia = mesa.mesa_codigo_materia.ToString();
+                mr.mesa_codigo_plan = mesa.mesa_codigo_plan.ToString();
                 mr.mesa_licenciatura = mesa.Tesinas.First().Tesista.Persona.Licenciatura.licenciatura_nombre;
                 ds.t_mesa.Addt_mesaRow(mr);
 
@@ -606,6 +628,9 @@ namespace WebApplication1.Aplicativo
                     Reportes.reporte_mesa.t_mesaRow mr = ds.t_mesa.Newt_mesaRow();
                     mr.mesa_fecha = mesa.mesa_fecha;
                     mr.mesa_estado = mesa.mesa_estado;
+                    mr.mesa_codigo_carrera = mesa.mesa_codigo_carrera.ToString();
+                    mr.mesa_codigo_materia = mesa.mesa_codigo_materia.ToString();
+                    mr.mesa_codigo_plan = mesa.mesa_codigo_plan.ToString();
                     mr.mesa_licenciatura = mesa.Tesinas.First().Tesista.Persona.Licenciatura.licenciatura_nombre;
                     ds.t_mesa.Addt_mesaRow(mr);
 

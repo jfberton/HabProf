@@ -38,6 +38,9 @@ namespace WebApplication1.Aplicativo
                         Mesa mesa = cxt.Mesas.FirstOrDefault(mm => mm.mesa_id == mesa_id);
 
                         tb_fecha_mesa.Value = mesa.mesa_fecha.ToShortDateString();
+                        tb_cod_carrera.Text = mesa.mesa_codigo_carrera.ToString();
+                        tb_cod_materia.Text = mesa.mesa_codigo_materia.ToString();
+                        tb_cod_plan.Text = mesa.mesa_codigo_plan.ToString();
 
                         List<item_jurado> jurados = new List<Aplicativo.admin_mesa.item_jurado>();
                         string texto_hidden_jueces = string.Empty;
@@ -296,7 +299,7 @@ namespace WebApplication1.Aplicativo
                                where t.estado_tesis_id == et.estado_tesina_id && t.Tesista.tesista_baja_definitiva == null
                                select t).ToList();
 
-                var jueces_sin_baja = (from t in tesinas
+                var tesinas_sin_baja = (from t in tesinas
                                        select new item_tesina
                                        {
                                            tesina_id = t.tesina_id,
@@ -307,9 +310,9 @@ namespace WebApplication1.Aplicativo
                                            seleccionada = (items_seleccionados.IndexOf(t.tesina_id) > -1)
                                        }).ToList();
 
-                if (jueces_sin_baja.Count() > 0)
+                if (tesinas_sin_baja.Count() > 0)
                 {
-                    gv_seleccionar_tesinas.DataSource = jueces_sin_baja;
+                    gv_seleccionar_tesinas.DataSource = tesinas_sin_baja;
                     gv_seleccionar_tesinas.DataBind();
                 }
                 else
@@ -529,6 +532,9 @@ namespace WebApplication1.Aplicativo
                         }
 
                         mesa.mesa_fecha = Convert.ToDateTime(tb_fecha_mesa.Value);
+                        mesa.mesa_codigo_carrera = Convert.ToInt32(tb_cod_carrera.Text);
+                        mesa.mesa_codigo_materia = Convert.ToInt32(tb_cod_materia.Text);
+                        mesa.mesa_codigo_plan = Convert.ToInt32(tb_cod_plan.Text);
 
                         mesa.mesa_estado = "Generada";
 
@@ -554,7 +560,7 @@ namespace WebApplication1.Aplicativo
                                 envio_email_destino = jurado.Persona.persona_email,
                                 envio_fecha_hora = DateTime.Now,
                                 envio_respuesta_clave = "no se usa",
-                                envio_tipo = MiEmail.tipo_mail.notificacion_alta_mesa.ToString()
+                                envio_tipo = MiEmail.tipo_mail.notificacion_alta_mesa_jurado.ToString()
                             };
                             cxt.Envio_mails.Add(em_jurado);
                             MiEmail me_jurado = new MiEmail(em_jurado, "Jurado", mesa.mesa_fecha);
@@ -569,7 +575,7 @@ namespace WebApplication1.Aplicativo
                                 envio_email_destino = tesina.Tesista.Persona.persona_email,
                                 envio_fecha_hora = DateTime.Now,
                                 envio_respuesta_clave = "no se usa",
-                                envio_tipo = MiEmail.tipo_mail.notificacion_alta_mesa.ToString()
+                                envio_tipo = MiEmail.tipo_mail.notificacion_alta_mesa_tesista.ToString()
                             };
                             cxt.Envio_mails.Add(em_tesista);
                             MiEmail me_tesista = new MiEmail(em_tesista, "Tesista", mesa.mesa_fecha);

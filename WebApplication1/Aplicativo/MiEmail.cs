@@ -26,11 +26,15 @@ namespace WebApplication1.Aplicativo
             notificacion_entrega_archivo_tesina,
             notificacion_correcciones_tesina,
             notificacion_tesina_lista_para_presentar,
+            notificacion_tesina_lista_para_presentar_tesista,
             notificacion_tesina_vencida,
             notificacion_tesina_prorrogada,
             alta_director,
+            alta_tesista,
             notificacion_recordatorio_automatico,
-            notificacion_alta_mesa
+            notificacion_alta_mesa,
+            notificacion_alta_mesa_tesista,
+            notificacion_alta_mesa_jurado
         }
 
         public MiEmail(Envio_mail mail)
@@ -73,11 +77,11 @@ namespace WebApplication1.Aplicativo
                 Codirector_nombre = t.Codirector != null ? t.Codirector.Persona.persona_nomyap : "-";
                 Tesista_mail = t.Tesista.Persona.persona_email;
                 Tesista_nombre = t.Tesista.Persona.persona_nomyap;
-                Tesis_fecha_limite = t.tesina_plan_fch_presentacion.AddMonths(t.tesina_plan_duracion_meses -1).ToShortDateString();
+                Tesis_fecha_limite = t.tesina_plan_fch_presentacion.AddMonths(t.tesina_plan_duracion_meses - 1).ToShortDateString();
                 Tesis_periodo_notificaciones = t.tesina_plan_aviso_meses.ToString();
                 Tesis_tema = t.tesina_tema;
                 Tesis_Url_archivo = ConfigurationManager.AppSettings["direccion_localhost_raiz"] + mail.envio_respuesta_clave;
-                Tesis_meses_restantes = Math.Abs((t.tesina_plan_fch_presentacion.AddMonths(t.tesina_plan_duracion_meses).Month - DateTime.Today.Month) + 12 * (t.tesina_plan_fch_presentacion.AddMonths(t.tesina_plan_duracion_meses).Year - DateTime.Today.Year))-1;
+                Tesis_meses_restantes = Math.Abs((t.tesina_plan_fch_presentacion.AddMonths(t.tesina_plan_duracion_meses).Month - DateTime.Today.Month) + 12 * (t.tesina_plan_fch_presentacion.AddMonths(t.tesina_plan_duracion_meses).Year - DateTime.Today.Year)) - 1;
             }
         }
 
@@ -237,6 +241,14 @@ namespace WebApplication1.Aplicativo
                                                                                              Replace("UserPass", Persona_pass).
                                                                                              Replace("url_respuesta", Url_respuesta);
                             break;
+                        case tipo_mail.alta_tesista:
+                            Asunto = "Sistema de administración de Tesina - Alta Tesista";
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
+                                                                                             Replace("Username", Persona_nombre).
+                                                                                             Replace("TestUser", Persona_usuario).
+                                                                                             Replace("UserPass", Persona_pass).
+                                                                                             Replace("url_respuesta", Url_respuesta);
+                            break;
 
                         case tipo_mail.notificacion_entrega_archivo_tesina:
                             Asunto = "Sistema de administración de Tesina - Entrega archivo Tesina";
@@ -257,8 +269,20 @@ namespace WebApplication1.Aplicativo
                             Asunto = "Sistema de administración de Tesina - Tesina lista para evaluar";
                             cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
                                                                                                Replace("Username", Persona_nombre).
-                                                                                               Replace("tema_tesina", Tesis_tema);
+                                                                                               Replace("tema_tesina", Tesis_tema).
+                                                                                               Replace("tesista_nombre", Tesista_nombre);
                             break;
+
+                        case tipo_mail.notificacion_tesina_lista_para_presentar_tesista:
+                            Asunto = "Sistema de administración de Tesina - Tesina lista para evaluar";
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
+                                                                                               Replace("Username", Persona_nombre).
+                                                                                               Replace("tema_tesina", Tesis_tema);
+
+
+
+                            break;
+
 
                         case tipo_mail.notificacion_tesina_vencida:
                             Asunto = "Sistema de administración de Tesina - Tesina Vencida";
@@ -290,8 +314,25 @@ namespace WebApplication1.Aplicativo
                             cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
                                                                                                Replace("Username", Persona_nombre).
                                                                                                Replace("fecha_mesa", Mesa_fecha).
-                                                                                               Replace("perfil_persona_mesa", Mesa_perfil_persona);
+                                                                                               Replace("nombre_tesina", Tesis_tema).
+                                                                                               Replace("nombre_tesista", Tesista_nombre);
                             break;
+
+                        case tipo_mail.notificacion_alta_mesa_tesista:
+                            Asunto = "Sistema de administración de Tesina - Alta Mesa Evaluativa";
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
+                                                                                               Replace("Username", Persona_nombre).
+                                                                                               Replace("fecha_mesa", Mesa_fecha).
+                                                                                               Replace("nombre_tesina", Tesis_tema);
+                            break;
+                        case tipo_mail.notificacion_alta_mesa_jurado:
+                            Asunto = "Sistema de administración de Tesina - Alta Mesa Evaluativa";
+                            cuerpo = File.ReadAllText(HttpRuntime.AppDomainAppPath + @"Aplicativo\Mails\" + Tipo_mail.ToString() + ".html").ToString().
+                                                                                               Replace("Username", Persona_nombre).
+                                                                                               Replace("fecha_mesa", Mesa_fecha);
+                            break;
+
+
                         default:
                             break;
                     }

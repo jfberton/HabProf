@@ -142,7 +142,10 @@
     <Content Include="Aplicativo\importar_directores.aspx" />
     <Content Include="Aplicativo\importar_tesistas.aspx" />
     <Content Include="Aplicativo\Mails\alta_director.html" />
+    <Content Include="Aplicativo\Mails\alta_tesista.html" />
     <Content Include="Aplicativo\Mails\notificacion_alta_mesa.html" />
+    <Content Include="Aplicativo\Mails\notificacion_alta_mesa_jurado.html" />
+    <Content Include="Aplicativo\Mails\notificacion_alta_mesa_tesista.html" />
     <Content Include="Aplicativo\Mails\notificacion_asignacion_tesina_director.html" />
     <Content Include="Aplicativo\Mails\notificacion_correcciones_tesina.html" />
     <Content Include="Aplicativo\Mails\notificacion_eliminacion_tesina_director.html" />
@@ -153,6 +156,7 @@
     <Content Include="Aplicativo\Mails\notificacion_modificacion_tesina_tesista.html" />
     <Content Include="Aplicativo\Mails\notificacion_recordatorio_automatico.html" />
     <Content Include="Aplicativo\Mails\notificacion_tesina_lista_para_presentar.html" />
+    <Content Include="Aplicativo\Mails\notificacion_tesina_lista_para_presentar_tesista.html" />
     <Content Include="Aplicativo\Mails\notificacion_tesina_prorrogada.html" />
     <Content Include="Aplicativo\Mails\notificacion_tesina_vencida.html" />
     <Content Include="Aplicativo\Mails\recupero_contraseña.html" />
@@ -213,6 +217,9 @@
     <Content Include="Aplicativo\Reportes\reporte_director.xsc">
       <DependentUpon>reporte_director.xsd</DependentUpon>
     </Content>
+    <Content Include="Aplicativo\Manuales\manual_administrador.pdf" />
+    <Content Include="Aplicativo\Manuales\manual_director.pdf" />
+    <Content Include="Aplicativo\Manuales\manual_tesista.pdf" />
     <None Include="Aplicativo\Reportes\reporte_director.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -834,7 +841,7 @@
     <Compile Include="Aplicativo\importar_tesistas.aspx.designer.cs">
       <DependentUpon>importar_tesistas.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Aplicativo\Juez.cs">
+    <Compile Include="Aplicativo\Jurado.cs">
       <DependentUpon>HabProfDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Aplicativo\Licenciatura.cs">
@@ -985,6 +992,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Aplicativo\Reportes\reporte_mesa_tesinas_aprobadas_biblioteca.rdlc" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -76,6 +76,33 @@ namespace WebApplication1.Aplicativo {
         protected global::System.Web.UI.WebControls.Label lbl_ver_mesa_fecha;
         
         /// <summary>
+        /// lbl_plan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_plan;
+        
+        /// <summary>
+        /// lbl_carrera control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_carrera;
+        
+        /// <summary>
+        /// lbl_materia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_materia;
+        
+        /// <summary>
         /// lbl_estado control.
         /// </summary>
         /// <remarks>

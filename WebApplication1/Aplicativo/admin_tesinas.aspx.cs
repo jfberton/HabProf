@@ -768,7 +768,7 @@ namespace WebApplication1.Aplicativo
                     envio_email_destino = t.Tesista.Persona.persona_email,
                     envio_fecha_hora = DateTime.Now,
                     envio_respuesta_clave = "no se usa",
-                    envio_tipo = MiEmail.tipo_mail.notificacion_tesina_lista_para_presentar.ToString()
+                    envio_tipo = MiEmail.tipo_mail.notificacion_tesina_lista_para_presentar_tesista.ToString()
                 };
                 cxt.Envio_mails.Add(em_tesista);
                 MiEmail me_tesista = new MiEmail(em_tesista, t);

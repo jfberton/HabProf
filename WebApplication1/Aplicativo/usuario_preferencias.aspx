@@ -195,6 +195,22 @@
                 </div>
             </div>
         </div>
+
+        <h2>Manuales
+        <br />
+            <small>aquí podrá descargar los manuales del sistema</small></h2>
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <a href="Manuales/manual_administrador.pdf" target="_blank" class="btn btn-lg btn-default">Manual del Administrador</a>
+            </div>
+            <div class="col-md-4">
+               <a href="Manuales/manual_director.pdf" target="_blank" class="btn btn-lg btn-default">Manual del Director</a>
+            </div>
+            <div class="col-md-4">
+                <a href="Manuales/manual_tesista.pdf" target="_blank" class="btn btn-lg btn-default">Manual del Tesista</a>
+            </div>
+        </div>
     </div>
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="CPH_Scripts" runat="server">

@@ -69,7 +69,7 @@
       <End Role="Persona" EntitySet="Personas" />
       <End Role="Administrador" EntitySet="Administradores" />
     </AssociationSet>
-    <AssociationSet Name="FK_JuezTesina_Juez" Association="HabProfDB.Store.FK_JuezTesina_Juez">
+    <AssociationSet Name="FK_JuezTesina_Jurado" Association="HabProfDB.Store.FK_JuezTesina_Jurado">
       <End Role="Jurado" EntitySet="Jueces" />
       <End Role="JuezTesina" EntitySet="JuezTesina" />
     </AssociationSet>
@@ -89,7 +89,7 @@
       <End Role="Mesa" EntitySet="Mesas" />
       <End Role="MesaJuez" EntitySet="MesaJuez" />
     </AssociationSet>
-    <AssociationSet Name="FK_MesaJuez_Juez" Association="HabProfDB.Store.FK_MesaJuez_Juez">
+    <AssociationSet Name="FK_MesaJuez_Jurado" Association="HabProfDB.Store.FK_MesaJuez_Jurado">
       <End Role="Jurado" EntitySet="Jueces" />
       <End Role="MesaJuez" EntitySet="MesaJuez" />
     </AssociationSet>
@@ -227,6 +227,9 @@
     <Property Name="mesa_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="mesa_fecha" Type="datetime" Nullable="false" />
     <Property Name="mesa_estado" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="mesa_codigo_carrera" Type="int" Nullable="false" />
+    <Property Name="mesa_codigo_plan" Type="int" Nullable="false" />
+    <Property Name="mesa_codigo_materia" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="JuezTesina">
     <Key>
@@ -408,7 +411,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_JuezTesina_Juez">
+  <Association Name="FK_JuezTesina_Jurado">
     <End Role="Jurado" Type="HabProfDB.Store.Jueces" Multiplicity="1" />
     <End Role="JuezTesina" Type="HabProfDB.Store.JuezTesina" Multiplicity="*" />
     <ReferentialConstraint>
@@ -468,7 +471,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_MesaJuez_Juez">
+  <Association Name="FK_MesaJuez_Jurado">
     <End Role="MesaJuez" Type="HabProfDB.Store.MesaJuez" Multiplicity="*" />
     <End Role="Jurado" Type="HabProfDB.Store.Jueces" Multiplicity="1" />
     <ReferentialConstraint>
@@ -833,6 +836,9 @@
           <Property Name="mesa_estado" Type="String" Nullable="false" />
           <NavigationProperty Name="Tesinas" Relationship="HabProfDB.MesaTesina" FromRole="Mesa" ToRole="Tesina" />
           <NavigationProperty Name="Jueces" Relationship="HabProfDB.MesaJuez" FromRole="Mesa" ToRole="Jurado" />
+          <Property Name="mesa_codigo_carrera" Type="Int32" Nullable="false" />
+          <Property Name="mesa_codigo_plan" Type="Int32" Nullable="false" />
+          <Property Name="mesa_codigo_materia" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="MesaTesina">
           <End Type="HabProfDB.Mesa" Role="Mesa" Multiplicity="*" />
@@ -995,6 +1001,9 @@
           <ScalarProperty Name="mesa_id" ColumnName="mesa_id" />
           <ScalarProperty Name="mesa_fecha" ColumnName="mesa_fecha" />
           <ScalarProperty Name="mesa_estado" ColumnName="mesa_estado" />
+          <ScalarProperty Name="mesa_codigo_carrera" ColumnName="mesa_codigo_carrera" />
+          <ScalarProperty Name="mesa_codigo_plan" ColumnName="mesa_codigo_plan" />
+          <ScalarProperty Name="mesa_codigo_materia" ColumnName="mesa_codigo_materia" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

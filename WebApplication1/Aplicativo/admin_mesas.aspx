@@ -53,12 +53,13 @@
             </asp:TemplateField>
             <asp:TemplateField>
                 <ItemTemplate>
-                    <asp:Button Text="Cerrar" ID="btn_cerrar_mesa" Enabled='<%#Eval("enabled_cerrar")%>' OnClick="btn_cerrar_mesa_ServerClick" runat="server" CssClass="btn btn-sm btn-primary" CommandArgument='<%#Eval("mesa_id")%>' />
+                    <asp:Button Text="Cerrar" ID="btn_cerrar_mesa" Enabled='<%#Eval("enabled_editar")%>' OnClick="btn_cerrar_mesa_ServerClick" runat="server" CssClass="btn btn-sm btn-primary" CommandArgument='<%#Eval("mesa_id")%>' />
                     <asp:Button Text="Editar" ID="btn_editar" Enabled='<%#Eval("enabled_editar")%>' OnClick="btn_editar_ServerClick" runat="server" CssClass="btn btn-sm btn-warning" CommandArgument='<%#Eval("mesa_id")%>' />
                     <button
                         type="button" class="btn btn-sm btn-danger"
                         data-toggle="modal"
                         data-target="#advertencia_eliminacion"
+                        <%#Eval("eliminar_mesa")%>
                         data-id='<%#Eval("mesa_id")%>'
                         data-introduccion="la mesa"
                         data-nombre='<%#Eval("mesa_fecha")%>'>
@@ -104,7 +105,20 @@
                     <h3>Fecha: 
                         <asp:Label Text="" ID="lbl_ver_mesa_fecha" runat="server" /></h3>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-3">
+                             <h4>Plan:
+                                <asp:Label Text="" ID="lbl_plan" runat="server" /></h4>
+                        </div>
+                         <div class="col-md-3">
+                             <h4>Carrera:
+                                <asp:Label Text="" ID="lbl_carrera" runat="server" /></h4>
+                        </div>
+                         <div class="col-md-3">
+                             <h4>Materia:
+                                <asp:Label Text="" ID="lbl_materia" runat="server" /></h4>
+                        </div>
+
+                        <div class="col-md-3">
                             <h4>Estado:
                                 <asp:Label Text="" ID="lbl_estado" runat="server" /></h4>
                         </div>
@@ -183,7 +197,7 @@
                                                         <asp:RequiredFieldValidator ControlToValidate="tb_calificacion_tesina" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                             ID="rfv_calificacion_tesina" runat="server" ErrorMessage="Debe ingresar la calificación final de la tesina" ValidationGroup="cerrar">
                                                         </asp:RequiredFieldValidator>
-                                                        <asp:RegularExpressionValidator ValidationExpression="^([0-9]|10)$" ControlToValidate="tb_calificacion_tesina" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                        <asp:RegularExpressionValidator ValidationExpression="^([1-9]|10)$" ControlToValidate="tb_calificacion_tesina" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                             ID="rev_calificacion_tesina" runat="server" ErrorMessage="Debe ingresar un número entero del 0 al 10" ValidationGroup="cerrar" />
                                                     </td>
                                                 </tr>
@@ -201,8 +215,8 @@
                                                         <asp:RequiredFieldValidator ControlToValidate="tb_calificacion_director_tesina" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
                                                             ID="rfv_calificacion_director_tesina" runat="server" ErrorMessage="Debe ingresar la calificación final de la tesina" ValidationGroup="cerrar">
                                                         </asp:RequiredFieldValidator>
-                                                        <asp:RegularExpressionValidator ValidationExpression="^([0-9]|10)$" ControlToValidate="tb_calificacion_director_tesina" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
-                                                            ID="rev_calificacion_director_tesina" runat="server" ErrorMessage="Debe ingresar un número entero del 0 al 10" ValidationGroup="cerrar" />
+                                                        <asp:RegularExpressionValidator ValidationExpression="^([1-9]|10)$" ControlToValidate="tb_calificacion_director_tesina" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"
+                                                            ID="rev_calificacion_director_tesina" runat="server" ErrorMessage="Debe ingresar un número entero del 1 al 10" ValidationGroup="cerrar" />
                                                     </td>
                                                 </tr>
                                             </table>
@@ -214,7 +228,7 @@
                                             <table>
                                                 <tr>
                                                     <td>
-                                                        <asp:TextBox runat="server" Columns="3" ID="tb_calificacion_codirector_tesina" AccessKey='<%#Eval("tesina_id")%>' />
+                                                        <asp:TextBox runat="server" Enabled='<%#Eval("tiene_codirector")%>' ID="tb_calificacion_codirector_tesina" AccessKey='<%#Eval("tesina_id")%>' />
                                                     </td>
                                                     <td>
                                                         <asp:CustomValidator ControlToValidate="tb_calificacion_codirector_tesina" Text="<span class='glyphicon glyphicon-exclamation-sign' style='color: red;'></span>"

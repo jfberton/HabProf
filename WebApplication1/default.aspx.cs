@@ -205,7 +205,7 @@ namespace WebApplication1
                     Persona p_tesista = new Persona()
                     {
                         Licenciatura = l,
-                        persona_nomyap = "José Federico Bertoncini",
+                        persona_nomyap = "Juan José Paso",
                         persona_dni = 28162815,
                         persona_email = "atp.jfbertoncini@chaco.gov.ar",
                         persona_email_validado = false,
@@ -313,7 +313,7 @@ namespace WebApplication1
                         tesina_plan_fch_presentacion = Convert.ToDateTime("01/06/2017"),
                         tesina_plan_duracion_meses = 12,
                         tesina_plan_aviso_meses = 3,
-                        tesina_categoria = ""
+                        tesina_categoria = "1300 - VARIOS CAMPOS (Especificar)"
                     };
 
                     cxt.Tesinas.Add(tesis);

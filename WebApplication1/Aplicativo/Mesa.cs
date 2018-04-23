@@ -35,6 +35,12 @@ public partial class Mesa
 
     public string mesa_estado { get; set; }
 
+    public int mesa_codigo_carrera { get; set; }
+
+    public int mesa_codigo_plan { get; set; }
+
+    public int mesa_codigo_materia { get; set; }
+
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

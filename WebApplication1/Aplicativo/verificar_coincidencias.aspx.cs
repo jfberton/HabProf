@@ -22,7 +22,7 @@ namespace WebApplication1.Aplicativo
             Buscar buscar;
             using (HabProfDBContainer cxt = new HabProfDBContainer())
             {
-                List<Tesina> tesinas = cxt.Tesinas.Include("Tesista").Include("Tesista.Persona").ToList();
+                List<Tesina> tesinas = cxt.Tesinas.Include("Tesista").Include("Tesista.Persona").Include("Estado").ToList();
                 string html_tema = string.Empty;
                 string html_descripcion = string.Empty;
 
@@ -49,7 +49,9 @@ namespace WebApplication1.Aplicativo
                         {
                             tesina = tesina,
                             html_tema = html_tema,
-                            html_descripcion = html_descripcion
+                            html_descripcion = html_descripcion,
+                            estado = tesina.Estado.estado_tesina_estado
+                            
                         });
                     }
 
@@ -65,7 +67,7 @@ namespace WebApplication1.Aplicativo
 
                     HtmlGenericControl div_panel_heading = new HtmlGenericControl("div");
                     div_panel_heading.Attributes["class"] = "panel-heading";
-                    div_panel_heading.InnerHtml = "Presentada por: " + item.tesina.Tesista.Persona.persona_nomyap;
+                    div_panel_heading.InnerHtml = "<b>Presentada por: </b>" + item.tesina.Tesista.Persona.persona_nomyap + " - <b>Estado: </b>" + item.tesina.Estado.estado_tesina_estado;
 
                     HtmlGenericControl div_panel_body = new HtmlGenericControl("div");
                     div_panel_body.Attributes["class"] = "panel-body";
@@ -90,6 +92,7 @@ namespace WebApplication1.Aplicativo
             public Tesina tesina { get; set; }
             public string html_tema { get; set; }
             public string html_descripcion { get; set; }
+            public string estado { get; set; }
         }
     }
 }

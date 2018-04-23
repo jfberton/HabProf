@@ -355,6 +355,12 @@ namespace WebApplication1.Aplicativo.Reportes {
             
             private global::System.Data.DataColumn columnmesa_licenciatura;
             
+            private global::System.Data.DataColumn columnmesa_codigo_materia;
+            
+            private global::System.Data.DataColumn columnmesa_codigo_plan;
+            
+            private global::System.Data.DataColumn columnmesa_codigo_carrera;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public t_mesaDataTable() {
@@ -414,6 +420,30 @@ namespace WebApplication1.Aplicativo.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn mesa_codigo_materiaColumn {
+                get {
+                    return this.columnmesa_codigo_materia;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn mesa_codigo_planColumn {
+                get {
+                    return this.columnmesa_codigo_plan;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn mesa_codigo_carreraColumn {
+                get {
+                    return this.columnmesa_codigo_carrera;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -449,12 +479,15 @@ namespace WebApplication1.Aplicativo.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public t_mesaRow Addt_mesaRow(System.DateTime mesa_fecha, string mesa_estado, string mesa_licenciatura) {
+            public t_mesaRow Addt_mesaRow(System.DateTime mesa_fecha, string mesa_estado, string mesa_licenciatura, string mesa_codigo_materia, string mesa_codigo_plan, string mesa_codigo_carrera) {
                 t_mesaRow rowt_mesaRow = ((t_mesaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         mesa_fecha,
                         mesa_estado,
-                        mesa_licenciatura};
+                        mesa_licenciatura,
+                        mesa_codigo_materia,
+                        mesa_codigo_plan,
+                        mesa_codigo_carrera};
                 rowt_mesaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowt_mesaRow);
                 return rowt_mesaRow;
@@ -480,6 +513,9 @@ namespace WebApplication1.Aplicativo.Reportes {
                 this.columnmesa_fecha = base.Columns["mesa_fecha"];
                 this.columnmesa_estado = base.Columns["mesa_estado"];
                 this.columnmesa_licenciatura = base.Columns["mesa_licenciatura"];
+                this.columnmesa_codigo_materia = base.Columns["mesa_codigo_materia"];
+                this.columnmesa_codigo_plan = base.Columns["mesa_codigo_plan"];
+                this.columnmesa_codigo_carrera = base.Columns["mesa_codigo_carrera"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -491,6 +527,12 @@ namespace WebApplication1.Aplicativo.Reportes {
                 base.Columns.Add(this.columnmesa_estado);
                 this.columnmesa_licenciatura = new global::System.Data.DataColumn("mesa_licenciatura", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmesa_licenciatura);
+                this.columnmesa_codigo_materia = new global::System.Data.DataColumn("mesa_codigo_materia", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmesa_codigo_materia);
+                this.columnmesa_codigo_plan = new global::System.Data.DataColumn("mesa_codigo_plan", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmesa_codigo_plan);
+                this.columnmesa_codigo_carrera = new global::System.Data.DataColumn("mesa_codigo_carrera", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmesa_codigo_carrera);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1287,6 +1329,54 @@ namespace WebApplication1.Aplicativo.Reportes {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string mesa_codigo_materia {
+                get {
+                    try {
+                        return ((string)(this[this.tablet_mesa.mesa_codigo_materiaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'mesa_codigo_materia\' in table \'t_mesa\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_mesa.mesa_codigo_materiaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string mesa_codigo_plan {
+                get {
+                    try {
+                        return ((string)(this[this.tablet_mesa.mesa_codigo_planColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'mesa_codigo_plan\' in table \'t_mesa\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_mesa.mesa_codigo_planColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string mesa_codigo_carrera {
+                get {
+                    try {
+                        return ((string)(this[this.tablet_mesa.mesa_codigo_carreraColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'mesa_codigo_carrera\' in table \'t_mesa\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablet_mesa.mesa_codigo_carreraColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool Ismesa_fechaNull() {
                 return this.IsNull(this.tablet_mesa.mesa_fechaColumn);
             }
@@ -1319,6 +1409,42 @@ namespace WebApplication1.Aplicativo.Reportes {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void Setmesa_licenciaturaNull() {
                 this[this.tablet_mesa.mesa_licenciaturaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Ismesa_codigo_materiaNull() {
+                return this.IsNull(this.tablet_mesa.mesa_codigo_materiaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setmesa_codigo_materiaNull() {
+                this[this.tablet_mesa.mesa_codigo_materiaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Ismesa_codigo_planNull() {
+                return this.IsNull(this.tablet_mesa.mesa_codigo_planColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setmesa_codigo_planNull() {
+                this[this.tablet_mesa.mesa_codigo_planColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Ismesa_codigo_carreraNull() {
+                return this.IsNull(this.tablet_mesa.mesa_codigo_carreraColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setmesa_codigo_carreraNull() {
+                this[this.tablet_mesa.mesa_codigo_carreraColumn] = global::System.Convert.DBNull;
             }
         }
         
